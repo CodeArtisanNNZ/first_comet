@@ -1,50 +1,41 @@
-# Aware Minds Developer Hub
+# First Comet
 
-Aware Minds is a local developer workspace designed to make project and Git management easier without requiring command-line experience.
+**Take your project from first step to life.**
 
-Connect an existing Git folder or clone a GitHub repository, browse and edit project files, review changes, and commit and push through a guided visual workflow.
+First Comet is a beginner-first developer workspace for planning, building, understanding and publishing software projects through a visual interface.
 
-## Features
+## New web preview — v1.0.0
 
-- Account-free local workspace
-- Connect local Git repositories
-- Clone projects from GitHub
-- Browse and edit supported text files
-- Preview changes before applying them
-- Visual Connect → Edit → Review → Push workflow
-- Guided Git commit and push
-- Protection for common secret files
-- Project-specific themes
-- Light and dark appearance
-- Local SQLite workspace storage
-- No Ollama or external AI API required
+The first rebranded interactive preview is now available.
 
-## Windows installation
+- Retro editorial First Comet interface
+- Anime.js launch sequence and interaction motion
+- Project launchpad with device-local persistence
+- Visual project studio with files, editor, inspector and change timeline
+- Guided path from planning to frontend, backend, database and hosting
+- Learning reference for languages, databases, Git, GitHub, VS Code and hosting
+- Beginner, Practising and Pro guidance modes
+- Responsive light and dark themes
 
-1. Download the latest ZIP from GitHub Releases.
-2. Extract the complete ZIP into a permanent folder.
-3. Double-click `Install Aware Minds.cmd`.
-4. Allow the installation to finish.
-5. Open Aware Minds using the desktop shortcut.
+**[Open the live preview](https://first-comet-workspace.nusaibanusratz731891.chatgpt.site)**
 
-A first-time installation starts with an empty project library.
+Download `releases/First-Comet-Web-Preview-v1.0.0.zip`, extract it and open `index.html` in a current browser.
 
-## Requirements
+> This ZIP is an interactive browser preview. Direct local file editing and authenticated GitHub pushes require the upcoming desktop integration.
 
-The installer can install missing prerequisites through Windows Package Manager:
+## Repository status
 
-- Python 3.12 or newer
-- Node.js LTS
-- Git for Windows
+The earlier Aware Minds desktop foundation remains in this repository while it is migrated to the First Comet name and interface. The new preview release does not claim that the older desktop backend has already been fully rebranded.
 
-## Privacy
+## Product direction
 
-Aware Minds runs locally on the user’s computer. Project information is stored under `%LOCALAPPDATA%\AwareMinds`.
+First Comet aims to make these steps understandable in one place:
 
-Passwords, API keys and GitHub credentials are not stored by Aware Minds. GitHub authentication is handled through Git Credential Manager.
+1. Organise an idea.
+2. Build the interface.
+3. Add backend behaviour.
+4. Connect a database.
+5. Review changes with Git.
+6. Publish to GitHub and a hosting provider.
 
-## Safety
-
-Repository modifications require a preview and confirmation. Common secret files, credentials, private keys and environment files are blocked from the Quick Push workflow.
-
-Always review changes before committing or pushing.
+The product is account-free by default and does not require Ollama or an external AI API.
