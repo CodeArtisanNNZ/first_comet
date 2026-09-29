@@ -47,17 +47,26 @@
     </header>
 
     <aside class="rail">
+      <button class="rail-create" id="railCreate" aria-label="Create a new project"><span>＋</span><b>New project</b></button>
       <nav aria-label="Main navigation">
-        <button class="nav-item active" data-view="home"><span>⌂</span><b>Projects</b></button>
-        <button class="nav-item" data-view="guide"><span>◇</span><b>Build guide</b></button>
-        <button class="nav-item" data-view="learn"><span>≡</span><b>Learn</b></button>
-        <button class="nav-item" data-view="settings"><span>⚙</span><b>Settings</b></button>
+        <span class="nav-label">WORKSPACE</span>
+        <button class="nav-item active" data-view="home" aria-current="page"><span>⌂</span><b>Home</b><small>Projects &amp; start</small></button>
+        <button class="nav-item" data-view="guide"><span>◇</span><b>Build</b><small>Step-by-step path</small></button>
+        <span class="nav-label learn-label">HELP</span>
+        <button class="nav-item" data-view="learn"><span>?</span><b>Learn</b><small>Terms &amp; tools</small></button>
+        <button class="nav-item" data-view="settings"><span>⚙</span><b>Settings</b><small>Theme &amp; level</small></button>
       </nav>
       <div class="rail-note"><span class="tiny-comet">☄</span><p><b>First Comet</b><br><small>Guided developer workspace</small></p></div>
     </aside>
 
     <main id="workspace" tabindex="-1">
       <section class="view active" id="view-home">
+        <nav class="journey-nav" aria-label="Project journey">
+          <button class="active"><span>1</span><b>Start</b><small>Choose a project</small></button>
+          <i>→</i><button data-view="guide"><span>2</span><b>Build</b><small>Follow the guide</small></button>
+          <i>→</i><button data-nav-view="learn" data-topic-jump="github"><span>3</span><b>Connect</b><small>GitHub &amp; database</small></button>
+          <i>→</i><button data-nav-view="guide" data-step-jump="ship"><span>4</span><b>Publish</b><small>Put it online</small></button>
+        </nav>
         <div class="launchpad-head">
           <div><span class="eyebrow">YOUR LAUNCHPAD</span><h1>Where are we going?</h1><p>Choose a starting point. The technical steps will appear when you need them.</p></div>
           <div class="launch-orbit" aria-hidden="true"><span class="mini-planet"></span><span class="mini-comet">☄</span></div>
@@ -74,6 +83,7 @@
       </section>
 
       <section class="view" id="view-project">
+        <button class="back-to-projects" data-view="home">← All projects</button>
         <div class="studio">
           <aside class="toolbox">
             <div class="project-switch"><span class="project-avatar">FC</span><div><b id="projectName">My First Project</b><small id="projectType">Web application</small></div><button>⌄</button></div>
@@ -158,5 +168,6 @@
 
   <script src="assets/anime.min.js"></script>
   <script src="app.js"></script>
+  <script src="navigation.js"></script>
 </body>
 </html>

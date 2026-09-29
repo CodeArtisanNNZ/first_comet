@@ -3,6 +3,7 @@
 ## Static hosted preview (2026-09-29)
 
 - Added a public, account-free First Comet web experience under `public/`.
+- Simplified navigation for beginners with a persistent New Project action, plain-language Home/Build/Learn/Settings labels, active-page state, a Start → Build → Connect → Publish journey bar, a clear return-to-projects control, and readable mobile labels.
 - Added `wrangler.jsonc` so the existing `npx wrangler deploy` Cloudflare command publishes static assets instead of attempting to run the local FastAPI service.
 - The Anime.js introduction, First Comet logo, project launchpad, visual studio, build guide, learning reference, themes and responsive layout are included.
 - Browser projects and preferences use `localStorage`; this static preview does not edit arbitrary local folders or perform authenticated GitHub pushes.
