@@ -2,40 +2,31 @@
 
 **Take your project from first step to life.**
 
-First Comet is a beginner-first developer workspace for planning, building, understanding and publishing software projects through a visual interface.
+First Comet is a beginner-first visual workspace for planning, learning, building and publishing software projects.
 
-## New web preview — v1.0.0
+## Live website
 
-The first rebranded interactive preview is now available.
+The deployable website lives in `public/`. Cloudflare Workers Static Assets publishes it without running the private FastAPI backend.
 
-- Retro editorial First Comet interface
-- Anime.js launch sequence and interaction motion
-- Project launchpad with device-local persistence
-- Visual project studio with files, editor, inspector and change timeline
-- Guided path from planning to frontend, backend, database and hosting
-- Learning reference for languages, databases, Git, GitHub, VS Code and hosting
-- Beginner, Practising and Pro guidance modes
+- Animated Anime.js launch sequence
+- Project launchpad with browser-local persistence
+- Visual project studio and Git-style change timeline
+- Guided path from idea to frontend, backend, database and hosting
+- Pocket references for languages, databases, GitHub and VS Code
+- Beginner, Practising and Pro modes
 - Responsive light and dark themes
 
-**[Open the live preview](https://first-comet-workspace.nusaibanusratz731891.chatgpt.site)**
+Live domain: [firstcomet.awerminds.tech](https://firstcomet.awerminds.tech)
 
-Download `releases/First-Comet-Web-Preview-v1.0.0.zip`, extract it and open `index.html` in a current browser.
+## Deploy to Cloudflare
 
-> This ZIP is an interactive browser preview. Direct local file editing and authenticated GitHub pushes require the upcoming desktop integration.
+1. Connect this repository to Cloudflare Workers & Pages.
+2. Keep the deploy command as `npx wrangler deploy`.
+3. No build command or output-directory setting is required; `wrangler.jsonc` serves `public/`.
+4. After the first successful deployment, add `firstcomet.awerminds.tech` under **Custom domains**.
 
-## Repository status
+For a local preview, open `public/index.html` in a current browser.
 
-The earlier Aware Minds desktop foundation remains in this repository while it is migrated to the First Comet name and interface. The new preview release does not claim that the older desktop backend has already been fully rebranded.
+## Desktop foundation
 
-## Product direction
-
-First Comet aims to make these steps understandable in one place:
-
-1. Organise an idea.
-2. Build the interface.
-3. Add backend behaviour.
-4. Connect a database.
-5. Review changes with Git.
-6. Publish to GitHub and a hosting provider.
-
-The product is account-free by default and does not require Ollama or an external AI API.
+The existing FastAPI/React/SQLite files remain as a separate local desktop foundation. They are not executed by the public static deployment. Do not expose that account-free local API directly to the internet.

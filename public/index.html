@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#ff5a36">
+  <meta name="description" content="First Comet guides new developers from an idea to a working, published project.">
+  <meta property="og:title" content="First Comet — Developer Workspace">
+  <meta property="og:description" content="Take your project from first step to life.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://firstcomet.awerminds.tech/">
+  <meta property="og:image" content="https://firstcomet.awerminds.tech/assets/first-comet-logo.jpg">
+  <link rel="canonical" href="https://firstcomet.awerminds.tech/">
+  <title>First Comet — Developer Workspace</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='36' cy='30' r='18' fill='%23ffd33d' stroke='%23141414' stroke-width='5'/%3E%3Cpath d='M27 21 5 8l14 21L4 31l24 8' fill='%23ff5335' stroke='%23141414' stroke-width='5' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#workspace">Skip to workspace</a>
+
+  <section class="intro" id="intro" aria-label="First Comet introduction">
+    <div class="intro-grid"></div>
+    <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+    <div class="intro-star star-one">✦</div><div class="intro-star star-two">✦</div>
+    <img class="intro-logo" src="assets/first-comet-logo.jpg" alt="First Comet">
+    <p class="intro-kicker">IDEA → CODE → LIVE</p>
+    <p class="intro-line">Take your project from first step to life.</p>
+    <button class="skip-intro" id="skipIntro">Skip intro</button>
+  </section>
+
+  <div class="app" id="app" aria-hidden="true">
+    <header class="topbar">
+      <button class="brand" data-view="home" aria-label="First Comet home">
+        <img src="assets/first-comet-logo.jpg" alt="">
+        <span>FIRST<br>COMET</span>
+      </button>
+      <div class="crumb"><span id="sectionLabel">Workspace</span><strong id="pageLabel">Launchpad</strong></div>
+      <div class="top-actions">
+        <button class="icon-button" id="infoBtn" title="Explain this page" aria-label="Explain this page">i</button>
+        <button class="mode-chip" id="levelBtn"><span class="signal"></span><span id="levelText">Beginner</span><span>⌄</span></button>
+        <button class="icon-button" id="themeBtn" title="Toggle theme" aria-label="Toggle light and dark theme">◐</button>
+        <button class="icon-button command-trigger" title="Open command palette">⌘K</button>
+      </div>
+    </header>
+
+    <aside class="rail">
+      <nav aria-label="Main navigation">
+        <button class="nav-item active" data-view="home"><span>⌂</span><b>Projects</b></button>
+        <button class="nav-item" data-view="guide"><span>◇</span><b>Build guide</b></button>
+        <button class="nav-item" data-view="learn"><span>≡</span><b>Learn</b></button>
+        <button class="nav-item" data-view="settings"><span>⚙</span><b>Settings</b></button>
+      </nav>
+      <div class="rail-note"><span class="tiny-comet">☄</span><p><b>First Comet</b><br><small>Guided developer workspace</small></p></div>
+    </aside>
+
+    <main id="workspace" tabindex="-1">
+      <section class="view active" id="view-home">
+        <div class="launchpad-head">
+          <div><span class="eyebrow">YOUR LAUNCHPAD</span><h1>Where are we going?</h1><p>Choose a starting point. The technical steps will appear when you need them.</p></div>
+          <div class="launch-orbit" aria-hidden="true"><span class="mini-planet"></span><span class="mini-comet">☄</span></div>
+        </div>
+        <div class="action-stage">
+          <button class="launch-card coral" id="newProjectBtn"><span class="card-no">01</span><span class="card-icon">✦</span><h2>Build my first project</h2><p>Turn an idea into a guided project plan.</p><span class="card-go">START <b>→</b></span></button>
+          <button class="launch-card blue" id="openProjectBtn"><span class="card-no">02</span><span class="card-icon">⌁</span><h2>Open a project</h2><p>Bring in a folder or connect GitHub.</p><span class="card-go">OPEN <b>→</b></span></button>
+          <button class="launch-card yellow" data-view="guide"><span class="card-no">03</span><span class="card-icon">◎</span><h2>Follow the full path</h2><p>Frontend, backend, database and hosting.</p><span class="card-go">EXPLORE <b>→</b></span></button>
+        </div>
+        <div class="recent-strip">
+          <div><span class="eyebrow">RECENT MISSIONS</span><h2>Your projects</h2></div>
+          <div id="projectList" class="project-list"><button class="empty-project" id="emptyAdd"><b>＋</b><span>No projects yet</span><small>Add your first project</small></button></div>
+        </div>
+      </section>
+
+      <section class="view" id="view-project">
+        <div class="studio">
+          <aside class="toolbox">
+            <div class="project-switch"><span class="project-avatar">FC</span><div><b id="projectName">My First Project</b><small id="projectType">Web application</small></div><button>⌄</button></div>
+            <div class="tool-tabs" role="tablist">
+              <button class="active" data-tool="files">Files</button><button data-tool="database">Database</button><button data-tool="git">Git</button>
+            </div>
+            <div class="tree" id="fileTree">
+              <button class="folder open"><span>▾</span> src</button>
+              <button class="file active" data-file="index.html"><span>◇</span> index.html</button>
+              <button class="file" data-file="styles.css"><span>#</span> styles.css</button>
+              <button class="file" data-file="app.js"><span>JS</span> app.js</button>
+              <button class="folder"><span>›</span> assets</button>
+              <button class="file root" data-file="README.md"><span>¶</span> README.md</button>
+            </div>
+            <button class="add-file">＋ Add file</button>
+          </aside>
+          <section class="editor-pane">
+            <div class="editor-tabs"><button class="editor-tab active"><span>◇</span><span id="activeFile">index.html</span><i>×</i></button><button class="preview-toggle active">Code</button><button class="preview-toggle">Preview</button></div>
+            <div class="code-editor"><div class="line-numbers">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11</div><pre id="codeContent" contenteditable="true" spellcheck="false"><span class="pink">&lt;!doctype html&gt;</span>
+<span class="blue-text">&lt;html</span> <span class="yellow-text">lang</span>=<span class="green-text">&quot;en&quot;</span><span class="blue-text">&gt;</span>
+  <span class="blue-text">&lt;head&gt;</span>
+    <span class="blue-text">&lt;title&gt;</span>My First Project<span class="blue-text">&lt;/title&gt;</span>
+  <span class="blue-text">&lt;/head&gt;</span>
+  <span class="blue-text">&lt;body&gt;</span>
+    <span class="blue-text">&lt;main&gt;</span>
+      <span class="blue-text">&lt;h1&gt;</span>Hello, world!<span class="blue-text">&lt;/h1&gt;</span>
+    <span class="blue-text">&lt;/main&gt;</span>
+  <span class="blue-text">&lt;/body&gt;</span>
+<span class="blue-text">&lt;/html&gt;</span></pre></div>
+          </section>
+          <aside class="inspector">
+            <div class="inspector-head"><span class="eyebrow">INSPECTOR</span><button>×</button></div>
+            <div class="progress-ring" style="--progress:25"><span>25%</span></div>
+            <h3>Project setup</h3><p class="muted">One step at a time. Your work saves on this device.</p>
+            <div class="checklist"><label><input type="checkbox" checked> Project created</label><label><input type="checkbox"> Homepage edited</label><label><input type="checkbox"> GitHub connected</label><label><input type="checkbox"> Site published</label></div>
+            <button class="primary full" id="nextStepBtn">Show my next step →</button>
+          </aside>
+          <section class="timeline">
+            <div class="timeline-title"><b>Change timeline</b><span>3 unsaved changes</span></div>
+            <div class="tracks"><span class="track-label">FILES</span><button class="change-block add">＋ index.html</button><button class="change-block edit">~ styles.css</button><button class="change-block edit">~ app.js</button><span class="playhead"></span></div>
+            <button class="review-button" id="reviewBtn">Review &amp; save to GitHub <span>→</span></button>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-guide">
+        <div class="page-heading"><span class="eyebrow">FROM ZERO TO LIVE</span><h1>Your build path</h1><p>Follow the stages in order, or open the exact step you need.</p></div>
+        <div class="mission-map">
+          <button class="mission active" data-step="idea"><span>1</span><b>Plan</b><small>Define the problem</small></button><i>→</i>
+          <button class="mission" data-step="front"><span>2</span><b>Frontend</b><small>Build what users see</small></button><i>→</i>
+          <button class="mission" data-step="back"><span>3</span><b>Backend</b><small>Add real behaviour</small></button><i>→</i>
+          <button class="mission" data-step="data"><span>4</span><b>Database</b><small>Store information</small></button><i>→</i>
+          <button class="mission" data-step="ship"><span>5</span><b>Launch</b><small>Publish the project</small></button>
+        </div>
+        <article class="lesson-panel" id="lessonPanel"><div class="lesson-no">01</div><div><span class="eyebrow">PLAN BEFORE CODE</span><h2>Define one clear problem</h2><p>Write down who has the problem, what frustrates them and the smallest useful result your project can deliver.</p><div class="lesson-actions"><button class="primary">Create a project brief</button><button class="secondary info-open">Why this matters</button></div></div><aside><b>Finish this stage when:</b><label>□ You can describe the user</label><label>□ You chose one core feature</label><label>□ You know what “done” means</label></aside></article>
+        <div class="stack-picker"><div><span class="eyebrow">NOT SURE WHAT TO USE?</span><h2>Pick a project type</h2></div><div class="stack-cards"><button data-stack="website"><b>Website</b><span>HTML · CSS · JavaScript</span></button><button data-stack="webapp"><b>Web application</b><span>React · API · Database</span></button><button data-stack="mobile"><b>Mobile app</b><span>Flutter or React Native</span></button><button data-stack="data"><b>Data project</b><span>Python · Pandas · Jupyter</span></button></div></div>
+      </section>
+
+      <section class="view" id="view-learn">
+        <div class="page-heading"><span class="eyebrow">POCKET REFERENCE</span><h1>Learn while building</h1><p>Short, practical explanations. Open only what you need.</p></div>
+        <div class="learn-layout">
+          <div class="learn-nav"><button class="active" data-topic="terms">Technical terms</button><button data-topic="languages">Languages</button><button data-topic="database">Databases</button><button data-topic="github">Git &amp; GitHub</button><button data-topic="hosting">Hosting &amp; domains</button><button data-topic="vscode">VS Code</button></div>
+          <div class="topic-grid" id="topicGrid"></div>
+          <aside class="shortcut-board"><span class="eyebrow">SHORTCUT DECK</span><h2>Move faster</h2><div><span>Command palette</span><kbd>Ctrl K</kbd></div><div><span>Save file</span><kbd>Ctrl S</kbd></div><div><span>Find anything</span><kbd>Ctrl P</kbd></div><div><span>Open terminal</span><kbd>Ctrl `</kbd></div><div><span>Undo</span><kbd>Ctrl Z</kbd></div></aside>
+        </div>
+      </section>
+
+      <section class="view" id="view-settings">
+        <div class="page-heading"><span class="eyebrow">MAKE IT YOURS</span><h1>Workspace settings</h1><p>These preferences stay on this device.</p></div>
+        <div class="settings-grid"><div class="setting"><div><h2>Experience level</h2><p>Changes how much guidance appears.</p></div><div class="segmented"><button class="active">Beginner</button><button>Practising</button><button>Pro</button></div></div><div class="setting"><div><h2>Appearance</h2><p>Warm cream by day, deep ink by night.</p></div><button class="secondary" id="settingTheme">Toggle theme</button></div><div class="setting"><div><h2>Intro animation</h2><p>Replay the First Comet launch sequence.</p></div><button class="secondary" id="replayIntro">Replay intro</button></div><div class="setting danger"><div><h2>Clear local projects</h2><p>Removes projects saved in this browser only.</p></div><button class="danger-button" id="clearData">Clear data</button></div></div>
+      </section>
+    </main>
+
+    <button class="command-bar" id="commandBar"><span class="comet-dot">☄</span><span>Tell First Comet what you want to do…</span><kbd>Ctrl K</kbd></button>
+  </div>
+
+  <div class="modal-backdrop" id="projectModal" aria-hidden="true"><div class="modal"><button class="modal-close" data-close>×</button><span class="eyebrow">NEW MISSION</span><h2>What are you building?</h2><p>Start simple. You can change these details later.</p><label>Project name<input id="projectNameInput" placeholder="e.g. My portfolio"></label><label>Project type<select id="projectTypeInput"><option>Website</option><option>Web application</option><option>Mobile app</option><option>Data project</option></select></label><div class="modal-actions"><button class="secondary" data-close>Cancel</button><button class="primary" id="createProject">Create project →</button></div></div></div>
+  <div class="modal-backdrop" id="importModal" aria-hidden="true"><div class="modal"><button class="modal-close" data-close>×</button><span class="eyebrow">OPEN PROJECT</span><h2>Where is your project?</h2><div class="import-options"><button id="folderImport"><span>▣</span><b>On this computer</b><small>Choose a local project folder</small></button><button id="githubImport"><span>⌘</span><b>On GitHub</b><small>Paste a repository URL</small></button></div><input type="file" id="folderPicker" webkitdirectory multiple hidden></div></div>
+  <div class="palette" id="palette" aria-hidden="true"><div class="palette-box"><div class="palette-search"><span>⌕</span><input id="commandInput" placeholder="Type a command or search…"><kbd>ESC</kbd></div><div class="palette-results"><button data-view="home"><span>⌂</span><div><b>Open projects</b><small>Go to your launchpad</small></div><kbd>G P</kbd></button><button data-view="guide"><span>◇</span><div><b>Open build guide</b><small>See your full path</small></div><kbd>G G</kbd></button><button id="paletteNew"><span>＋</span><div><b>Create new project</b><small>Start from an idea</small></div></button><button data-view="learn"><span>?</span><div><b>Explain a term</b><small>Open the pocket reference</small></div></button></div></div></div>
+  <aside class="info-drawer" id="infoDrawer" aria-hidden="true"><button id="closeInfo">×</button><span class="eyebrow">COMET NOTES</span><h2 id="infoTitle">What is this page?</h2><p id="infoText">This is your launchpad. Start a new project, open an existing folder or follow the guided path from idea to launch.</p><div class="fact"><span>GOOD TO KNOW</span><p id="factText">A project is simply a folder containing the files that make your website or application work.</p></div></aside>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="assets/anime.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

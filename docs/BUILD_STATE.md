@@ -1,3 +1,18 @@
+# Build state
+
+## Static hosted preview (2026-09-29)
+
+- Added a public, account-free First Comet web experience under `public/`.
+- Added `wrangler.jsonc` so the existing `npx wrangler deploy` Cloudflare command publishes static assets instead of attempting to run the local FastAPI service.
+- The Anime.js introduction, First Comet logo, project launchpad, visual studio, build guide, learning reference, themes and responsive layout are included.
+- Browser projects and preferences use `localStorage`; this static preview does not edit arbitrary local folders or perform authenticated GitHub pushes.
+- The older FastAPI/React/SQLite desktop foundation remains private/local and is not exposed by the static deployment.
+
+## Security boundary
+
+Only files inside `public/` are published. The account-free local API, SQLite database, Windows launchers and repository-control backend are not part of the hosted site.
+
+
 # Build state — 0.7.0 universal developer workspace
 
 ## Universal workflow release (2026-09-14)
