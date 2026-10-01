@@ -83,6 +83,14 @@ API version 0.3.0 under `/api/v1`; frontend 0.3.0; SQLite schema v2; Ollama is t
 Install/run Playwright Chromium and inspect/repair eight desktop/tablet/mobile screenshots. Test a live Ollama model, multilingual response quality and real RAG grounding. Harden CSRF, registration/IP throttling, upload parser sandbox/virus screening, delegated identity, public TLS/ops, and formal migrations. Review security/UX after actual browser testing. See `docs/RELEASE_CHECKLIST.md`, `docs/SECURITY.md` and `docs/ROADMAP.md`.
 
 **Status: local release candidate; NOT READY for public production.**
+
+## Beginner project guide (2026-10-01)
+
+- Reworked the static First Comet Build page into a beginner-first flight plan that explains what a software project is before introducing tools.
+- Added plain-language coverage of files, frontend, backend, databases, hosting, repositories, commits, pushes, deployment, and domains. Backend and database steps are explicitly optional for a first static website.
+- Added four project-type choices and a seven-step expandable roadmap from choosing one useful result through publishing and optional data/domain work.
+- Kept the existing interactive mission map and stack picker as optional next steps after the core explanation.
+- The guide is responsive down to narrow mobile widths and uses native expandable controls so the learning path remains usable without JavaScript.
 # Project Hub pivot (2026-09-13)
 
 - The primary product is now a private project command center, not a personal AI assistant. `/hub` is the default signed-in route and the Windows shortcut opens it directly.

@@ -130,7 +130,51 @@
       </section>
 
       <section class="view" id="view-guide">
-        <div class="page-heading"><span class="eyebrow">FROM ZERO TO LIVE</span><h1>Your build path</h1><p>Follow the stages in order, or open the exact step you need.</p></div>
+        <div class="page-heading"><span class="eyebrow">BEGINNER FLIGHT PLAN</span><h1>Build your first real project</h1><p>No unexplained jargon. Learn only what your project needs, build one small part at a time, and publish it when it works.</p></div>
+
+        <section class="project-explainer" aria-labelledby="projectMeaning">
+          <div class="explainer-copy">
+            <span class="eyebrow">START HERE · 2 MINUTES</span>
+            <h2 id="projectMeaning">What is a project?</h2>
+            <p>A software project is a folder of files that work together to solve one problem. A simple website may contain only three files. Bigger applications add a server and a database when they actually need them.</p>
+            <div class="plain-example"><b>Example: a student portfolio</b><span><code>index.html</code> holds the content</span><span><code>styles.css</code> controls how it looks</span><span><code>app.js</code> adds interaction</span></div>
+          </div>
+          <div class="project-layers" aria-label="Parts of a software project">
+            <div><span>01</span><b>Frontend</b><small>What people see and click</small></div>
+            <div><span>02</span><b>Backend</b><small>Private logic on a server · optional</small></div>
+            <div><span>03</span><b>Database</b><small>Saved information · optional</small></div>
+            <div><span>04</span><b>Hosting</b><small>A computer that keeps it online</small></div>
+          </div>
+        </section>
+
+        <aside class="beginner-rule"><span>!</span><div><b>Do not learn everything before starting.</b><p>For your first website, begin with HTML, CSS and a little JavaScript. Add a backend only when you need private logic, accounts or secure operations. Add a database only when information must remain after the page closes.</p></div></aside>
+
+        <section class="project-choice" aria-labelledby="chooseProject">
+          <div class="section-intro"><span class="eyebrow">CHOOSE THE RIGHT START</span><h2 id="chooseProject">What are you trying to build?</h2><p>Your answer decides what you need to learn. Start with the smallest option that solves the problem.</p></div>
+          <div class="need-grid">
+            <article><span class="need-icon">▤</span><h3>Information website</h3><p>Portfolio, event page, business site or documentation.</p><b>Learn</b><small>HTML → CSS → basic JavaScript</small><em>No database needed</em></article>
+            <article><span class="need-icon">⌘</span><h3>Interactive web app</h3><p>Dashboard, booking tool, learning app or task manager.</p><b>Learn</b><small>Frontend → API → backend → database</small><em>Build the frontend first</em></article>
+            <article><span class="need-icon">▣</span><h3>Mobile app</h3><p>An application installed on Android or iPhone.</p><b>Learn</b><small>Flutter or React Native → API</small><em>Web basics still help</em></article>
+            <article><span class="need-icon">⌁</span><h3>Data or automation</h3><p>Analyse files, automate work or create a small model.</p><b>Learn</b><small>Python → files/data → libraries</small><em>A website is optional</em></article>
+          </div>
+        </section>
+
+        <section class="first-roadmap" aria-labelledby="firstRoadmap">
+          <div class="section-intro"><span class="eyebrow">THE SHORTEST CORRECT PATH</span><h2 id="firstRoadmap">From empty folder to live website</h2><p>Open each step in order. Every step tells you what to understand, what to do and when you are finished.</p></div>
+          <div class="roadmap-list">
+            <details open><summary><span>1</span><div><b>Decide one useful result</b><small>Before writing code</small></div><i>⌄</i></summary><div class="roadmap-body"><p><strong>Understand:</strong> A project is not a list of every feature you can imagine. It is one problem and one useful result.</p><p><strong>Do:</strong> Complete this sentence: “I am building ___ for ___ so they can ___.” Then list only three features for version one.</p><p><strong>Finished when:</strong> You can explain the project in two sentences without technical words.</p></div></details>
+            <details><summary><span>2</span><div><b>Create the folder and files</b><small>Set up your workspace</small></div><i>⌄</i></summary><div class="roadmap-body"><p><strong>Understand:</strong> VS Code edits files. A browser displays the website. They are different tools.</p><p><strong>Do:</strong> Create a folder, open it in VS Code, then create <code>index.html</code>, <code>styles.css</code> and <code>app.js</code>. Connect the CSS and JavaScript files from the HTML.</p><p><strong>Finished when:</strong> Opening <code>index.html</code> in the browser shows your heading and style.</p></div></details>
+            <details><summary><span>3</span><div><b>Build one complete screen</b><small>HTML → CSS → JavaScript</small></div><i>⌄</i></summary><div class="roadmap-body"><p><strong>Understand:</strong> HTML gives structure, CSS controls presentation, and JavaScript changes what happens after an action.</p><p><strong>Do:</strong> Build the navigation, main content and one working interaction. Check it on a narrow phone-sized window.</p><p><strong>Finished when:</strong> A new user can use the main feature without your explanation.</p></div></details>
+            <details><summary><span>4</span><div><b>Save versions with Git</b><small>Create safe checkpoints</small></div><i>⌄</i></summary><div class="roadmap-body"><p><strong>Understand:</strong> Git tracks versions on your computer. GitHub stores a remote copy and helps people collaborate.</p><div class="command-sequence"><code>git init</code><code>git add .</code><code>git commit -m "Build first working version"</code></div><p><strong>Finished when:</strong> <code>git status</code> says the working tree is clean after your commit.</p></div></details>
+            <details><summary><span>5</span><div><b>Put the code on GitHub</b><small>Connect the remote repository</small></div><i>⌄</i></summary><div class="roadmap-body"><p><strong>Understand:</strong> A repository is the project and its Git history. A push sends your local commits to GitHub.</p><p><strong>Do:</strong> Create an empty GitHub repository, copy its setup commands, connect it as <code>origin</code>, then push the <code>main</code> branch.</p><p><strong>Finished when:</strong> Refreshing GitHub shows your files and latest commit. Never upload passwords or <code>.env</code> files.</p></div></details>
+            <details><summary><span>6</span><div><b>Choose hosting and deploy</b><small>Make it available online</small></div><i>⌄</i></summary><div class="roadmap-body"><p><strong>Static HTML/CSS/JS:</strong> GitHub Pages or Cloudflare Pages.</p><p><strong>React/Next.js frontend:</strong> Vercel or Cloudflare.</p><p><strong>Backend server:</strong> A service that supports your runtime, such as Render, Railway or a cloud provider.</p><p><strong>Do:</strong> Connect the GitHub repository, confirm the build settings, deploy, and open the generated URL.</p><p><strong>Finished when:</strong> The live URL works in a private browser window and on a phone.</p></div></details>
+            <details><summary><span>7</span><div><b>Add data, a domain and safety</b><small>Only when the project needs them</small></div><i>⌄</i></summary><div class="roadmap-body"><p><strong>Database:</strong> Use it for accounts, posts, orders or anything that must be saved. Supabase provides hosted PostgreSQL; learn tables, rows, relationships and access rules before storing real user data.</p><p><strong>Domain:</strong> Buy or obtain a domain, add it inside the hosting dashboard, then follow the exact DNS records it provides.</p><p><strong>Safety:</strong> Keep secrets in environment variables, validate input, enable access rules and test errors.</p><p><strong>Finished when:</strong> Refreshing keeps saved data, the domain uses HTTPS and private data is not publicly readable.</p></div></details>
+          </div>
+        </section>
+
+        <section class="words-before-code" aria-labelledby="wordsBeforeCode"><div class="section-intro"><span class="eyebrow">WORDS YOU WILL SEE</span><h2 id="wordsBeforeCode">Seven terms, in plain English</h2></div><div class="term-strip"><div><b>Local</b><span>On your computer</span></div><div><b>Repository</b><span>Your project plus its history</span></div><div><b>Commit</b><span>A named checkpoint</span></div><div><b>Push</b><span>Send commits to GitHub</span></div><div><b>Deploy</b><span>Release a runnable version</span></div><div><b>Hosting</b><span>Where the live project runs</span></div><div><b>Domain</b><span>The human-friendly address</span></div></div></section>
+
+        <div class="deep-dive-heading"><span class="eyebrow">EXPLORE EACH BUILDING BLOCK</span><h2>Interactive project path</h2></div>
         <div class="mission-map">
           <button class="mission active" data-step="idea"><span>1</span><b>Plan</b><small>Define the problem</small></button><i>→</i>
           <button class="mission" data-step="front"><span>2</span><b>Frontend</b><small>Build what users see</small></button><i>→</i>
@@ -139,7 +183,7 @@
           <button class="mission" data-step="ship"><span>5</span><b>Launch</b><small>Publish the project</small></button>
         </div>
         <article class="lesson-panel" id="lessonPanel"><div class="lesson-no">01</div><div><span class="eyebrow">PLAN BEFORE CODE</span><h2>Define one clear problem</h2><p>Write down who has the problem, what frustrates them and the smallest useful result your project can deliver.</p><div class="lesson-actions"><button class="primary">Create a project brief</button><button class="secondary info-open">Why this matters</button></div></div><aside><b>Finish this stage when:</b><label>□ You can describe the user</label><label>□ You chose one core feature</label><label>□ You know what “done” means</label></aside></article>
-        <div class="stack-picker"><div><span class="eyebrow">NOT SURE WHAT TO USE?</span><h2>Pick a project type</h2></div><div class="stack-cards"><button data-stack="website"><b>Website</b><span>HTML · CSS · JavaScript</span></button><button data-stack="webapp"><b>Web application</b><span>React · API · Database</span></button><button data-stack="mobile"><b>Mobile app</b><span>Flutter or React Native</span></button><button data-stack="data"><b>Data project</b><span>Python · Pandas · Jupyter</span></button></div></div>
+        <div class="stack-picker"><div><span class="eyebrow">QUICK REMINDER</span><h2>Choose the smallest useful stack</h2></div><div class="stack-cards"><button data-stack="website"><b>Website</b><span>HTML · CSS · JavaScript</span></button><button data-stack="webapp"><b>Web application</b><span>Frontend · API · Database</span></button><button data-stack="mobile"><b>Mobile app</b><span>Flutter or React Native</span></button><button data-stack="data"><b>Data project</b><span>Python · Pandas · Jupyter</span></button></div></div>
       </section>
 
       <section class="view" id="view-learn">
