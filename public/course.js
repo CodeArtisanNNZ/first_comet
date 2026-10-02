@@ -32,13 +32,16 @@
 
   function openSection(section, updateUrl = true) {
     if (!['project', 'course', 'localhost', 'reference'].includes(section)) return;
+    const experience = document.body.dataset.level || 'Beginner';
+    if (experience === 'Beginner' && (section === 'course' || section === 'reference')) section = 'localhost';
+    if (experience === 'Pro' && section === 'localhost') section = 'reference';
     all('.learn-section').forEach((panel) => { panel.hidden = panel.id !== `learn-${section}`; });
     all('[data-learn-section]').forEach((button) => {
       const active = button.dataset.learnSection === section;
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     });
-    document.querySelector('#pageLabel').textContent = section === 'project' ? 'Project path' : section === 'course' ? 'Code course' : section === 'localhost' ? 'Localhost path' : 'Pocket reference';
+    document.querySelector('#pageLabel').textContent = section === 'project' ? 'Build with me' : section === 'course' ? 'Practice code' : section === 'localhost' ? 'Start here' : 'Quick reference';
     if (updateUrl) {
       if (section === 'project') {
         if (window.FirstCometProjectCourse) window.FirstCometProjectCourse.open();
