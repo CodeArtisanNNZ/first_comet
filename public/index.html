@@ -32,6 +32,56 @@
     <button class="skip-intro" id="skipIntro">Skip intro</button>
   </section>
 
+  
+  <section class="auth-gate" id="authGate" aria-hidden="true">
+    <div class="auth-orbit auth-orbit-a"></div>
+    <div class="auth-orbit auth-orbit-b"></div>
+    <div class="auth-card">
+      <div class="auth-brand">
+        <img src="assets/first-comet-logo.jpg" alt="">
+        <div><span class="eyebrow">FIRST COMET</span><h1>Continue where you left off.</h1><p>Your milestones, projects and settings can follow you between devices when you sign in.</p></div>
+      </div>
+
+      <div class="auth-teacher-note">
+        <span>☄</span>
+        <p><b>No registration maze.</b> First Comet uses one simple entry screen. If it is your first time, your account is created automatically.</p>
+      </div>
+
+      <div class="auth-actions">
+        <button class="auth-google" id="authGoogle"><span>G</span><b>Continue with Google</b></button>
+        <div class="auth-divider"><span>or use email</span></div>
+
+        <form class="auth-email-form" id="authEmailForm">
+          <label for="authEmail">Email address</label>
+          <div class="auth-email-row">
+            <input id="authEmail" type="email" autocomplete="email" placeholder="you@example.com" required>
+            <button type="submit" class="primary">Send sign-in link</button>
+          </div>
+          <p class="auth-help">No password to remember. We send a secure sign-in link to your email.</p>
+        </form>
+
+        <div class="auth-message" id="authMessage" role="status" aria-live="polite"></div>
+
+        <button class="auth-local" id="authLocal" type="button"><b>Continue on this device only</b><span>No account · projects stay in this browser</span></button>
+      </div>
+
+      <div class="auth-trust">
+        <div><span>✓</span><p><b>Stay signed in</b><small>You should not have to log in every time.</small></p></div>
+        <div><span>✓</span><p><b>Automatic sync</b><small>Cloud projects will sync after the First Comet database is connected.</small></p></div>
+        <div><span>✓</span><p><b>Local work remains yours</b><small>Signing in will not erase projects already stored on this device.</small></p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="account-popover" id="accountPopover" aria-hidden="true">
+    <div class="account-popover-card">
+      <div class="account-popover-head"><span class="account-avatar" id="popoverAvatar">FC</span><div><b id="popoverName">Local workspace</b><small id="popoverEmail">Not signed in</small></div></div>
+      <div class="account-status"><span id="cloudStatusDot"></span><p><b id="cloudStatusTitle">Local mode</b><small id="cloudStatusText">Projects are saved on this device only.</small></p></div>
+      <button class="secondary full" id="switchAccount">Sign in to sync</button>
+      <button class="text-button" id="signOutButton" type="button">Leave this session</button>
+    </div>
+  </div>
+
   <div class="app" id="app" aria-hidden="true">
     <header class="topbar">
       <button class="brand" data-view="home" aria-label="First Comet home">
@@ -40,6 +90,7 @@
       </button>
       <div class="crumb"><span id="sectionLabel">Workspace</span><strong id="pageLabel">Launchpad</strong></div>
       <div class="top-actions">
+        <button class="account-chip" id="accountChip" type="button" aria-label="Open account"><span class="account-avatar" id="accountAvatar">FC</span><span class="account-copy"><b id="accountName">Local workspace</b><small id="accountSync">This device only</small></span></button>
         <button class="icon-button" id="infoBtn" title="Explain this page" aria-label="Explain this page">i</button>
         <button class="mode-chip" id="levelBtn"><span class="signal"></span><span id="levelText">Beginner</span><span>⌄</span></button>
         <button class="icon-button" id="themeBtn" title="Toggle theme" aria-label="Toggle light and dark theme">◐</button>
@@ -491,6 +542,9 @@
   <div class="toast" id="toast" role="status"></div>
 
   <script src="assets/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="auth-config.js"></script>
+  <script src="auth.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js"></script>
   <script src="app.js"></script>
   <script src="vscode-workspace.js"></script>
