@@ -32,7 +32,7 @@
     <button class="skip-intro" id="skipIntro">Skip intro</button>
   </section>
 
-  
+
   <section class="auth-gate" id="authGate" aria-hidden="true">
     <div class="auth-orbit auth-orbit-a"></div>
     <div class="auth-orbit auth-orbit-b"></div>
@@ -328,13 +328,18 @@
       </section>
 
       <section class="view" id="view-learn">
-        <div class="page-heading course-page-heading"><span class="eyebrow">FIRST COMET · SMALL STEPS</span><h1>Understand the words.<br>Then write the code.</h1><p>A plain-English dictionary first. One small milestone at a time. The same idea, explained across different languages.</p></div>
+        <div class="page-heading course-page-heading"><span class="eyebrow">FIRST COMET · SMALL STEPS</span><h1>Build a project.<br>Understand every step.</h1><p>From your first folder to a live website. Learn the words, use the tools, write the code, and connect the pieces in the order you need them.</p></div>
         <nav class="learn-sections" aria-label="Learning areas">
-          <button class="active" data-learn-section="course" aria-pressed="true">Code course</button>
+          <button class="active" data-learn-section="project" aria-pressed="true">Project path</button>
+          <button data-learn-section="course" aria-pressed="false">Code course</button>
           <button data-learn-section="localhost" aria-pressed="false">Localhost path</button>
           <button data-learn-section="reference" aria-pressed="false">Pocket reference</button>
         </nav>
-        <section id="learn-course" class="learn-section" aria-label="Beginner code course">
+        <section id="learn-project" class="learn-section" aria-label="Project-building courses">
+          <div id="projectCourseApp"></div>
+          <noscript><p>Enable JavaScript to browse the project subjects, dictionaries, and saved progress. You can also <a href="first-comet-project-course.md">read the full project course as text</a>.</p></noscript>
+        </section>
+        <section id="learn-course" class="learn-section" aria-label="Beginner code course" hidden>
           <div class="course-start-note"><span aria-hidden="true">☄</span><div><b>Choose a path, not every language.</b><p>For a website: HTML → CSS → JavaScript. Then choose one backend language if your project needs it. Java, Python, and PHP are different options; you do not need all six to begin.</p><button class="course-text-link" data-learn-section="localhost">Set up your localhost practice space first →</button></div></div>
           <div id="courseApp"></div>
           <noscript><p>This course needs JavaScript for search and progress. Enable JavaScript and reload to open the dictionaries and milestones.</p></noscript>
@@ -549,7 +554,9 @@
   <script src="app.js"></script>
   <script src="vscode-workspace.js"></script>
   <script src="course-data.js"></script>
+  <script src="project-course-data.js"></script>
   <script src="course.js"></script>
+  <script src="project-course.js"></script>
   <script src="navigation.js"></script>
 </body>
 </html>

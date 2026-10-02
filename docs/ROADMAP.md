@@ -6,6 +6,8 @@ Text-first beginner code course in HTML, CSS, JavaScript, Java, Python, and PHP:
 
 ## Next for the course
 
+The ordered project path now adds nine subjects, 121 glossary entries, and 42 lessons around the existing language courses. It covers VS Code, local Git, pushing to GitHub, repository organization, current student benefits, SQLite and Supabase Free, database connections, hosting, and domains/DNS. Service-specific details link to official references and should be rechecked when providers change their plans or flows.
+
 Run the Java/PHP examples under their real interpreters; collect beginner feedback about wording and milestone size; add later topics only after the core path is usable. A secure execution environment and account-synced progress are future work, not features of this release.
 
 The following roadmap describes the separate private desktop/backend foundation. Its production-security blockers do not imply that it is exposed by the static website.

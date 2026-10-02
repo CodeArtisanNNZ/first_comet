@@ -41,3 +41,32 @@ for (const [language, source] of Object.entries(course.algorithms.code)) { lines
 lines.push('Expected output for target 23: index 5.', '', '### Practice', '', course.algorithms.practice, '', 'Official references:', '', ...course.algorithms.sources.map(([label, url]) => `- [${label}](${url})`), '');
 fs.writeFileSync(path.join(root, 'public/first-comet-course.md'), lines.join('\n'));
 console.log('Exported public/first-comet-course.md from the same curriculum used by the website.');
+
+vm.runInNewContext(fs.readFileSync(path.join(root, 'public/project-course-data.js'), 'utf8'), context);
+const project = context.window.FC_PROJECT_COURSE;
+const projectLines = ['# First Comet — Build a Project', '', project.title, '', 'Build Comet Resources, a small learning-resource website. Follow the numbered subjects, or open a subject you need. Student offers, databases, and a custom domain are optional for a first static site.', '', `Service details checked ${project.checkedOn}. Read each provider’s current official documentation before applying, claiming an offer, or configuring a service.`, '', 'Lessons are text for practice in your own editor and accounts. The website records browser-local progress after a correct check and your practice confirmation; it does not run or automatically grade your work.', '', '## The project-building order', ''];
+const projectSteps = [...project.subjects, project.codeStep].sort((left, right) => left.order - right.order);
+for (const subject of projectSteps) projectLines.push(`${subject.order}. ${subject.label} — ${subject.role}${subject.optional ? ' (optional)' : ''}`);
+projectLines.push('', '## How the pieces connect', '', '| From | To | How it connects |', '| --- | --- | --- |');
+for (const row of project.connections) projectLines.push('| ' + row.map(cell).join(' | ') + ' |');
+projectLines.push('', '## Choose storage for the requirement', '', '| Choice | Where data lives | When it helps | What you manage |', '| --- | --- | --- | --- |');
+for (const row of project.databaseChoices) projectLines.push('| ' + row.map(cell).join(' | ') + ' |');
+projectLines.push('');
+for (const subject of projectSteps) {
+  projectLines.push(`## ${String(subject.order).padStart(2, '0')} · ${subject.label}`, '', subject.purpose, '', `Your result: ${subject.result}`, '');
+  if (subject.order === 3) {
+    projectLines.push('Use the separate First Comet Beginner Code Course: HTML → CSS → JavaScript for a website, and one backend language later if needed. It includes Java, Python, and PHP alternatives, dictionaries, milestones, comparison tables, and binary search.', '', '[Open the code course](first-comet-course.md)', '');
+    continue;
+  }
+  projectLines.push('### Word library', '');
+  for (const entry of subject.terms) projectLines.push(`#### ${entry.word}`, '', entry.meaning, '', '```text', entry.example, '```', '', `Read it as: ${entry.read}`, '');
+  projectLines.push('### Text lessons', '');
+  for (const [index, entry] of subject.lessons.entries()) {
+    projectLines.push(`#### Lesson ${index + 1}: ${entry.title}`, '', `Your result: ${entry.goal}`, '', ...entry.explanation.flatMap((paragraph) => [paragraph, '']), `Words to know: ${entry.words.join(', ')}`, '', 'Follow the small steps:', '', ...entry.steps.map((step, number) => `${number + 1}. ${step}`), '');
+    for (const sample of entry.snippets) projectLines.push(`**${sample.label}**`, '', '```' + sample.language, sample.code, '```', '');
+    projectLines.push('What you should see:', '', entry.output, '', `Your turn: ${entry.practice}`, '', `Check: ${entry.question}`, '', ...entry.options.map((option, number) => `${number + 1}. ${option}`), '', `Hint: ${entry.hint}`, '', `Answer: ${entry.answer + 1}. ${entry.why}`, '');
+  }
+  projectLines.push('Official references:', '', ...subject.sources.map(([label, url]) => `- [${label}](${url})`), '');
+}
+fs.writeFileSync(path.join(root, 'public/first-comet-project-course.md'), projectLines.join('\n'));
+console.log('Exported public/first-comet-project-course.md from the project curriculum.');

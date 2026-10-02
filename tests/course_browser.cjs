@@ -31,11 +31,11 @@ const server = spawn('python', ['-m', 'http.server', String(port), '--bind', '12
     }
     browser = await playwright.chromium.launch(launchOptions);
     const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
-    await context.addInitScript(() => { if (window.top === window) localStorage.setItem('fc-intro-seen', '1'); });
+    await context.addInitScript(() => { if (window.top === window) { localStorage.setItem('fc-intro-seen', '1'); localStorage.setItem('fc-local-mode', '1'); } });
     const page = await context.newPage();
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
-    await page.goto(base + '/#learn');
+    await page.goto(base + '/#learn/html/dictionary');
     await page.locator('#courseTrackTitle').waitFor();
     await page.screenshot({ path: path.join(outputDir, 'course-start-desktop.png') });
     for (const track of data.languages) {

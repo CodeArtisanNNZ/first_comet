@@ -2,6 +2,20 @@
 
 ## Static beginner course — 2026-10-02
 
+### Ordered project course extension
+
+- [x] Ten-subject order, with the six existing language courses in subject 03
+- [x] Nine separate new subjects, 121 glossary entries, 42 lessons, and downloadable text from the same data
+- [x] VS Code terminal and Source Control flows; Git basics; terminal and editor GitHub pushes; repository organization
+- [x] Official student application guidance, conditional offer redemption, and domain-renewal terms
+- [x] SQLite route and a complete public-read Supabase website connection; grants, RLS, key boundaries, and errors explained
+- [x] Repository-to-host publishing and separate GitHub Pages / Cloudflare Worker DNS-and-domain lessons
+- [x] New curriculum and exact published cloud JavaScript sample checks: data, empty result, HTTP error, network error, safe text rendering
+- [x] New course Chromium interactions, progress recovery, light/dark, and eight viewport widths; screenshots inspected
+- [x] Existing language-course browser checks and backend regressions after integration: 18 pytest tests and Ruff F checks pass
+
+The course is instructional text. Live third-party provisioning, student verification, domain registration, and production database access are outside this change. Student offer and service details were checked against official sources on 2 October 2026.
+
 - [x] Six language dictionaries and 48 sequential language milestones
 - [x] Seventeen comparison tasks, three binary-search milestones, and four search implementations
 - [x] Dictionary word links, hints, retry behavior, required practice confirmation, saved progress and bounded deep links

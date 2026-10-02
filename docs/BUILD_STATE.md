@@ -1,5 +1,17 @@
 # Build state
 
+## Ordered project text courses (2026-10-02)
+
+- Learn now opens an ordered project path: create a project, VS Code, the existing code tracks, Git, GitHub, student benefits, free databases, database connections, publishing, and domains/DNS.
+- Nine new subjects add 121 plain-language glossary entries and 42 lessons. Every lesson has a result, small steps, labeled examples, expected output, practice, and a check with a hint. Learners can browse any lesson; completion records a correct check plus self-confirmed practice, not automatic code grading.
+- One Comet Resources starter links the VS Code files, Git history, GitHub remote, optional cloud data, hosting, and custom-domain lessons. Project connections and storage choices have separate comparison tables.
+- Added local SQLite instructions and a public read-only Supabase API example with explicit read grants, RLS, publishable-key use, text-safe rendering, and error handling. No live database, student application, host account, or domain is provisioned by this change.
+- Verified official guidance for editor/source-control flows, GitHub authentication and Education eligibility, the current first-year .me student offer, Supabase Free/key/API behavior, GitHub Pages, and Cloudflare Worker domains. Course links and checked date make service-dependent details reviewable.
+- Preserved upstream VS Code and account-gateway work. Course progress remains browser-local; the new course does not claim account-synced learning progress.
+- Added a full downloadable project text course generated from the same curriculum source, plus direct subject/lesson links and validated saved-progress recovery.
+- Verification: curriculum/asset checks and the exact published cloud JavaScript example pass for normal data, empty results, network failure, HTTP failure, and markup rendered as text. Existing language examples and binary-search boundary checks pass. Both Chromium course runners pass: all 42 project lessons, all 48 language milestones, saved progress and recovery, navigation, word search, downloads, light/dark, and eight viewport widths (320–1440px). Screenshots inspected. Backend regressions: 18 pytest tests and Ruff F checks pass.
+- Limits: no live Supabase database or registrar/student-eligibility flow is exercised; SQL and SQLite examples are inspected rather than executed against a database. Java/PHP runtime and native Windows checks remain as previously documented. Only public static assets are deployed; the private account-free backend remains unexposed.
+
 ## Static hosted preview (2026-09-29)
 
 - Added a public, account-free First Comet web experience under `public/`.

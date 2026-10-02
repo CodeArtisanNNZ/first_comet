@@ -31,16 +31,19 @@
   }
 
   function openSection(section, updateUrl = true) {
-    if (!['course', 'localhost', 'reference'].includes(section)) return;
+    if (!['project', 'course', 'localhost', 'reference'].includes(section)) return;
     all('.learn-section').forEach((panel) => { panel.hidden = panel.id !== `learn-${section}`; });
     all('[data-learn-section]').forEach((button) => {
       const active = button.dataset.learnSection === section;
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     });
-    document.querySelector('#pageLabel').textContent = section === 'course' ? 'Code course' : section === 'localhost' ? 'Localhost path' : 'Pocket reference';
+    document.querySelector('#pageLabel').textContent = section === 'project' ? 'Project path' : section === 'course' ? 'Code course' : section === 'localhost' ? 'Localhost path' : 'Pocket reference';
     if (updateUrl) {
-      if (section === 'course') route();
+      if (section === 'project') {
+        if (window.FirstCometProjectCourse) window.FirstCometProjectCourse.open();
+        else history.replaceState(null, '', '#learn/project');
+      } else if (section === 'course') route();
       else history.replaceState(null, '', `#learn/${section}`);
     }
   }
@@ -201,6 +204,7 @@
     const parts = location.hash.replace(/^#/, '').split('/');
     if (parts[0] !== 'learn') return;
     document.querySelector('.nav-item[data-view="learn"]')?.click();
+    if (!parts[1] || parts[1] === 'project') { openSection('project', false); return; }
     if (['localhost', 'reference'].includes(parts[1])) { openSection(parts[1], false); return; }
     if (data.languages.some((l) => l.id === parts[1])) state.language = parts[1];
     state.tab = tabs[parts[2]] ? parts[2] : 'dictionary';
@@ -259,7 +263,10 @@
     const button = event.target.closest('[data-learn-section]');
     if (button) openSection(button.dataset.learnSection);
     const viewButton = event.target.closest('[data-view]');
-    if (viewButton && viewButton.dataset.view !== 'learn' && location.hash.startsWith('#learn')) history.replaceState(null, '', location.pathname + location.search);
+    if (viewButton?.dataset.view === 'learn') {
+      const active = document.querySelector('#view-learn .learn-section:not([hidden])');
+      if (active) openSection(active.id.replace('learn-', ''), false);
+    } else if (viewButton && location.hash.startsWith('#learn')) history.replaceState(null, '', location.pathname + location.search);
   });
   window.addEventListener('hashchange', readRoute);
   window.FirstCometCourse = { openSection };
