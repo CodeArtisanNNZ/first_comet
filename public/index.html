@@ -187,85 +187,178 @@
       </section>
 
       <section class="view" id="view-learn">
-        <div class="page-heading"><span class="eyebrow">BEGINNER SCHOOL</span><h1>Learn how a project actually works</h1><p>No complicated definitions. Start with what each part does, then learn only the tools you need to build it.</p></div>
+        <div class="page-heading"><span class="eyebrow">BEGINNER PATH</span><h1>Build locally first. Go online later.</h1><p>First Comet teaches in one fixed order. You earn the next milestone by successfully completing the one before it.</p></div>
 
-        <section class="teaching-sector" aria-labelledby="teachingTitle">
-          <div class="teaching-intro">
+        <section class="teaching-sector localhost-path" aria-labelledby="teachingTitle">
+          <div class="teacher-note">
             <div>
-              <span class="eyebrow">THE BIG PICTURE</span>
-              <h2 id="teachingTitle">A website is usually three parts working together.</h2>
+              <span class="eyebrow">FIRST RULE</span>
+              <h2 id="teachingTitle">Do not publish your first version.</h2>
             </div>
-            <p>Think of an online shop: the <b>frontend</b> is the shop customers see, the <b>backend</b> is the worker handling requests, and the <b>database</b> is where the shop keeps its information.</p>
+            <p>Build it on <b>localhost</b> first. Localhost is your private practice space: the website runs on your own computer so you can see mistakes, fix them and test the result before anything becomes public.</p>
           </div>
 
-          <div class="system-flow" aria-label="Frontend sends a request to the backend, and the backend reads or writes information in the database">
-            <div class="flow-chip"><span>1</span><b>Frontend</b><small>What people see</small></div>
-            <i>→</i>
-            <div class="flow-chip"><span>2</span><b>Backend</b><small>What handles the work</small></div>
-            <i>↔</i>
-            <div class="flow-chip"><span>3</span><b>Database</b><small>What remembers data</small></div>
-          </div>
-
-          <div class="teaching-cards">
-            <article class="teaching-card frontend-card">
-              <div class="teach-card-head"><span class="teach-number">01</span><div><span class="eyebrow">FRONTEND</span><h2>The part people see and touch</h2></div></div>
-              <p class="plain-definition">Buttons, text, pictures, menus, forms and page layouts are frontend. If a person can see it or click it in the browser, it is usually part of the frontend.</p>
-              <div class="learn-this"><b>Learn these in this order</b>
-                <ol>
-                  <li><strong>HTML</strong><span>Builds the structure: headings, buttons, forms, images.</span></li>
-                  <li><strong>CSS</strong><span>Makes it look good: colours, spacing, layout and mobile design.</span></li>
-                  <li><strong>JavaScript</strong><span>Makes it react: clicks, menus, forms and changing content.</span></li>
-                  <li><strong>Responsive design</strong><span>Makes the same page work on phones and laptops.</span></li>
-                </ol>
+          <div class="localhost-explainer">
+            <div class="localhost-machine" aria-hidden="true">
+              <div class="mini-browser-bar"><i></i><i></i><i></i><span>http://localhost:5500</span></div>
+              <div class="mini-browser-page">
+                <span class="mini-local-badge">YOUR COMPUTER</span>
+                <b>My first website</b>
+                <p>Only a local preview for now.</p>
               </div>
-              <div class="tiny-example"><span>EXAMPLE</span><code>HTML = button · CSS = blue button · JS = what happens when clicked</code></div>
-            </article>
-
-            <article class="teaching-card backend-card">
-              <div class="teach-card-head"><span class="teach-number">02</span><div><span class="eyebrow">BACKEND</span><h2>The part working behind the screen</h2></div></div>
-              <p class="plain-definition">The backend receives a request, checks what should happen, talks to the database and sends an answer back. Users normally do not see this code.</p>
-              <div class="learn-this"><b>Learn these in this order</b>
-                <ol>
-                  <li><strong>Requests &amp; responses</strong><span>Understand how the browser asks a server for something.</span></li>
-                  <li><strong>APIs</strong><span>Learn the simple rules frontend and backend use to talk.</span></li>
-                  <li><strong>One backend language</strong><span>Start with JavaScript/Node.js or Python. You do not need both.</span></li>
-                  <li><strong>Validation &amp; logic</strong><span>Check input and decide what your app is allowed to do.</span></li>
-                  <li><strong>Authentication &amp; secrets</strong><span>Learn sign-in, permissions and environment variables.</span></li>
-                </ol>
-              </div>
-              <div class="tiny-example"><span>EXAMPLE</span><code>“Log me in” → backend checks account → sends success or error</code></div>
-            </article>
-
-            <article class="teaching-card database-card">
-              <div class="teach-card-head"><span class="teach-number">03</span><div><span class="eyebrow">DATABASE</span><h2>The place your app remembers things</h2></div></div>
-              <p class="plain-definition">A database stores information so it is still there later: users, products, messages, orders, lessons, appointments or anything else your project needs to remember.</p>
-              <div class="learn-this"><b>Learn these in this order</b>
-                <ol>
-                  <li><strong>Tables, rows &amp; columns</strong><span>Learn how information is organised.</span></li>
-                  <li><strong>SQL queries</strong><span>Start with SELECT, INSERT, UPDATE and DELETE.</span></li>
-                  <li><strong>IDs &amp; relationships</strong><span>Learn how one table connects to another.</span></li>
-                  <li><strong>Rules &amp; permissions</strong><span>Decide who is allowed to read or change each record.</span></li>
-                  <li><strong>PostgreSQL / Supabase</strong><span>Use a real database service after the basics make sense.</span></li>
-                </ol>
-              </div>
-              <div class="tiny-example"><span>EXAMPLE</span><code>SELECT * FROM projects; = “show me all saved projects”</code></div>
-            </article>
-          </div>
-
-          <div class="learning-roadmap">
-            <div>
-              <span class="eyebrow">BEGINNER ORDER</span>
-              <h2>What should I learn first?</h2>
-              <p>Do not try to master everything before starting. Learn enough for the next small thing you are building.</p>
             </div>
-            <ol class="roadmap-steps">
-              <li><span>1</span><b>HTML</b><small>Make a basic page</small></li>
-              <li><span>2</span><b>CSS</b><small>Make it readable and responsive</small></li>
-              <li><span>3</span><b>JavaScript</b><small>Add simple behaviour</small></li>
-              <li><span>4</span><b>API + backend</b><small>Make the page talk to logic</small></li>
-              <li><span>5</span><b>SQL + database</b><small>Save and retrieve real data</small></li>
-              <li><span>6</span><b>Auth + deploy</b><small>Protect it and put it online</small></li>
-            </ol>
+            <div class="localhost-copy">
+              <span class="eyebrow">WHAT DOES LOCALHOST MEAN?</span>
+              <h2>Your computer temporarily becomes the server.</h2>
+              <p>Normally a website lives on a server connected to the internet. With localhost, the server is running on <b>your own computer</b>. Your browser opens the site from your machine instead of from the public internet.</p>
+              <div class="localhost-compare">
+                <div><span>LOCALHOST</span><b>You → your computer → website</b></div>
+                <div><span>ONLINE WEBSITE</span><b>You → internet → public server → website</b></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="teacher-warning">
+            <span>LOCALHOST HAS LIMITS</span>
+            <div class="constraint-grid">
+              <p><b>Not public.</b> Other people cannot normally open your localhost link.</p>
+              <p><b>Your computer must run it.</b> Close the local server and the site stops.</p>
+              <p><b>No real domain yet.</b> You use an address such as <code>localhost:5500</code>.</p>
+              <p><b>Online behaviour can differ.</b> Domains, HTTPS, secrets and hosting rules are tested again before launch.</p>
+            </div>
+          </div>
+
+          <div class="teacher-sequence">
+            <div class="sequence-head">
+              <div><span class="eyebrow">YOUR REQUIRED ORDER</span><h2>Milestones, not random topics.</h2></div>
+              <p>Do not skip ahead. Each milestone has one clear result. When you can produce that result yourself, you are ready for the next one.</p>
+            </div>
+
+            <article class="milestone milestone-current">
+              <div class="milestone-rail"><span>01</span><i></i></div>
+              <div class="milestone-main">
+                <div class="milestone-top"><div><span class="eyebrow">MILESTONE 01</span><h3>Run a website on localhost</h3></div><span class="status-pill current">START HERE</span></div>
+                <p class="milestone-purpose">Before learning design or databases, prove that your computer can serve a website correctly.</p>
+                <div class="teacher-instruction">
+                  <span>USE THIS SETUP</span>
+                  <p><b>VS Code + Live Server.</b> Create one folder, create <code>index.html</code>, then open it with Live Server. Do not start with React, frameworks or a database.</p>
+                </div>
+                <div class="milestone-steps">
+                  <div><b>1. Create a folder</b><p>Name it <code>my-first-site</code>.</p></div>
+                  <div><b>2. Create index.html</b><p>This will be the first page the browser loads.</p></div>
+                  <div><b>3. Start Live Server</b><p>Your browser should open a localhost address.</p></div>
+                  <div><b>4. Change one sentence</b><p>Save the file and make sure the browser shows the new sentence.</p></div>
+                </div>
+                <div class="success-gate">
+                  <span>SUCCESS MEANS</span>
+                  <p>You can open <code>localhost</code>, change <code>index.html</code>, save it and immediately see the new result in the browser.</p>
+                  <b>When this works, you are eligible for Milestone 02.</b>
+                </div>
+              </div>
+            </article>
+
+            <article class="milestone milestone-next">
+              <div class="milestone-rail"><span>02</span><i></i></div>
+              <div class="milestone-main">
+                <div class="milestone-top"><div><span class="eyebrow">MILESTONE 02</span><h3>Build the page structure with HTML</h3></div><span class="status-pill locked">AFTER 01</span></div>
+                <p class="milestone-purpose">Now you may start building the actual webpage. HTML tells the browser what each piece of content is.</p>
+                <div class="must-learn">
+                  <span>YOU MUST UNDERSTAND</span>
+                  <p><b>Headings</b> for titles · <b>paragraphs</b> for text · <b>links</b> for navigation · <b>images</b> for visuals · <b>buttons</b> for actions · <b>forms</b> for user input · <b>sections</b> for page structure.</p>
+                </div>
+                <div class="success-gate compact">
+                  <span>SUCCESS MEANS</span>
+                  <p>You can build a simple page with a heading, text, image, link, button and form, and it works on localhost.</p>
+                  <b>Then you are eligible for Milestone 03.</b>
+                </div>
+              </div>
+            </article>
+
+            <article class="milestone milestone-next">
+              <div class="milestone-rail"><span>03</span><i></i></div>
+              <div class="milestone-main">
+                <div class="milestone-top"><div><span class="eyebrow">MILESTONE 03</span><h3>Make the page look right with CSS</h3></div><span class="status-pill locked">AFTER 02</span></div>
+                <p class="milestone-purpose">CSS controls how the HTML looks. Keep testing every change on localhost.</p>
+                <div class="must-learn">
+                  <span>YOU MUST UNDERSTAND</span>
+                  <p><b>Colours</b> · <b>fonts</b> · <b>spacing</b> · <b>width and height</b> · <b>Flexbox</b> · <b>Grid</b> · <b>responsive design</b> for phones and laptops.</p>
+                </div>
+                <div class="success-gate compact">
+                  <span>SUCCESS MEANS</span>
+                  <p>Your page is readable, aligned and usable on both a laptop-sized screen and a phone-sized screen.</p>
+                  <b>Then you are eligible for Milestone 04.</b>
+                </div>
+              </div>
+            </article>
+
+            <article class="milestone milestone-next">
+              <div class="milestone-rail"><span>04</span><i></i></div>
+              <div class="milestone-main">
+                <div class="milestone-top"><div><span class="eyebrow">MILESTONE 04</span><h3>Add behaviour with JavaScript</h3></div><span class="status-pill locked">AFTER 03</span></div>
+                <p class="milestone-purpose">JavaScript makes the page react. A button can open something, a form can be checked and content can change without reloading the whole page.</p>
+                <div class="must-learn">
+                  <span>YOU MUST UNDERSTAND</span>
+                  <p><b>Variables</b> · <b>functions</b> · <b>conditions</b> · <b>events</b> · finding HTML elements · changing text/classes · basic form handling.</p>
+                </div>
+                <div class="success-gate compact">
+                  <span>SUCCESS MEANS</span>
+                  <p>You can make at least one useful interaction work correctly on localhost without copying a complete solution blindly.</p>
+                  <b>Then your first frontend is ready for Milestone 05.</b>
+                </div>
+              </div>
+            </article>
+
+            <article class="milestone milestone-next">
+              <div class="milestone-rail"><span>05</span><i></i></div>
+              <div class="milestone-main">
+                <div class="milestone-top"><div><span class="eyebrow">MILESTONE 05</span><h3>Connect a backend</h3></div><span class="status-pill locked">AFTER FRONTEND</span></div>
+                <p class="milestone-purpose">The backend handles work the browser should not do by itself: checking requests, applying rules, protecting secrets and talking to a database.</p>
+                <div class="must-learn">
+                  <span>YOU MUST UNDERSTAND</span>
+                  <p><b>Request → response</b> · <b>API routes</b> · JSON · one backend language such as <b>Node.js</b> or <b>Python</b> · validation · environment variables.</p>
+                </div>
+                <div class="success-gate compact">
+                  <span>SUCCESS MEANS</span>
+                  <p>Your localhost frontend can send a request to your localhost backend and display the answer.</p>
+                  <b>Then you are eligible for Milestone 06.</b>
+                </div>
+              </div>
+            </article>
+
+            <article class="milestone milestone-next">
+              <div class="milestone-rail"><span>06</span><i></i></div>
+              <div class="milestone-main">
+                <div class="milestone-top"><div><span class="eyebrow">MILESTONE 06</span><h3>Make the project remember with a database</h3></div><span class="status-pill locked">AFTER BACKEND</span></div>
+                <p class="milestone-purpose">A database keeps information after the page closes: accounts, projects, products, messages, orders or any other information your app must remember.</p>
+                <div class="must-learn">
+                  <span>YOU MUST UNDERSTAND</span>
+                  <p><b>Tables</b> · rows · columns · IDs · relationships · <b>SELECT</b> · <b>INSERT</b> · <b>UPDATE</b> · <b>DELETE</b> · permissions. Then use PostgreSQL, Supabase or another suitable database.</p>
+                </div>
+                <div class="success-gate compact">
+                  <span>SUCCESS MEANS</span>
+                  <p>Your app can save one real record, reload the page and retrieve that same record safely.</p>
+                  <b>Then you are eligible to prepare the project for the internet.</b>
+                </div>
+              </div>
+            </article>
+
+            <article class="milestone milestone-next milestone-launch">
+              <div class="milestone-rail"><span>07</span></div>
+              <div class="milestone-main">
+                <div class="milestone-top"><div><span class="eyebrow">MILESTONE 07</span><h3>Preview online, then publish</h3></div><span class="status-pill locked">FINAL STEP</span></div>
+                <p class="milestone-purpose">Even when the project will live on GitHub, Vercel or Cloudflare, keep a local copy. Make changes locally first, check the result, then push or deploy the version that worked.</p>
+                <div class="local-to-online">
+                  <div><span>1</span><b>Edit locally</b><small>Change your files on your computer.</small></div>
+                  <i>→</i>
+                  <div><span>2</span><b>Test localhost</b><small>Check layout, buttons, forms and errors.</small></div>
+                  <i>→</i>
+                  <div><span>3</span><b>Push / deploy</b><small>Send the tested version online.</small></div>
+                  <i>→</i>
+                  <div><span>4</span><b>Test the live URL</b><small>Check again because hosting can behave differently.</small></div>
+                </div>
+                <div class="teacher-rule"><b>Teacher rule:</b> a successful localhost build is not the final product, but an unsuccessful localhost build should never be your production deployment.</div>
+              </div>
+            </article>
           </div>
         </section>
 
