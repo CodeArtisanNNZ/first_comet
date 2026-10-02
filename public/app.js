@@ -14,6 +14,8 @@ const topics={
 function animeRun(opts){if(hasAnime()) return anime(opts); const t=opts.targets; $$(typeof t==='string'?t:'').forEach(e=>{e.style.opacity=1;e.style.transform='none'});return null}
 function runIntro(){
   const intro=$('#intro'),app=$('#app');
+  clearTimeout(window.__fcIntroFailsafe);
+  window.__fcIntroFailsafe=setTimeout(()=>{if(intro&&intro.style.display!=='none')finishIntro()},5000);
   intro.style.display='grid';
   intro.style.opacity=1;
   app.style.opacity=0;
@@ -44,7 +46,7 @@ function runIntro(){
   }
 }
 function revealFirstCometApp(){const app=$('#app');app.style.opacity=1;app.removeAttribute('aria-hidden');animateView(state.view||'home')}
-function finishIntro(){const intro=$('#intro');intro.style.display='none';localStorage.setItem('fc-intro-seen','1');revealFirstCometApp()}
+function finishIntro(){clearTimeout(window.__fcIntroFailsafe);const intro=$('#intro');if(intro){intro.style.opacity=0;intro.style.display='none'}localStorage.setItem('fc-intro-seen','1');revealFirstCometApp()}
 function animateView(v){const el=$('#view-'+v);if(!el)return;animeRun({targets:el.querySelectorAll('h1,.eyebrow,.launch-card,.project-list,.mission,.lesson-panel,.topic-card,.setting,.studio'),translateY:[18,0],opacity:[0,1],delay:hasAnime()?anime.stagger(55):0,duration:550,easing:'easeOutQuad'})}
 function preferredLearnSection(){
   if(state.level==='Beginner') return 'localhost';
