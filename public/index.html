@@ -53,7 +53,7 @@
         <button class="nav-item active" data-view="home" aria-current="page"><span>⌂</span><b>Home</b><small>Projects &amp; start</small></button>
         <button class="nav-item" data-view="guide"><span>◇</span><b>Build</b><small>Step-by-step path</small></button>
         <span class="nav-label learn-label">HELP</span>
-        <button class="nav-item" data-view="learn"><span>?</span><b>Learn</b><small>Terms &amp; tools</small></button>
+        <button class="nav-item" data-view="learn"><span>?</span><b>Learn</b><small>Frontend · backend · data</small></button>
         <button class="nav-item" data-view="settings"><span>⚙</span><b>Settings</b><small>Theme &amp; level</small></button>
       </nav>
       <div class="rail-note"><span class="tiny-comet">☄</span><p><b>First Comet</b><br><small>Guided developer workspace</small></p></div>
@@ -187,7 +187,89 @@
       </section>
 
       <section class="view" id="view-learn">
-        <div class="page-heading"><span class="eyebrow">POCKET REFERENCE</span><h1>Learn while building</h1><p>Short, practical explanations. Open only what you need.</p></div>
+        <div class="page-heading"><span class="eyebrow">BEGINNER SCHOOL</span><h1>Learn how a project actually works</h1><p>No complicated definitions. Start with what each part does, then learn only the tools you need to build it.</p></div>
+
+        <section class="teaching-sector" aria-labelledby="teachingTitle">
+          <div class="teaching-intro">
+            <div>
+              <span class="eyebrow">THE BIG PICTURE</span>
+              <h2 id="teachingTitle">A website is usually three parts working together.</h2>
+            </div>
+            <p>Think of an online shop: the <b>frontend</b> is the shop customers see, the <b>backend</b> is the worker handling requests, and the <b>database</b> is where the shop keeps its information.</p>
+          </div>
+
+          <div class="system-flow" aria-label="Frontend sends a request to the backend, and the backend reads or writes information in the database">
+            <div class="flow-chip"><span>1</span><b>Frontend</b><small>What people see</small></div>
+            <i>→</i>
+            <div class="flow-chip"><span>2</span><b>Backend</b><small>What handles the work</small></div>
+            <i>↔</i>
+            <div class="flow-chip"><span>3</span><b>Database</b><small>What remembers data</small></div>
+          </div>
+
+          <div class="teaching-cards">
+            <article class="teaching-card frontend-card">
+              <div class="teach-card-head"><span class="teach-number">01</span><div><span class="eyebrow">FRONTEND</span><h2>The part people see and touch</h2></div></div>
+              <p class="plain-definition">Buttons, text, pictures, menus, forms and page layouts are frontend. If a person can see it or click it in the browser, it is usually part of the frontend.</p>
+              <div class="learn-this"><b>Learn these in this order</b>
+                <ol>
+                  <li><strong>HTML</strong><span>Builds the structure: headings, buttons, forms, images.</span></li>
+                  <li><strong>CSS</strong><span>Makes it look good: colours, spacing, layout and mobile design.</span></li>
+                  <li><strong>JavaScript</strong><span>Makes it react: clicks, menus, forms and changing content.</span></li>
+                  <li><strong>Responsive design</strong><span>Makes the same page work on phones and laptops.</span></li>
+                </ol>
+              </div>
+              <div class="tiny-example"><span>EXAMPLE</span><code>HTML = button · CSS = blue button · JS = what happens when clicked</code></div>
+            </article>
+
+            <article class="teaching-card backend-card">
+              <div class="teach-card-head"><span class="teach-number">02</span><div><span class="eyebrow">BACKEND</span><h2>The part working behind the screen</h2></div></div>
+              <p class="plain-definition">The backend receives a request, checks what should happen, talks to the database and sends an answer back. Users normally do not see this code.</p>
+              <div class="learn-this"><b>Learn these in this order</b>
+                <ol>
+                  <li><strong>Requests &amp; responses</strong><span>Understand how the browser asks a server for something.</span></li>
+                  <li><strong>APIs</strong><span>Learn the simple rules frontend and backend use to talk.</span></li>
+                  <li><strong>One backend language</strong><span>Start with JavaScript/Node.js or Python. You do not need both.</span></li>
+                  <li><strong>Validation &amp; logic</strong><span>Check input and decide what your app is allowed to do.</span></li>
+                  <li><strong>Authentication &amp; secrets</strong><span>Learn sign-in, permissions and environment variables.</span></li>
+                </ol>
+              </div>
+              <div class="tiny-example"><span>EXAMPLE</span><code>“Log me in” → backend checks account → sends success or error</code></div>
+            </article>
+
+            <article class="teaching-card database-card">
+              <div class="teach-card-head"><span class="teach-number">03</span><div><span class="eyebrow">DATABASE</span><h2>The place your app remembers things</h2></div></div>
+              <p class="plain-definition">A database stores information so it is still there later: users, products, messages, orders, lessons, appointments or anything else your project needs to remember.</p>
+              <div class="learn-this"><b>Learn these in this order</b>
+                <ol>
+                  <li><strong>Tables, rows &amp; columns</strong><span>Learn how information is organised.</span></li>
+                  <li><strong>SQL queries</strong><span>Start with SELECT, INSERT, UPDATE and DELETE.</span></li>
+                  <li><strong>IDs &amp; relationships</strong><span>Learn how one table connects to another.</span></li>
+                  <li><strong>Rules &amp; permissions</strong><span>Decide who is allowed to read or change each record.</span></li>
+                  <li><strong>PostgreSQL / Supabase</strong><span>Use a real database service after the basics make sense.</span></li>
+                </ol>
+              </div>
+              <div class="tiny-example"><span>EXAMPLE</span><code>SELECT * FROM projects; = “show me all saved projects”</code></div>
+            </article>
+          </div>
+
+          <div class="learning-roadmap">
+            <div>
+              <span class="eyebrow">BEGINNER ORDER</span>
+              <h2>What should I learn first?</h2>
+              <p>Do not try to master everything before starting. Learn enough for the next small thing you are building.</p>
+            </div>
+            <ol class="roadmap-steps">
+              <li><span>1</span><b>HTML</b><small>Make a basic page</small></li>
+              <li><span>2</span><b>CSS</b><small>Make it readable and responsive</small></li>
+              <li><span>3</span><b>JavaScript</b><small>Add simple behaviour</small></li>
+              <li><span>4</span><b>API + backend</b><small>Make the page talk to logic</small></li>
+              <li><span>5</span><b>SQL + database</b><small>Save and retrieve real data</small></li>
+              <li><span>6</span><b>Auth + deploy</b><small>Protect it and put it online</small></li>
+            </ol>
+          </div>
+        </section>
+
+        <div class="reference-divider"><span>NEED A QUICK DEFINITION?</span><b>Pocket reference</b></div>
         <div class="learn-layout">
           <div class="learn-nav"><button class="active" data-topic="terms">Technical terms</button><button data-topic="languages">Languages</button><button data-topic="database">Databases</button><button data-topic="github">Git &amp; GitHub</button><button data-topic="hosting">Hosting &amp; domains</button><button data-topic="vscode">VS Code</button></div>
           <div class="topic-grid" id="topicGrid"></div>
