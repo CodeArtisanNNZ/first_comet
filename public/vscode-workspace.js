@@ -14,7 +14,10 @@
     activePath:'',
     saveTimer:null,
     previewReady:false,
-    hintIndex:0
+    hintIndex:0,
+    monacoLoading:false,
+    pendingText:'',
+    pendingPath:''
   };
 
   const el={
@@ -261,11 +264,12 @@
   }
 
   function initMonaco(){
-    if(workspace.editor || workspace.fallback) return;
+    if(workspace.editor || workspace.fallback || workspace.monacoLoading) return;
     if(typeof window.require!=='function'){
       useFallbackEditor();
       return;
     }
+    workspace.monacoLoading=true;
     const base='https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/';
     window.MonacoEnvironment={
       getWorkerUrl:function(){
@@ -276,9 +280,12 @@
     try{
       window.require.config({paths:{vs:base+'vs'}});
       window.require(['vs/editor/editor.main'],function(){
+        workspace.monacoLoading=false;
+        const initialPath=workspace.pendingPath||workspace.activePath||'index.html';
+        const initialText=workspace.pendingText||'';
         workspace.editor=monaco.editor.create(el.monaco,{
-          value:'',
-          language:'html',
+          value:initialText,
+          language:languageFor(initialPath),
           theme:document.body.classList.contains('dark')?'vs-dark':'vs-dark',
           automaticLayout:true,
           fontSize:14,
@@ -292,11 +299,14 @@
         });
         workspace.editor.onDidChangeModelContent(onEditorChanged);
         workspace.editor.addCommand(monaco.KeyMod.CtrlCmd|monaco.KeyCode.KeyS,function(){saveActiveFile(true)});
-      },function(){useFallbackEditor()});
-    }catch(_){useFallbackEditor()}
+        workspace.pendingText='';
+        workspace.pendingPath='';
+      },function(){workspace.monacoLoading=false;useFallbackEditor()});
+    }catch(_){workspace.monacoLoading=false;useFallbackEditor()}
   }
 
   function useFallbackEditor(){
+    if(workspace.fallback) return;
     workspace.fallback=true;
     el.monaco.style.display='none';
     el.fallbackEditor.style.display='block';
@@ -315,9 +325,12 @@
       const model=monaco.editor.createModel(text,lang);
       workspace.editor.setModel(model);
       if(old) old.dispose();
-    }else{
-      if(!workspace.fallback) initMonaco();
+    }else if(workspace.fallback){
       el.fallbackEditor.value=text;
+    }else{
+      workspace.pendingText=text;
+      workspace.pendingPath=path;
+      initMonaco();
     }
   }
 
