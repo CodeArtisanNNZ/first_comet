@@ -20,6 +20,20 @@ The deployable website lives in `public/`. Cloudflare Workers Static Assets publ
 
 Live website: [https://first-comet.nusaibanusratzaman.workers.dev/](https://first-comet.nusaibanusratzaman.workers.dev/)
 
+## Quick start
+
+For the simplest local preview, open `public/index.html` in a current browser.
+
+Before pushing a change, run the lightweight checks that match what you edited:
+
+```bash
+node tests/test_course.cjs
+node tests/test_project_course.cjs
+bash scripts/test.sh
+```
+
+If a browser-based test is unavailable in your environment, note that in the pull request instead of skipping it silently.
+
 ## Deploy to Cloudflare
 
 1. Connect this repository to Cloudflare Workers & Pages.
