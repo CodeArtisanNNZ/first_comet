@@ -52,6 +52,7 @@
         <span class="nav-label">WORKSPACE</span>
         <button class="nav-item active" data-view="home" aria-current="page"><span>⌂</span><b>Home</b><small>Projects &amp; start</small></button>
         <button class="nav-item" data-view="guide"><span>◇</span><b>Build</b><small>Step-by-step path</small></button>
+        <button class="nav-item" data-view="vscode"><span>⌨</span><b>VS Code</b><small>Code with your teacher</small></button>
         <span class="nav-label learn-label">HELP</span>
         <button class="nav-item" data-view="learn"><span>?</span><b>Learn</b><small>Frontend · backend · data</small></button>
         <button class="nav-item" data-view="settings"><span>⚙</span><b>Settings</b><small>Theme &amp; level</small></button>
@@ -127,6 +128,94 @@
             <button class="review-button" id="reviewBtn">Review &amp; save to GitHub <span>→</span></button>
           </section>
         </div>
+      </section>
+
+      <section class="view" id="view-vscode">
+        <div class="page-heading vscode-heading">
+          <span class="eyebrow">FIRST COMET CODE ROOM</span>
+          <h1>Your code editor, with a teacher beside you.</h1>
+          <p>Connect one project folder. First Comet asks for access only when you choose the folder, then you can edit and save those files from this page.</p>
+        </div>
+
+        <section class="vscode-permission" id="vscodePermission">
+          <div>
+            <span class="eyebrow">BEFORE WE OPEN YOUR PROJECT</span>
+            <h2>First Comet needs permission to read and save one folder.</h2>
+            <p>The browser will show its own folder picker. You choose the folder yourself. First Comet cannot browse the rest of your computer.</p>
+          </div>
+          <div class="permission-points">
+            <div><span>✓</span><p><b>Read</b><small>See the files inside the folder you select.</small></p></div>
+            <div><span>✓</span><p><b>Write</b><small>Save the changes you make in the editor.</small></p></div>
+            <div><span>—</span><p><b>No other access</b><small>No camera, microphone, location or unrelated folders.</small></p></div>
+          </div>
+          <div class="permission-actions">
+            <button class="primary" id="connectCodeFolder">Choose project folder →</button>
+            <button class="secondary" id="openVscodeWeb">Open Microsoft VS Code Web ↗</button>
+          </div>
+          <p class="permission-support" id="permissionSupport">Best experience: Chrome or Edge on desktop.</p>
+        </section>
+
+        <section class="vscode-shell" id="vscodeShell" aria-label="First Comet VS Code workspace">
+          <header class="vscode-bar">
+            <div class="vscode-brand"><span>⌨</span><div><b>FIRST COMET · VS CODE WORKSPACE</b><small id="connectedFolderName">No folder connected</small></div></div>
+            <div class="vscode-save-state"><i id="saveDot"></i><span id="saveState">Waiting for a project folder</span></div>
+            <div class="vscode-bar-actions"><button id="refreshPreview">Refresh preview</button><button id="reconnectFolder">Change folder</button></div>
+          </header>
+
+          <div class="vscode-grid">
+            <aside class="vscode-explorer">
+              <div class="vscode-pane-title"><span>EXPLORER</span><div><button id="newCodeFile" title="New file">＋</button><button id="reloadCodeFiles" title="Reload files">↻</button></div></div>
+              <div class="vscode-folder-label" id="codeFolderLabel">CONNECT A FOLDER FIRST</div>
+              <div class="vscode-tree" id="vscodeFileTree">
+                <div class="vscode-empty-tree"><b>No project folder yet.</b><span>Use “Choose project folder” above.</span></div>
+              </div>
+            </aside>
+
+            <section class="vscode-editor-area">
+              <div class="vscode-tabs">
+                <div class="vscode-tab active"><span id="vscodeActiveFile">Welcome</span><i id="unsavedMark"></i></div>
+                <span class="vscode-path" id="vscodePath">First Comet is ready to guide you.</span>
+              </div>
+              <div class="vscode-editor-wrap">
+                <div id="monacoEditor" class="monaco-host"></div>
+                <textarea id="fallbackCodeEditor" class="fallback-code-editor" spellcheck="false" aria-label="Code editor"></textarea>
+                <div class="editor-welcome" id="editorWelcome">
+                  <span>☄</span>
+                  <h2>Connect your project folder.</h2>
+                  <p>Then choose a file from Explorer. First Comet will explain what to do next while you work.</p>
+                </div>
+              </div>
+              <div class="vscode-statusbar">
+                <span id="vscodeLanguage">Plain Text</span>
+                <span>Ctrl + S saves</span>
+                <span id="vscodePermissionState">Folder permission: not granted</span>
+              </div>
+            </section>
+
+            <aside class="comet-teacher">
+              <div class="teacher-panel-head"><span class="eyebrow">FIRST COMET TEACHER</span><span class="teacher-online">● READY</span></div>
+              <div class="teacher-milestone"><small>CURRENT MILESTONE</small><b id="teacherMilestone">01 · Connect your project folder</b></div>
+              <div class="teacher-message" id="teacherMessage">
+                <p>I will stay here while you code. First, connect the folder where you want to build your localhost website.</p>
+              </div>
+              <div class="teacher-checks" id="teacherChecks">
+                <div><span>○</span><p><b>Project folder</b><small>Not connected yet</small></p></div>
+                <div><span>○</span><p><b>index.html</b><small>Waiting</small></p></div>
+                <div><span>○</span><p><b>Local preview</b><small>Waiting</small></p></div>
+              </div>
+              <div class="teacher-actions">
+                <button class="primary full" id="stuckButton">I'm stuck — help me</button>
+                <button class="secondary full" id="checkWorkButton">Check my work</button>
+              </div>
+              <div class="teacher-hint" id="teacherHint" hidden></div>
+            </aside>
+
+            <section class="vscode-preview-pane">
+              <div class="preview-head"><div><span class="eyebrow">LOCAL PREVIEW</span><b>See the result before it goes online</b></div><span id="previewStatus">Waiting for index.html</span></div>
+              <iframe id="localPreviewFrame" title="Local website preview" sandbox="allow-scripts allow-forms allow-modals"></iframe>
+            </section>
+          </div>
+        </section>
       </section>
 
       <section class="view" id="view-guide">
@@ -386,7 +475,9 @@
   <div class="toast" id="toast" role="status"></div>
 
   <script src="assets/anime.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs/loader.js"></script>
   <script src="app.js"></script>
+  <script src="vscode-workspace.js"></script>
   <script src="navigation.js"></script>
 </body>
 </html>
