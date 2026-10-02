@@ -1,5 +1,15 @@
 # Roadmap
 
+## Current static website — completed
+
+Text-first beginner code course in HTML, CSS, JavaScript, Java, Python, and PHP: 309 glossary entries, 48 language milestones, three algorithm milestones, 17 comparison tasks, binary-search traces and code, browser-local progression, downloadable text, and responsive light/dark layouts. Node checks, 18 backend regressions, Ruff F checks, and Chromium browser QA pass. See `docs/BUILD_STATE.md` for scope and runtime limitations.
+
+## Next for the course
+
+Run the Java/PHP examples under their real interpreters; collect beginner feedback about wording and milestone size; add later topics only after the core path is usable. A secure execution environment and account-synced progress are future work, not features of this release.
+
+The following roadmap describes the separate private desktop/backend foundation. Its production-security blockers do not imply that it is exposed by the static website.
+
 ## NOW — completed and verified
 
 Local FastAPI/React/SQLite setup, admin bootstrap, sessions, app profiles, scoped server keys, conversation streaming, explicit memories, bounded lexical document retrieval, JS/Python SDK contracts, backup and user export, security/API regression tests. UI build and frontend unit tests pass.

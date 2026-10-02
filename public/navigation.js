@@ -17,6 +17,7 @@
     button.addEventListener('click', () => {
       document.querySelector(`.nav-item[data-view="${button.dataset.navView}"]`)?.click();
       if (button.dataset.topicJump) {
+        window.FirstCometCourse?.openSection('reference');
         document.querySelector(`.learn-nav [data-topic="${button.dataset.topicJump}"]`)?.click();
       }
       if (button.dataset.stepJump) {

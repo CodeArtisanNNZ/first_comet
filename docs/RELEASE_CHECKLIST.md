@@ -1,5 +1,20 @@
 # Release checklist — 0.7.0
 
+## Static beginner course — 2026-10-02
+
+- [x] Six language dictionaries and 48 sequential language milestones
+- [x] Seventeen comparison tasks, three binary-search milestones, and four search implementations
+- [x] Dictionary word links, hints, retry behavior, required practice confirmation, saved progress and bounded deep links
+- [x] Existing localhost/reference navigation and GitHub topic jumps
+- [x] Downloadable text generated from the website’s curriculum source
+- [x] Node curriculum/data checks and published JS/Python example-output checks
+- [x] Existing backend regressions: 18 pytest tests; Python Ruff F checks
+- [x] Chromium interactions and overflow checks at 320, 360, 390, 520, 768, 1024, 1280, and 1440 pixels; light/dark and mobile screenshots inspected
+- [ ] Execute Java and PHP examples in real runtimes (binaries unavailable here)
+- [ ] Native Windows PowerShell runner smoke test
+
+The public deployment serves static files from `public/` and does not run the private API. The legacy npm commands cannot run because this repository has no `apps/web` or frontend `package.json`; the test scripts fall back to static course checks. Private backend items and historical statuses below retain their original scope.
+
 - [x] Default-browser launch with duplicate-server detection
 - [x] Project gallery and full-width workspace navigation
 - [x] Protected file editing, reviewed save and reviewed Quick Push
