@@ -12,7 +12,37 @@ const topics={
  vscode:[['NAVIGATION','Ctrl + P','Open any file by typing part of its name.'],['COMMANDS','Ctrl + Shift + P','Find almost every VS Code action.'],['TERMINAL','Ctrl + `','Open or hide the built-in terminal.'],['EDITING','Alt + ↑ / ↓','Move the current line without cutting and pasting.'],['MULTI-CURSOR','Alt + Click','Edit several places at once.'],['FORMAT','Shift + Alt + F','Format the current document using your formatter.']]
 };
 function animeRun(opts){if(hasAnime()) return anime(opts); const t=opts.targets; $$(typeof t==='string'?t:'').forEach(e=>{e.style.opacity=1;e.style.transform='none'});return null}
-function runIntro(){const intro=$('#intro'),app=$('#app');intro.style.display='grid';intro.style.opacity=1;app.style.opacity=0;app.setAttribute('aria-hidden','true');if(hasAnime()){anime.timeline({easing:'easeOutExpo'}).add({targets:'.intro-logo',scale:[.35,1],opacity:[0,1],rotate:[-8,0],duration:950}).add({targets:'.orbit-a',rotate:[-35,-18],scale:[.7,1],opacity:[0,.3],duration:700},'-=650').add({targets:'.orbit-b',rotate:[40,22],scale:[1.2,1],opacity:[0,.3],duration:700},'-=700').add({targets:'.intro-star',scale:[0,1],rotate:[-90,0],delay:anime.stagger(140),duration:600},'-=450').add({targets:['.intro-kicker','.intro-line','.skip-intro'],translateY:[18,0],opacity:[0,1],delay:anime.stagger(90),duration:550},'-=380').add({targets:'.intro-logo',translateX:[0,'48vw'],translateY:[0,'-43vh'],scale:[1,.1],rotate:[0,18],duration:850,delay:850,easing:'easeInExpo'}).add({targets:'.intro',opacity:[1,0],duration:500,complete:finishIntro},'-=250');}else{setTimeout(finishIntro,900)}}
+function runIntro(){
+  const intro=$('#intro'),app=$('#app');
+  intro.style.display='grid';
+  intro.style.opacity=1;
+  app.style.opacity=0;
+  app.setAttribute('aria-hidden','true');
+
+  if(hasAnime()){
+    anime.remove(['.intro','.intro-logo','.orbit-a','.orbit-b','.intro-star','.intro-kicker','.intro-line','.skip-intro']);
+
+    /* Reset every animated property so replay never starts from the previous
+       off-screen transform. */
+    anime.set('.intro',{opacity:1});
+    anime.set('.intro-logo',{translateX:0,translateY:0,scale:.35,rotate:-8,opacity:0});
+    anime.set('.orbit-a',{rotate:-35,scale:.7,opacity:0});
+    anime.set('.orbit-b',{rotate:40,scale:1.2,opacity:0});
+    anime.set('.intro-star',{scale:0,rotate:-90,opacity:1});
+    anime.set(['.intro-kicker','.intro-line','.skip-intro'],{translateY:18,opacity:0});
+
+    anime.timeline({easing:'easeOutExpo'})
+      .add({targets:'.intro-logo',scale:1,opacity:1,rotate:0,duration:850})
+      .add({targets:'.orbit-a',rotate:-18,scale:1,opacity:.3,duration:650},'-=560')
+      .add({targets:'.orbit-b',rotate:22,scale:1,opacity:.3,duration:650},'-=650')
+      .add({targets:'.intro-star',scale:1,rotate:0,delay:anime.stagger(120),duration:500},'-=420')
+      .add({targets:['.intro-kicker','.intro-line','.skip-intro'],translateY:0,opacity:1,delay:anime.stagger(70),duration:450},'-=320')
+      .add({targets:'.intro-logo',translateY:-12,scale:.94,opacity:.9,duration:420,delay:700,easing:'easeInOutQuad'})
+      .add({targets:'.intro',opacity:0,duration:420,complete:finishIntro},'-=120');
+  }else{
+    setTimeout(finishIntro,900);
+  }
+}
 function revealFirstCometApp(){const app=$('#app');app.style.opacity=1;app.removeAttribute('aria-hidden');animateView(state.view||'home')}
 function finishIntro(){const intro=$('#intro');intro.style.display='none';localStorage.setItem('fc-intro-seen','1');revealFirstCometApp()}
 function animateView(v){const el=$('#view-'+v);if(!el)return;animeRun({targets:el.querySelectorAll('h1,.eyebrow,.launch-card,.project-list,.mission,.lesson-panel,.topic-card,.setting,.studio'),translateY:[18,0],opacity:[0,1],delay:hasAnime()?anime.stagger(55):0,duration:550,easing:'easeOutQuad'})}
