@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://first-comet.nusaibanusratzaman.workers.dev/sitemap.xml
+Sitemap: https://first-comet.nusaibanusratzaman.workers.dev/sitemap.txt
