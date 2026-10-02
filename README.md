@@ -18,7 +18,7 @@ The deployable website lives in `public/`. Cloudflare Workers Static Assets publ
 - Beginner, Practising and Pro modes
 - Responsive light and dark themes
 
-Live domain: [firstcomet.awerminds.tech](https://firstcomet.awerminds.tech)
+Live website: [https://first-comet.nusaibanusratzaman.workers.dev/](https://first-comet.nusaibanusratzaman.workers.dev/)
 
 ## Deploy to Cloudflare
 
