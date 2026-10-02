@@ -15,38 +15,42 @@ function animeRun(opts){if(hasAnime()) return anime(opts); const t=opts.targets;
 function runIntro(){
   const intro=$('#intro'),app=$('#app');
   clearTimeout(window.__fcIntroFailsafe);
-  window.__fcIntroFailsafe=setTimeout(()=>{if(intro&&intro.style.display!=='none')finishIntro()},5000);
+  if(app){
+    app.style.opacity=1;
+    app.removeAttribute('aria-hidden');
+  }
+  if(!intro) return;
+
   intro.style.display='grid';
   intro.style.opacity=1;
-  app.style.opacity=0;
-  app.setAttribute('aria-hidden','true');
+  intro.style.visibility='visible';
+  intro.style.pointerEvents='auto';
+  intro.style.animation='none';
+  void intro.offsetWidth;
+  intro.style.animation='introAutoExit .45s ease 3.6s forwards';
 
-  if(hasAnime()){
-    anime.remove(['.intro','.intro-logo','.orbit-a','.orbit-b','.intro-star','.intro-kicker','.intro-line','.skip-intro']);
-
-    /* Reset every animated property so replay never starts from the previous
-       off-screen transform. */
-    anime.set('.intro',{opacity:1});
-    anime.set('.intro-logo',{translateX:0,translateY:0,scale:.35,rotate:-8,opacity:0});
-    anime.set('.orbit-a',{rotate:-35,scale:.7,opacity:0});
-    anime.set('.orbit-b',{rotate:40,scale:1.2,opacity:0});
-    anime.set('.intro-star',{scale:0,rotate:-90,opacity:1});
-    anime.set(['.intro-kicker','.intro-line','.skip-intro'],{translateY:18,opacity:0});
-
-    anime.timeline({easing:'easeOutExpo'})
-      .add({targets:'.intro-logo',scale:1,opacity:1,rotate:0,duration:850})
-      .add({targets:'.orbit-a',rotate:-18,scale:1,opacity:.3,duration:650},'-=560')
-      .add({targets:'.orbit-b',rotate:22,scale:1,opacity:.3,duration:650},'-=650')
-      .add({targets:'.intro-star',scale:1,rotate:0,delay:anime.stagger(120),duration:500},'-=420')
-      .add({targets:['.intro-kicker','.intro-line','.skip-intro'],translateY:0,opacity:1,delay:anime.stagger(70),duration:450},'-=320')
-      .add({targets:'.intro-logo',translateY:-12,scale:.94,opacity:.9,duration:420,delay:700,easing:'easeInOutQuad'})
-      .add({targets:'.intro',opacity:0,duration:420,complete:finishIntro},'-=120');
-  }else{
-    setTimeout(finishIntro,900);
-  }
+  window.__fcIntroFailsafe=setTimeout(finishIntro,4100);
 }
-function revealFirstCometApp(){const app=$('#app');app.style.opacity=1;app.removeAttribute('aria-hidden');animateView(state.view||'home')}
-function finishIntro(){clearTimeout(window.__fcIntroFailsafe);const intro=$('#intro');if(intro){intro.style.opacity=0;intro.style.display='none'}localStorage.setItem('fc-intro-seen','1');revealFirstCometApp()}
+function revealFirstCometApp(){
+  const app=$('#app');
+  if(app){
+    app.style.opacity=1;
+    app.removeAttribute('aria-hidden');
+  }
+  animateView(state.view||'home');
+}
+function finishIntro(){
+  clearTimeout(window.__fcIntroFailsafe);
+  const intro=$('#intro');
+  if(intro){
+    intro.style.opacity=0;
+    intro.style.visibility='hidden';
+    intro.style.pointerEvents='none';
+    intro.style.display='none';
+  }
+  localStorage.setItem('fc-intro-seen','1');
+  revealFirstCometApp();
+}
 function animateView(v){const el=$('#view-'+v);if(!el)return;animeRun({targets:el.querySelectorAll('h1,.eyebrow,.launch-card,.project-list,.mission,.lesson-panel,.topic-card,.setting,.studio'),translateY:[18,0],opacity:[0,1],delay:hasAnime()?anime.stagger(55):0,duration:550,easing:'easeOutQuad'})}
 function preferredLearnSection(){
   if(state.level==='Beginner') return 'localhost';
