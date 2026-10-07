@@ -222,7 +222,7 @@
     web: {
       label: 'Web page',
       runMode: 'live',
-      goal: 'Change the code, press Run preview, and see exactly what your browser would render.',
+      goal: 'Change one thing, then run the preview.',
       hint: 'Keep the first attempt small: one card, one button, one interaction.',
       html: '<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width,initial-scale=1">\n  <title>My first lab</title>\n</head>\n<body>\n  <main class="card">\n    <h1 id="title">Hello, Comet!</h1>\n    <p>I changed real code.</p>\n    <button id="helloBtn">Click me</button>\n  </main>\n</body>\n</html>',
       css: 'body {\n  font-family: system-ui, sans-serif;\n  margin: 0;\n  min-height: 100vh;\n  display: grid;\n  place-items: center;\n  background: #fff5dc;\n}\n\n.card {\n  width: min(360px, 86vw);\n  padding: 24px;\n  border: 2px solid #171319;\n  border-radius: 16px;\n  background: white;\n}',
@@ -231,7 +231,7 @@
     javascript: {
       label: 'JavaScript basics',
       runMode: 'local',
-      goal: 'Write the logic yourself first. The checker looks for the important ideas, not one exact answer.',
+      goal: 'Make score 50+ print Pass.',
       hint: 'You need a variable, a condition and console.log().',
       starter: 'const score = 72;\n\n// TODO: print "Pass" when score is 50 or more.\n',
       checks: [/score/, /if\s*\(/, /console\.log/],
@@ -241,7 +241,7 @@
     python: {
       label: 'Python basics',
       runMode: 'local',
-      goal: 'Practise variables, input and a condition without hiding what Python actually runs.',
+      goal: 'Ask for a score, then print Pass or Fail.',
       hint: 'Use input(), convert score with int(), then write if/else.',
       starter: 'name = input("Name: ")\nscore = int(input("Score: "))\n\n# TODO: print "<name>: Pass" for scores 50 or above, otherwise "Fail".\n',
       checks: [/input\s*\(/, /int\s*\(/, /if\s+/, /print\s*\(/],
@@ -251,7 +251,7 @@
     java: {
       label: 'Java basics',
       runMode: 'local',
-      goal: 'Practise a typed variable, a condition and output in real Java syntax.',
+      goal: 'Make score 50+ print Pass.',
       hint: 'Keep everything inside main for this first exercise.',
       starter: 'public class Main {\n  public static void main(String[] args) {\n    int score = 72;\n    // TODO: print Pass when score >= 50, otherwise Fail.\n  }\n}\n',
       checks: [/int\s+score/, /if\s*\(/, /System\.out\.println/],
@@ -261,7 +261,7 @@
     php: {
       label: 'PHP basics',
       runMode: 'local',
-      goal: 'Practise a variable, a condition and server-side output before touching frameworks.',
+      goal: 'Make score 50+ echo Pass.',
       hint: 'Use $score, if/else and echo.',
       starter: '<?php\n$score = 72;\n\n// TODO: echo Pass when score >= 50, otherwise Fail.\n',
       checks: [/\$score/, /if\s*\(/, /echo\s+/],
@@ -292,9 +292,8 @@
     const canEmbed = Boolean(resource.embed);
 
     videoRoot.innerHTML =
-      '<section class="learning-hub-intro">' +
-        '<div><span class="eyebrow">READ → WATCH → BUILD</span><h2>One topic. Two languages. One next action.</h2><p>Read the First Comet explanation first. Use a video when seeing the idea helps. Then build something tiny before moving on.</p></div>' +
-        '<aside><b>Do not binge courses.</b><span>Watch only the part that helps your current milestone, pause it, then type the code yourself.</span></aside>' +
+      '<section class="learning-hub-intro compact-learning-intro">' +
+        '<div><span class="eyebrow">WATCH ONE THING</span><h2>Pick a topic. Pick a language.</h2></div>' +
       '</section>' +
       '<div class="video-toolbar">' +
         '<div class="video-language" role="group" aria-label="Video language">' +
@@ -315,17 +314,17 @@
         '<article class="video-focus-card">' +
           '<span class="eyebrow">' + (videoState.lang === 'bn' ? 'বাংলা RESOURCE' : 'ENGLISH RESOURCE') + '</span>' +
           '<h3>' + esc(active.title) + '</h3>' +
-          '<p class="video-summary">' + esc(active.summary) + '</p>' +
+          '<p class="video-summary">' + esc(active.order) + '</p>' +
           '<div class="video-resource-card">' +
             '<div><b>' + esc(resource.title) + '</b><span>' + esc(resource.provider) + '</span></div>' +
-            '<p>' + esc(resource.note) + '</p>' +
+            '<details class="video-more"><summary>Why this resource?</summary><p>' + esc(resource.note) + '</p></details>' +
             '<div class="video-actions">' +
               '<a class="primary" href="' + esc(resource.href) + '" target="_blank" rel="noopener">Open free resource ↗</a>' +
               (canEmbed ? '<button class="secondary" data-load-video>Play here</button>' : '') +
             '</div>' +
             '<div id="videoEmbedSlot" class="video-embed-slot"></div>' +
           '</div>' +
-          '<aside class="after-video"><span>AFTER WATCHING</span><p>' + esc(active.practice) + '</p><label><input type="checkbox" data-video-complete ' + (completedVideos.has(doneKey) ? 'checked' : '') + '> I practised this without copying the full solution.</label></aside>' +
+          '<aside class="after-video"><span>TRY THIS NEXT</span><p>' + esc(active.practice) + '</p><label><input type="checkbox" data-video-complete ' + (completedVideos.has(doneKey) ? 'checked' : '') + '> Done</label></aside>' +
         '</article>' +
       '</div>';
   }
@@ -378,14 +377,13 @@
     const track = labTracks[currentTrack] || labTracks.web;
     const isWeb = track.runMode === 'live';
     labRoot.innerHTML =
-      '<section class="lab-intro">' +
-        '<div><span class="eyebrow">FIRST COMET · CODE LAB</span><h2>Type first. Run second. Copy last.</h2><p>This lab is intentionally small. It teaches the loop every developer uses: change → run → observe → debug → try again.</p></div>' +
-        '<aside><b>Rule:</b><span>If you cannot explain a line, do not keep it just because it works.</span></aside>' +
+      '<section class="lab-intro compact-learning-intro">' +
+        '<div><span class="eyebrow">CODE LAB</span><h2>Change it. Run it. See what happens.</h2></div>' +
       '</section>' +
       '<div class="lab-track-picker">' +
         Object.entries(labTracks).map(([id, item]) => '<button data-lab-track="' + id + '" class="' + (id === currentTrack ? 'active' : '') + '">' + esc(item.label) + '</button>').join('') +
       '</div>' +
-      '<section class="lab-task-card"><div><span class="eyebrow">YOUR SMALL TARGET</span><h3>' + esc(track.goal) + '</h3><p>' + esc(track.run || 'The preview is isolated inside this page.') + '</p></div><button class="course-text-link" data-lab-hint>' + (hintOpen ? 'Hide hint' : 'I am stuck — show one hint') + '</button>' + (hintOpen ? '<p class="lab-hint">' + esc(track.hint) + '</p>' : '') + '</section>' +
+      '<section class="lab-task-card"><div><span class="eyebrow">DO THIS</span><h3>' + esc(track.goal) + '</h3></div><details class="lab-run-help"><summary>How do I run this?</summary><p>' + esc(track.run || 'The preview runs inside this page.') + '</p></details><button class="course-text-link" data-lab-hint>' + (hintOpen ? 'Hide hint' : 'Need a hint?') + '</button>' + (hintOpen ? '<p class="lab-hint">' + esc(track.hint) + '</p>' : '') + '</section>' +
       (isWeb ? renderWebLab(track) : renderLocalLab(track));
     if (isWeb) runPreview();
   }
