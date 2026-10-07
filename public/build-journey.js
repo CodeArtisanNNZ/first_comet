@@ -77,6 +77,14 @@
     }
   ];
 
+  const stageVisuals = {
+    start: { image: 'assets/journey/start.svg', short: 'Pick one tiny project idea.' },
+    page: { image: 'assets/journey/build-page.svg', short: 'Make your page look and work.' },
+    versions: { image: 'assets/journey/save-work.svg', short: 'Keep safe versions of your work.' },
+    memory: { image: 'assets/journey/data.svg', short: 'Let your project save information.' },
+    launch: { image: 'assets/journey/launch.svg', short: 'Put your project online.' }
+  };
+
   const nextPaths = [
     { id: 'python', title: 'Python Builder · Beginner', note: 'Automation, data, and Python projects.' },
     { id: 'java', title: 'Java Builder · Beginner', note: 'Typed programs and object-oriented projects.' },
@@ -154,27 +162,37 @@
     const current = index === currentStageIndex() && !complete;
     const status = complete ? 'COMPLETE' : locked ? 'LOCKED' : current ? 'YOU ARE HERE' : 'READY';
     const action = firstOpen(stage);
+    const visual = stageVisuals[stage.id];
     const actionHtml = locked
       ? '<span class="journey-locked">Finish Stage ' + (stage.number - 1) + ' first</span>'
       : '<a class="journey-action" href="' + routeFor(action) + '">' + (complete ? 'Review stage' : 'Continue') + ' →</a>';
 
     return '<article class="journey-stage ' + (complete ? 'complete ' : '') + (current ? 'current ' : '') + (locked ? 'locked' : '') + '">' +
-      '<div class="journey-stage-number">' + String(stage.number).padStart(2, '0') + '</div>' +
-      '<div class="journey-stage-main">' +
-        '<span class="eyebrow">STAGE ' + stage.number + ' · ' + status + '</span>' +
-        '<h3>' + esc(stage.name) + '</h3>' +
-        '<p>' + esc(stage.note) + '</p>' +
-        '<strong class="journey-make">' + esc(stage.make) + '</strong>' +
-        '<div class="journey-needs">' +
-          stage.needs.map((need) => '<span class="' + (needComplete(need) ? 'done' : '') + '">' + (needComplete(need) ? '✓' : '○') + ' ' + esc(need.label) + '</span>').join('') +
-        '</div>' +
-        actionHtml +
+      '<div class="journey-stage-media">' +
+        '<img src="' + visual.image + '" alt="" loading="lazy">' +
+        '<span class="journey-stage-number">' + String(stage.number).padStart(2, '0') + '</span>' +
+        '<span class="journey-stage-status">' + status + '</span>' +
       '</div>' +
-      '<aside class="journey-title">' +
-        '<span>' + (complete ? 'TITLE UNLOCKED' : 'FINISH TO UNLOCK') + '</span>' +
-        '<b>' + esc(stage.title) + '</b>' +
-        '<small>' + esc(stage.result) + '</small>' +
-      '</aside>' +
+      '<div class="journey-stage-front">' +
+        '<h3>' + esc(stage.name) + '</h3>' +
+        '<p>' + esc(visual.short) + '</p>' +
+      '</div>' +
+      '<details class="journey-more">' +
+        '<summary>Tell me more <span aria-hidden="true">+</span></summary>' +
+        '<div class="journey-more-body">' +
+          '<p>' + esc(stage.note) + '</p>' +
+          '<strong class="journey-make">' + esc(stage.make) + '</strong>' +
+          '<div class="journey-needs">' +
+            stage.needs.map((need) => '<span class="' + (needComplete(need) ? 'done' : '') + '">' + (needComplete(need) ? '✓' : '○') + ' ' + esc(need.label) + '</span>').join('') +
+          '</div>' +
+          '<div class="journey-title">' +
+            '<span>' + (complete ? 'TITLE UNLOCKED' : 'FINISH TO UNLOCK') + '</span>' +
+            '<b>' + esc(stage.title) + '</b>' +
+            '<small>' + esc(stage.result) + '</small>' +
+          '</div>' +
+          actionHtml +
+        '</div>' +
+      '</details>' +
     '</article>';
   }
 
@@ -199,15 +217,15 @@
 
     target.innerHTML =
       '<section class="journey-hero">' +
-        '<div><span class="eyebrow">YOUR BUILD JOURNEY</span><h2>Build real things, one stage at a time.</h2><p>Finish a few small paths. Make something real. Unlock the next title.</p></div>' +
-        '<aside><span>CURRENT TITLE</span><b>' + esc(currentTitle()) + '</b><small>' + earned.length + ' / ' + stages.length + ' titles unlocked</small><progress max="' + stages.length + '" value="' + earned.length + '"></progress><small class="journey-title-note">First Comet progress title · not a professional certificate</small></aside>' +
+        '<div><span class="eyebrow">BUILD JOURNEY</span><h2>Build. Unlock. Move on.</h2><p>One stage at a time.</p></div>' +
+        '<aside><span>CURRENT TITLE</span><b>' + esc(currentTitle()) + '</b><small>' + earned.length + ' / ' + stages.length + ' unlocked</small><progress max="' + stages.length + '" value="' + earned.length + '"></progress></aside>' +
       '</section>' +
       (coreComplete
-        ? '<section class="journey-now complete"><span class="eyebrow">CORE JOURNEY COMPLETE</span><h3>You are a Project Launcher.</h3><p>Choose one direction below. You do not need every language.</p></section>'
-        : '<section class="journey-now"><span class="eyebrow">DO THIS NEXT</span><h3>' + esc(active.name) + '</h3><p>' + esc(activeNeed.label) + '</p><a class="primary" href="' + routeFor(activeNeed) + '">Continue →</a></section>') +
+        ? '<section class="journey-now complete"><span class="eyebrow">COMPLETE</span><h3>Project Launcher unlocked.</h3></section>'
+        : '<section class="journey-now"><span class="eyebrow">NEXT</span><h3>' + esc(active.name) + '</h3><a class="primary" href="' + routeFor(activeNeed) + '">Continue →</a></section>') +
       '<div class="journey-stage-list">' + stages.map(stageCard).join('') + '</div>' +
       '<section class="next-builder-paths ' + (coreComplete ? '' : 'locked') + '">' +
-        '<div><span class="eyebrow">NEXT DIRECTION</span><h2>What do you want to build next?</h2><p>' + (coreComplete ? 'Pick one. Specialise slowly.' : 'This opens after Stage 5.') + '</p></div>' +
+        '<div><span class="eyebrow">NEXT</span><h2>Choose a direction.</h2><p>' + (coreComplete ? 'Pick one.' : 'Unlocks after Stage 5.') + '</p></div>' +
         '<div class="next-builder-grid">' + nextPaths.map((item) => nextPathCard(item, coreComplete)).join('') + '</div>' +
         '<details class="journey-bonus"><summary>Bonus tools</summary><p>Student benefits can save money, but they are not required for your builder titles.</p><a href="#learn/project/students/lessons/' + (projectData.subjects.find((x) => x.id === 'students')?.lessons?.[0]?.id || '') + '">Open student benefits →</a></details>' +
       '</section>';
