@@ -63,7 +63,7 @@
         <div><span class="eyebrow">${escape(track.start)}</span><h2 id="courseTrackTitle">${track.label}, in small words.</h2><p>${escape(track.purpose)}</p></div>
         <div class="course-track-progress"><b>${track.terms.length} words · ${track.milestones.length} milestones</b><label for="trackProgress">${progress[track.id]} of ${track.milestones.length} complete</label><progress id="trackProgress" max="${track.milestones.length}" value="${progress[track.id]}"></progress><button type="button" class="primary" data-start-track>${progress[track.id] ? 'Continue' : 'Begin'} ${track.label} →</button></div>
       </section>
-      <nav class="course-tabs" aria-label="Course sections">${Object.entries(tabs).map(([id, label]) => `<button type="button" data-course-tab="${id}" class="${state.tab === id ? 'active' : ''}" aria-pressed="${state.tab === id}">${label}</button>`).join('')}</nav>
+      <nav class="course-tabs" aria-label="Path sections">${Object.entries(tabs).map(([id, label]) => `<button type="button" data-course-tab="${id}" class="${state.tab === id ? 'active' : ''}" aria-pressed="${state.tab === id}">${label}</button>`).join('')}</nav>
       <div id="courseTabContent"></div>
       <p class="course-save-note" id="courseSaveNote">${storageAvailable ? 'Progress stays in this browser on this device. A check confirms understanding; practice is completed in your local editor.' : 'This browser could not save progress. You can keep learning, but progress will last only for this page session.'}</p><a class="course-download" href="first-comet-course.md" download>Download the full coding guide ↓</a>`;
     renderContent();
