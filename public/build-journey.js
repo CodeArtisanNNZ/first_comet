@@ -149,7 +149,7 @@
     const status = complete ? 'COMPLETE' : locked ? 'LOCKED' : current ? 'YOU ARE HERE' : 'READY';
     const action = firstOpen(stage);
     const actionHtml = locked
-      ? '<span class="journey-locked">Finish Stage ' + stage.number - 1 + ' first</span>'
+      ? '<span class="journey-locked">Finish Stage ' + (stage.number - 1) + ' first</span>'
       : '<a class="journey-action" href="' + routeFor(action) + '">' + (complete ? 'Review stage' : 'Continue') + ' →</a>';
 
     return '<article class="journey-stage ' + (complete ? 'complete ' : '') + (current ? 'current ' : '') + (locked ? 'locked' : '') + '">' +
