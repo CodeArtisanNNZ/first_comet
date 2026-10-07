@@ -14,6 +14,7 @@
       name: 'Start Something',
       title: 'Project Starter',
       note: 'Choose one tiny idea and learn where your files live.',
+      make: 'Make: a small page running on your computer',
       result: 'A small project running on your computer.',
       needs: [
         { type: 'subject', id: 'plan', label: 'Pick a tiny project' },
@@ -26,6 +27,7 @@
       name: 'Build the Page',
       title: 'Web Page Builder',
       note: 'Give your page structure, style, and one useful interaction.',
+      make: 'Make: an interactive page you can change yourself',
       result: 'A webpage you can explain and change yourself.',
       needs: [
         { type: 'code', id: 'html', label: 'HTML · structure' },
@@ -37,8 +39,9 @@
       id: 'versions',
       number: 3,
       name: 'Save Your Work',
-      title: 'Version Control Starter',
+      title: 'Git & GitHub Starter',
       note: 'Keep safe checkpoints and put the project on GitHub.',
+      make: 'Make: a real GitHub repo with meaningful commits',
       result: 'A repository with meaningful commits.',
       needs: [
         { type: 'subject', id: 'git', label: 'Git · save versions' },
@@ -51,6 +54,7 @@
       name: 'Give It Memory',
       title: 'Connected App Builder',
       note: 'Understand saved data and connect it to a real project.',
+      make: 'Make: a project that reads saved data',
       result: 'A project that can read saved information.',
       needs: [
         { type: 'subject', id: 'databases', label: 'Understand databases' },
@@ -63,6 +67,7 @@
       name: 'Put It Online',
       title: 'Project Launcher',
       note: 'Publish your project and give it a real web address.',
+      make: 'Make: a live project with a shareable URL',
       result: 'A live project you can share.',
       needs: [
         { type: 'subject', id: 'publish', label: 'Publish the project' },
@@ -158,6 +163,7 @@
         '<span class="eyebrow">STAGE ' + stage.number + ' · ' + status + '</span>' +
         '<h3>' + esc(stage.name) + '</h3>' +
         '<p>' + esc(stage.note) + '</p>' +
+        '<strong class="journey-make">' + esc(stage.make) + '</strong>' +
         '<div class="journey-needs">' +
           stage.needs.map((need) => '<span class="' + (needComplete(need) ? 'done' : '') + '">' + (needComplete(need) ? '✓' : '○') + ' ' + esc(need.label) + '</span>').join('') +
         '</div>' +
