@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#ff5a36">
-  <meta name="description" content="First Comet is a beginner-first coding workspace that teaches localhost, HTML, CSS, JavaScript, backend, databases, GitHub, VS Code and deployment step by step.">
+  <meta name="description" content="First Comet is a free beginner-first coding guide with step-by-step project paths, Bangla and English video learning, an interactive Code Lab, localhost, HTML, CSS, JavaScript, Python, Java, PHP, Git, GitHub, databases and deployment.">
   <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
   <meta name="googlebot" content="index,follow">
   <meta name="author" content="Aware Minds">
-  <meta name="keywords" content="First Comet, beginner coding, learn web development, localhost, HTML, CSS, JavaScript, VS Code, GitHub, backend, database, Supabase, coding workspace">
+  <meta name="keywords" content="First Comet, beginner coding, learn coding Bangla, learn coding English, learn web development, coding for beginners, Code Lab, localhost, HTML, CSS, JavaScript, Python, Java, PHP, VS Code, Git, GitHub, SQL, backend, database, deployment">
   <meta property="og:title" content="First Comet — Beginner Coding Workspace">
   <meta property="og:description" content="Learn to build real web projects step by step, from localhost and frontend basics to backend, databases, GitHub and deployment.">
   <meta property="og:type" content="website">
@@ -44,6 +44,18 @@
         "creator":{"@id":"https://first-comet.nusaibanusratzaman.workers.dev/#organization"}
       },
       {
+        "@type":"LearningResource",
+        "@id":"https://first-comet.nusaibanusratzaman.workers.dev/#beginner-learning-path",
+        "name":"First Comet Beginner Coding Path",
+        "url":"https://first-comet.nusaibanusratzaman.workers.dev/#learn",
+        "description":"A free beginner coding path combining plain-language explanations, Bangla and English video resources, guided milestones and interactive code practice.",
+        "isAccessibleForFree":true,
+        "educationalLevel":"Beginner",
+        "learningResourceType":["Course","Interactive resource","Video learning guide"],
+        "inLanguage":["en","bn"],
+        "teaches":["HTML","CSS","JavaScript","Python","Java","PHP","Git","GitHub","SQL","backend development","databases","deployment"]
+      },
+      {
         "@type":"Organization",
         "@id":"https://first-comet.nusaibanusratzaman.workers.dev/#organization",
         "name":"Aware Minds",
@@ -60,6 +72,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="course.css">
+  <link rel="stylesheet" href="learning-hub.css">
 </head>
 <body>
   <a class="skip-link" href="#workspace">Skip to workspace</a>
@@ -303,9 +316,28 @@
         <nav class="learn-sections" aria-label="Learning areas">
           <button class="active" data-learn-section="project" aria-pressed="true">Build with me</button>
           <button data-learn-section="localhost" aria-pressed="false">Start here</button>
+          <button data-learn-section="videos" aria-pressed="false">Videos · বাংলা/English</button>
+          <button data-learn-section="lab" aria-pressed="false">Code Lab</button>
           <button data-learn-section="course" aria-pressed="false">Practice code</button>
           <button data-learn-section="reference" aria-pressed="false">Quick reference</button>
         </nav>
+
+        <section class="beginner-next-actions" aria-label="Simple beginner learning order">
+          <div><span class="eyebrow">NOT SURE WHAT TO DO?</span><b>Use this order. You never need every tab at once.</b></div>
+          <button type="button" data-learn-section="localhost"><span>1</span><b>Read one small step</b><small>Start here</small></button>
+          <button type="button" data-learn-section="videos"><span>2</span><b>See it explained</b><small>বাংলা or English</small></button>
+          <button type="button" data-learn-section="lab"><span>3</span><b>Type it yourself</b><small>Code Lab</small></button>
+          <button type="button" data-learn-section="project"><span>4</span><b>Use it in a project</b><small>Build with me</small></button>
+        </section>
+
+        <section id="learn-videos" class="learn-section" aria-label="Free Bangla and English video learning" hidden>
+          <div id="videoLearningApp"></div>
+        </section>
+
+        <section id="learn-lab" class="learn-section" aria-label="Beginner Code Lab" hidden>
+          <div id="codeLabApp"></div>
+        </section>
+
         <section id="learn-project" class="learn-section" aria-label="Project-building courses">
           <div id="projectCourseApp"></div>
           <noscript><p>Enable JavaScript to browse the project subjects, dictionaries, and saved progress. You can also <a href="first-comet-project-course.md">read the full project course as text</a>.</p></noscript>
@@ -523,6 +555,7 @@
   <script src="project-course-data.js"></script>
   <script src="course.js"></script>
   <script src="project-course.js"></script>
+  <script src="learning-hub.js"></script>
   <script src="navigation.js"></script>
 </body>
 </html>
