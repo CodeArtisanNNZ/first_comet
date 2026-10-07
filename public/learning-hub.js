@@ -99,9 +99,9 @@
       bn: {
         title: 'PHP learning path',
         provider: 'Bangla free-course index',
-        href: 'https://github.com/EbookFoundation/free-programming-books/blob/main/courses/free-courses-bn.md#php',
-        embed: '',
-        note: 'Use the linked free Bangla course index to choose a current PHP playlist. First Comet does not pretend one old playlist is automatically the best.'
+        href: 'https://www.youtube.com/watch?v=5JavawJuXCA',
+        embed: 'https://www.youtube-nocookie.com/embed/5JavawJuXCA',
+        note: 'Bangla PHP 8 beginner series covering core PHP, OOP, MySQL and project work. Start here, then continue through the creator’s series.'
       },
       en: {
         title: 'PHP Programming Language Tutorial — Full Course',
@@ -127,9 +127,9 @@
       en: {
         title: 'Git and GitHub for Beginners — Crash Course',
         provider: 'freeCodeCamp.org',
-        href: 'https://www.freecodecamp.org/news/learn-programming-free-software-development-courses-for-beginners/#git-and-github-courses',
-        embed: '',
-        note: 'Beginner resource covering version control, SSH keys and common Git/GitHub commands.'
+        href: 'https://www.youtube.com/watch?v=RGOj5yH7evk',
+        embed: 'https://www.youtube-nocookie.com/embed/RGOj5yH7evk',
+        note: 'Highly watched beginner crash course covering version control, local Git, commits, push, SSH keys, branches, undoing and forks.'
       }
     },
     {
@@ -139,11 +139,11 @@
       summary: 'Understand tables, rows, keys, CRUD and relationships before connecting a database service.',
       practice: 'Design three tables for a tiny student project and explain which fields are primary/foreign keys.',
       bn: {
-        title: 'Database / SQL Bangla resources',
-        provider: 'Free Programming Books — Bangla courses',
-        href: 'https://github.com/EbookFoundation/free-programming-books/blob/main/courses/free-courses-bn.md',
-        embed: '',
-        note: 'A maintained index of free Bangla programming courses; use it to choose a current SQL/database playlist.'
+        title: 'SQL Bangla Tutorials — Basic to Advanced',
+        provider: 'STUDY MART',
+        href: 'https://www.youtube.com/watch?v=dFFirEkiAeU',
+        embed: 'https://www.youtube-nocookie.com/embed/dFFirEkiAeU',
+        note: 'Bangla SQL/RDBMS course that starts from fundamentals and points learners to the complete SQL learning series and practice resources.'
       },
       en: {
         title: 'SQL Tutorial — Full Database Course for Beginners',
