@@ -36,6 +36,8 @@
     if (experience === 'Beginner' && (section === 'course' || section === 'reference')) section = 'localhost';
     if (experience === 'Pro' && section === 'localhost') section = 'reference';
     all('.learn-section').forEach((panel) => { panel.hidden = panel.id !== `learn-${section}`; });
+    const startCard = document.querySelector('.beginner-start-card');
+    if (startCard) startCard.hidden = section !== 'localhost';
     all('[data-learn-section]').forEach((button) => {
       const active = button.dataset.learnSection === section;
       button.classList.toggle('active', active);
