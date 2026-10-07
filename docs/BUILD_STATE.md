@@ -1,5 +1,14 @@
 # Build state
 
+## Beginner calm mode (2026-10-08)
+
+- Reduced the Learn landing copy to one short heading and one-line instruction.
+- Beginner mode now surfaces only Start, Watch, Code Lab and Build; Practice and Reference remain available in higher-detail modes.
+- The Start page shows only the current localhost milestone. Theory, limitations and later milestones are hidden in Beginner mode instead of appearing as a wall of text.
+- Video learning hides the full topic rail in Beginner mode and keeps deeper resource reasoning inside a collapsed “Why this resource?” disclosure.
+- Code Lab instructions were shortened and run instructions moved behind a compact disclosure. The start card is only visible on the Start page.
+- No curriculum was deleted; the change is presentation/progressive-disclosure only.
+
 ## Beginner learning hub: bilingual video + Code Lab (2026-10-08)
 
 - Added a simple four-step learner loop inside Learn: **Start here → Videos → Code Lab → Build with me**, so a first-time learner has an obvious next action instead of a documentation wall.
