@@ -1,5 +1,14 @@
 # Build state
 
+## Beginner learning hub: bilingual video + Code Lab (2026-10-08)
+
+- Added a simple four-step learner loop inside Learn: **Start here → Videos → Code Lab → Build with me**, so a first-time learner has an obvious next action instead of a documentation wall.
+- Added topic-based free learning resources for HTML/CSS, JavaScript, Python, Java, PHP, Git/GitHub, SQL/database, and backend/API work. Learners can switch between Bangla and English resources and mark a topic practised on this device.
+- Added privacy-enhanced, click-to-load YouTube embeds where a stable direct video or playlist is available. External resources remain optional; the existing First Comet text path remains the primary guide.
+- Added a real browser Code Lab for HTML/CSS/JavaScript using a sandboxed iframe preview. Python, Java, PHP, and JavaScript fundamentals also have guided starter exercises, hints, expected results, local run instructions, and lightweight structure checks; the site does not pretend to execute runtimes it does not host.
+- Added beginner-oriented search metadata and LearningResource structured data describing the free bilingual learning path and topics. This improves machine-readable discoverability but does not guarantee ranking or recommendation by Google or AI assistants.
+- Preserved the existing project course, language dictionaries/milestones, localhost path, VS Code guidance, browser-local progress, theme, and responsive First Comet visual system.
+
 ## Ordered project text courses (2026-10-02)
 
 - Learn now opens an ordered project path: create a project, VS Code, the existing code tracks, Git, GitHub, student benefits, free databases, database connections, publishing, and domains/DNS.
