@@ -1,5 +1,14 @@
 # Build state
 
+## Visual-first Build Journey (2026-10-08)
+
+- Reworked the five-stage Build Journey so closed cards show only the illustration, stage name, one short line, status, and a **Tell me more** control.
+- Moved the longer explanation, build outcome, requirements, unlockable title, and Continue/Review action inside each card's expandable details section.
+- Added five lightweight First Comet illustrations under `public/assets/journey/`: start, build page, save work/Git, data/database, and launch.
+- Reduced the journey hero and current-step copy so the first screen is much less text-heavy.
+- Journey cards now use a responsive visual grid: multiple cards on larger screens and one card per row on small phones.
+- Existing progress logic, locking rules, routes, and titles were preserved.
+
 ## Staged Build Journey (2026-10-08)
 
 - Replaced the learner-facing flat project list with a five-stage Build Journey: **Start Something → Build the Page → Save Your Work → Give It Memory → Put It Online**.
