@@ -2,10 +2,11 @@
   'use strict';
 
   const root = document.querySelector('#buildJourneyApp');
+  const guideRoot = document.querySelector('#guideJourneyApp');
   const projectRoot = document.querySelector('#projectCourseApp');
   const projectData = window.FC_PROJECT_COURSE;
   const codeData = window.FC_COURSE;
-  if (!root || !projectRoot || !projectData || !codeData) return;
+  if ((!root && !guideRoot) || !projectRoot || !projectData || !codeData) return;
 
   const stages = [
     {
@@ -189,13 +190,14 @@
     '</a>';
   }
 
-  function renderJourney() {
+  function renderJourney(target = root) {
+    if (!target) return;
     const earned = earnedStages();
     const active = stages[currentStageIndex()];
     const activeNeed = firstOpen(active);
     const coreComplete = stages.every(stageComplete);
 
-    root.innerHTML =
+    target.innerHTML =
       '<section class="journey-hero">' +
         '<div><span class="eyebrow">YOUR BUILD JOURNEY</span><h2>Build real things, one stage at a time.</h2><p>Finish a few small paths. Make something real. Unlock the next title.</p></div>' +
         '<aside><span>CURRENT TITLE</span><b>' + esc(currentTitle()) + '</b><small>' + earned.length + ' / ' + stages.length + ' titles unlocked</small><progress max="' + stages.length + '" value="' + earned.length + '"></progress><small class="journey-title-note">First Comet progress title · not a professional certificate</small></aside>' +
@@ -215,9 +217,12 @@
     const parts = location.hash.replace(/^#/, '').split('/');
     const onProject = parts[0] === 'learn' && parts[1] === 'project';
     const insidePath = onProject && Boolean(parts[2]);
-    root.hidden = insidePath;
+    if (root) {
+      root.hidden = insidePath;
+      if (onProject && !insidePath) renderJourney(root);
+    }
     projectRoot.hidden = onProject && !insidePath;
-    if (onProject && !insidePath) renderJourney();
+    if (guideRoot) renderJourney(guideRoot);
   }
 
   window.addEventListener('hashchange', sync);
@@ -225,9 +230,18 @@
   document.addEventListener('click', (event) => {
     if (event.target.closest('[data-project-home]')) {
       setTimeout(sync, 0);
+      return;
+    }
+    const journeyLink = event.target.closest('#guideJourneyApp a[href^="#learn/"]');
+    if (journeyLink) {
+      event.preventDefault();
+      const href = journeyLink.getAttribute('href');
+      document.querySelector('.nav-item[data-view="learn"]')?.click();
+      setTimeout(() => { location.hash = href; }, 0);
     }
   });
 
-  renderJourney();
+  renderJourney(root);
+  renderJourney(guideRoot);
   sync();
 })();
