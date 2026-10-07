@@ -198,7 +198,7 @@
     root.innerHTML =
       '<section class="journey-hero">' +
         '<div><span class="eyebrow">YOUR BUILD JOURNEY</span><h2>Build real things, one stage at a time.</h2><p>Finish a few small paths. Make something real. Unlock the next title.</p></div>' +
-        '<aside><span>CURRENT TITLE</span><b>' + esc(currentTitle()) + '</b><small>' + earned.length + ' / ' + stages.length + ' titles unlocked</small><progress max="' + stages.length + '" value="' + earned.length + '"></progress></aside>' +
+        '<aside><span>CURRENT TITLE</span><b>' + esc(currentTitle()) + '</b><small>' + earned.length + ' / ' + stages.length + ' titles unlocked</small><progress max="' + stages.length + '" value="' + earned.length + '"></progress><small class="journey-title-note">First Comet progress title · not a professional certificate</small></aside>' +
       '</section>' +
       (coreComplete
         ? '<section class="journey-now complete"><span class="eyebrow">CORE JOURNEY COMPLETE</span><h3>You are a Project Launcher.</h3><p>Choose one direction below. You do not need every language.</p></section>'
