@@ -245,3 +245,16 @@
     text-align: center;
   }
 }
+.journey-make {
+  display: block;
+  margin-top: 7px;
+  font-size: .76rem;
+  line-height: 1.4;
+}
+.journey-title-note {
+  display: block;
+  margin-top: 7px;
+  color: var(--muted);
+  font-size: .66rem;
+  line-height: 1.4;
+}
