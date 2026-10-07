@@ -33,7 +33,7 @@
   function openSection(section, updateUrl = true) {
     if (!['project', 'course', 'localhost', 'videos', 'lab', 'reference'].includes(section)) return;
     const experience = document.body.dataset.level || 'Beginner';
-    if (experience === 'Beginner' && (section === 'course' || section === 'reference')) section = 'localhost';
+    if (experience === 'Beginner' && section === 'reference') section = 'localhost';
     if (experience === 'Pro' && section === 'localhost') section = 'reference';
     all('.learn-section').forEach((panel) => { panel.hidden = panel.id !== `learn-${section}`; });
     const startCard = document.querySelector('.beginner-start-card');
@@ -65,7 +65,7 @@
       </section>
       <nav class="course-tabs" aria-label="Course sections">${Object.entries(tabs).map(([id, label]) => `<button type="button" data-course-tab="${id}" class="${state.tab === id ? 'active' : ''}" aria-pressed="${state.tab === id}">${label}</button>`).join('')}</nav>
       <div id="courseTabContent"></div>
-      <p class="course-save-note" id="courseSaveNote">${storageAvailable ? 'Progress stays in this browser on this device. A check confirms understanding; practice is completed in your local editor.' : 'This browser could not save progress. You can keep learning, but progress will last only for this page session.'}</p><a class="course-download" href="first-comet-course.md" download>Download the complete text course ↓</a>`;
+      <p class="course-save-note" id="courseSaveNote">${storageAvailable ? 'Progress stays in this browser on this device. A check confirms understanding; practice is completed in your local editor.' : 'This browser could not save progress. You can keep learning, but progress will last only for this page session.'}</p><a class="course-download" href="first-comet-course.md" download>Download the full coding guide ↓</a>`;
     renderContent();
   }
 
