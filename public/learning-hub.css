@@ -458,3 +458,104 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Beginner calm mode: show the next useful action, not the whole syllabus. */
+.beginner-start-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 22px;
+  padding: 16px 18px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--cream);
+}
+.beginner-start-card > div {
+  flex: 1 1 260px;
+}
+.beginner-start-card h2 {
+  margin: 5px 0 0;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  line-height: 1.2;
+}
+.beginner-start-card button {
+  flex: 0 0 auto;
+}
+.compact-learning-intro {
+  grid-template-columns: 1fr;
+  padding: 18px 20px;
+}
+.compact-learning-intro h2 {
+  margin-bottom: 0;
+}
+.video-more {
+  margin: 12px 0;
+}
+.video-more summary,
+.lab-run-help summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: .8rem;
+}
+.video-more p,
+.lab-run-help p {
+  margin: 10px 0 0;
+  line-height: 1.55;
+  color: var(--muted);
+  font-size: .82rem;
+}
+.lab-run-help {
+  max-width: 680px;
+}
+.compact-intro {
+  margin-bottom: 14px;
+}
+.compact-intro h2 {
+  margin-bottom: 0;
+}
+.compact-teacher-note {
+  align-items: center;
+}
+.compact-teacher-note p {
+  max-width: 320px;
+}
+
+body[data-level="Beginner"] .learn-sections [data-learn-section="course"],
+body[data-level="Beginner"] .learn-sections [data-learn-section="reference"] {
+  display: none;
+}
+body[data-level="Beginner"] #learn-localhost .localhost-explainer,
+body[data-level="Beginner"] #learn-localhost .teacher-warning,
+body[data-level="Beginner"] #learn-localhost .sequence-head,
+body[data-level="Beginner"] #learn-localhost .milestone-next {
+  display: none;
+}
+body[data-level="Beginner"] #learn-videos .video-topic-list {
+  display: none;
+}
+body[data-level="Beginner"] #learn-videos .video-learning-layout {
+  grid-template-columns: 1fr;
+}
+body[data-level="Beginner"] #learn-videos .video-focus-card,
+body[data-level="Beginner"] #learn-lab .lab-task-card {
+  padding: 18px;
+}
+body[data-level="Beginner"] #learn-videos .video-summary {
+  margin-bottom: 12px;
+}
+body[data-level="Beginner"] #learn-localhost .teacher-sequence {
+  margin-top: 14px;
+}
+body[data-level="Beginner"] #learn-localhost .milestone-current {
+  margin-top: 0;
+}
+@media (max-width: 620px) {
+  .beginner-start-card {
+    align-items: stretch;
+  }
+  .beginner-start-card button {
+    flex: 1 1 100%;
+  }
+}
