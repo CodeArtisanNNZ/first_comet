@@ -112,6 +112,48 @@
       }
     },
     {
+      id: 'vscode',
+      title: 'VS Code',
+      order: 'Learn the editor before advanced tooling',
+      summary: 'Know where files, search, terminal, extensions, errors and source control live so the editor stops feeling mysterious.',
+      practice: 'Open one folder, create index.html, save it, use Search once, and find the Problems and Source Control panels.',
+      bn: {
+        title: 'VS Code বাংলা — Beginner to Advanced Series',
+        provider: 'Stack Learner',
+        href: 'https://www.youtube.com/watch?v=KLcDpBRku-0',
+        embed: 'https://www.youtube-nocookie.com/embed/KLcDpBRku-0',
+        note: 'Bangla VS Code series covering installation, interface, useful features, extensions, snippets and developer workflow.'
+      },
+      en: {
+        title: 'Visual Studio Code Full Course — VS Code for Beginners',
+        provider: 'freeCodeCamp.org',
+        href: 'https://www.youtube.com/watch?v=UTQp6mvhb0Y',
+        embed: 'https://www.youtube-nocookie.com/embed/UTQp6mvhb0Y',
+        note: 'Full beginner course covering setup, Explorer, terminal, shortcuts, HTML/CSS, Git support and language tooling.'
+      }
+    },
+    {
+      id: 'deploy',
+      title: 'Deployment + GitHub Pages',
+      order: 'After your project works locally',
+      summary: 'Publishing is the step that moves a working local project to a public URL. Start with static hosting before learning complicated cloud setups.',
+      practice: 'Publish one small static project, open the public URL in a private window, then update one line and redeploy it.',
+      bn: {
+        title: 'Hosting Projects with GitHub Pages — Bangla',
+        provider: 'STUDY MART',
+        href: 'https://www.youtube.com/watch?v=6UaZaUCFwJY',
+        embed: 'https://www.youtube-nocookie.com/embed/6UaZaUCFwJY',
+        note: 'Recent Bangla beginner tutorial showing how to put HTML/CSS or React projects online with GitHub Pages.'
+      },
+      en: {
+        title: 'Getting started with GitHub Pages for beginners',
+        provider: 'GitHub',
+        href: 'https://www.youtube.com/watch?v=b2r9Cdvssi0',
+        embed: 'https://www.youtube-nocookie.com/embed/b2r9Cdvssi0',
+        note: 'Official GitHub beginner tutorial covering branch deployment, GitHub Actions, custom domains and HTTPS.'
+      }
+    },
+    {
       id: 'git',
       title: 'Git + GitHub',
       order: 'After you have something worth saving',
