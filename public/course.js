@@ -31,7 +31,7 @@
   }
 
   function openSection(section, updateUrl = true) {
-    if (!['project', 'course', 'localhost', 'reference'].includes(section)) return;
+    if (!['project', 'course', 'localhost', 'videos', 'lab', 'reference'].includes(section)) return;
     const experience = document.body.dataset.level || 'Beginner';
     if (experience === 'Beginner' && (section === 'course' || section === 'reference')) section = 'localhost';
     if (experience === 'Pro' && section === 'localhost') section = 'reference';
@@ -41,7 +41,7 @@
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     });
-    document.querySelector('#pageLabel').textContent = section === 'project' ? 'Build with me' : section === 'course' ? 'Practice code' : section === 'localhost' ? 'Start here' : 'Quick reference';
+    document.querySelector('#pageLabel').textContent = ({ project: 'Build with me', course: 'Practice code', localhost: 'Start here', videos: 'Videos', lab: 'Code Lab', reference: 'Quick reference' })[section] || 'Learn';
     if (updateUrl) {
       if (section === 'project') {
         if (window.FirstCometProjectCourse) window.FirstCometProjectCourse.open();
@@ -208,7 +208,7 @@
     if (parts[0] !== 'learn') return;
     document.querySelector('.nav-item[data-view="learn"]')?.click();
     if (!parts[1] || parts[1] === 'project') { openSection('project', false); return; }
-    if (['localhost', 'reference'].includes(parts[1])) { openSection(parts[1], false); return; }
+    if (['localhost', 'videos', 'lab', 'reference'].includes(parts[1])) { openSection(parts[1], false); return; }
     if (data.languages.some((l) => l.id === parts[1])) state.language = parts[1];
     state.tab = tabs[parts[2]] ? parts[2] : 'dictionary';
     const done = progress[state.language];
