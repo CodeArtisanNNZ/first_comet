@@ -386,3 +386,75 @@
     min-height: 390px;
   }
 }
+
+.beginner-next-actions {
+  display: grid;
+  grid-template-columns: minmax(190px, 1.2fr) repeat(4, minmax(145px, 1fr));
+  gap: 10px;
+  align-items: stretch;
+  margin: 0 0 22px;
+}
+.beginner-next-actions > div,
+.beginner-next-actions > button {
+  min-width: 0;
+  border: 2px solid var(--line);
+  border-radius: 11px;
+  padding: 14px;
+  background: var(--panel);
+  color: var(--ink);
+}
+.beginner-next-actions > div {
+  display: grid;
+  gap: 7px;
+  align-content: center;
+  background: var(--cream);
+}
+.beginner-next-actions > div > b {
+  font-size: .84rem;
+  line-height: 1.4;
+}
+.beginner-next-actions > button {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr);
+  gap: 4px 9px;
+  text-align: left;
+  cursor: pointer;
+}
+.beginner-next-actions > button:hover,
+.beginner-next-actions > button:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0 var(--line);
+}
+.beginner-next-actions > button > span {
+  grid-row: 1 / span 2;
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--yellow);
+  color: #171319;
+  font: 700 .68rem 'DM Mono', monospace;
+}
+.beginner-next-actions > button > b {
+  font-size: .8rem;
+  line-height: 1.35;
+}
+.beginner-next-actions > button > small {
+  color: var(--muted);
+  font-size: .67rem;
+}
+@media (max-width: 1050px) {
+  .beginner-next-actions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .beginner-next-actions > div {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 560px) {
+  .beginner-next-actions {
+    grid-template-columns: 1fr;
+  }
+}
