@@ -1,5 +1,16 @@
 # Build state
 
+## Staged Build Journey (2026-10-08)
+
+- Replaced the learner-facing flat project list with a five-stage Build Journey: **Start Something → Build the Page → Save Your Work → Give It Memory → Put It Online**.
+- Each stage has a concrete creation outcome, sequential prerequisites, a single Continue action, and an unlockable First Comet progress title: **Project Starter, Web Page Builder, Git & GitHub Starter, Connected App Builder, Project Launcher**.
+- Titles are explicitly progress labels, not professional certificates. The current title and 5-stage progress are shown at the top of the journey.
+- Stage 2 uses the existing HTML, CSS and JavaScript paths; direct coding-path routes now work in Beginner mode while the general Practice tab can remain visually hidden.
+- Student benefits moved conceptually to Bonus tools rather than a required core stage.
+- After the core journey, learners can choose a next direction: Python Builder, Java Builder, or PHP Web Builder. These stay locked until the core journey is complete; their title state also checks the existing language-path progress.
+- Existing project data and browser progress keys were preserved. The deeper project UI now uses learner-facing **Path / Step / Words** terminology instead of Subject / Lesson / Course wording.
+- Added a repository product principle requiring 15-year-old-readable navigation, progressive disclosure, one clear next action, and real project outcomes at every major stage.
+
 ## Beginner calm mode (2026-10-08)
 
 - Reduced the Learn landing copy to one short heading and one-line instruction.
