@@ -76,6 +76,7 @@
   <link rel="stylesheet" href="build-journey.css">
   <link rel="stylesheet" href="workspace.css">
   <link rel="stylesheet" href="milestone-navigation.css">
+  <link rel="stylesheet" href="beginner-improvements.css">
 </head>
 <body>
   <a class="skip-link" href="#workspace">Skip to workspace</a>
@@ -133,16 +134,15 @@
           <div class="launch-orbit" aria-hidden="true"><span class="mini-planet"></span><span class="mini-comet">☄</span></div>
         </div>
         <p id="fcVisitorStats" role="status" aria-live="polite" title="Real counters begin after the server-side worker is deployed.">Checking visitor statistics…</p>
-        <section class="fc-first-five" aria-label="Your first five minutes">
-          <strong>In five minutes, know the whole process.</strong>
-          <ol>
-            <li><b>01 · START</b> Create one small project</li>
-            <li><b>02 · CODE</b> Edit the real files</li>
-            <li><b>03 · CHECK</b> Preview on the page</li>
-            <li><b>04 · KEEP</b> Download your ZIP</li>
-            <li><b>05 · SHARE</b> Put files on GitHub and publish</li>
-          </ol>
-          <p>No backend, database or paid domain is required for your first static website. Your edits stay in this browser until exported.</p>
+        <section class="fc-first-five fc-first-action" aria-label="Start coding right away">
+          <span class="eyebrow">YOUR FIRST FIVE MINUTES</span>
+          <h2>Change one real webpage. See it work.</h2>
+          <p>Don't install anything yet. Change the words, the colors, or the button in the Code Lab, then see your result.</p>
+          <div class="fc-first-buttons">
+            <button class="primary" type="button" id="fcTryNow">Try code now →</button>
+            <button class="secondary" type="button" id="fcSetupLaptop">Set up on my computer</button>
+          </div>
+          <p id="fcQuickStatus" aria-live="polite">Works on your phone, too. Your edits save in this browser.</p>
         </section>
         <div class="action-stage">
           <button class="launch-card coral" id="newProjectBtn"><span class="card-no">01</span><span class="card-icon">✦</span><h2>Build my first project</h2><p>Turn an idea into a guided project plan.</p><span class="card-go">START <b>→</b></span></button>
@@ -276,7 +276,7 @@
       <section class="view" id="view-learn">
         <div class="page-heading course-page-heading"><span class="eyebrow">FIRST COMET · START SMALL</span><h1>Learn by building.</h1><p>One small step at a time.</p></div>
         <nav class="learn-sections" aria-label="Learning areas">
-          <button data-learn-section="localhost" aria-pressed="false">Start</button>
+          <button data-learn-section="localhost" aria-pressed="false">Computer setup</button>
           <button data-learn-section="videos" aria-pressed="false">Watch</button>
           <button data-learn-section="lab" aria-pressed="false">Code Lab</button>
           <button class="active" data-learn-section="project" aria-pressed="true">Build</button>
@@ -286,8 +286,9 @@
 
         <section class="beginner-start-card" aria-label="Beginner start">
           <div><span class="eyebrow">NEW HERE?</span><h2>Start with one tiny win.</h2></div>
-          <button type="button" class="primary" data-learn-section="localhost">Start first step →</button>
-          <button type="button" class="secondary" data-learn-section="videos">I learn better by video</button>
+          <button type="button" class="primary" data-learn-section="lab">Try your first code →</button>
+          <button type="button" class="secondary" data-learn-section="localhost">Set up on a computer</button>
+          <button type="button" class="secondary" data-learn-section="videos">Watch a video instead</button>
         </section>
 
         <section id="learn-videos" class="learn-section" aria-label="Free Bangla and English video learning" hidden>
@@ -521,6 +522,7 @@
   <script src="build-journey.js"></script>
   <script src="learning-hub.js"></script>
   <script src="navigation.js">
-  <script src="milestone-navigation.js"></script>
+  <script src="milestone-navigation.js">
+  <script src="onboarding.js"></script>
 </body>
 </html>
