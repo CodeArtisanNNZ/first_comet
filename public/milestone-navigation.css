@@ -1,0 +1,52 @@
+/* Guided localhost milestones: keep the next action obvious, especially on phones. */
+#learn-localhost .milestone[hidden] {display:none!important}
+#learn-localhost .teacher-sequence {scroll-margin-top:18px}
+#learn-localhost .fc-step-toolbar {
+  border:2px solid var(--line);border-radius:14px;background:var(--panel);
+  padding:14px 18px;margin:14px 0 24px;box-shadow:3px 3px 0 var(--line);
+  scroll-margin-top:14px;
+}
+#learn-localhost .fc-step-heading {display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+#learn-localhost .fc-step-count {font-weight:800;font-size:1rem}
+#learn-localhost .fc-step-count b {font-family:"DM Mono",monospace;color:var(--coral)}
+#learn-localhost .fc-step-next-title {font-size:.79rem;color:var(--muted);font-weight:600}
+#learn-localhost .fc-step-progress {height:7px;border-radius:100px;background:var(--cream);margin:12px 0;overflow:hidden}
+#learn-localhost .fc-step-progress span {height:100%;display:block;background:var(--coral);transition:width .25s ease}
+#learn-localhost .fc-step-buttons, #learn-localhost .fc-milestone-end {display:flex;justify-content:space-between;gap:10px}
+#learn-localhost .fc-milestone-end {margin-top:20px;padding-top:17px;border-top:2px dashed var(--line)}
+#learn-localhost [data-fc-back],#learn-localhost [data-fc-forward],#learn-localhost [data-fc-mobile-back],#learn-localhost [data-fc-mobile-next] {
+  appearance:none;border:2px solid var(--line);border-radius:12px;padding:11px 15px;
+  min-height:44px;font-size:.88rem;font-weight:800;cursor:pointer
+}
+#learn-localhost [data-fc-back] {background:var(--paper)}
+#learn-localhost [data-fc-forward],#learn-localhost [data-fc-mobile-next] {background:var(--coral);color:#fff}
+#learn-localhost [data-fc-back]:disabled {opacity:.42;cursor:not-allowed}
+#learn-localhost .fc-step-mobile {display:none}
+@media(max-width:700px) {
+  #learn-localhost .localhost-path {padding-top:12px}
+  #learn-localhost .teacher-note {padding:14px 16px;gap:8px;box-shadow:3px 3px 0 var(--line)}
+  #learn-localhost .teacher-note h2 {font-size:clamp(1.5rem,7vw,2rem);margin:4px 0 0}
+  #learn-localhost .teacher-note p {font-size:.9rem;line-height:1.35}
+  #learn-localhost .sequence-head {gap:8px;margin-bottom:12px}
+  #learn-localhost .sequence-head h2 {font-size:1.5rem}
+  #learn-localhost .sequence-head p {font-size:.86rem}
+  #learn-localhost .fc-step-toolbar {padding:12px;margin:10px 0 16px}
+  #learn-localhost .fc-step-buttons {display:none}
+  #learn-localhost .fc-step-mobile {display:none;position:fixed;z-index:45;left:8px;right:8px;bottom:76px;align-items:center;gap:8px;
+    background:var(--panel);border:2px solid var(--line);border-radius:14px;
+    padding:8px 10px;box-shadow:3px 3px 0 var(--line)}
+  #view-learn.active #learn-localhost:not([hidden]) .fc-step-mobile {display:flex}
+  #learn-localhost .fc-step-mobile div {display:grid;gap:0;min-width:72px}
+  #learn-localhost .fc-step-mobile small {font:700 9px "DM Mono",monospace;letter-spacing:.06em;color:var(--muted)}
+  #learn-localhost .fc-step-mobile strong {font-size:.85rem}
+  #learn-localhost [data-fc-mobile-back] {padding:7px 10px;background:var(--paper);min-width:42px}
+  #learn-localhost [data-fc-mobile-next] {flex:1;padding:8px 9px;min-width:0;font-size:.79rem}
+  #learn-localhost .fc-milestone-end {display:grid;grid-template-columns:1fr;gap:8px}
+  #learn-localhost .fc-milestone-end button {width:100%}
+  #view-learn.active:has(#learn-localhost:not([hidden])) {padding-bottom:24px}
+}
+.dark #learn-localhost .fc-step-toolbar, .dark #learn-localhost .fc-step-mobile {background:#211d22;color:#f8f2e8}
+.dark #learn-localhost .fc-step-count b {color:#ffb39f}
+.dark #learn-localhost .fc-step-next-title {color:#e0d1d5}
+.dark #learn-localhost [data-fc-back],.dark #learn-localhost [data-fc-mobile-back] {background:#302932;color:#f8f2e8}
+.dark #learn-localhost [data-fc-forward],.dark #learn-localhost [data-fc-mobile-next] {color:#fff}
