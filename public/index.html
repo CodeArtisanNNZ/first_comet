@@ -123,17 +123,11 @@
 
     <main id="workspace" tabindex="-1">
       <section class="view active" id="view-home">
-        <nav class="journey-nav" aria-label="Project journey">
-          <button class="active"><span>1</span><b>Start</b><small>Choose a project</small></button>
-          <i>→</i><button data-view="guide"><span>2</span><b>Build</b><small>Follow the guide</small></button>
-          <i>→</i><button data-nav-view="learn" data-topic-jump="github"><span>3</span><b>Connect</b><small>GitHub &amp; database</small></button>
-          <i>→</i><button data-nav-view="guide" data-step-jump="ship"><span>4</span><b>Publish</b><small>Put it online</small></button>
-        </nav>
+
         <div class="launchpad-head">
           <div><span class="eyebrow">YOUR LAUNCHPAD</span><h1>Build your first website.</h1><p>Start with one small code change. We'll guide you from there.</p></div>
           <div class="launch-orbit" aria-hidden="true"><span class="mini-planet"></span><span class="mini-comet">☄</span></div>
         </div>
-        <p id="fcVisitorStats" role="status" aria-live="polite" title="Real counters begin after the server-side worker is deployed.">Checking visitor statistics…</p>
         <section class="fc-first-five fc-first-action" aria-label="Start coding right away">
           <span class="eyebrow">YOUR FIRST FIVE MINUTES</span>
           <h2>Change one real webpage. See it work.</h2>
@@ -144,6 +138,15 @@
           </div>
           <p id="fcQuickStatus" aria-live="polite">Works on your phone, too. Your edits save in this browser.</p>
         </section>
+        <p id="fcVisitorStats" role="status" aria-live="polite" title="Real counters begin after the server-side worker is deployed.">Checking visitor statistics…</p>
+        <details class="fc-full-process"><summary>See the four-step build process</summary>
+        <nav class="journey-nav" aria-label="Project journey">
+          <button class="active"><span>1</span><b>Start</b><small>Choose a project</small></button>
+          <i>→</i><button data-view="guide"><span>2</span><b>Build</b><small>Follow the guide</small></button>
+          <i>→</i><button data-nav-view="learn" data-topic-jump="github"><span>3</span><b>Connect</b><small>GitHub &amp; database</small></button>
+          <i>→</i><button data-nav-view="guide" data-step-jump="ship"><span>4</span><b>Publish</b><small>Put it online</small></button>
+        </nav>
+        </details>
         <div class="action-stage">
           <button class="launch-card coral" id="newProjectBtn"><span class="card-no">01</span><span class="card-icon">✦</span><h2>Build my first project</h2><p>Turn an idea into a guided project plan.</p><span class="card-go">START <b>→</b></span></button>
           <button class="launch-card blue" id="openProjectBtn"><span class="card-no">02</span><span class="card-icon">⌁</span><h2>Open a project</h2><p>Import editable web files from a folder.</p><span class="card-go">OPEN <b>→</b></span></button>
