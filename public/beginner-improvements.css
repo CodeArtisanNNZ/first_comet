@@ -49,3 +49,17 @@ body.dark .fc-web-next{color:#f8f2e8}
   #learn-lab .lab-actions {display:grid;grid-template-columns:1fr 1fr}
   #learn-lab .lab-actions [data-check-web] {grid-column:1/-1}
 }
+
+/* Roadmap stays available, but doesn't compete with the first action. */
+.fc-full-process {margin:15px 0 20px}
+.fc-full-process > summary {
+  display:list-item;cursor:pointer;font-weight:800;font-size:.85rem;
+  padding:12px 15px;border:2px solid var(--line);border-radius:10px;
+  background:var(--panel);width:fit-content
+}
+.fc-full-process[open] > summary {margin-bottom:10px}
+.fc-full-process .journey-nav {margin-bottom:8px}
+@media(max-width:720px) {
+  .fc-full-process > summary {width:100%}
+  .fc-full-process .journey-nav {overflow-x:auto;max-width:100%}
+}
