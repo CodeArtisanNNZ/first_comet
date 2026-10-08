@@ -1,0 +1,51 @@
+/* Beginner improvements: one visible action and real practice feedback. */
+.fc-first-action {
+  background:var(--yellow);color:#171319;
+  padding:22px 24px;margin:14px 0 18px;border:3px solid #171319;
+  box-shadow:4px 4px 0 #171319;border-radius:16px;
+}
+.fc-first-action .eyebrow {font-size:.72rem;color:#4c392f}
+.fc-first-action h2 {font-size:clamp(1.4rem,3vw,2.35rem);line-height:1.1;letter-spacing:-.04em;margin:8px 0}
+.fc-first-action p {color:#433b35;font-size:.93rem;line-height:1.5;max-width:680px;margin:9px 0}
+.fc-first-buttons {display:flex;gap:9px;flex-wrap:wrap;margin:17px 0 9px}
+.fc-first-buttons button {min-height:46px;font-weight:800;border:2px solid #171319;border-radius:10px;padding:10px 17px;cursor:pointer}
+.fc-first-buttons .primary {background:var(--coral);color:#fff}
+.fc-first-buttons .secondary {background:#fffaf0;color:#171319}
+#fcQuickStatus {font-size:.78rem;font-weight:600}
+.fc-web-goal {display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:12px;align-items:center;
+  border:2px solid var(--line);border-radius:14px;background:var(--cream);padding:18px 20px;margin:0 0 16px}
+.fc-web-goal h3 {font-size:1.3rem;line-height:1.15;margin:6px 0}
+.fc-web-goal p {color:var(--muted);font-size:.85rem;line-height:1.45;margin:0}
+.fc-web-goal ol {margin:0;padding-left:24px;font-size:.85rem;line-height:1.65;font-weight:600}
+.fc-web-feedback {padding:14px 16px;border:2px solid var(--line);border-radius:12px;background:var(--panel);font-size:.87rem;line-height:1.5}
+.fc-web-feedback p {margin:4px 0}
+.fc-web-feedback ul {margin:8px 0;padding-left:18px}
+.fc-web-feedback li {margin:3px 0}
+.fc-web-feedback[data-result="correct"] {border-color:#318a50;background:#ebffe9;color:#184b2a}
+.fc-web-feedback[data-result="retry"] {border-color:var(--coral)}
+.fc-web-next {min-height:46px;padding:10px 14px;border:2px solid var(--line);border-radius:10px;cursor:pointer;font-weight:800}
+.fc-web-next[hidden]{display:none}
+#learn-lab .lab-editor textarea {min-width:0;font-size:.8rem}
+#learn-lab .lab-actions button {min-height:44px}
+body.dark .fc-first-action {color:#171319}
+body.dark .fc-first-action h2,body.dark .fc-first-action .eyebrow,body.dark .fc-first-action p {color:#171319}
+body.dark .fc-first-action .primary {color:#fff}
+body.dark .fc-web-goal {background:#302932}
+body.dark .fc-web-goal p,body.dark .fc-web-goal ol {color:#ece0e4}
+body.dark .fc-web-feedback {background:#272329;color:#f9f2f4}
+body.dark .fc-web-feedback[data-result="correct"]{border-color:#73c48b;color:#c9f6d5}
+body.dark .fc-web-next{color:#f8f2e8}
+@media(max-width:720px){
+  .fc-first-action {padding:17px 16px}
+  .fc-first-action h2 {font-size:1.55rem}
+  .fc-first-buttons {display:grid;grid-template-columns:1fr}
+  .fc-first-buttons button {width:100%}
+  .fc-web-goal {grid-template-columns:1fr;padding:14px 16px;gap:8px}
+  .fc-web-goal h3 {font-size:1.2rem}
+  .fc-web-goal ol {padding-left:19px}
+  #learn-lab .lab-editor textarea {font-size:.78rem;min-height:170px}
+  #learn-lab .web-editors .lab-editor:first-child textarea {min-height:200px}
+  #learn-lab .preview-panel iframe {min-height:290px}
+  #learn-lab .lab-actions {display:grid;grid-template-columns:1fr 1fr}
+  #learn-lab .lab-actions [data-check-web] {grid-column:1/-1}
+}
