@@ -222,7 +222,7 @@
     web: {
       label: 'Web page',
       runMode: 'live',
-      goal: 'Change one thing, then run the preview.',
+      goal: 'Change the heading, card corners and button message. Check the result.',
       hint: 'Keep the first attempt small: one card, one button, one interaction.',
       html: '<!doctype html>\n<html lang="en">\n<head>\n  <meta charset="utf-8">\n  <meta name="viewport" content="width=device-width,initial-scale=1">\n  <title>My first lab</title>\n</head>\n<body>\n  <main class="card">\n    <h1 id="title">Hello, Comet!</h1>\n    <p>I changed real code.</p>\n    <button id="helloBtn">Click me</button>\n  </main>\n</body>\n</html>',
       css: 'body {\n  font-family: system-ui, sans-serif;\n  margin: 0;\n  min-height: 100vh;\n  display: grid;\n  place-items: center;\n  background: #fff5dc;\n}\n\n.card {\n  width: min(360px, 86vw);\n  padding: 24px;\n  border: 2px solid #171319;\n  border-radius: 16px;\n  background: white;\n}',
@@ -452,10 +452,14 @@
     const html = webFiles.html;
     const css = webFiles.css;
     const js = webFiles.js;
+    const parsedHeading = new DOMParser().parseFromString(html, 'text/html').querySelector('h1');
+    const headingText = parsedHeading?.textContent.trim() || '';
+    const cssMatch = css.match(/\.card\s*\{[^}]*border-radius\s*:\s*([^;}]+)/i);
+    const jsMatch = js.match(/title\.textContent\s*=\s*["']([^"']+)["']/);
     const outcomes = [
-      ['HTML heading', html.includes('<h1') && !html.includes('>Hello, Comet!</h1>')],
-      ['CSS card corners', css.includes('border-radius:') && !css.includes('border-radius: 16px')],
-      ['JavaScript click message', js.includes('addEventListener') && js.includes('title.textContent') && !js.includes('"It works!"')]
+      ['HTML heading', Boolean(headingText) && headingText !== 'Hello, Comet!'],
+      ['CSS card corners', Boolean(cssMatch?.[1]?.trim()) && cssMatch[1].trim() !== '16px'],
+      ['JavaScript click message', Boolean(jsMatch?.[1]?.trim()) && jsMatch[1].trim() !== 'It works!' && js.includes('addEventListener')]
     ];
     const completed = outcomes.filter(entry => entry[1]).length;
     const box = labRoot.querySelector('#webLabFeedback');
