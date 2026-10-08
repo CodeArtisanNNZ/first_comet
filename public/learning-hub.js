@@ -370,6 +370,16 @@
     }
   });
 
+  const WEB_FILES_KEY = 'fc-lab-web-files-v1';
+  const WEB_DONE_KEY = 'fc-first-challenge-v1';
+  let webFiles = {html:labTracks.web.html,css:labTracks.web.css,js:labTracks.web.js};
+  try {
+    const previous = JSON.parse(localStorage.getItem(WEB_FILES_KEY) || 'null');
+    if (previous && ['html','css','js'].every(key => typeof previous[key] === 'string' && previous[key].length < 150000)) webFiles = previous;
+  } catch (_) {}
+  function saveWebFiles() {
+    try {localStorage.setItem(WEB_FILES_KEY, JSON.stringify(webFiles));} catch (_) {}
+  }
   let currentTrack = localStorage.getItem('fc-lab-track') || 'web';
   let hintOpen = false;
 
@@ -389,15 +399,21 @@
   }
 
   function renderWebLab(track) {
-    return '<div class="web-lab-grid">' +
-      '<div class="web-editors">' +
-        editorBlock('HTML', 'labHtml', track.html) +
-        editorBlock('CSS', 'labCss', track.css) +
-        editorBlock('JavaScript', 'labJs', track.js) +
-        '<div class="lab-actions"><button class="primary" data-run-preview>Run preview →</button><button class="secondary" data-reset-lab>Reset</button></div>' +
+    const alreadyDone = Boolean(localStorage.getItem(WEB_DONE_KEY));
+    return '<section class="fc-web-goal"><div><span class="eyebrow">TRY THIS FIRST</span><h3>Make three little changes.</h3><p>Works on a phone, too. You are editing real webpage code.</p></div>' +
+      '<ol><li>Change the heading in HTML.</li><li>Change the card corners in CSS.</li><li>Change what the button says in JavaScript.</li></ol></section>' +
+      '<div class="web-lab-grid"><div class="web-editors">' +
+      editorBlock('HTML · words', 'labHtml', webFiles.html) +
+      editorBlock('CSS · appearance', 'labCss', webFiles.css) +
+      editorBlock('JavaScript · interaction', 'labJs', webFiles.js) +
+      '<div class="lab-actions"><button class="primary" data-check-web>Run & check my changes →</button><button class="secondary" data-run-preview>Preview</button><button class="secondary" data-reset-lab>Reset files</button></div>' +
+      '<div class="fc-web-feedback" id="webLabFeedback" role="status" aria-live="polite">' +
+        (alreadyDone ? '<p>✓ First challenge completed on this device.</p>' : '<p>Change the code, then tap Run & check. Your edits save as you type.</p>') +
       '</div>' +
-      '<div class="preview-panel"><div><b>LIVE PREVIEW</b><span>Sandboxed in your browser</span></div><iframe id="labPreview" title="First Comet code preview" sandbox="allow-scripts"></iframe><details><summary>Try these three changes</summary><ol><li>Change the heading text.</li><li>Give the card a different border-radius.</li><li>Change what happens after the button click.</li></ol></details></div>' +
-    '</div>';
+      '<button type="button" class="secondary fc-web-next" data-lab-next ' + (alreadyDone ? '' : 'hidden ') + '>Next: make a project on your computer →</button>' +
+      '</div><div class="preview-panel"><div><b>YOUR WEBSITE</b><span>Browser preview · sandboxed</span></div>' +
+      '<iframe id="labPreview" title="First Comet code preview" sandbox="allow-scripts"></iframe>' +
+      '<details><summary>Where do I make those changes?</summary><ol><li>HTML: find Hello, Comet!</li><li>CSS: find border-radius: 16px.</li><li>JavaScript: find It works!</li></ol></details></div></div>';
   }
 
   function editorBlock(label, id, value) {
@@ -417,9 +433,43 @@
     if (!frame) return;
     const html = labRoot.querySelector('#labHtml')?.value || '';
     const css = labRoot.querySelector('#labCss')?.value || '';
-    const script = labRoot.querySelector('#labJs')?.value || '';
-    const source = html.replace('</head>', '<style>' + css + '</style></head>').replace('</body>', '<script>' + script.replace(/<\/script/gi, '<\\/script') + '<\\/script></body>');
-    frame.srcdoc = source;
+    const js = labRoot.querySelector('#labJs')?.value || '';
+    webFiles = {html,css,js};
+    saveWebFiles();
+    const safeCss = css.replaceAll('</style', '<\\/style');
+    const safeJs = js.replaceAll('</script', '<\\/script');
+    let documentText = html.includes('</head>')
+      ? html.replace('</head>', '<style>' + safeCss + '</style></head>')
+      : '<style>' + safeCss + '</style>' + html;
+    documentText = documentText.includes('</body>')
+      ? documentText.replace('</body>', '<script>' + safeJs + '</' + 'script></body>')
+      : documentText + '<script>' + safeJs + '</' + 'script>';
+    frame.srcdoc = documentText;
+  }
+
+  function checkWeb() {
+    runPreview();
+    const html = webFiles.html;
+    const css = webFiles.css;
+    const js = webFiles.js;
+    const outcomes = [
+      ['HTML heading', html.includes('<h1') && !html.includes('>Hello, Comet!</h1>')],
+      ['CSS card corners', css.includes('border-radius:') && !css.includes('border-radius: 16px')],
+      ['JavaScript click message', js.includes('addEventListener') && js.includes('title.textContent') && !js.includes('"It works!"')]
+    ];
+    const completed = outcomes.filter(entry => entry[1]).length;
+    const box = labRoot.querySelector('#webLabFeedback');
+    box.dataset.result = completed === 3 ? 'correct' : 'retry';
+    box.innerHTML = '<strong>' + completed + ' / 3 changes checked</strong><ul>' +
+      outcomes.map(entry => '<li>' + (entry[1] ? '✓' : '○') + ' ' + entry[0] + '</li>').join('') + '</ul>' +
+      '<p>' + (completed === 3
+        ? 'Your edits are saved. Check the live preview and click its button to see your own message.'
+        : 'Try each unchecked change, then run the check again.') + '</p>';
+    if (completed === 3) {
+      try {localStorage.setItem(WEB_DONE_KEY, new Date().toISOString());} catch (_) {}
+      labRoot.querySelector('[data-lab-next]').hidden = false;
+      window.dispatchEvent(new Event('fc-first-challenge-complete'));
+    }
   }
 
   function checkLocal() {
@@ -440,6 +490,8 @@
 
   labRoot.addEventListener('input', (event) => {
     if (event.target.id === 'localLabCode') localStorage.setItem('fc-lab-code-' + currentTrack, event.target.value);
+    const webKey = {labHtml:'html',labCss:'css',labJs:'js'}[event.target.id];
+    if (webKey) {webFiles[webKey] = event.target.value;saveWebFiles();}
   });
 
   labRoot.addEventListener('click', (event) => {
@@ -456,6 +508,15 @@
       renderLab();
       return;
     }
+    if (event.target.closest('[data-check-web]')) {
+      checkWeb();
+      return;
+    }
+    if (event.target.closest('[data-lab-next]')) {
+      window.FirstCometCourse?.openSection('localhost');
+      document.querySelector('main')?.scrollTo({top:0,behavior:'smooth'});
+      return;
+    }
     if (event.target.closest('[data-run-preview]')) {
       runPreview();
       return;
@@ -465,7 +526,10 @@
       return;
     }
     if (event.target.closest('[data-reset-lab]')) {
-      localStorage.removeItem('fc-lab-code-' + currentTrack);
+      if (currentTrack === 'web') {
+        webFiles = {html:labTracks.web.html,css:labTracks.web.css,js:labTracks.web.js};
+        try {localStorage.removeItem(WEB_FILES_KEY);} catch (_) {}
+      } else localStorage.removeItem('fc-lab-code-' + currentTrack);
       renderLab();
     }
   });
