@@ -406,11 +406,11 @@
       editorBlock('HTML · words', 'labHtml', webFiles.html) +
       editorBlock('CSS · appearance', 'labCss', webFiles.css) +
       editorBlock('JavaScript · interaction', 'labJs', webFiles.js) +
-      '<div class="lab-actions"><button class="primary" data-check-web>Run & check my changes →</button><button class="secondary" data-run-preview>Preview</button><button class="secondary" data-reset-lab>Reset files</button></div>' +
+      '<div class="lab-actions"><button class="primary" data-check-web>Run & check my changes →</button><button class="secondary" data-run-preview>Preview</button><button class="secondary" data-download-web>Save HTML file ↓</button><button class="secondary" data-reset-lab>Reset files</button></div>' +
       '<div class="fc-web-feedback" id="webLabFeedback" role="status" aria-live="polite">' +
         (alreadyDone ? '<p>✓ First challenge completed on this device.</p>' : '<p>Change the code, then tap Run & check. Your edits save as you type.</p>') +
       '</div>' +
-      '<button type="button" class="secondary fc-web-next" data-lab-next ' + (alreadyDone ? '' : 'hidden ') + '>Next: make a project on your computer →</button>' +
+      '<button type="button" class="secondary fc-web-next" data-lab-next ' + (alreadyDone ? '' : 'hidden ') + '>Next: create your own project →</button>' +
       '</div><div class="preview-panel"><div><b>YOUR WEBSITE</b><span>Browser preview · sandboxed</span></div>' +
       '<iframe id="labPreview" title="First Comet code preview" sandbox="allow-scripts"></iframe>' +
       '<details><summary>Where do I make those changes?</summary><ol><li>HTML: find Hello, Comet!</li><li>CSS: find border-radius: 16px.</li><li>JavaScript: find It works!</li></ol></details></div></div>';
@@ -517,8 +517,23 @@
       return;
     }
     if (event.target.closest('[data-lab-next]')) {
-      window.FirstCometCourse?.openSection('localhost');
-      document.querySelector('main')?.scrollTo({top:0,behavior:'smooth'});
+      document.querySelector('.nav-item[data-view="home"]')?.click();
+      document.querySelector('#newProjectBtn')?.click();
+      return;
+    }
+    if (event.target.closest('[data-download-web]')) {
+      runPreview();
+      const source = labRoot.querySelector('#labPreview')?.srcdoc;
+      if (source) {
+        const link = document.createElement('a');
+        const url = URL.createObjectURL(new Blob([source], {type:'text/html;charset=utf-8'}));
+        link.href = url;
+        link.download = 'my-first-comet-website.html';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1200);
+      }
       return;
     }
     if (event.target.closest('[data-run-preview]')) {
