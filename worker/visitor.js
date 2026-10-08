@@ -1,11 +1,14 @@
+import { DurableObject } from "cloudflare:workers";
+
 // Runs in Cloudflare Workers alongside the static First Comet site.
 // A Durable Object stores page opens + browser IDs, not personal identities.
 const JSON_HEADERS = {"content-type":"application/json; charset=utf-8","cache-control":"no-store","x-content-type-options":"nosniff"};
 const VISITOR_COOKIE = "fc_visitor";
 const SAFE_ID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
-export class VisitorCounter {
-  constructor(ctx) {
+export class VisitorCounter extends DurableObject {
+  constructor(ctx, env) {
+    super(ctx, env);
     this.sql = ctx.storage.sql;
     this.sql.exec("CREATE TABLE IF NOT EXISTS opens (id INTEGER PRIMARY KEY, total INTEGER NOT NULL DEFAULT 0)");
     this.sql.exec("INSERT OR IGNORE INTO opens (id, total) VALUES (1, 0)");
