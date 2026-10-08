@@ -63,3 +63,15 @@ body.dark .fc-web-next{color:#f8f2e8}
   .fc-full-process > summary {width:100%}
   .fc-full-process .journey-nav {overflow-x:auto;max-width:100%}
 }
+
+/* Mobile header: remove an unusable desktop shortcut and make the first action visible sooner. */
+@media(max-width:700px) {
+  .top-actions .command-trigger {display:none}
+  .top-actions .icon-button {height:38px;min-width:38px;border-radius:9px}
+  .top-actions {gap:5px}
+  .crumb {min-width:0}
+  #pageLabel {display:block;max-width:152px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .launchpad-head {min-height:0;padding:12px 0}
+  .launchpad-head h1,.page-heading h1 {font-size:clamp(1.75rem,7vw,2.1rem);line-height:1.07}
+  main {padding-top:17px}
+}
