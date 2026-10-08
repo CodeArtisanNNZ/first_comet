@@ -1,0 +1,43 @@
+/* Functional, browser-local workspace that keeps First Comet's visual language. */
+#fcVisitorStats {display:inline-flex;max-width:100%;align-items:center;gap:8px;margin:0 0 20px;padding:9px 14px;border:1px solid var(--line);border-radius:100px;background:var(--panel);font:500 12px/1.45 "DM Mono",monospace;color:var(--muted)}
+.fc-first-five {padding:16px 19px;margin:0 0 18px;background:var(--panel);border:2px solid var(--line);border-radius:14px}
+.fc-first-five>strong {display:block;margin-bottom:9px;font-size:1rem}
+.fc-first-five ol {list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+.fc-first-five li {min-width:0;font-size:.83rem;line-height:1.4;padding:8px;border-radius:9px;background:var(--cream)}
+.fc-first-five li b {display:block;font:600 .7rem "DM Mono",monospace;color:var(--muted)}
+.fc-first-five p {font-size:.8rem;color:var(--muted);margin:9px 0 0}
+.editor-pane .code-editor {display:block;padding:0;min-height:440px;height:calc(100% - 50px);overflow:hidden}
+#fcLiveCode,#fcLivePreview {display:block;box-sizing:border-box;width:100%;height:100%;min-height:440px;border:0;border-radius:0}
+#fcLiveCode {resize:vertical;background:#1d1a20;color:#f4e8f0;caret-color:#f4e8f0;outline:0;padding:20px;line-height:1.75;font:14px/1.7 "DM Mono",monospace;tab-size:2;white-space:pre;overflow:auto}
+#fcLiveCode:focus-visible {outline:3px solid #b08ee7;outline-offset:-3px}
+#fcLivePreview {background:#fff;color:#151515}
+#fcLiveCode[hidden],#fcLivePreview[hidden] {display:none!important}
+.editor-pane .editor-tabs .preview-toggle {min-height:46px;cursor:pointer}
+.editor-pane .editor-tabs .preview-toggle.active {border-bottom:3px solid #f7cf75}
+.editor-pane .editor-tabs .preview-toggle:focus-visible {outline:2px solid #a080b5;outline-offset:-4px}
+.timeline .tracks p {font-size:.85rem;line-height:1.5;margin:0}
+.inspector .checklist input[disabled] {opacity:1;accent-color:#8867ad}
+.inspector .checklist label {display:flex;align-items:center;gap:5px}
+.project-card {min-width:220px;max-width:280px}
+.project-card b {overflow-wrap:anywhere}
+#fileTree {max-height:300px;overflow:auto}
+#fileTree .file {min-height:38px;overflow-wrap:anywhere}
+#fileTree .file:focus-visible {outline:2px solid var(--coral)}
+.fc-workspace-warning {font-size:.8rem;line-height:1.55;color:var(--muted);margin-top:10px}
+@media (max-width:1100px) {
+  .fc-first-five ol {grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:700px) {
+  #fcVisitorStats {font-size:.7rem;margin-bottom:14px}
+  .fc-first-five {padding:12px}
+  .fc-first-five ol {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .studio {overflow:visible}
+  .editor-pane .code-editor {height:430px}
+  #fcLiveCode,#fcLivePreview {min-height:430px}
+  #fcLiveCode {font-size:13px;padding:12px}
+  .editor-pane .editor-tabs {padding:0 6px}
+  .editor-pane .editor-tabs button {padding:10px 8px;font-size:.85rem}
+  .timeline .tracks {height:auto;min-height:60px;padding:12px}
+  .recent-strip {gap:10px}
+}
+@media (prefers-reduced-motion:reduce) {#fcLiveCode,#fcLivePreview {scroll-behavior:auto}}
