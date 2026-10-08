@@ -25,7 +25,8 @@
     // setView schedules the preferred section for the next tick.
     window.setTimeout(() => {
       window.FirstCometCourse?.openSection(section);
-      document.querySelector('main')?.scrollTo({top:0,behavior:'instant'});
+      if (section === 'lab') document.querySelector('[data-lab-track="web"]')?.click();
+      document.querySelector('main')?.scrollTo({top:0,behavior:'auto'});
     }, 20);
   }
   startButton?.addEventListener('click', () => goTo('lab'));
