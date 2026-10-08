@@ -53,7 +53,7 @@ function finishIntro(){
 }
 function animateView(v){const el=$('#view-'+v);if(!el)return;animeRun({targets:el.querySelectorAll('h1,.eyebrow,.launch-card,.project-list,.mission,.lesson-panel,.topic-card,.setting,.studio'),translateY:[18,0],opacity:[0,1],delay:hasAnime()?anime.stagger(55):0,duration:550,easing:'easeOutQuad'})}
 function preferredLearnSection(){
-  if(state.level==='Beginner') return 'localhost';
+  if(state.level==='Beginner') return 'lab';
   if(state.level==='Pro') return 'reference';
   return 'project';
 }
