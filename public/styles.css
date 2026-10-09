@@ -259,3 +259,46 @@ body[data-level="Beginner"] .native-vscode-path{display:grid!important}
 @keyframes introStarIn{from{opacity:0;transform:scale(0) rotate(-45deg)}to{opacity:1;transform:scale(1) rotate(0)}}
 @keyframes introTextIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @keyframes introAutoExit{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+
+/* Dark mode contrast guard for bright yellow surfaces */
+.dark .brand,
+.dark .rail-create,
+.dark .launch-card.yellow,
+.dark .project-card .project-badge,
+.dark .project-avatar,
+.dark .tiny-comet,
+.dark .change-block.edit,
+.dark .mission.active,
+.dark .shortcut-board,
+.dark .segmented .active,
+.dark .explainer-copy,
+.dark .need-icon,
+.dark .roadmap-list summary > span,
+.dark .teaching-intro,
+.dark .teacher-note,
+.dark .mini-local-badge,
+.dark .success-gate:not(.compact),
+.dark .vscode-permission,
+.dark .native-vscode-badge,
+.dark .native-vscode-path {
+  color:#171319;
+}
+.dark .mission.active small,
+.dark .explainer-copy > p,
+.dark .teaching-intro p,
+.dark .teacher-note p,
+.dark .success-gate:not(.compact) p,
+.dark .vscode-permission p,
+.dark .shortcut-board,
+.dark .shortcut-board * {
+  color:#171319 !important;
+  opacity:1 !important;
+}
+.dark .info-drawer {
+  color:#171319;
+}
+.dark .info-drawer .fact,
+.dark .info-drawer .fact * {
+  color:var(--ink);
+}
