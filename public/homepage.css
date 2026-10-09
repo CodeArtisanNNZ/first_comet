@@ -415,3 +415,14 @@
 .dark .home-action-card:nth-child(6) small{
   color:var(--muted);
 }
+
+
+/* Explicit contrast for saturated homepage badges */
+.home-action-card:nth-child(3)>span,
+.home-action-card:nth-child(4)>span{color:#171319}
+.home-action-card:nth-child(5)>span,
+.home-action-card:nth-child(6)>span{color:#fff}
+.dark .home-action-card:nth-child(3)>span,
+.dark .home-action-card:nth-child(4)>span{color:#171319}
+.dark .home-action-card:nth-child(5)>span,
+.dark .home-action-card:nth-child(6)>span{color:#fff}
