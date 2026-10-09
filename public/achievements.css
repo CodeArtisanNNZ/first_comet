@@ -322,3 +322,12 @@
     opacity:1;
   }
 }
+
+/* Returning learners open on proof of progress, not the beginner intro */
+.fc-returning-progress #view-home .launchpad-head,
+.fc-returning-progress #view-home .fc-first-five{
+  display:none;
+}
+.dark .fc-next-win .primary{
+  color:#fff !important;
+}
