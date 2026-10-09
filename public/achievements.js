@@ -253,53 +253,47 @@
     }
 
     root.innerHTML = `
-      <section class="fc-progress-home ${hasProgress ? 'has-progress' : 'new-learner'}">
+      <section class="fc-progress-home compact">
         <div class="fc-progress-welcome">
-          <span class="eyebrow">${hasProgress ? 'WELCOME BACK' : 'START HERE'}</span>
-          <h1>${hasProgress ? 'You are not where you started.' : 'Your first real win is close.'}</h1>
+          <span class="eyebrow">WELCOME BACK</span>
+          <h1>You are not where you started.</h1>
           <p>${latest
             ? 'Last win: <b>' + esc(latest.title) + '</b> · ' + relativeDate(latest.at)
-            : hasProgress
-              ? 'Your completed work is saved on this device. Keep adding proof one small step at a time.'
-              : 'Learn one thing, use it, prove it, then keep the evidence.'}</p>
-        </div>
-
-        <div class="fc-proof-stats" aria-label="Your real progress">
-          <div><strong>${t.checkpoints}</strong><span>learning checkpoints</span></div>
-          <div><strong>${t.projects}</strong><span>projects started</span></div>
-          <div><strong>${t.titles}</strong><span>titles earned</span></div>
-          <div><strong>${cv.started ? cv.count + '/8' : '—'}</strong><span>CV readiness</span></div>
+            : 'Your completed work is saved on this device.'}</p>
         </div>
 
         <div class="fc-next-win">
           <div>
             <span class="eyebrow">NEXT SMALL WIN</span>
             <h2>${esc(next.need.label)}</h2>
-            <p>Part of <b>${esc(next.stage.title)}</b>. Finish one real checkpoint — not a random XP task.</p>
+            <p>${esc(next.stage.title)}</p>
           </div>
           <a class="primary" href="${esc(next.href)}">Continue →</a>
         </div>
 
-        <div class="fc-weekly-proof">
-          <span class="eyebrow">THIS WEEK</span>
-          ${weekly.length
-            ? '<b>' + weekly.length + ' real ' + (weekly.length === 1 ? 'win' : 'wins') + '</b><p>' + esc(weekly.slice(0, 3).map(x => x.title).join(' · ')) + '</p>'
-            : '<b>Your next win starts here.</b><p>Future completed steps will appear here with the day you earned them.</p>'}
+        <div class="fc-proof-strip" aria-label="Your real progress">
+          <span><b>${t.checkpoints}</b> checkpoints</span>
+          <span><b>${t.projects}</b> projects</span>
+          <span><b>${t.titles}</b> titles</span>
+          <span><b>${cv.started ? cv.count + '/8' : '—'}</b> CV</span>
         </div>
 
-        <details class="fc-passport">
-          <summary><span><span class="eyebrow">DEVELOPER PASSPORT</span><b>${esc(unlockedStages().at(-1)?.title || 'Explorer')}</b></span><span>View progress +</span></summary>
-          <div class="fc-passport-track">${passport}</div>
-          <p>Titles are First Comet progress markers, not professional certificates. Each one is tied to completed learning and build steps.</p>
-        </details>
-
-        <details class="fc-win-history">
-          <summary>My recent accomplishments</summary>
-          <div>
-            ${history.length
-              ? history.map(event => `<article><span>${event.kind === 'title' ? '★' : event.kind === 'project' ? '◆' : '✓'}</span><div><b>${esc(event.title)}</b><small>${esc(event.detail || '')}${event.at ? ' · ' + relativeDate(event.at) : ''}</small></div></article>`).join('')
-              : '<p>No dated accomplishments yet. Complete your next checked step and First Comet will start your history here.</p>'}
+        <details class="fc-progress-details">
+          <summary>See my progress +</summary>
+          <div class="fc-progress-detail-grid">
+            <div>
+              <span class="eyebrow">THIS WEEK</span>
+              ${weekly.length
+                ? '<b>' + weekly.length + ' real ' + (weekly.length === 1 ? 'win' : 'wins') + '</b><p>' + esc(weekly.slice(0, 3).map(x => x.title).join(' · ')) + '</p>'
+                : '<b>No new wins yet.</b><p>Your next completed step will appear here.</p>'}
+            </div>
+            <div>
+              <span class="eyebrow">DEVELOPER PASSPORT</span>
+              <b>${esc(unlockedStages().at(-1)?.title || 'Explorer')}</b>
+              <div class="fc-passport-track">${passport}</div>
+            </div>
           </div>
+          ${history.length ? '<div class="fc-mini-history">' + history.slice(0, 3).map(event => '<span>✓ ' + esc(event.title) + '</span>').join('') + '</div>' : ''}
         </details>
       </section>`;
 
