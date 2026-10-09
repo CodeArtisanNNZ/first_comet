@@ -75,6 +75,7 @@
   <link rel="stylesheet" href="learning-hub.css">
   <link rel="stylesheet" href="build-journey.css">
   <link rel="stylesheet" href="career-explorer.css">
+  <link rel="stylesheet" href="cv-studio.css">
   <link rel="stylesheet" href="workspace.css">
   <link rel="stylesheet" href="milestone-navigation.css">
   <link rel="stylesheet" href="beginner-improvements.css">
@@ -118,6 +119,7 @@
         <span class="nav-label learn-label">HELP</span>
         <button class="nav-item" data-view="learn"><span>?</span><b>Learn</b><small>Words · code · milestones</small></button>
         <button class="nav-item" data-view="careers"><span>◎</span><b>Careers</b><small>Find your direction</small></button>
+        <button class="nav-item" data-view="cv"><span>▤</span><b>CV Studio</b><small>Build an ATS-safe CV</small></button>
         <button class="nav-item" data-view="settings"><span>⚙</span><b>Settings</b><small>Theme &amp; level</small></button>
       </nav>
       <div class="rail-note"><span class="tiny-comet">☄</span><p><b>First Comet</b><br><small>Guided developer workspace</small></p></div>
@@ -505,6 +507,10 @@
         <div id="careerExplorerApp"></div>
       </section>
 
+      <section class="view" id="view-cv">
+        <div id="cvStudioApp"></div>
+      </section>
+
       <section class="view" id="view-settings">
         <div class="page-heading"><span class="eyebrow">MAKE IT YOURS</span><h1>Workspace settings</h1><p>These preferences stay on this device.</p></div>
         <div class="settings-grid"><div class="setting"><div><h2>Experience level</h2><p>Changes how much guidance appears.</p></div><div class="segmented"><button class="active" data-level="Beginner">Beginner</button><button data-level="Practising">Practising</button><button data-level="Pro">Pro</button></div></div><div class="setting"><div><h2>Appearance</h2><p>Warm cream by day, deep ink by night.</p></div><button class="secondary" id="settingTheme">Toggle theme</button></div><div class="setting"><div><h2>Intro animation</h2><p>Replay the First Comet launch sequence.</p></div><button class="secondary" id="replayIntro">Replay intro</button></div><div class="setting danger"><div><h2>Clear local projects</h2><p>Removes projects saved in this browser only.</p></div><button class="danger-button" id="clearData">Clear data</button></div></div>
@@ -516,7 +522,7 @@
 
   <div class="modal-backdrop" id="projectModal" aria-hidden="true"><div class="modal"><button class="modal-close" data-close>×</button><span class="eyebrow">NEW MISSION</span><h2>What are you building?</h2><p>Start simple. You can change these details later. Files are browser-local; export a ZIP to keep them.</p><label>Project name<input id="projectNameInput" placeholder="e.g. My portfolio"></label><label>Project type<select id="projectTypeInput"><option>Website</option><option>Web application (frontend starter)</option></select></label><div class="modal-actions"><button class="secondary" data-close>Cancel</button><button class="primary" id="createProject">Create project →</button></div></div></div>
   <div class="modal-backdrop" id="importModal" aria-hidden="true"><div class="modal"><button class="modal-close" data-close>×</button><span class="eyebrow">OPEN PROJECT</span><h2>Where is your project?</h2><div class="import-options"><button id="folderImport"><span>▣</span><b>On this computer</b><small>Choose a local project folder</small></button><button id="githubImport"><span>⌘</span><b>From GitHub</b><small>Download a ZIP, extract, then import the folder</small></button></div><input type="file" id="folderPicker" webkitdirectory multiple hidden></div></div>
-  <div class="palette" id="palette" aria-hidden="true"><div class="palette-box"><div class="palette-search"><span>⌕</span><input id="commandInput" placeholder="Type a command or search…"><kbd>ESC</kbd></div><div class="palette-results"><button data-view="home"><span>⌂</span><div><b>Open projects</b><small>Go to your launchpad</small></div><kbd>G P</kbd></button><button data-view="guide"><span>◇</span><div><b>Open build guide</b><small>See your full path</small></div><kbd>G G</kbd></button><button id="paletteNew"><span>＋</span><div><b>Create new project</b><small>Start from an idea</small></div></button><button data-view="learn"><span>?</span><div><b>Explain a term</b><small>Open the pocket reference</small></div></button></div></div></div>
+  <div class="palette" id="palette" aria-hidden="true"><div class="palette-box"><div class="palette-search"><span>⌕</span><input id="commandInput" placeholder="Type a command or search…"><kbd>ESC</kbd></div><div class="palette-results"><button data-view="home"><span>⌂</span><div><b>Open projects</b><small>Go to your launchpad</small></div><kbd>G P</kbd></button><button data-view="guide"><span>◇</span><div><b>Open build guide</b><small>See your full path</small></div><kbd>G G</kbd></button><button id="paletteNew"><span>＋</span><div><b>Create new project</b><small>Start from an idea</small></div></button><button data-view="learn"><span>?</span><div><b>Explain a term</b><small>Open the pocket reference</small></div></button><button data-view="cv"><span>▤</span><div><b>Build my CV</b><small>Create an ATS-friendly CV</small></div></button></div></div></div>
   <aside class="info-drawer" id="infoDrawer" aria-hidden="true"><button id="closeInfo">×</button><span class="eyebrow">COMET NOTES</span><h2 id="infoTitle">What is this page?</h2><p id="infoText">This is your launchpad. Start a new project, open an existing folder or follow the guided path from idea to launch.</p><div class="fact"><span>GOOD TO KNOW</span><p id="factText">A project is simply a folder containing the files that make your website or application work.</p></div></aside>
   <div class="toast" id="toast" role="status"></div>
 
@@ -531,6 +537,7 @@
   <script src="build-journey.js"></script>
   <script src="learning-hub.js"></script>
   <script src="career-explorer.js"></script>
+  <script src="cv-studio.js"></script>
   <script src="navigation.js">
   <script src="milestone-navigation.js">
   <script src="onboarding.js"></script>
