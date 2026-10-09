@@ -1,0 +1,121 @@
+/* First Comet final typography layer.
+   Loaded last so readability wins over component-level legacy sizes. */
+
+@media (min-width:1001px){
+  body{font-size:17px}
+
+  /* Sidebar + top workspace chrome */
+  .rail-create{font-size:.96rem}
+  .nav-label{font-size:.76rem!important;letter-spacing:.13em}
+  .nav-item b{font-size:1rem!important;line-height:1.2}
+  .nav-item small{font-size:.82rem!important;line-height:1.35}
+  .nav-item span{font-size:1.2rem}
+  .crumb,
+  .crumb span,
+  .crumb b{font-size:.94rem!important}
+  .mode-chip,.icon-button{font-size:.9rem}
+  .rail-note b{font-size:.94rem}
+  .rail-note small{font-size:.78rem}
+
+  /* Returning homepage */
+  #view-home .fc-progress-welcome .eyebrow,
+  #view-home .fc-next-win .eyebrow,
+  #view-home .fc-progress-details .eyebrow{font-size:.8rem!important}
+
+  #view-home .fc-progress-welcome h1{
+    font-size:clamp(2.15rem,2.7vw,3.15rem)!important;
+    line-height:1.02;
+  }
+  #view-home .fc-progress-welcome p{
+    font-size:1rem!important;
+    line-height:1.5;
+  }
+
+  #view-home .fc-next-win h2{
+    font-size:1.55rem!important;
+    line-height:1.12;
+  }
+  #view-home .fc-next-win p{font-size:.92rem!important}
+  #view-home .fc-next-win .primary{font-size:.96rem!important}
+
+  #view-home .trail-stops span{
+    font-size:.86rem!important;
+  }
+  #view-home .trail-stops b{
+    font-size:.88rem;
+  }
+
+  #view-home .fc-proof-strip span{
+    font-size:.9rem!important;
+    line-height:1.25;
+  }
+  #view-home .fc-proof-strip b{
+    font-size:1rem!important;
+  }
+
+  #view-home .fc-progress-details>summary{
+    font-size:.9rem!important;
+  }
+  #view-home .fc-progress-detail-grid b{font-size:.94rem!important}
+  #view-home .fc-progress-detail-grid p{font-size:.84rem!important}
+  #view-home .fc-passport-step b{font-size:.84rem!important}
+  #view-home .fc-passport-step small{font-size:.75rem!important}
+  #view-home .fc-mini-history span{font-size:.8rem!important}
+
+  /* New-user homepage */
+  #view-home .home-mission-tag,
+  #view-home .eyebrow{font-size:.8rem!important}
+  #view-home .home-hero-copy>p{
+    font-size:1.08rem!important;
+    line-height:1.62;
+  }
+  #view-home .home-starter-actions button{font-size:.98rem!important}
+  #view-home .home-starter-status{font-size:.9rem!important}
+  #view-home .home-section-head h2{font-size:1.65rem!important}
+  #view-home .home-action-card b{font-size:1.18rem!important}
+  #view-home .home-action-card small{
+    font-size:.9rem!important;
+    line-height:1.45;
+  }
+
+  /* Collapsed home panels */
+  #view-home .home-compact-details>summary .eyebrow{
+    font-size:.75rem!important;
+  }
+  #view-home .home-compact-details>summary b{
+    font-size:1.04rem!important;
+  }
+  #view-home .home-compact-details>summary>span:last-child{
+    font-size:.86rem!important;
+  }
+  #view-home .home-more-grid b{font-size:.94rem!important}
+  #view-home .home-more-grid small{font-size:.82rem!important}
+  #view-home #fcVisitorStats{
+    font-size:.8rem!important;
+    line-height:1.45!important;
+  }
+
+  /* Bottom command bar */
+  .command-bar{font-size:1rem!important}
+  .command-bar span:nth-child(2){font-size:.98rem!important}
+  .command-bar kbd{font-size:.86rem}
+}
+
+/* Tablet keeps readable labels without crowding the compact rail. */
+@media (min-width:701px) and (max-width:1000px){
+  body{font-size:16.5px}
+  #view-home .trail-stops span{font-size:.8rem}
+  #view-home .fc-proof-strip span{font-size:.84rem}
+}
+
+/* Phone sizes should still be comfortably readable. */
+@media (max-width:700px){
+  body{font-size:16px}
+  .nav-item b{font-size:.78rem}
+  #view-home .home-hero-copy>p{font-size:1rem}
+  #view-home .home-action-card b{font-size:1.08rem}
+  #view-home .home-action-card small{font-size:.84rem}
+  #view-home .trail-stops span{font-size:.76rem}
+  #view-home .fc-proof-strip span{font-size:.82rem}
+  #view-home .fc-progress-details>summary{font-size:.84rem}
+}
