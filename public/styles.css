@@ -302,3 +302,116 @@ body[data-level="Beginner"] .native-vscode-path{display:grid!important}
 .dark .info-drawer .fact * {
   color:var(--ink);
 }
+
+
+/* First Comet semantic color system */
+:root{
+  --red-soft:#ffd9d1;
+  --blue-soft:#dceaff;
+  --yellow-soft:#fff0a8;
+  --green-soft:#dff0d9;
+  --pink-soft:#f7d8ee;
+  --blue-deep:#155fb8;
+  --red-deep:#b92821;
+}
+.dark{
+  --red-soft:#4b2523;
+  --blue-soft:#203a5a;
+  --yellow-soft:#4a3c17;
+  --green-soft:#263f2a;
+  --pink-soft:#4b2d43;
+  --blue-deep:#75b6ff;
+  --red-deep:#ff8174;
+}
+
+/* Color should communicate where you are */
+.nav-item span{
+  display:grid;
+  place-items:center;
+  min-width:28px;
+  height:28px;
+  border-radius:8px;
+}
+.nav-item[data-view="home"] span{background:var(--yellow-soft)}
+.nav-item[data-view="guide"] span{background:var(--red-soft)}
+.nav-item[data-view="vscode"] span{background:var(--blue-soft)}
+.nav-item[data-view="learn"] span{background:var(--blue-soft)}
+.nav-item[data-view="careers"] span{background:var(--pink-soft)}
+.nav-item[data-view="cv"] span{background:var(--green-soft)}
+.nav-item[data-view="settings"] span{background:var(--cream)}
+
+.nav-item[data-view="guide"].active,
+.nav-item[data-view="home"].active{box-shadow:inset 4px 0 0 var(--coral)}
+.nav-item[data-view="vscode"].active,
+.nav-item[data-view="learn"].active{box-shadow:inset 4px 0 0 var(--blue)}
+.nav-item[data-view="careers"].active{box-shadow:inset 4px 0 0 var(--pink)}
+.nav-item[data-view="cv"].active{box-shadow:inset 4px 0 0 var(--green)}
+
+.page-heading{
+  position:relative;
+}
+.page-heading:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:78px;
+  height:5px;
+  border-radius:999px;
+  background:var(--coral);
+}
+#view-vscode .page-heading:before,
+#view-learn .page-heading:before{background:var(--blue)}
+#view-careers .page-heading:before{background:var(--pink)}
+#view-cv .page-heading:before{background:var(--green)}
+
+.primary{
+  background:var(--coral);
+}
+.primary:hover{
+  background:var(--red);
+}
+.secondary:hover{
+  background:var(--blue-soft);
+}
+.icon-button:hover,
+.mode-chip:hover{
+  background:var(--blue-soft);
+}
+input:focus,
+textarea:focus,
+select:focus{
+  outline:2px solid var(--blue);
+  outline-offset:2px;
+}
+
+/* Small accents used across older screens */
+.topic-card:nth-child(4n+1){border-top:4px solid var(--blue)}
+.topic-card:nth-child(4n+2){border-top:4px solid var(--coral)}
+.topic-card:nth-child(4n+3){border-top:4px solid var(--yellow)}
+.topic-card:nth-child(4n){border-top:4px solid var(--pink)}
+.setting:nth-child(odd){border-left:4px solid var(--blue)}
+.setting:nth-child(even){border-left:4px solid var(--coral)}
+.mission:nth-of-type(4n+1){border-top-color:var(--blue)}
+.mission:nth-of-type(4n+2){border-top-color:var(--coral)}
+.mission:nth-of-type(4n+3){border-top-color:var(--yellow)}
+.mission:nth-of-type(4n){border-top-color:var(--green)}
+
+.dark .nav-item span{
+  color:var(--ink);
+}
+.dark .nav-item[data-view="home"] span,
+.dark .nav-item[data-view="guide"] span,
+.dark .nav-item[data-view="vscode"] span,
+.dark .nav-item[data-view="learn"] span,
+.dark .nav-item[data-view="careers"] span,
+.dark .nav-item[data-view="cv"] span{
+  border:1px solid color-mix(in srgb,var(--line) 55%,transparent);
+}
+@media(max-width:700px){
+  .nav-item[data-view].active{box-shadow:inset 0 3px 0 var(--coral)}
+  .nav-item[data-view="vscode"].active,
+  .nav-item[data-view="learn"].active{box-shadow:inset 0 3px 0 var(--blue)}
+  .nav-item[data-view="careers"].active{box-shadow:inset 0 3px 0 var(--pink)}
+  .nav-item[data-view="cv"].active{box-shadow:inset 0 3px 0 var(--green)}
+}
