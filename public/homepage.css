@@ -343,3 +343,75 @@
     grid-template-columns:repeat(7,auto);
   }
 }
+
+
+/* First Comet homepage color rhythm */
+.home-starter-copy{border-top:5px solid var(--blue)}
+.home-focus{border-top:5px solid var(--coral)}
+.home-projects{border-top:5px solid var(--blue)}
+.home-process{border-top:5px solid var(--yellow)}
+.home-community{border-top:5px solid var(--pink)}
+
+.home-action-card:nth-child(1){
+  background:var(--coral);
+  color:#fff;
+}
+.home-action-card:nth-child(2){
+  background:var(--blue);
+  color:#fff;
+}
+.home-action-card:nth-child(3){
+  background:var(--yellow-soft);
+}
+.home-action-card:nth-child(4){
+  background:var(--pink-soft);
+}
+.home-action-card:nth-child(5){
+  background:var(--green-soft);
+}
+.home-action-card:nth-child(6){
+  background:var(--red-soft);
+}
+.home-action-card:nth-child(1) small,
+.home-action-card:nth-child(1) i,
+.home-action-card:nth-child(2) small,
+.home-action-card:nth-child(2) i{
+  color:#fff;
+}
+.home-action-card:nth-child(1)>span,
+.home-action-card:nth-child(2)>span{
+  border-color:#fff;
+  background:#ffffff20;
+  color:#fff;
+}
+.home-action-card:nth-child(3)>span{background:var(--yellow)}
+.home-action-card:nth-child(4)>span{background:var(--pink)}
+.home-action-card:nth-child(5)>span{background:var(--green)}
+.home-action-card:nth-child(6)>span{background:var(--coral);color:#fff}
+
+.home-projects .project-card:nth-child(4n+1){border-top:4px solid var(--blue)}
+.home-projects .project-card:nth-child(4n+2){border-top:4px solid var(--coral)}
+.home-projects .project-card:nth-child(4n+3){border-top:4px solid var(--yellow)}
+.home-projects .project-card:nth-child(4n){border-top:4px solid var(--green)}
+
+.home-process .journey-nav button:nth-of-type(1) span{background:var(--coral)}
+.home-process .journey-nav button:nth-of-type(2) span{background:var(--blue)}
+.home-process .journey-nav button:nth-of-type(3) span{background:var(--green)}
+.home-process .journey-nav button:nth-of-type(4) span{background:var(--pink)}
+
+.dark .home-action-card:nth-child(1),
+.dark .home-action-card:nth-child(2){
+  color:#fff;
+}
+.dark .home-action-card:nth-child(3),
+.dark .home-action-card:nth-child(4),
+.dark .home-action-card:nth-child(5),
+.dark .home-action-card:nth-child(6){
+  color:var(--ink);
+}
+.dark .home-action-card:nth-child(3) small,
+.dark .home-action-card:nth-child(4) small,
+.dark .home-action-card:nth-child(5) small,
+.dark .home-action-card:nth-child(6) small{
+  color:var(--muted);
+}
