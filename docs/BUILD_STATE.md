@@ -1,5 +1,19 @@
 # Build state
 
+## CV Studio (2026-10-09)
+
+- Added a dedicated **CV Studio** workspace for students to learn ATS-friendly CV/resume structure and build one inside First Comet.
+- Builder includes contact/target role, professional summary, skills, education, experience, projects, and optional certifications.
+- CV data autosaves locally in the browser using `fc-cv-studio-v1`.
+- Live one-column preview intentionally avoids photos, tables, sidebars, charts, skill bars, decorative icons, and header/footer contact information.
+- Added **ATS Readiness** checklist based on common parsing-safe practices. It is explicitly labelled as a First Comet checklist, not an ATS prediction or employer score.
+- Added job-description keyword review that compares repeated job terms against the CV and tells users to add terms only when they are genuinely true.
+- Added student-focused achievement bullet guidance and measurable-outcome checking.
+- Export options: clean A4 **Save as PDF** flow, **Word-compatible .doc**, and a plain-text **parser test** file.
+- Users can add/remove repeated education, experience, project, and certification entries.
+- Mobile layout collapses to a single-column builder/preview workflow.
+- Guidance follows current common ATS advice: simple layout, standard headings, truthful job-specific keywords, and readable text-first formatting.
+
 ## Career Explorer (2026-10-09)
 
 - Added a dedicated **Careers** workspace view for CSE students who are unsure which direction to choose.
