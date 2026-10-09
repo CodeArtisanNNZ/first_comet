@@ -411,3 +411,50 @@
     aspect-ratio: 16 / 9;
   }
 }
+
+
+/* Build Journey stage colors follow the First Comet path */
+.journey-hero{border-top:5px solid var(--blue)}
+.journey-hero aside{
+  background:var(--blue-soft);
+  border-left:5px solid var(--blue);
+}
+.journey-stage:nth-child(5n+1){border-top:5px solid var(--coral)}
+.journey-stage:nth-child(5n+2){border-top:5px solid var(--blue)}
+.journey-stage:nth-child(5n+3){border-top:5px solid var(--yellow)}
+.journey-stage:nth-child(5n+4){border-top:5px solid var(--green)}
+.journey-stage:nth-child(5n){border-top:5px solid var(--pink)}
+.journey-stage:nth-child(5n+1) .journey-stage-number{background:var(--red-soft)}
+.journey-stage:nth-child(5n+2) .journey-stage-number{background:var(--blue-soft)}
+.journey-stage:nth-child(5n+3) .journey-stage-number{background:var(--yellow-soft)}
+.journey-stage:nth-child(5n+4) .journey-stage-number{background:var(--green-soft)}
+.journey-stage:nth-child(5n) .journey-stage-number{background:var(--pink-soft)}
+.journey-stage.current{
+  background:linear-gradient(110deg,var(--blue-soft),var(--panel) 70%);
+  box-shadow:4px 4px 0 var(--line);
+}
+.journey-title{
+  border-left-color:var(--blue);
+  background:var(--blue-soft);
+}
+.next-builder-card:nth-child(3n+1){border-top:4px solid var(--blue)}
+.next-builder-card:nth-child(3n+2){border-top:4px solid var(--coral)}
+.next-builder-card:nth-child(3n){border-top:4px solid var(--green)}
+.next-builder-card.complete{background:var(--green-soft)}
+.journey-bonus{
+  border-left:4px solid var(--pink);
+  background:var(--pink-soft);
+}
+
+.dark .journey-stage-number,
+.dark .journey-title,
+.dark .journey-hero aside,
+.dark .journey-bonus{
+  color:var(--ink);
+}
+@media(max-width:820px){
+  .journey-title{
+    border-left:0;
+    border-top:4px solid var(--blue);
+  }
+}
