@@ -257,3 +257,52 @@
 .dark .career-market-note .career-source-links a {
   color:var(--ink);
 }
+
+
+/* Career Explorer uses the First Comet exploration palette */
+.career-hero{border-top:5px solid var(--pink);padding-top:18px}
+.career-lost{
+  background:linear-gradient(110deg,var(--blue-soft),var(--panel) 58%);
+  border-left:5px solid var(--blue);
+}
+.career-interest-row button:nth-child(4n+1){background:var(--blue-soft)}
+.career-interest-row button:nth-child(4n+2){background:var(--red-soft)}
+.career-interest-row button:nth-child(4n+3){background:var(--yellow-soft)}
+.career-interest-row button:nth-child(4n){background:var(--pink-soft)}
+.career-interest-row button.active,
+.career-filters button.active{
+  background:var(--coral);
+  color:#fff;
+}
+.career-filters button:hover{background:var(--blue-soft)}
+
+.career-card:nth-child(5n+1){border-top:5px solid var(--blue)}
+.career-card:nth-child(5n+2){border-top:5px solid var(--coral)}
+.career-card:nth-child(5n+3){border-top:5px solid var(--yellow)}
+.career-card:nth-child(5n+4){border-top:5px solid var(--green)}
+.career-card:nth-child(5n){border-top:5px solid var(--pink)}
+
+.career-card:nth-child(5n+1) .career-icon{background:var(--blue);color:#fff}
+.career-card:nth-child(5n+2) .career-icon{background:var(--coral);color:#fff}
+.career-card:nth-child(5n+3) .career-icon{background:var(--yellow);color:#171319}
+.career-card:nth-child(5n+4) .career-icon{background:var(--green);color:#fff}
+.career-card:nth-child(5n) .career-icon{background:var(--pink);color:#171319}
+
+.career-positive{background:var(--green-soft)}
+.career-negative{background:var(--red-soft)}
+.career-future{border-left:4px solid var(--blue);background:var(--blue-soft)}
+.career-market>div:first-child{border-top:3px solid var(--coral)}
+.career-market>div:last-child{border-top:3px solid var(--blue)}
+.career-reminder{
+  background:linear-gradient(100deg,var(--pink-soft),var(--panel) 65%);
+  border-left:5px solid var(--pink);
+}
+.career-source-links a:hover{
+  background:var(--blue-soft);
+}
+
+.dark .career-card:nth-child(5n+1) .career-icon,
+.dark .career-card:nth-child(5n+2) .career-icon,
+.dark .career-card:nth-child(5n+4) .career-icon{color:#fff}
+.dark .career-card:nth-child(5n+3) .career-icon,
+.dark .career-card:nth-child(5n) .career-icon{color:#171319}
