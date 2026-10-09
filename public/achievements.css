@@ -466,3 +466,175 @@
     grid-template-columns:1fr;
   }
 }
+
+
+/* 04 · Returning Comet Trail */
+.fc-progress-home.compact .returning-trail{
+  grid-column:1/-1;
+  margin:2px 4px 0;
+}
+.returning-trail .trail-stops span.done{
+  color:var(--ink);
+}
+.returning-trail .trail-stops span.done:before{
+  background:var(--green);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--green) 18%,transparent);
+}
+.returning-trail .trail-stops span.active:before{
+  background:var(--yellow);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--yellow) 22%,transparent);
+}
+
+/* 05 · A short, meaningful accomplishment moment */
+.fc-achievement-toast{
+  grid-template-columns:72px minmax(0,1fr);
+  gap:14px;
+  width:min(430px,calc(100vw - 32px));
+  padding:16px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 90% 10%,#ffffff80 0 3px,transparent 4px),
+    linear-gradient(120deg,var(--yellow),#ffe987 62%,var(--red-soft));
+}
+.fc-achievement-toast:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle,#17131922 1px,transparent 1px);
+  background-size:16px 16px;
+  opacity:.32;
+}
+.fc-achievement-visual{
+  position:relative;
+  width:68px;
+  height:68px;
+  display:grid;
+  place-items:center;
+}
+.fc-achievement-comet{
+  position:relative;
+  z-index:3;
+  width:50px;
+  height:50px;
+  background:#fff5dc;
+  font-size:1.45rem;
+}
+.fc-comet-streak{
+  position:absolute;
+  z-index:1;
+  left:-22px;
+  top:29px;
+  width:52px;
+  height:8px;
+  border-radius:999px;
+  transform:rotate(-13deg);
+  background:linear-gradient(90deg,transparent,var(--coral),var(--yellow));
+  opacity:.9;
+}
+.fc-spark{
+  position:absolute;
+  z-index:4;
+  font-style:normal;
+  color:#171319;
+}
+.fc-spark-a{
+  right:-2px;
+  top:0;
+  font-size:1rem;
+}
+.fc-spark-b{
+  left:3px;
+  bottom:3px;
+  font-size:1.3rem;
+  color:var(--coral);
+}
+.fc-achievement-copy{
+  position:relative;
+  z-index:2;
+  display:grid;
+  gap:3px;
+}
+.fc-achievement-copy>span{
+  font:700 .58rem 'DM Mono',monospace;
+  letter-spacing:.09em;
+}
+.fc-achievement-copy>b{
+  font-size:.96rem;
+  line-height:1.25;
+}
+.fc-achievement-copy>small{
+  font-size:.68rem;
+  line-height:1.4;
+}
+.fc-achievement-copy>em{
+  margin-top:3px;
+  font-style:normal;
+  font-size:.64rem;
+  font-weight:800;
+}
+.fc-achievement-toast.show .fc-achievement-comet{
+  animation:fcCometPop .65s cubic-bezier(.2,.8,.2,1) both;
+}
+.fc-achievement-toast.show .fc-comet-streak{
+  animation:fcStreak .7s ease both;
+}
+.fc-achievement-toast.show .fc-spark-a{
+  animation:fcSparkA .8s ease .12s both;
+}
+.fc-achievement-toast.show .fc-spark-b{
+  animation:fcSparkB .8s ease .2s both;
+}
+@keyframes fcCometPop{
+  0%{transform:translate(-24px,12px) scale(.65) rotate(-14deg)}
+  65%{transform:translate(3px,-2px) scale(1.08) rotate(3deg)}
+  100%{transform:none}
+}
+@keyframes fcStreak{
+  0%{transform:translateX(-24px) rotate(-13deg) scaleX(.2);opacity:0}
+  55%{opacity:1}
+  100%{transform:translateX(0) rotate(-13deg) scaleX(1);opacity:.9}
+}
+@keyframes fcSparkA{
+  0%{transform:scale(0) rotate(0);opacity:0}
+  55%{transform:scale(1.25) rotate(22deg);opacity:1}
+  100%{transform:scale(1) rotate(0);opacity:.85}
+}
+@keyframes fcSparkB{
+  0%{transform:scale(0);opacity:0}
+  60%{transform:scale(1.3);opacity:1}
+  100%{transform:scale(1);opacity:.9}
+}
+
+.dark .fc-achievement-toast{
+  background:linear-gradient(120deg,var(--yellow),#e8c64c 62%,#f3b3a8);
+  color:#171319;
+}
+.dark .fc-achievement-copy,
+.dark .fc-achievement-copy *{
+  color:#171319!important;
+}
+
+@media(max-width:560px){
+  .fc-achievement-toast{
+    grid-template-columns:58px minmax(0,1fr);
+  }
+  .fc-achievement-visual{
+    width:56px;
+    height:56px;
+  }
+  .fc-achievement-comet{
+    width:44px;
+    height:44px;
+    font-size:1.2rem;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .fc-achievement-toast.show .fc-achievement-comet,
+  .fc-achievement-toast.show .fc-comet-streak,
+  .fc-achievement-toast.show .fc-spark-a,
+  .fc-achievement-toast.show .fc-spark-b{
+    animation:none!important;
+  }
+}
