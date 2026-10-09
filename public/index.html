@@ -74,6 +74,7 @@
   <link rel="stylesheet" href="course.css">
   <link rel="stylesheet" href="learning-hub.css">
   <link rel="stylesheet" href="build-journey.css">
+  <link rel="stylesheet" href="career-explorer.css">
   <link rel="stylesheet" href="workspace.css">
   <link rel="stylesheet" href="milestone-navigation.css">
   <link rel="stylesheet" href="beginner-improvements.css">
@@ -116,6 +117,7 @@
         <button class="nav-item" data-view="vscode"><span>⌨</span><b>VS Code</b><small>Code with your teacher</small></button>
         <span class="nav-label learn-label">HELP</span>
         <button class="nav-item" data-view="learn"><span>?</span><b>Learn</b><small>Words · code · milestones</small></button>
+        <button class="nav-item" data-view="careers"><span>◎</span><b>Careers</b><small>Find your direction</small></button>
         <button class="nav-item" data-view="settings"><span>⚙</span><b>Settings</b><small>Theme &amp; level</small></button>
       </nav>
       <div class="rail-note"><span class="tiny-comet">☄</span><p><b>First Comet</b><br><small>Guided developer workspace</small></p></div>
@@ -499,6 +501,10 @@
         </section>
       </section>
 
+      <section class="view" id="view-careers">
+        <div id="careerExplorerApp"></div>
+      </section>
+
       <section class="view" id="view-settings">
         <div class="page-heading"><span class="eyebrow">MAKE IT YOURS</span><h1>Workspace settings</h1><p>These preferences stay on this device.</p></div>
         <div class="settings-grid"><div class="setting"><div><h2>Experience level</h2><p>Changes how much guidance appears.</p></div><div class="segmented"><button class="active" data-level="Beginner">Beginner</button><button data-level="Practising">Practising</button><button data-level="Pro">Pro</button></div></div><div class="setting"><div><h2>Appearance</h2><p>Warm cream by day, deep ink by night.</p></div><button class="secondary" id="settingTheme">Toggle theme</button></div><div class="setting"><div><h2>Intro animation</h2><p>Replay the First Comet launch sequence.</p></div><button class="secondary" id="replayIntro">Replay intro</button></div><div class="setting danger"><div><h2>Clear local projects</h2><p>Removes projects saved in this browser only.</p></div><button class="danger-button" id="clearData">Clear data</button></div></div>
@@ -524,6 +530,7 @@
   <script src="project-course.js"></script>
   <script src="build-journey.js"></script>
   <script src="learning-hub.js"></script>
+  <script src="career-explorer.js"></script>
   <script src="navigation.js">
   <script src="milestone-navigation.js">
   <script src="onboarding.js"></script>
