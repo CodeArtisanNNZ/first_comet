@@ -559,3 +559,51 @@ body[data-level="Beginner"] #learn-localhost .milestone-current {
     flex: 1 1 100%;
   }
 }
+
+
+/* Learning surfaces lean blue, with coral used for action and correction */
+.learning-hub-intro,
+.lab-intro{
+  border-top:5px solid var(--blue);
+  background:linear-gradient(120deg,var(--blue-soft),var(--panel) 76%);
+}
+.learning-hub-intro aside,
+.lab-intro aside{
+  background:var(--yellow-soft);
+}
+.video-language button.active,
+.lab-track-picker button.active{
+  background:var(--blue);
+  color:#fff;
+}
+.video-topic-list button:nth-child(4n+1){border-left:4px solid var(--blue)}
+.video-topic-list button:nth-child(4n+2){border-left:4px solid var(--coral)}
+.video-topic-list button:nth-child(4n+3){border-left:4px solid var(--yellow)}
+.video-topic-list button:nth-child(4n){border-left:4px solid var(--green)}
+.video-topic-list button.active{
+  background:var(--blue-soft);
+}
+.video-focus-card{border-top:5px solid var(--blue)}
+.video-resource-card{
+  background:var(--blue-soft);
+  border-left:4px solid var(--blue);
+}
+.after-video{
+  background:var(--red-soft);
+  border-left-color:var(--coral);
+}
+.lab-task-card{border-top:5px solid var(--coral)}
+.lab-hint{
+  background:var(--blue-soft);
+}
+.preview-panel{
+  border-top:5px solid var(--green);
+}
+.local-lab-side>div:nth-child(odd){border-left:4px solid var(--blue)}
+.local-lab-side>div:nth-child(even){border-left:4px solid var(--coral)}
+.lab-feedback[data-result="correct"]{
+  background:var(--green-soft);
+}
+.lab-feedback[data-result="retry"]{
+  background:var(--red-soft);
+}
