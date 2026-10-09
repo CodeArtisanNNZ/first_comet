@@ -910,3 +910,43 @@
 .fc-achievement-copy>em{
   font-size:.7rem;
 }
+
+
+/* Vintage flat-card treatment — returning dashboard */
+.fc-progress-home.compact .fc-progress-welcome{
+  background:var(--blue);
+  color:#fff;
+}
+.fc-progress-home.compact .fc-progress-welcome .eyebrow{
+  color:#fff5dc;
+}
+.fc-progress-home.compact .fc-progress-welcome p{
+  color:#eef5ff;
+}
+.fc-progress-home.compact .fc-next-win{
+  background:var(--yellow);
+  color:#171319;
+}
+.fc-progress-home.compact .returning-trail{
+  background:var(--blue-soft);
+}
+.fc-progress-details,
+.fc-progress-detail-grid>div,
+.fc-proof-strip span{
+  background:var(--panel);
+}
+.fc-achievement-toast,
+.dark .fc-achievement-toast{
+  background:var(--yellow);
+}
+.dark .fc-progress-home.compact .fc-progress-welcome{
+  background:var(--blue);
+  color:#fff;
+}
+.dark .fc-progress-home.compact .fc-progress-welcome p{
+  color:#eef5ff;
+}
+.dark .fc-progress-home.compact .fc-next-win{
+  background:var(--yellow);
+  color:#171319;
+}
