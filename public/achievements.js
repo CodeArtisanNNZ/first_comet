@@ -195,15 +195,6 @@
     unlocked.forEach((stage) => {
       if (!state.unlockedTitles.includes(stage.id)) {
         state.unlockedTitles.push(stage.id);
-        if (totals().checkpoints > 0) {
-          state.events.unshift({
-            id: 'title:' + stage.id,
-            kind: 'title',
-            title: stage.title + ' unlocked',
-            detail: stage.outcome,
-            at: Date.now()
-          });
-        }
         changed = true;
       }
     });
