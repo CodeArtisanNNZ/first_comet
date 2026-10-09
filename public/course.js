@@ -133,8 +133,20 @@
       feedback.textContent = 'Try the practice task, then confirm that you checked the result.';
       return;
     }
-    if (progress[key] === index) progress[key] = index + 1;
+    const newlyCompleted = progress[key] === index;
+    if (newlyCompleted) progress[key] = index + 1;
     persist();
+    if (newlyCompleted) {
+      const trackLabel = key === 'algorithms'
+        ? 'Algorithms'
+        : (data.languages.find((track) => track.id === key)?.label || key);
+      window.FirstCometAchievements?.record({
+        id: 'code:' + key + ':' + index,
+        kind: 'skill',
+        title: trackLabel + ' · ' + item.title,
+        detail: item.goal || item.why || 'You practiced and checked this skill.'
+      });
+    }
     render();
     const nextFeedback = root.querySelector('.course-check-feedback');
     nextFeedback.textContent = `Correct. ${item.why} ${storageAvailable ? 'Your progress is saved on this device.' : 'Progress is kept for this page session.'}`;
