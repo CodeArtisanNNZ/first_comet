@@ -1,0 +1,324 @@
+.fc-progress-home{
+  display:grid;
+  grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);
+  gap:14px;
+  margin-bottom:22px;
+}
+.fc-progress-welcome,
+.fc-proof-stats,
+.fc-next-win,
+.fc-weekly-proof,
+.fc-passport,
+.fc-win-history{
+  border:2px solid var(--line);
+  border-radius:16px;
+  background:var(--panel);
+}
+.fc-progress-welcome{
+  padding:20px;
+}
+.fc-progress-welcome h1{
+  margin:6px 0 8px;
+  font-size:clamp(1.8rem,3.2vw,3rem);
+  line-height:1;
+  letter-spacing:-.045em;
+}
+.fc-progress-welcome p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.5;
+}
+.fc-proof-stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  overflow:hidden;
+}
+.fc-proof-stats>div{
+  display:grid;
+  gap:2px;
+  align-content:center;
+  min-height:92px;
+  padding:14px;
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.fc-proof-stats>div:nth-child(2n){border-right:0}
+.fc-proof-stats>div:nth-last-child(-n+2){border-bottom:0}
+.fc-proof-stats strong{
+  font-size:1.55rem;
+  line-height:1;
+}
+.fc-proof-stats span{
+  color:var(--muted);
+  font-size:.7rem;
+}
+.fc-next-win{
+  grid-column:1/-1;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  padding:15px 16px;
+  background:var(--yellow);
+  color:#171319;
+}
+.fc-next-win h2{
+  margin:3px 0 4px;
+  font-size:1.08rem;
+}
+.fc-next-win p{
+  margin:0;
+  font-size:.74rem;
+  line-height:1.4;
+}
+.fc-next-win .primary{
+  flex:none;
+  text-decoration:none;
+}
+.fc-weekly-proof{
+  padding:14px 16px;
+}
+.fc-weekly-proof b{
+  display:block;
+  margin-top:5px;
+  font-size:1rem;
+}
+.fc-weekly-proof p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:.72rem;
+  line-height:1.45;
+}
+.fc-passport{
+  padding:0 15px 14px;
+}
+.fc-passport summary,
+.fc-win-history summary{
+  cursor:pointer;
+  list-style:none;
+}
+.fc-passport summary::-webkit-details-marker,
+.fc-win-history summary::-webkit-details-marker{display:none}
+.fc-passport summary{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:14px;
+  padding-top:14px;
+}
+.fc-passport summary>span:first-child{
+  display:grid;
+  gap:3px;
+}
+.fc-passport summary>span:last-child{
+  font-size:.7rem;
+  font-weight:700;
+}
+.fc-passport-track{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:8px;
+  margin-top:14px;
+}
+.fc-passport-step{
+  display:grid;
+  grid-template-columns:28px 1fr;
+  gap:7px;
+  align-items:center;
+  min-width:0;
+  padding:9px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--paper);
+}
+.fc-passport-step>span{
+  display:grid;
+  place-items:center;
+  width:26px;
+  height:26px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  font-size:.7rem;
+}
+.fc-passport-step b,
+.fc-passport-step small{
+  display:block;
+}
+.fc-passport-step b{
+  font-size:.66rem;
+  line-height:1.2;
+}
+.fc-passport-step small{
+  margin-top:2px;
+  color:var(--muted);
+  font-size:.58rem;
+}
+.fc-passport-step.earned{
+  background:#e3f1dd;
+  color:#183018;
+}
+.fc-passport-step.earned small{color:#315931}
+.fc-passport-step.current{
+  background:var(--cream);
+}
+.fc-passport-step.locked{
+  opacity:.55;
+}
+.fc-passport>p{
+  margin:10px 0 0;
+  color:var(--muted);
+  font-size:.65rem;
+  line-height:1.4;
+}
+.fc-win-history{
+  grid-column:1/-1;
+  padding:0 15px 13px;
+}
+.fc-win-history summary{
+  padding-top:13px;
+  font-size:.75rem;
+  font-weight:700;
+}
+.fc-win-history>div{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:10px;
+}
+.fc-win-history article{
+  display:grid;
+  grid-template-columns:26px 1fr;
+  gap:7px;
+  align-items:start;
+  padding:9px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  background:var(--paper);
+}
+.fc-win-history article>span{
+  display:grid;
+  place-items:center;
+  width:24px;
+  height:24px;
+  border:1px solid var(--line);
+  border-radius:50%;
+  background:var(--yellow);
+  color:#171319;
+  font-size:.65rem;
+}
+.fc-win-history b,
+.fc-win-history small{display:block}
+.fc-win-history b{
+  font-size:.68rem;
+  line-height:1.3;
+}
+.fc-win-history small{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:.6rem;
+  line-height:1.35;
+}
+.fc-win-history>div>p{
+  margin:0;
+  color:var(--muted);
+  font-size:.72rem;
+}
+
+.fc-achievement-toast{
+  position:fixed;
+  right:22px;
+  bottom:22px;
+  z-index:500;
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  width:min(390px,calc(100vw - 32px));
+  padding:14px;
+  border:2px solid var(--line);
+  border-radius:14px;
+  background:var(--yellow);
+  color:#171319;
+  box-shadow:6px 6px 0 #171319;
+  transform:translateY(140%);
+  opacity:0;
+  pointer-events:none;
+}
+.fc-achievement-toast.show{
+  animation:fcAchievementIn 3.2s ease both;
+}
+.fc-achievement-comet{
+  display:grid;
+  place-items:center;
+  width:46px;
+  height:46px;
+  border:2px solid #171319;
+  border-radius:50%;
+  background:#fff5dc;
+  font-size:1.35rem;
+}
+.fc-achievement-toast div:last-child{
+  display:grid;
+  gap:2px;
+}
+.fc-achievement-toast span{
+  font:700 .58rem 'DM Mono',monospace;
+  letter-spacing:.08em;
+}
+.fc-achievement-toast b{
+  font-size:.9rem;
+}
+.fc-achievement-toast small{
+  font-size:.68rem;
+  line-height:1.35;
+}
+@keyframes fcAchievementIn{
+  0%{transform:translateY(140%);opacity:0}
+  10%,82%{transform:translateY(0);opacity:1}
+  100%{transform:translateY(28px);opacity:0}
+}
+
+.dark .fc-next-win,
+.dark .fc-achievement-toast{
+  color:#171319;
+  border-color:#171319;
+}
+.dark .fc-next-win *,
+.dark .fc-achievement-toast *{
+  color:#171319;
+}
+.dark .fc-passport-step.earned{
+  background:#274427;
+  color:#f5f0e8;
+}
+.dark .fc-passport-step.earned small{color:#d5e7d0}
+
+@media(max-width:900px){
+  .fc-progress-home{grid-template-columns:1fr}
+  .fc-next-win,.fc-win-history{grid-column:auto}
+  .fc-passport-track{grid-template-columns:1fr}
+  .fc-win-history>div{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:560px){
+  .fc-proof-stats{grid-template-columns:1fr 1fr}
+  .fc-next-win{
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .fc-next-win .primary{
+    width:100%;
+    text-align:center;
+  }
+  .fc-win-history>div{grid-template-columns:1fr}
+  .fc-achievement-toast{
+    right:16px;
+    bottom:82px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .fc-achievement-toast.show{
+    animation:none;
+    transform:none;
+    opacity:1;
+  }
+}
