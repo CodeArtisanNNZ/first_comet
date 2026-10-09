@@ -134,75 +134,59 @@
 
         <section class="home-starter" aria-labelledby="homeStarterTitle">
           <div class="home-starter-copy">
-            <span class="eyebrow">FIRST COMET · START SMALL</span>
-            <h1 id="homeStarterTitle">You do not need the whole roadmap today.</h1>
-            <p>Make one small thing work. First Comet will show you what that teaches you and what to do next.</p>
+            <span class="eyebrow">FIRST COMET</span>
+            <h1 id="homeStarterTitle">Start with one small win.</h1>
+            <p>You do not need to understand the whole tech world today. Make one thing work, understand it, then take the next step.</p>
             <div class="home-starter-actions">
               <button class="primary" type="button" id="fcTryNow">Try my first code →</button>
-              <button class="secondary" type="button" data-view="careers">I don't know my direction</button>
-              <button class="home-text-action" type="button" id="fcSetupLaptop">Set up my computer →</button>
+              <button class="secondary" type="button" data-view="careers">I don't know where to start</button>
+              <button class="home-text-action" type="button" id="fcSetupLaptop">Set up my computer</button>
             </div>
             <p class="home-starter-status" id="fcQuickStatus" aria-live="polite">Works on your phone, too. Your edits save in this browser.</p>
-          </div>
-          <div class="home-starter-proof" aria-label="How First Comet works">
-            <div><span>01</span><b>Try</b><small>Do one real task.</small></div>
-            <div><span>02</span><b>Understand</b><small>Know what you just learned.</small></div>
-            <div><span>03</span><b>Prove</b><small>Keep evidence of progress.</small></div>
           </div>
         </section>
 
         <section class="home-focus" aria-labelledby="homeFocusTitle">
           <div class="home-section-head">
-            <div><span class="eyebrow">YOUR WORKSPACE</span><h2 id="homeFocusTitle">What do you need today?</h2></div>
-            <p>Pick one. You can come back for the rest later.</p>
+            <div><span class="eyebrow">CHOOSE ONE</span><h2 id="homeFocusTitle">What do you want to do?</h2></div>
           </div>
-          <div class="home-action-grid">
-            <button class="home-action-card home-action-build" id="newProjectBtn">
-              <span>01</span><div><b>Start a project</b><small>Turn one idea into something real.</small></div><i>→</i>
-            </button>
+          <div class="home-action-grid home-action-grid-core">
             <button class="home-action-card" data-view="learn">
-              <span>02</span><div><b>Learn one skill</b><small>Code, practise, check, continue.</small></div><i>→</i>
+              <span>01</span><div><b>Learn one skill</b><small>Practise something useful now.</small></div><i>→</i>
             </button>
-            <button class="home-action-card" data-view="guide">
-              <span>03</span><div><b>Follow my build path</b><small>See what comes next in a real project.</small></div><i>→</i>
+            <button class="home-action-card home-action-build" id="newProjectBtn">
+              <span>02</span><div><b>Start a project</b><small>Turn an idea into real work.</small></div><i>→</i>
             </button>
             <button class="home-action-card" data-view="careers">
-              <span>04</span><div><b>Find my direction</b><small>Explore careers without the hype.</small></div><i>→</i>
-            </button>
-            <button class="home-action-card" data-view="cv">
-              <span>05</span><div><b>Work on my CV</b><small>Build a clean ATS-friendly application CV.</small></div><i>→</i>
-            </button>
-            <button class="home-action-card" id="openProjectBtn">
-              <span>06</span><div><b>Open my project</b><small>Continue files already on this device.</small></div><i>→</i>
+              <span>03</span><div><b>Find my direction</b><small>Explore careers without the hype.</small></div><i>→</i>
             </button>
           </div>
         </section>
 
-        <section class="home-projects" aria-labelledby="homeProjectsTitle">
-          <div class="home-section-head">
-            <div><span class="eyebrow">YOUR WORK</span><h2 id="homeProjectsTitle">Projects</h2></div>
-            <p>Your real work matters more than collecting badges.</p>
-          </div>
+        <details class="home-projects home-compact-details">
+          <summary>
+            <span><span class="eyebrow">YOUR WORK</span><b>My projects</b></span>
+            <span>Open +</span>
+          </summary>
           <div id="projectList" class="project-list"><button class="empty-project" id="emptyAdd"><b>＋</b><span>No projects yet</span><small>Add your first project</small></button></div>
-        </section>
+        </details>
 
-        <section class="home-lower">
-          <details class="home-process">
-            <summary><span><span class="eyebrow">THE BIG PICTURE</span><b>How First Comet takes you from lost to launched</b></span><span>See path +</span></summary>
-            <nav class="journey-nav" aria-label="Project journey">
-              <button class="active"><span>1</span><b>Start</b><small>Choose a small problem</small></button>
-              <i>→</i><button data-view="guide"><span>2</span><b>Build</b><small>Learn while making it</small></button>
-              <i>→</i><button data-nav-view="learn" data-topic-jump="github"><span>3</span><b>Prove</b><small>GitHub, projects, skills</small></button>
-              <i>→</i><button data-view="cv"><span>4</span><b>Present</b><small>CV and career direction</small></button>
-            </nav>
-          </details>
+        <details class="home-more home-compact-details">
+          <summary>
+            <span><span class="eyebrow">MORE WHEN YOU NEED IT</span><b>Other First Comet tools</b></span>
+            <span>Open +</span>
+          </summary>
+          <div class="home-more-grid">
+            <button data-view="guide"><b>Build path</b><small>See the full project journey.</small></button>
+            <button data-view="cv"><b>CV Studio</b><small>Build an ATS-friendly CV.</small></button>
+            <button id="openProjectBtn"><b>Open project</b><small>Continue existing files.</small></button>
+            <button data-view="vscode"><b>VS Code guide</b><small>Learn the real editor.</small></button>
+          </div>
+        </details>
 
-          <aside class="home-community">
-            <span class="eyebrow">FIRST COMET COMMUNITY</span>
-            <p id="fcVisitorStats" role="status" aria-live="polite" title="Real counters begin after the server-side worker is deployed.">Checking visitor statistics…</p>
-            <small>The public count should reflect real visits, not a fake refresh counter.</small>
-          </aside>
-        </section>
+        <footer class="home-quiet-footer">
+          <p id="fcVisitorStats" role="status" aria-live="polite" title="Real counters begin after the server-side worker is deployed.">Checking visitor statistics…</p>
+        </footer>
       </section>
 
             <section class="view" id="view-project">
