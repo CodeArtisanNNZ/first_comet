@@ -453,3 +453,58 @@
   color:#171319 !important;
   opacity:1 !important;
 }
+
+
+/* CV Studio uses blue for structure and coral for action */
+.cv-hero{border-top:5px solid var(--green);padding-top:18px}
+.cv-learn-strip details:first-child{
+  background:linear-gradient(120deg,var(--blue-soft),var(--panel) 70%);
+  border-top:4px solid var(--blue);
+}
+.cv-learn-strip details:last-child{
+  background:linear-gradient(120deg,var(--red-soft),var(--panel) 70%);
+  border-top:4px solid var(--coral);
+}
+.cv-rule-grid>div:nth-child(4n+1){border-top:3px solid var(--blue)}
+.cv-rule-grid>div:nth-child(4n+2){border-top:3px solid var(--coral)}
+.cv-rule-grid>div:nth-child(4n+3){border-top:3px solid var(--yellow)}
+.cv-rule-grid>div:nth-child(4n){border-top:3px solid var(--green)}
+
+.cv-builder-toolbar{
+  background:linear-gradient(100deg,var(--blue-soft),var(--panel) 70%);
+  border-left:5px solid var(--blue);
+}
+.cv-editor-section:nth-of-type(4n+1){border-left:4px solid var(--blue)}
+.cv-editor-section:nth-of-type(4n+2){border-left:4px solid var(--coral)}
+.cv-editor-section:nth-of-type(4n+3){border-left:4px solid var(--yellow)}
+.cv-editor-section:nth-of-type(4n){border-left:4px solid var(--green)}
+.cv-field input:focus,.cv-field textarea:focus{
+  box-shadow:0 0 0 2px var(--blue);
+}
+.cv-entry-editor{
+  background:var(--blue-soft);
+}
+.cv-check-panel{
+  background:linear-gradient(120deg,var(--yellow-soft),var(--panel) 72%);
+  border-top:5px solid var(--yellow);
+}
+.cv-check.pass{
+  background:var(--green-soft);
+}
+.cv-preview-toolbar button:first-child{border-color:var(--blue)}
+.cv-preview-toolbar button:nth-child(2){border-color:var(--coral)}
+.cv-preview-toolbar button:nth-child(3){border-color:var(--green)}
+.cv-job-check{
+  border-left:5px solid var(--blue);
+}
+.cv-export-note{
+  background:linear-gradient(105deg,var(--red-soft),var(--yellow-soft));
+  border-left:5px solid var(--coral);
+}
+
+.dark .cv-entry-editor,
+.dark .cv-check.pass,
+.dark .cv-learn-strip details:first-child,
+.dark .cv-learn-strip details:last-child{
+  color:var(--ink);
+}
