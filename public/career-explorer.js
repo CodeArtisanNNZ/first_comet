@@ -247,6 +247,122 @@
     }
   ];
 
+  const careerLearning = {
+    frontend: {
+      foundation: ['How the web works', 'HTML semantics', 'CSS layout and responsive design', 'JavaScript fundamentals'],
+      core: ['DOM and browser APIs', 'Accessibility', 'Forms and validation', 'Async JavaScript and APIs', 'TypeScript'],
+      tools: ['Git and GitHub', 'React or another modern UI framework', 'Package managers and build tools', 'Browser DevTools', 'Testing basics'],
+      proof: ['Build and deploy a responsive multi-page site', 'Build one API-connected interactive app', 'Show accessibility, loading/error states and mobile polish']
+    },
+    backend: {
+      foundation: ['Programming fundamentals', 'One backend language well', 'HTTP and how the web works', 'Git and command-line basics'],
+      core: ['REST APIs', 'SQL and relational databases', 'Data modelling', 'Authentication and authorization', 'Validation, errors and security basics'],
+      tools: ['A backend framework', 'PostgreSQL or MySQL', 'API testing tools', 'Automated tests', 'Docker and deployment basics'],
+      proof: ['Build a documented CRUD API', 'Add login, roles and protected data', 'Deploy a database-backed service with tests']
+    },
+    fullstack: {
+      foundation: ['HTML, CSS and JavaScript', 'Programming fundamentals', 'Git and GitHub', 'HTTP and APIs'],
+      core: ['Front-end framework', 'Backend development', 'SQL and data modelling', 'Authentication', 'State and form handling'],
+      tools: ['TypeScript', 'React/Next.js or equivalent', 'Backend framework', 'PostgreSQL', 'Deployment and environment variables'],
+      proof: ['Build one complete app from UI to database', 'Include authentication and real CRUD flows', 'Deploy it and document the architecture']
+    },
+    software: {
+      foundation: ['One programming language deeply', 'Problem solving', 'Data structures', 'Algorithms', 'Git'],
+      core: ['OOP and modular design', 'Databases', 'Testing', 'Debugging', 'Operating-system and networking basics'],
+      tools: ['IDE/debugger', 'GitHub workflows', 'Unit/integration testing tools', 'SQL', 'Basic CI/CD'],
+      proof: ['Build a non-trivial application with clean structure', 'Write tests and documentation', 'Solve representative data-structure/algorithm problems and explain trade-offs']
+    },
+    mobile: {
+      foundation: ['Programming fundamentals', 'Mobile UI principles', 'HTTP and APIs', 'Git'],
+      core: ['Flutter/Dart, React Native, Kotlin or Swift', 'Navigation', 'State management', 'Local storage', 'Permissions and device APIs'],
+      tools: ['Android Studio or Xcode', 'Emulator/device debugging', 'Push notifications', 'API integration', 'App signing/release basics'],
+      proof: ['Build a multi-screen mobile app', 'Use an API plus offline/local data', 'Test on real devices and prepare a release build']
+    },
+    qa: {
+      foundation: ['Software-development lifecycle', 'Testing fundamentals', 'Bug reporting', 'Basic programming', 'Git'],
+      core: ['Test design', 'API testing', 'Web automation', 'Regression testing', 'Basic SQL'],
+      tools: ['Playwright/Cypress/Selenium', 'Postman or similar', 'Test runners', 'CI pipelines', 'Browser DevTools'],
+      proof: ['Create a test plan for a real app', 'Automate critical user flows', 'Run the tests in CI and document discovered bugs']
+    },
+    devops: {
+      foundation: ['Linux', 'Networking fundamentals', 'Git', 'Shell scripting', 'How web servers work'],
+      core: ['Containers', 'CI/CD', 'Cloud fundamentals', 'Infrastructure concepts', 'Monitoring and incident basics'],
+      tools: ['Docker', 'GitHub Actions/GitLab CI', 'AWS/Azure/GCP basics', 'Nginx', 'Observability tools', 'Infrastructure as code later'],
+      proof: ['Containerize and deploy an application', 'Create an automated build/deploy pipeline', 'Add logs, health checks and monitoring']
+    },
+    cyber: {
+      foundation: ['Networking', 'Linux', 'Operating-system basics', 'Web fundamentals', 'Python or shell scripting'],
+      core: ['Authentication and access control', 'OWASP web security', 'Cryptography concepts', 'Threat modelling', 'Incident-response basics'],
+      tools: ['Wireshark', 'Burp Suite or OWASP ZAP', 'Security labs/CTFs', 'Git', 'Cloud-security basics'],
+      proof: ['Complete legal hands-on security labs', 'Write a vulnerability report with remediation', 'Secure a small web application and explain the threat model']
+    },
+    analyst: {
+      foundation: ['Spreadsheet skills', 'Basic statistics', 'Data cleaning', 'Business questions and metrics'],
+      core: ['SQL', 'Exploratory data analysis', 'Dashboards', 'Data visualisation', 'Communicating findings'],
+      tools: ['Excel/Google Sheets', 'PostgreSQL/MySQL', 'Power BI or Tableau', 'Python/pandas basics'],
+      proof: ['Analyse a messy real dataset', 'Build a dashboard around clear business questions', 'Present findings and recommendations, not just charts']
+    },
+    dataengineer: {
+      foundation: ['SQL deeply', 'Python', 'Databases', 'Linux and Git', 'Basic software engineering'],
+      core: ['Data modelling', 'ETL/ELT', 'Warehouses', 'Batch and streaming concepts', 'Data quality and orchestration'],
+      tools: ['PostgreSQL', 'dbt', 'Airflow or equivalent', 'Cloud storage/warehouse', 'Docker', 'Spark later when needed'],
+      proof: ['Build an end-to-end data pipeline', 'Transform raw data into analytics-ready tables', 'Add tests, scheduling and documentation']
+    },
+    ai: {
+      foundation: ['Python', 'Statistics and probability', 'Linear algebra', 'Calculus basics', 'Data structures and SQL'],
+      core: ['Data preparation', 'Supervised and unsupervised ML', 'Model evaluation', 'Feature engineering', 'Deep-learning fundamentals'],
+      tools: ['NumPy/pandas', 'scikit-learn', 'PyTorch or TensorFlow', 'Jupyter', 'Git', 'Model/API deployment basics'],
+      proof: ['Train and evaluate a model on a real dataset', 'Explain metrics and failure cases', 'Deploy one model-backed application instead of only notebooks']
+    },
+    embedded: {
+      foundation: ['C/C++', 'Digital electronics', 'Binary and bit operations', 'Basic circuits', 'Computer architecture'],
+      core: ['Microcontrollers', 'Sensors and actuators', 'Serial protocols', 'Interrupts and timing', 'Memory constraints'],
+      tools: ['Arduino/ESP32 or STM32', 'Datasheets', 'Oscilloscope/logic-analyser concepts', 'RTOS basics', 'Embedded Linux later'],
+      proof: ['Build a sensor/device project', 'Communicate between components', 'Document the circuit, firmware and debugging process']
+    },
+    game: {
+      foundation: ['Programming fundamentals', 'Vectors and basic maths', 'Game loops', 'Git', 'Basic art/audio pipeline awareness'],
+      core: ['Unity + C# or Unreal + C++', 'Input and movement', 'Physics/collision', 'Game state and UI', 'Optimisation'],
+      tools: ['Unity or Unreal', 'Profiler/debugger', 'Version control', 'Basic 2D/3D asset workflow'],
+      proof: ['Finish a small playable game', 'Include menus, win/lose states and polish', 'Publish a build and show gameplay plus code samples']
+    },
+    product: {
+      foundation: ['How software products are built', 'User/problem research', 'Clear written communication', 'Basic data literacy'],
+      core: ['Requirements', 'User stories and acceptance criteria', 'Process/system mapping', 'Product metrics', 'Prioritisation and trade-offs'],
+      tools: ['Figma basics', 'Spreadsheets', 'SQL basics', 'Analytics tools', 'Jira/Trello or equivalent', 'API/database concepts'],
+      proof: ['Write a product/requirements case study', 'Map one real user flow and system process', 'Use data or research to justify priorities']
+    },
+    research: {
+      foundation: ['Strong CS fundamentals', 'Maths required by your chosen field', 'Academic reading', 'Programming and experimentation'],
+      core: ['Research methods', 'Experimental design', 'Literature review', 'Statistics', 'Scientific writing and reproducibility'],
+      tools: ['Reference manager', 'Python/R or field-specific tools', 'LaTeX', 'Git', 'Paper-search databases'],
+      proof: ['Reproduce or extend a published result', 'Write a structured research report', 'Build a prototype/experiment and clearly discuss limitations']
+    }
+  };
+
+  function learningRoadmap(c) {
+    const path = careerLearning[c.id];
+    if (!path) return '';
+    const phase = (number, title, items) => `
+      <div class="career-learn-phase">
+        <span>${number}</span>
+        <div><b>${title}</b><ul>${items.map(item => `<li>${esc(item)}</li>`).join('')}</ul></div>
+      </div>`;
+    return `
+      <section class="career-learning">
+        <div class="career-learning-head">
+          <div><span class="eyebrow">LEARNING PATH</span><h4>What you need to learn</h4></div>
+          <small>Learn these in roughly this order. You do not need to master everything before building.</small>
+        </div>
+        <div class="career-learning-grid">
+          ${phase('01','Foundations',path.foundation)}
+          ${phase('02','Core skills',path.core)}
+          ${phase('03','Tools & technology',path.tools)}
+          ${phase('04','Prove it by building',path.proof)}
+        </div>
+      </section>`;
+  }
+
   const familyLabels = {
     all: 'All paths',
     build: 'Software',
@@ -288,7 +404,7 @@
           <summary>See the real picture <span>+</span></summary>
           <div class="career-detail-body">
             <div class="career-fact"><b>What you actually do</b><p>${esc(c.work)}</p></div>
-            <div class="career-fact"><b>Start learning</b><p>${esc(c.learn)}</p></div>
+            ${learningRoadmap(c)}
             <div class="career-pro-con">
               <div class="career-positive"><b>Good side</b><p>${esc(c.good)}</p></div>
               <div class="career-negative"><b>Hard truth</b><p>${esc(c.hard)}</p></div>
