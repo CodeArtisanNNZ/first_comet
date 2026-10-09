@@ -331,3 +331,33 @@
 .dark .fc-next-win .primary{
   color:#fff !important;
 }
+
+
+/* Progress should feel alive without becoming gamified */
+.fc-progress-welcome{
+  border-top:5px solid var(--blue);
+  background:linear-gradient(120deg,var(--blue-soft),var(--panel) 72%);
+}
+.fc-proof-stats>div:nth-child(1){background:var(--blue-soft)}
+.fc-proof-stats>div:nth-child(2){background:var(--red-soft)}
+.fc-proof-stats>div:nth-child(3){background:var(--yellow-soft)}
+.fc-proof-stats>div:nth-child(4){background:var(--green-soft)}
+.fc-weekly-proof{
+  border-top:5px solid var(--coral);
+  background:linear-gradient(110deg,var(--red-soft),var(--panel) 75%);
+}
+.fc-passport{border-top:5px solid var(--blue)}
+.fc-win-history{border-top:5px solid var(--pink)}
+.fc-passport-step:nth-child(5n+1){border-top:3px solid var(--coral)}
+.fc-passport-step:nth-child(5n+2){border-top:3px solid var(--blue)}
+.fc-passport-step:nth-child(5n+3){border-top:3px solid var(--yellow)}
+.fc-passport-step:nth-child(5n+4){border-top:3px solid var(--green)}
+.fc-passport-step:nth-child(5n){border-top:3px solid var(--pink)}
+.fc-win-history article:nth-child(4n+1)>span{background:var(--blue);color:#fff}
+.fc-win-history article:nth-child(4n+2)>span{background:var(--coral);color:#fff}
+.fc-win-history article:nth-child(4n+3)>span{background:var(--yellow);color:#171319}
+.fc-win-history article:nth-child(4n)>span{background:var(--green);color:#fff}
+
+.dark .fc-proof-stats>div{
+  color:var(--ink);
+}
