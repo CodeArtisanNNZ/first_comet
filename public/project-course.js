@@ -89,8 +89,18 @@
       if (!selected) { feedback.textContent = 'Choose an answer first.'; return; }
       if (+selected.value !== item.answer) { feedback.textContent = `Try again. ${item.hint}`; feedback.dataset.result = 'retry'; return; }
       if (!complete && !form.querySelector('[name="practiced"]')?.checked) { feedback.textContent = 'Try the task and confirm you checked the result.'; return; }
-      if (!complete) completed[subject.id].push(item.id);
-      persist(); render();
+      const newlyCompleted = !complete;
+      if (newlyCompleted) completed[subject.id].push(item.id);
+      persist();
+      if (newlyCompleted) {
+        window.FirstCometAchievements?.record({
+          id: 'project:' + subject.id + ':' + item.id,
+          kind: 'step',
+          title: subject.label + ' · ' + item.title,
+          detail: item.goal || 'You practiced and checked this build step.'
+        });
+      }
+      render();
       const result = root.querySelector('.course-check-feedback');
       result.textContent = `Correct. ${item.why} ${storageAvailable ? 'Your progress is saved in this browser.' : 'Progress remains for this page session.'}`;
       result.dataset.result = 'correct'; result.setAttribute('tabindex', '-1'); result.focus({ preventScroll: true });
