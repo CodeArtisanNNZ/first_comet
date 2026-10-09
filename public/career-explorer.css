@@ -234,3 +234,26 @@
   .career-interest-row,.career-filters{overflow-x:auto;flex-wrap:nowrap;padding-bottom:3px}
   .career-interest-row button,.career-filters button{white-space:nowrap}
 }
+
+/* Dark mode: bright career accents keep dark readable text */
+.dark .career-hero aside,
+.dark .career-market-note,
+.dark .career-icon {
+  color:#171319;
+}
+.dark .career-hero aside .eyebrow,
+.dark .career-hero aside b,
+.dark .career-hero aside small,
+.dark .career-market-note > .eyebrow,
+.dark .career-market-note > h2,
+.dark .career-market-note > p,
+.dark .career-market-note > details > summary {
+  color:#171319 !important;
+  opacity:1 !important;
+}
+.dark .career-market-note {
+  border-color:#171319;
+}
+.dark .career-market-note .career-source-links a {
+  color:var(--ink);
+}
