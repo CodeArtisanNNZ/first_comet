@@ -1609,3 +1609,45 @@ body:has(#view-home.active) main{
     font-size:.78rem;
   }
 }
+
+
+/* Vintage flat-card treatment — no gradients on cards */
+.home-starter-copy{
+  background:var(--panel);
+}
+.home-hero-copy{
+  background:var(--panel);
+}
+.home-action-grid-core .home-action-card:nth-child(1){
+  background:var(--blue-soft);
+}
+.home-action-grid-core .home-action-card:nth-child(2){
+  background:var(--red-soft);
+}
+.home-action-grid-core .home-action-card:nth-child(3){
+  background:var(--pink-soft);
+}
+.home-action-grid-core .home-action-card{
+  box-shadow:6px 7px 0 var(--line);
+}
+.home-action-grid-core .home-action-card:hover{
+  box-shadow:9px 10px 0 var(--line);
+}
+.home-compact-details,
+.home-more-grid button,
+.home-projects .project-card,
+.home-projects .empty-project{
+  background:var(--panel);
+}
+.dark .home-hero-copy{
+  background:var(--panel);
+}
+.dark .home-action-grid-core .home-action-card:nth-child(1){
+  background:var(--blue-soft);
+}
+.dark .home-action-grid-core .home-action-card:nth-child(2){
+  background:var(--red-soft);
+}
+.dark .home-action-grid-core .home-action-card:nth-child(3){
+  background:var(--pink-soft);
+}
