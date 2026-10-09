@@ -415,3 +415,43 @@ select:focus{
   .nav-item[data-view="careers"].active{box-shadow:inset 0 3px 0 var(--pink)}
   .nav-item[data-view="cv"].active{box-shadow:inset 0 3px 0 var(--green)}
 }
+
+
+/* Navigation typography — clearer at desktop scale */
+.rail .nav-label{
+  font-size:.72rem;
+  letter-spacing:.12em;
+}
+.nav-item b{
+  font-size:.96rem;
+}
+.nav-item small{
+  font-size:.74rem;
+  line-height:1.3;
+}
+.rail-create{
+  font-size:.9rem;
+}
+.crumb{
+  font-size:.92rem;
+}
+.crumb span,
+.crumb b{
+  font-size:.9rem;
+}
+.mode-chip,
+.icon-button{
+  font-size:.86rem;
+}
+.command-bar{
+  font-size:.9rem;
+}
+.command-bar span:nth-child(2){
+  font-size:.88rem;
+}
+@media(max-width:1000px){
+  .nav-item b,
+  .nav-item small{
+    font-size:inherit;
+  }
+}
