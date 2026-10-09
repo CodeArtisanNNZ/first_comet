@@ -1517,3 +1517,28 @@ body:has(#view-home.active) .command-bar{
     justify-content:flex-start;
   }
 }
+
+
+/* Final desktop composition fixes from live screenshot */
+body:has(#view-home.active) main{
+  padding-left:32px;
+  padding-right:32px;
+  padding-top:30px;
+}
+.fc-returning-progress #view-home .home-secondary-grid .home-projects,
+.fc-returning-progress #view-home .home-secondary-grid .home-more{
+  margin:0;
+}
+.home-secondary-grid .home-compact-details[open]{
+  grid-column:1/-1;
+}
+.home-secondary-grid .home-compact-details[open] .project-list{
+  width:100%;
+}
+@media(max-width:700px){
+  body:has(#view-home.active) main{
+    padding-left:16px;
+    padding-right:16px;
+    padding-top:20px;
+  }
+}
