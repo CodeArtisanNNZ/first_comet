@@ -853,3 +853,60 @@
     grid-template-columns:repeat(2,minmax(0,1fr));
   }
 }
+
+
+/* Returning-home typography scale */
+.fc-progress-home.compact .fc-progress-welcome .eyebrow,
+.fc-progress-home.compact .fc-next-win .eyebrow,
+.fc-progress-details .eyebrow{
+  font-size:.72rem;
+}
+.fc-progress-home.compact .fc-progress-welcome p{
+  font-size:.92rem;
+  line-height:1.5;
+}
+.fc-progress-home.compact .fc-next-win h2{
+  font-size:1.4rem;
+}
+.fc-progress-home.compact .fc-next-win p{
+  font-size:.82rem;
+}
+.fc-progress-home.compact .fc-next-win .primary{
+  font-size:.9rem;
+}
+.fc-proof-strip span{
+  font-size:.78rem;
+}
+.fc-proof-strip b{
+  font-size:.88rem;
+}
+.fc-progress-details>summary{
+  font-size:.8rem;
+}
+.fc-progress-detail-grid b{
+  font-size:.86rem;
+}
+.fc-progress-detail-grid p{
+  font-size:.74rem;
+}
+.fc-passport-step b{
+  font-size:.74rem;
+}
+.fc-passport-step small{
+  font-size:.66rem;
+}
+.fc-mini-history span{
+  font-size:.7rem;
+}
+.fc-achievement-copy>span{
+  font-size:.64rem;
+}
+.fc-achievement-copy>b{
+  font-size:1.02rem;
+}
+.fc-achievement-copy>small{
+  font-size:.74rem;
+}
+.fc-achievement-copy>em{
+  font-size:.7rem;
+}
