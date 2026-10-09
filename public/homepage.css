@@ -1542,3 +1542,70 @@ body:has(#view-home.active) main{
     padding-top:20px;
   }
 }
+
+
+/* Homepage typography scale — readable on desktop without feeling oversized */
+#view-home .eyebrow,
+.home-mission-tag{
+  font-size:.78rem;
+}
+.home-hero-copy>p{
+  font-size:1.05rem;
+  line-height:1.6;
+}
+.home-starter-actions button{
+  font-size:.92rem;
+}
+.home-starter-status{
+  font-size:.82rem!important;
+}
+.trail-stops span{
+  font-size:.74rem;
+}
+.home-section-head h2{
+  font-size:1.55rem;
+}
+.home-action-grid-core .home-action-card b{
+  font-size:1.12rem;
+}
+.home-action-grid-core .home-action-card small{
+  font-size:.82rem;
+  line-height:1.45;
+}
+.home-compact-details>summary b{
+  font-size:.95rem;
+}
+.home-compact-details>summary .eyebrow{
+  font-size:.68rem;
+}
+.home-compact-details>summary>span:last-child{
+  font-size:.78rem;
+}
+.home-more-grid b{
+  font-size:.84rem;
+}
+.home-more-grid small{
+  font-size:.74rem;
+}
+#view-home #fcVisitorStats{
+  font-size:.72rem;
+}
+.scene-chip small,
+.scene-status{
+  font-size:.66rem;
+}
+@media(max-width:700px){
+  #view-home .eyebrow,
+  .home-mission-tag{
+    font-size:.7rem;
+  }
+  .home-hero-copy>p{
+    font-size:.98rem;
+  }
+  .home-action-grid-core .home-action-card b{
+    font-size:1.05rem;
+  }
+  .home-action-grid-core .home-action-card small{
+    font-size:.78rem;
+  }
+}
