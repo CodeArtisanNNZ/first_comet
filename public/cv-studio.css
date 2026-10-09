@@ -508,3 +508,12 @@
 .dark .cv-learn-strip details:last-child{
   color:var(--ink);
 }
+
+
+/* Export note now uses theme-soft colors, so dark mode returns to light text */
+.dark .cv-export-note,
+.dark .cv-export-note b,
+.dark .cv-export-note span{
+  color:var(--ink) !important;
+  border-color:var(--line);
+}
