@@ -1,5 +1,19 @@
 # Build state
 
+## Real Accomplishment System (2026-10-09)
+
+- Added a progress-first homepage for returning learners. Once real progress exists, the beginner hero no longer dominates the first screen.
+- Homepage now shows real saved evidence: completed learning checkpoints, projects started, Build Journey titles earned, and CV readiness.
+- Added **Next Small Win** so learners always see one concrete next action instead of the whole curriculum.
+- Added **Developer Passport** with Explorer → Project Starter → Web Page Builder → Git & GitHub Starter → Connected App Builder → Project Launcher progression tied to actual completed requirements.
+- Added **This Week** recap and **Recent Accomplishments** history. Only new completions are timestamped; older saved progress is not falsely dated.
+- Coding milestones and project-building steps now log an accomplishment only on first verified completion. Repeating/reviewing a completed check does not create duplicate rewards.
+- Creating a real project logs a project-start accomplishment.
+- Completing all 8 CV Studio readiness checks logs a CV foundation accomplishment.
+- Meaningful completions trigger a short comet celebration. If a Build Journey title is genuinely unlocked by that completion, the title unlock becomes the celebration.
+- No random XP, streak-loss pressure, loot boxes, or fake ATS/job-readiness scores were added. Rewards are tied to real work and evidence.
+- Reduced-motion preferences are respected.
+
 ## CV Studio (2026-10-09)
 
 - Added a dedicated **CV Studio** workspace for students to learn ATS-friendly CV/resume structure and build one inside First Comet.
