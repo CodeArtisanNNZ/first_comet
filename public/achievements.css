@@ -683,7 +683,7 @@
   background:
     radial-gradient(circle at 82% 28%,#ffffff 0 1px,transparent 2px),
     radial-gradient(circle at 72% 66%,#ffffffaa 0 1px,transparent 2px),
-    linear-gradient(145deg,#171b2e,#1b315c 64%,#2b2136);
+    linear-gradient(145deg,color-mix(in srgb,var(--blue) 18%,#171319),color-mix(in srgb,var(--blue) 58%,#171319) 64%,color-mix(in srgb,var(--coral) 14%,#171319));
   color:#fff;
   box-shadow:6px 7px 0 var(--line);
 }
@@ -709,7 +709,7 @@
   animation:fcDashboardComet 5.6s ease-in-out infinite;
 }
 .fc-progress-home.compact .fc-progress-welcome .eyebrow{
-  color:#8fc5ff;
+  color:color-mix(in srgb,var(--blue) 55%,white);
 }
 .fc-progress-home.compact .fc-progress-welcome h1{
   position:relative;
@@ -722,7 +722,7 @@
   position:relative;
   z-index:2;
   max-width:590px;
-  color:#dce7f6;
+  color:color-mix(in srgb,var(--blue) 18%,white);
 }
 .fc-progress-home.compact .fc-progress-welcome p b{
   color:#fff;
