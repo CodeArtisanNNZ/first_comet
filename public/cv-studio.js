@@ -243,6 +243,7 @@
           <span class="eyebrow">LIVE PREVIEW</span>
           <div>
             <button type="button" class="secondary" id="cvDownloadText">Parser test .txt</button>
+            <button type="button" class="secondary" id="cvDownloadWord">Word .doc</button>
             <button type="button" class="primary" id="cvPrint">Save as PDF</button>
           </div>
         </div>
@@ -493,15 +494,40 @@
     location.reload();
   });
 
+  function exportDocumentHtml() {
+    return '<!doctype html><html><head><meta charset="utf-8"><title>' + esc(slugName()) + '-CV</title>' +
+      '<style>@page{size:A4;margin:12mm 14mm}*{box-sizing:border-box}body{margin:0;color:#111;background:#fff;font-family:Arial,Helvetica,sans-serif;font-size:10.5pt;line-height:1.38}' +
+      '.resume-head{padding-bottom:10px;border-bottom:1.5px solid #222}.resume-head h1{margin:0;font-size:22pt;line-height:1}.resume-target{margin:5px 0 2px;font-size:11.5pt;font-weight:700}.resume-contact{margin:5px 0 0;font-size:9.5pt}' +
+      '.resume-section{margin-top:14px}.resume-section h2{margin:0 0 6px;padding-bottom:3px;border-bottom:1px solid #555;font-size:11pt;text-transform:uppercase;letter-spacing:.04em}.resume-section p{margin:4px 0}.resume-entry{margin:0 0 9px}' +
+      '.resume-entry-head,.resume-cert{display:flex;justify-content:space-between;gap:16px}.resume-entry-head>span,.resume-cert>span{flex:none;font-size:9.5pt;text-align:right}.resume-entry-head>div span,.resume-cert div span{font-weight:400}.resume-meta{font-size:9.5pt;color:#333}.resume-entry ul{margin:4px 0 0;padding-left:18px}.resume-entry li{margin:2px 0}</style>' +
+      '</head><body>' + root.querySelector('#cvPaper').innerHTML + '</body></html>';
+  }
+
   root.querySelector('#cvPrint').addEventListener('click', () => {
-    document.body.classList.add('cv-printing');
-    const oldTitle = document.title;
-    document.title = slugName() + '-CV';
-    window.print();
-    setTimeout(() => {
-      document.title = oldTitle;
-      document.body.classList.remove('cv-printing');
-    }, 500);
+    const printWindow = window.open('', '_blank', 'width=900,height=1000');
+    if (!printWindow) {
+      document.body.classList.add('cv-printing');
+      window.print();
+      setTimeout(() => document.body.classList.remove('cv-printing'), 500);
+      return;
+    }
+    printWindow.document.open();
+    printWindow.document.write(exportDocumentHtml());
+    printWindow.document.close();
+    printWindow.document.title = slugName() + '-CV';
+    printWindow.focus();
+    setTimeout(() => printWindow.print(), 250);
+  });
+
+  root.querySelector('#cvDownloadWord').addEventListener('click', () => {
+    const html = exportDocumentHtml();
+    const blob = new Blob(['\\ufeff', html], { type: 'application/msword;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = slugName() + '-CV.doc';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
   });
 
   root.querySelector('#cvDownloadText').addEventListener('click', () => {
