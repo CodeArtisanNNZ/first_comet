@@ -243,8 +243,14 @@
     }).join('');
 
     const history = state.events.filter(event => ['skill', 'step', 'title', 'project'].includes(event.kind)).slice(0, 4);
-    const hasProgress = t.checkpoints > 0 || t.projects > 0 || t.titles > 0;
+    const hasProgress = t.checkpoints > 0 || t.projects > 0 || t.titles > 0 || cv.started;
     document.body.classList.toggle('fc-returning-progress', hasProgress);
+    root.hidden = !hasProgress;
+    if (!hasProgress) {
+      root.innerHTML = '';
+      writeAchievementState(state);
+      return;
+    }
 
     root.innerHTML = `
       <section class="fc-progress-home ${hasProgress ? 'has-progress' : 'new-learner'}">
