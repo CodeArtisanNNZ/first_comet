@@ -253,3 +253,65 @@
   .course-language { transition: none; }
   .course-language:hover { transform: none; }
 }
+
+
+/* Course UI color rhythm: blue = learn, coral = build, yellow = checkpoint */
+.project-path-intro{
+  border-top:5px solid var(--coral);
+  background:linear-gradient(120deg,var(--red-soft),var(--panel) 78%);
+}
+.project-subject-card:nth-child(4n+1){border-top:5px solid var(--blue)}
+.project-subject-card:nth-child(4n+2){border-top:5px solid var(--coral)}
+.project-subject-card:nth-child(4n+3){border-top:5px solid var(--yellow)}
+.project-subject-card:nth-child(4n){border-top:5px solid var(--green)}
+.project-code-links a:hover{background:var(--blue-soft)}
+.learn-sections button:nth-child(odd){border-color:var(--blue)}
+.learn-sections button:nth-child(even){border-color:var(--coral)}
+.learn-sections button.active,
+.course-tabs button.active,
+.course-algorithm-code nav button.active{
+  background:var(--blue);
+  color:#fff;
+}
+.course-start-note{
+  border-left:5px solid var(--blue);
+  background:linear-gradient(110deg,var(--blue-soft),var(--panel) 72%);
+}
+.course-language:nth-child(3n+1){border-top:4px solid var(--blue)}
+.course-language:nth-child(3n+2){border-top:4px solid var(--coral)}
+.course-language:nth-child(3n){border-top:4px solid var(--yellow)}
+.course-language.active{
+  background:var(--blue-soft);
+}
+.course-track-brief{
+  border-top:5px solid var(--blue);
+}
+.course-word:nth-child(4n+1){border-left:4px solid var(--blue)}
+.course-word:nth-child(4n+2){border-left:4px solid var(--coral)}
+.course-word:nth-child(4n+3){border-left:4px solid var(--yellow)}
+.course-word:nth-child(4n){border-left:4px solid var(--green)}
+.course-goal{
+  background:var(--blue-soft);
+  border-left:4px solid var(--blue);
+}
+.course-practice{
+  background:var(--red-soft);
+  border-left:4px solid var(--coral);
+}
+.course-check{
+  border-top:4px solid var(--yellow);
+}
+.course-done-tag{
+  background:var(--green-soft);
+}
+.course-check-feedback[data-result="correct"]{
+  background:var(--green-soft);
+  border-left:4px solid var(--green);
+}
+.course-check-feedback[data-result="retry"]{
+  background:var(--red-soft);
+  border-left:4px solid var(--coral);
+}
+.course-next{
+  border-color:var(--blue);
+}
