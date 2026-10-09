@@ -1,5 +1,17 @@
 # Build state
 
+## Homepage Visual Interest Upgrade (2026-10-10)
+
+Implemented the selected homepage ideas without adding more visible sections:
+
+- **Visual choice objects:** Learn uses a mini code window, Start a project uses a folder object, and Find my direction uses a compass/orbit object.
+- **Compact Comet Trail:** New users see Start → Learn → Build → Ship. Returning users get a progress-aware trail that advances with earned Build Journey stages.
+- **Interactive progress trail:** Returning learners can click or keyboard-open the trail to expand their detailed progress/Developer Passport.
+- **Meaningful celebration:** New verified accomplishments trigger a short comet streak/spark animation with a grounded completion message. Fresh achievements get one subtle glow the next time the learner returns Home.
+- **More depth:** Added restrained gradients, orbit/dot details, layered shadows, colored surface levels and object-specific hover motion instead of adding more homepage content.
+- Reduced-motion preferences are respected.
+- Existing homepage IDs and shared navigation were preserved; syntax/CSS structure checks passed.
+
 ## Homepage Simplification (2026-10-09)
 
 - Reduced visible homepage choices to three core actions for new learners: Learn one skill, Start a project, Find my direction.
