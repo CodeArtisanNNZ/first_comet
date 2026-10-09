@@ -309,6 +309,36 @@
         </details>
       </section>`;
 
+    const trail = root.querySelector('.returning-trail');
+    const details = root.querySelector('.fc-progress-details');
+    const openProgress = () => {
+      if (!details) return;
+      details.open = true;
+      details.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    };
+    trail?.setAttribute('role', 'button');
+    trail?.setAttribute('tabindex', '0');
+    trail?.setAttribute('title', 'Open Developer Passport and progress');
+    trail?.addEventListener('click', openProgress);
+    trail?.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openProgress();
+      }
+    });
+
+    if (latest && document.querySelector('#view-home.active')) {
+      try {
+        const glowKey = 'fc-home-glow-v1';
+        if (localStorage.getItem(glowKey) !== latest.id) {
+          const welcome = root.querySelector('.fc-progress-welcome');
+          welcome?.classList.add('just-earned');
+          localStorage.setItem(glowKey, latest.id);
+          window.setTimeout(() => welcome?.classList.remove('just-earned'), 1700);
+        }
+      } catch {}
+    }
+
     writeAchievementState(state);
   }
 
