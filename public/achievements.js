@@ -338,10 +338,26 @@
       at: Date.now()
     };
     state.events.unshift(item);
+
+    const newlyUnlocked = unlockedStages().find((stage) => !state.unlockedTitles.includes(stage.id));
+    let celebration = item;
+    if (newlyUnlocked) {
+      state.unlockedTitles.push(newlyUnlocked.id);
+      const titleEvent = {
+        id: 'title:' + newlyUnlocked.id,
+        kind: 'title',
+        title: newlyUnlocked.title + ' unlocked',
+        detail: newlyUnlocked.outcome,
+        at: Date.now()
+      };
+      state.events.unshift(titleEvent);
+      celebration = titleEvent;
+    }
+
     writeAchievementState(state);
-    celebrate(item);
+    celebrate(celebration);
     render();
-    window.dispatchEvent(new CustomEvent('fc:progress-changed', { detail: item }));
+    window.dispatchEvent(new CustomEvent('fc:progress-changed', { detail: celebration }));
     return true;
   }
 
