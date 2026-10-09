@@ -801,3 +801,55 @@
 @media(prefers-reduced-motion:reduce){
   .fc-progress-home.compact .fc-progress-welcome:after{animation:none}
 }
+
+
+/* Returning home alignment pass */
+.fc-progress-home.compact{
+  width:100%;
+  max-width:none;
+  grid-template-columns:minmax(0,1.35fr) minmax(340px,.65fr);
+  gap:16px;
+  margin:0 0 16px;
+}
+.fc-progress-home.compact .fc-progress-welcome,
+.fc-progress-home.compact .fc-next-win{
+  min-height:210px;
+  height:100%;
+}
+.fc-progress-home.compact .fc-next-win{
+  align-items:flex-end;
+}
+.fc-progress-home.compact .fc-next-win>div{
+  align-self:center;
+}
+.fc-progress-home.compact .returning-trail{
+  width:100%;
+  max-width:none!important;
+  margin:0;
+  padding:14px 16px 8px;
+}
+.fc-proof-strip{
+  width:100%;
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:10px;
+}
+.fc-proof-strip span{
+  display:flex;
+  align-items:center;
+  min-height:44px;
+  border-radius:12px;
+}
+.fc-progress-details{
+  width:100%;
+}
+@media(max-width:980px){
+  .fc-progress-home.compact{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:650px){
+  .fc-proof-strip{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
