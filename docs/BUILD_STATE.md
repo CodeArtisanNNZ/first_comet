@@ -1,5 +1,16 @@
 # Build state
 
+## Homepage Simplification (2026-10-09)
+
+- Reduced visible homepage choices to three core actions for new learners: Learn one skill, Start a project, Find my direction.
+- Removed the separate visible proof explainer, six-card action grid, Big Picture block, and community panel from the main flow.
+- Projects are now collapsed under **My projects** and secondary tools are collapsed under **Other First Comet tools**.
+- Visitor statistics remain public but are moved into a quiet footer line.
+- Returning learners see a compact progress dashboard with one next action; starter and choice grid are hidden for them.
+- Weekly recap, Developer Passport and recent accomplishments are moved under a single **See my progress** disclosure instead of separate homepage cards.
+- Existing project, onboarding, visitor and navigation IDs were preserved.
+- Homepage and achievement scripts/styles passed syntax and structural checks.
+
 ## First Comet Color System Refresh (2026-10-09)
 
 - Expanded the original yellow/coral palette into a semantic product-wide system.
