@@ -1,5 +1,17 @@
 # Build state
 
+## Homepage Layout Realignment from Live Screenshot (2026-10-10)
+
+- Unified the Home view around one 1280px frame instead of mixed 1040/1100px caps.
+- Returning dashboard now uses a wider 1.35fr / .65fr two-column hero and equal-height top cards.
+- Returning Comet Trail now explicitly fills the full grid width instead of inheriting the old 610px cap.
+- Progress stats now use four equal columns instead of intrinsic text-width pills.
+- My Projects and Other First Comet Tools now share one two-column lower grid and expand full-width when opened.
+- Visitor statistics are flattened into the footer rather than rendered as a floating pill on Home.
+- Home page desktop padding and command-bar centering were normalized to the same workspace frame.
+- Mobile collapses back to one column.
+- Existing navigation and functional IDs preserved; structure checks passed.
+
 ## Homepage Visual Interest Upgrade (2026-10-10)
 
 Implemented the selected homepage ideas without adding more visible sections:
