@@ -1,5 +1,15 @@
 # Build state
 
+## Career Explorer (2026-10-09)
+
+- Added a dedicated **Careers** workspace view for CSE students who are unsure which direction to choose.
+- Career cards stay compact at first and expand into: what the role actually does, what to learn, good side, hard truth, Bangladesh opportunity, outside/remote opportunity, future direction, and a market signal.
+- Included major paths across frontend, backend, full-stack, software engineering, mobile, QA automation, cloud/DevOps/SRE, cybersecurity, data analysis, data engineering, AI/ML/data science, embedded/IoT/robotics, game development, product/business/systems analysis, and research/academia.
+- Added interest-based discovery buttons (visual work, logic, data, security, systems, hardware, business, creative work) plus career-family filters.
+- Added a market-reality note with source links to BIDA, World Bank, World Economic Forum, and U.S. Bureau of Labor Statistics.
+- Copy intentionally avoids salary promises, guaranteed job claims, and hype. It tells learners where paths are competitive, niche, experience-heavy, or vulnerable to automation.
+- Responsive layout works as a card grid on larger screens and a single-column list on phones.
+
 ## Visual-first Build Journey (2026-10-08)
 
 - Reworked the five-stage Build Journey so closed cards show only the illustration, stage name, one short line, status, and a **Tell me more** control.
