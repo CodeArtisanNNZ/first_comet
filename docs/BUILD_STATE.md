@@ -1,5 +1,18 @@
 # Build state
 
+## Homepage Reorganization (2026-10-09)
+
+- Reorganized the homepage around four priorities: learner progress/start, one useful action for today, real projects, then the larger journey/community context.
+- New learners now see one compact starter hero instead of a progress dashboard plus a second beginner hero.
+- Returning learners with real saved progress see the accomplishment dashboard first; the beginner starter automatically gets out of the way.
+- Replaced three oversized launch cards with six compact workspace actions: Start a project, Learn one skill, Follow my build path, Find my direction, Work on my CV, and Open my project.
+- Career Explorer and CV Studio are reachable directly from the homepage without becoming large homepage sections.
+- Projects now have a dedicated, quieter section emphasizing real work over badges.
+- The full Start → Build → Prove → Present flow is moved into a collapsed **Big Picture** section.
+- Visitor statistics are grouped into a small community panel instead of sitting alone in the main flow.
+- Added responsive single-column behavior on phones and explicit dark-mode contrast for bright homepage accents.
+- Existing IDs and behaviors for Code Lab start, computer setup, new/open project, project list, and visitor statistics were preserved.
+
 ## Real Accomplishment System (2026-10-09)
 
 - Added a progress-first homepage for returning learners. Once real progress exists, the beginner hero no longer dominates the first screen.
