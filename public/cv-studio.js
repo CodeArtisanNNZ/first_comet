@@ -384,6 +384,14 @@
       <div class="cv-check ${ok ? 'pass' : ''}">
         <span>${ok ? '✓' : '○'}</span><b>${esc(labelText)}</b>
       </div>`).join('');
+    if (score === 8) {
+      window.FirstCometAchievements?.record({
+        id: 'cv:readiness:8',
+        kind: 'skill',
+        title: 'CV foundation complete',
+        detail: 'Your CV now meets all eight First Comet readiness checks. Tailor it to each real application.'
+      });
+    }
   }
 
   const STOP = new Set(('the a an and or to of in on for with from as at by is are be this that you your our we they their will can should must have has had ' +
