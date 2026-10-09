@@ -144,6 +144,13 @@
   }
 
   function nextNeed() {
+    if (stages.every(stageComplete)) {
+      return {
+        stage: { title: 'Project Launcher' },
+        need: { label: 'Choose your next direction' },
+        href: '#learn/project'
+      };
+    }
     const stage = currentStage();
     const need = stage.needs.find((entry) => !needComplete(entry)) || stage.needs[0];
     return { stage, need, href: routeForNeed(need) };
