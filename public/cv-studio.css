@@ -431,3 +431,25 @@
     margin:0;
   }
 }
+
+/* Dark mode: yellow CV accents must remain high-contrast */
+.dark .cv-hero aside,
+.dark .cv-check-head > strong,
+.dark .cv-export-note {
+  color:#171319;
+  border-color:#171319;
+}
+.dark .cv-hero aside .eyebrow,
+.dark .cv-hero aside b,
+.dark .cv-hero aside small,
+.dark .cv-export-note b,
+.dark .cv-export-note span {
+  color:#171319 !important;
+  opacity:1 !important;
+}
+.dark .cv-job-check > summary,
+.dark .cv-job-check > .cv-section-note,
+.dark .cv-job-check > .cv-field > span {
+  color:#171319 !important;
+  opacity:1 !important;
+}
