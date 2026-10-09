@@ -252,6 +252,10 @@
       return;
     }
 
+    const trailPhase = t.titles === 0 ? 0 : t.titles === 1 ? 1 : t.titles < 4 ? 2 : 3;
+    const trailProgress = [8, 35, 68, 94][trailPhase];
+    const trailLabels = ['Start', 'Learn', 'Build', 'Ship'];
+
     root.innerHTML = `
       <section class="fc-progress-home compact">
         <div class="fc-progress-welcome">
@@ -269,6 +273,14 @@
             <p>${esc(next.stage.title)}</p>
           </div>
           <a class="primary" href="${esc(next.href)}">Continue →</a>
+        </div>
+
+        <div class="home-comet-trail returning-trail" style="--trail-progress:${trailProgress}%" aria-label="Your First Comet journey progress">
+          <span class="trail-comet" aria-hidden="true">☄</span>
+          <div class="trail-line" aria-hidden="true"><i></i></div>
+          <div class="trail-stops">
+            ${trailLabels.map((label, index) => '<span class="' + (index < trailPhase ? 'done' : index === trailPhase ? 'active' : '') + '"><b>' + label + '</b></span>').join('')}
+          </div>
         </div>
 
         <div class="fc-proof-strip" aria-label="Your real progress">
@@ -311,10 +323,18 @@
       document.body.appendChild(layer);
     }
     layer.innerHTML = `
-      <div class="fc-achievement-comet" aria-hidden="true">☄</div>
-      <div><span>${event.kind === 'title' ? 'TITLE UNLOCKED' : event.kind === 'project' ? 'PROJECT STARTED' : 'PROGRESS PROVEN'}</span>
-      <b>${esc(event.title)}</b>
-      <small>${esc(event.detail || 'You completed something real.')}</small></div>`;
+      <div class="fc-achievement-visual" aria-hidden="true">
+        <i class="fc-spark fc-spark-a">✦</i>
+        <i class="fc-spark fc-spark-b">•</i>
+        <span class="fc-achievement-comet">☄</span>
+        <span class="fc-comet-streak"></span>
+      </div>
+      <div class="fc-achievement-copy">
+        <span>${event.kind === 'title' ? 'TITLE UNLOCKED' : event.kind === 'project' ? 'PROJECT STARTED' : 'PROGRESS PROVEN'}</span>
+        <b>${esc(event.title)}</b>
+        <small>${esc(event.detail || 'You completed something real.')}</small>
+        <em>${event.kind === 'title' ? 'A new stage is yours.' : 'You built that progress yourself.'}</em>
+      </div>`;
     layer.classList.remove('show');
     void layer.offsetWidth;
     layer.classList.add('show');
