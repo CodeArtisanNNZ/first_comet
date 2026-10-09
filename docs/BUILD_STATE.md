@@ -1,5 +1,14 @@
 # Build state
 
+## First Comet Color System Refresh (2026-10-09)
+
+- Expanded the original yellow/coral palette into a semantic product-wide system.
+- Red/coral now signals building and action; blue signals learning/tools; yellow signals progress/next; green signals completion; pink signals exploration/career.
+- Added soft light/dark variants for red, blue, yellow, green and pink.
+- Applied the palette to navigation, homepage actions, progress dashboard, Build Journey, Learning Hub/Code Lab, coding course, Career Explorer and CV Studio.
+- Added explicit dark-mode contrast overrides where older yellow-specific text rules conflicted with the new soft colors.
+- Kept the UI cohesive by using colored borders, badges, small panels and selected cards instead of saturating every surface.
+
 ## Homepage Reorganization (2026-10-09)
 
 - Reorganized the homepage around four priorities: learner progress/start, one useful action for today, real projects, then the larger journey/community context.
