@@ -607,3 +607,13 @@ body[data-level="Beginner"] #learn-localhost .milestone-current {
 .lab-feedback[data-result="retry"]{
   background:var(--red-soft);
 }
+
+
+.dark .learning-hub-intro aside,
+.dark .lab-intro aside{
+  color:var(--ink);
+}
+.dark .learning-hub-intro aside *,
+.dark .lab-intro aside *{
+  color:var(--ink);
+}
