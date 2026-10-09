@@ -142,6 +142,16 @@
               <button class="home-text-action" type="button" id="fcSetupLaptop">Set up my computer</button>
             </div>
             <p class="home-starter-status" id="fcQuickStatus" aria-live="polite">Works on your phone, too. Your edits save in this browser.</p>
+            <div class="home-comet-trail" aria-label="First Comet journey: Start, Learn, Build, Ship">
+              <span class="trail-comet" aria-hidden="true">☄</span>
+              <div class="trail-line" aria-hidden="true"><i style="--trail-progress:8%"></i></div>
+              <div class="trail-stops">
+                <span class="active"><b>Start</b></span>
+                <span><b>Learn</b></span>
+                <span><b>Build</b></span>
+                <span><b>Ship</b></span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -150,14 +160,17 @@
             <div><span class="eyebrow">CHOOSE ONE</span><h2 id="homeFocusTitle">What do you want to do?</h2></div>
           </div>
           <div class="home-action-grid home-action-grid-core">
-            <button class="home-action-card" data-view="learn">
-              <span>01</span><div><b>Learn one skill</b><small>Practise something useful now.</small></div><i>→</i>
+            <button class="home-action-card home-action-learn" data-view="learn">
+              <span class="home-card-object code-window" aria-hidden="true"><i></i><i></i><i></i></span>
+              <div><b>Learn one skill</b><small>Practise something useful now.</small></div><em>→</em>
             </button>
             <button class="home-action-card home-action-build" id="newProjectBtn">
-              <span>02</span><div><b>Start a project</b><small>Turn an idea into real work.</small></div><i>→</i>
+              <span class="home-card-object project-folder" aria-hidden="true"><i></i></span>
+              <div><b>Start a project</b><small>Turn an idea into real work.</small></div><em>→</em>
             </button>
-            <button class="home-action-card" data-view="careers">
-              <span>03</span><div><b>Find my direction</b><small>Explore careers without the hype.</small></div><i>→</i>
+            <button class="home-action-card home-action-direction" data-view="careers">
+              <span class="home-card-object direction-compass" aria-hidden="true"><i></i></span>
+              <div><b>Find my direction</b><small>Explore careers without the hype.</small></div><em>→</em>
             </button>
           </div>
         </section>
