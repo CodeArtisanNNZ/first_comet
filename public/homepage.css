@@ -426,3 +426,190 @@
 .dark .home-action-card:nth-child(4)>span{color:#171319}
 .dark .home-action-card:nth-child(5)>span,
 .dark .home-action-card:nth-child(6)>span{color:#fff}
+
+
+/* Calm homepage v2: fewer visible choices, more progressive disclosure */
+.home-starter{
+  display:block;
+  max-width:920px;
+  margin:0 auto 22px;
+}
+.home-starter-copy{
+  padding:34px 32px;
+  border-top:5px solid var(--blue);
+}
+.home-starter-copy h1{
+  max-width:720px;
+}
+.home-starter-actions{
+  margin-top:20px;
+}
+.home-focus{
+  max-width:1040px;
+  margin:0 auto 16px;
+  padding:16px;
+  border-top:0;
+}
+.home-action-grid-core{
+  grid-template-columns:repeat(3,minmax(0,1fr));
+}
+.home-action-grid-core .home-action-card{
+  min-height:92px;
+}
+.home-action-grid-core .home-action-card:nth-child(1){
+  background:var(--blue-soft);
+  color:var(--ink);
+  border-top:4px solid var(--blue);
+}
+.home-action-grid-core .home-action-card:nth-child(1)>span{
+  background:var(--blue);
+  color:#fff;
+  border-color:var(--line);
+}
+.home-action-grid-core .home-action-card:nth-child(1) small,
+.home-action-grid-core .home-action-card:nth-child(1) i{
+  color:var(--muted);
+}
+.home-action-grid-core .home-action-card:nth-child(2){
+  background:var(--red-soft);
+  color:var(--ink);
+  border-top:4px solid var(--coral);
+}
+.home-action-grid-core .home-action-card:nth-child(2)>span{
+  background:var(--coral);
+  color:#fff;
+  border-color:var(--line);
+}
+.home-action-grid-core .home-action-card:nth-child(2) small,
+.home-action-grid-core .home-action-card:nth-child(2) i{
+  color:var(--muted);
+}
+.home-action-grid-core .home-action-card:nth-child(3){
+  background:var(--pink-soft);
+  color:var(--ink);
+  border-top:4px solid var(--pink);
+}
+.home-action-grid-core .home-action-card:nth-child(3)>span{
+  background:var(--pink);
+  color:#171319;
+}
+.home-action-grid-core .home-action-card:nth-child(3) small,
+.home-action-grid-core .home-action-card:nth-child(3) i{
+  color:var(--muted);
+}
+
+.home-compact-details{
+  max-width:1040px;
+  margin:10px auto 0;
+  padding:0 15px 13px;
+  border:1.5px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+}
+.home-compact-details>summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:13px 0 0;
+  cursor:pointer;
+  list-style:none;
+}
+.home-compact-details>summary::-webkit-details-marker{display:none}
+.home-compact-details>summary>span:first-child{
+  display:grid;
+  gap:2px;
+}
+.home-compact-details>summary>span:last-child{
+  font-size:.68rem;
+  font-weight:700;
+  color:var(--muted);
+}
+.home-compact-details .project-list{
+  margin-top:12px;
+  padding:2px 0 4px;
+}
+.home-more-grid{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+  margin-top:12px;
+}
+.home-more-grid button{
+  display:grid;
+  gap:4px;
+  min-height:72px;
+  padding:11px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:var(--paper);
+  color:var(--ink);
+  text-align:left;
+  cursor:pointer;
+}
+.home-more-grid button:nth-child(1){border-top:3px solid var(--coral)}
+.home-more-grid button:nth-child(2){border-top:3px solid var(--green)}
+.home-more-grid button:nth-child(3){border-top:3px solid var(--yellow)}
+.home-more-grid button:nth-child(4){border-top:3px solid var(--blue)}
+.home-more-grid b{font-size:.72rem}
+.home-more-grid small{
+  color:var(--muted);
+  font-size:.63rem;
+  line-height:1.35;
+}
+
+.home-quiet-footer{
+  max-width:1040px;
+  margin:14px auto 0;
+  padding:8px 2px;
+  border-top:1px solid color-mix(in srgb,var(--line) 28%,transparent);
+}
+.home-quiet-footer p{
+  margin:0;
+  color:var(--muted);
+  font-size:.66rem;
+}
+
+/* Returning learners already have a next action in the progress card. */
+.fc-returning-progress #view-home .home-starter,
+.fc-returning-progress #view-home .home-focus{
+  display:none;
+}
+.fc-returning-progress #view-home .home-projects{
+  margin-top:10px;
+}
+
+/* Neutralize old six-card color rules on the new three-card grid */
+.dark .home-action-grid-core .home-action-card:nth-child(1),
+.dark .home-action-grid-core .home-action-card:nth-child(2),
+.dark .home-action-grid-core .home-action-card:nth-child(3){
+  color:var(--ink);
+}
+.dark .home-action-grid-core .home-action-card:nth-child(1) small,
+.dark .home-action-grid-core .home-action-card:nth-child(2) small,
+.dark .home-action-grid-core .home-action-card:nth-child(3) small{
+  color:var(--muted);
+}
+
+@media(max-width:850px){
+  .home-action-grid-core{
+    grid-template-columns:1fr;
+  }
+  .home-more-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+}
+@media(max-width:560px){
+  .home-starter-copy{
+    padding:22px 18px;
+  }
+  .home-starter-copy h1{
+    font-size:2.2rem;
+  }
+  .home-focus{
+    padding:12px;
+  }
+  .home-more-grid{
+    grid-template-columns:1fr;
+  }
+}
