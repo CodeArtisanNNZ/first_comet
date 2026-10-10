@@ -16,7 +16,7 @@
     progress[track.id] = Number.isInteger(value) ? Math.max(0, Math.min(value, track.milestones.length)) : 0;
   }
   progress.algorithms = Number.isInteger(saved.progress?.algorithms) ? Math.max(0, Math.min(saved.progress.algorithms, data.algorithms.steps.length)) : 0;
-  const state = { language: data.languages.some((l) => l.id === saved.language) ? saved.language : 'html', tab: 'dictionary', query: '', scope: 'track', group: 'Values', milestone: 0, algorithmStep: 0, codeLanguage: 'javascript', target: 23, traceIndex: 0, bubbleStep: 0, bubblePlaying: false };
+  const state = { language: data.languages.some((l) => l.id === saved.language) ? saved.language : 'html', tab: 'dictionary', query: '', scope: 'track', group: 'Values', milestone: 0, algorithmStep: 0, codeLanguage: 'javascript', target: 23, traceIndex: 0, bubbleStep: 0, bubblePlaying: false, bubbleDelay: 900 };
   let storageAvailable = true;
   const current = () => data.languages.find((track) => track.id === state.language);
   const persist = () => {
@@ -167,7 +167,7 @@
     panel.querySelector('#compareGroup').addEventListener('change', (event) => { state.group = event.target.value; renderContent(); });
   }
 
-  const bubbleSeed = [6, 3, 8, 2, 5, 1];
+  let bubbleSeed = [6, 3, 8, 2, 5, 1];
   let bubbleTimer = null;
 
   function getBubbleTrace() {
@@ -247,7 +247,7 @@
       }
       state.bubbleStep++;
       renderBubbleSort();
-    }, 900);
+    }, state.bubbleDelay);
   }
 
   function renderBubbleSort() {
@@ -277,6 +277,14 @@
         <button type="button" class="primary" data-bubble-play>${state.bubblePlaying ? 'Pause' : state.bubbleStep >= trace.length - 1 ? 'Play again →' : 'Play animation →'}</button>
         <button type="button" class="secondary" data-bubble-next ${state.bubblePlaying || state.bubbleStep >= trace.length - 1 ? 'disabled' : ''}>Next comparison</button>
         <button type="button" class="secondary" data-bubble-reset>Reset</button>
+        <button type="button" class="secondary" data-bubble-random ${state.bubblePlaying ? 'disabled' : ''}>New numbers</button>
+      </div>
+      <div class="bubble-speed" aria-label="Animation speed">
+        <span>Speed</span>
+        <button type="button" data-bubble-speed="1400" class="${state.bubbleDelay === 1400 ? 'active' : ''}">Slow</button>
+        <button type="button" data-bubble-speed="900" class="${state.bubbleDelay === 900 ? 'active' : ''}">Normal</button>
+        <button type="button" data-bubble-speed="480" class="${state.bubbleDelay === 480 ? 'active' : ''}">Fast</button>
+        <small>HTML structure · CSS motion · JavaScript logic</small>
       </div>`;
   }
 
@@ -407,6 +415,17 @@
       renderBubbleSort();
     } else if (button.hasAttribute('data-bubble-reset')) {
       stopBubble(); state.bubbleStep = 0; renderBubbleSort();
+    } else if (button.hasAttribute('data-bubble-random')) {
+      stopBubble();
+      bubbleSeed = Array.from({ length: 6 }, () => Math.floor(Math.random() * 8) + 1);
+      state.bubbleStep = 0;
+      renderBubbleSort();
+    } else if (button.dataset.bubbleSpeed) {
+      const wasPlaying = state.bubblePlaying;
+      stopBubble();
+      state.bubbleDelay = +button.dataset.bubbleSpeed;
+      renderBubbleSort();
+      if (wasPlaying) playBubble();
     } else if (button.hasAttribute('data-trace-next')) {
       state.traceIndex++; renderTrace();
     } else if (button.hasAttribute('data-trace-reset')) {
