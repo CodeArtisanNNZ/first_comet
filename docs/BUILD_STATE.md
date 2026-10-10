@@ -1,5 +1,17 @@
 # Build state
 
+## Bubble Sort Visualizer (2026-10-11)
+
+- Added an interactive Bubble Sort lesson inside **Learn → Practice code → Algorithms**.
+- Uses HTML/CSS/JavaScript in the First Comet vintage visual language: flat cream/paper surfaces, dusty blue, coral, yellow, green, black outlines and offset shadows; no gradient cards.
+- Sample values: `6, 3, 8, 2, 5, 1`.
+- Learners can **Play/Pause**, move through **Next comparison**, or **Reset**.
+- Adjacent compared values are highlighted; swap steps animate horizontally; completed positions are marked as sorted.
+- The status text explains every comparison, swap and completed pass.
+- Includes a short explanation of why it is called Bubble Sort and notes average/worst-case `O(n²)` behaviour.
+- Existing Binary Search milestones and language code examples remain unchanged.
+- Verification: JS syntax passes, controls/selectors exist, the trace produces `1, 2, 3, 5, 6, 8`, reduced-motion fallback is present, and Bubble Sort styling uses no gradients.
+
 ## Homepage Layout Realignment from Live Screenshot (2026-10-10)
 
 - Unified the Home view around one 1280px frame instead of mixed 1040/1100px caps.
