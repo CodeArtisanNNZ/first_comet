@@ -391,7 +391,7 @@
 
   function card(c) {
     return `
-      <article class="career-card" data-family="${c.family}" data-fit="${c.fit.join(' ')}">
+      <article class="career-card" data-career-id="${c.id}" data-family="${c.family}" data-fit="${c.fit.join(' ')}">
         <div class="career-card-top">
           <span class="career-icon" aria-hidden="true">${c.icon}</span>
           <div>
