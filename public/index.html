@@ -105,6 +105,12 @@
       </button>
       <div class="crumb"><span id="sectionLabel">Workspace</span><strong id="pageLabel">Launchpad</strong></div>
       <div class="top-actions">
+        <div class="global-search" id="globalSearch">
+          <span class="global-search-icon" aria-hidden="true">⌕</span>
+          <input id="globalSearchInput" type="search" placeholder="Search First Comet…" autocomplete="off" aria-label="Search First Comet" aria-expanded="false" aria-controls="globalSearchResults">
+          <kbd>/</kbd>
+          <div class="global-search-results" id="globalSearchResults" role="listbox" aria-label="First Comet search results" hidden></div>
+        </div>
         <button class="icon-button" id="infoBtn" title="Explain this page" aria-label="Explain this page">i</button>
         <button class="mode-chip" id="levelBtn"><span class="signal"></span><span id="levelText">Beginner</span><span>⌄</span></button>
         <button class="icon-button" id="themeBtn" title="Toggle theme" aria-label="Toggle light and dark theme">◐</button>
