@@ -839,3 +839,48 @@ select:focus{
     animation:none!important;
   }
 }
+
+
+/* Desktop sidebar must scroll independently when the viewport is short */
+@media(min-width:701px){
+  .rail{
+    min-height:0;
+    max-height:calc(100vh - var(--top));
+    overflow-y:auto;
+    overflow-x:hidden;
+    overscroll-behavior-y:contain;
+    scrollbar-width:thin;
+    scrollbar-color:var(--muted) transparent;
+  }
+  .rail-create,
+  .rail nav,
+  .rail-note{
+    flex-shrink:0;
+  }
+  .rail-note{
+    margin-top:24px;
+    padding-bottom:6px;
+  }
+  .rail::-webkit-scrollbar{
+    width:8px;
+  }
+  .rail::-webkit-scrollbar-track{
+    background:transparent;
+  }
+  .rail::-webkit-scrollbar-thumb{
+    border:2px solid var(--panel);
+    border-radius:999px;
+    background:var(--muted);
+  }
+  .rail::-webkit-scrollbar-thumb:hover{
+    background:var(--blue-deep);
+  }
+}
+
+/* Mobile keeps the fixed bottom navigation rather than a vertical scroller. */
+@media(max-width:700px){
+  .rail{
+    overflow:visible;
+    max-height:none;
+  }
+}
