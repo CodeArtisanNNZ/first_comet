@@ -634,3 +634,208 @@ select:focus{
     display:none;
   }
 }
+
+
+/* Global First Comet search */
+.global-search{
+  position:relative;
+  width:min(310px,26vw);
+  height:42px;
+  display:grid;
+  grid-template-columns:24px minmax(0,1fr) auto;
+  align-items:center;
+  gap:7px;
+  padding:0 9px 0 11px;
+  border:2px solid var(--line);
+  border-radius:11px;
+  background:var(--paper);
+  box-shadow:2px 2px 0 transparent;
+  transition:box-shadow .16s ease,transform .16s ease,border-color .16s ease;
+}
+.global-search:focus-within{
+  border-color:var(--blue);
+  box-shadow:3px 3px 0 var(--line);
+  transform:translate(-1px,-1px);
+}
+.global-search-icon{
+  color:var(--blue-deep);
+  font-size:1.1rem;
+  line-height:1;
+}
+.global-search input{
+  min-width:0;
+  width:100%;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:var(--ink);
+  font-size:.88rem;
+  font-weight:600;
+}
+.global-search input::placeholder{
+  color:var(--muted);
+  opacity:.9;
+}
+.global-search>kbd{
+  display:grid;
+  place-items:center;
+  min-width:24px;
+  height:23px;
+  border:1px solid var(--line);
+  border-radius:6px;
+  background:var(--cream);
+  color:var(--muted);
+  box-shadow:1px 1px 0 var(--line);
+  font:700 .68rem "DM Mono",monospace;
+}
+.global-search-results{
+  position:absolute;
+  z-index:120;
+  top:calc(100% + 9px);
+  right:0;
+  width:min(470px,calc(100vw - 28px));
+  max-height:min(560px,72vh);
+  overflow:auto;
+  padding:8px;
+  border:2px solid var(--line);
+  border-radius:14px;
+  background:var(--paper);
+  box-shadow:7px 7px 0 var(--line);
+}
+.global-search-results[hidden]{display:none!important}
+.global-search-results button{
+  width:100%;
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr) 24px;
+  gap:10px;
+  align-items:center;
+  padding:11px 10px;
+  border:1.5px solid transparent;
+  border-radius:9px;
+  background:transparent;
+  color:var(--ink);
+  text-align:left;
+  cursor:pointer;
+}
+.global-search-results button:hover,
+.global-search-results button.active,
+.global-search-results button[aria-selected="true"]{
+  border-color:var(--line);
+  background:var(--blue-soft);
+}
+.global-result-mark{
+  display:grid;
+  place-items:center;
+  width:26px;
+  height:26px;
+  border:1.5px solid var(--line);
+  border-radius:50%;
+  background:var(--yellow);
+  color:#171319;
+  font:800 .72rem "DM Mono",monospace;
+}
+.global-result-copy{
+  min-width:0;
+}
+.global-result-copy b,
+.global-result-copy small,
+.global-result-copy em{
+  display:block;
+}
+.global-result-copy b{
+  font-size:.9rem;
+  line-height:1.25;
+}
+.global-result-copy small{
+  margin-top:2px;
+  color:var(--blue-deep);
+  font:700 .66rem "DM Mono",monospace;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+.global-result-copy em{
+  margin-top:3px;
+  overflow:hidden;
+  color:var(--muted);
+  font-size:.76rem;
+  font-style:normal;
+  line-height:1.35;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.global-result-go{
+  color:var(--muted);
+  font-size:.9rem;
+}
+.global-search-empty{
+  display:grid;
+  gap:4px;
+  padding:18px;
+  border:1.5px dashed var(--line);
+  border-radius:9px;
+  background:var(--panel);
+}
+.global-search-empty b{font-size:.9rem}
+.global-search-empty span{
+  color:var(--muted);
+  font-size:.78rem;
+  line-height:1.45;
+}
+.global-search-arrival{
+  animation:globalSearchArrival 1.7s ease both;
+}
+@keyframes globalSearchArrival{
+  0%,100%{outline:0 solid transparent;outline-offset:0}
+  18%,68%{outline:4px solid var(--yellow);outline-offset:5px}
+}
+.dark .global-search,
+.dark .global-search-results{
+  background:var(--panel);
+}
+.dark .global-search>kbd{
+  background:var(--cream);
+}
+@media(max-width:1180px){
+  .global-search{width:220px}
+  .global-search input{font-size:.82rem}
+}
+@media(max-width:900px){
+  .global-search{width:190px}
+  .top-actions .command-trigger{display:none}
+  .global-result-copy em{white-space:normal}
+}
+@media(max-width:700px){
+  .topbar{
+    grid-template-columns:64px 1fr;
+  }
+  .crumb{display:none}
+  .top-actions{
+    grid-column:2;
+    width:100%;
+    min-width:0;
+    justify-content:flex-end;
+    padding:0 8px;
+  }
+  .global-search{
+    flex:1 1 170px;
+    width:auto;
+    max-width:none;
+  }
+  .global-search>kbd{display:none}
+  .top-actions #infoBtn{display:none}
+  .global-search-results{
+    position:fixed;
+    top:70px;
+    left:10px;
+    right:10px;
+    width:auto;
+    max-height:66vh;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .global-search,
+  .global-search-arrival{
+    transition:none!important;
+    animation:none!important;
+  }
+}
