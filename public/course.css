@@ -579,3 +579,100 @@
     animation:none!important;
   }
 }
+
+
+/* Bubble Sort short-style controls */
+.bubble-speed{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:7px;
+  padding:10px 12px;
+  border:1.5px solid var(--line);
+  border-radius:10px;
+  background:var(--panel);
+}
+.bubble-speed>span{
+  margin-right:3px;
+  font:700 .72rem "DM Mono",monospace;
+  text-transform:uppercase;
+  letter-spacing:.07em;
+}
+.bubble-speed button{
+  min-height:32px;
+  padding:6px 10px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--paper);
+  color:var(--ink);
+  cursor:pointer;
+  font-size:.76rem;
+  font-weight:700;
+}
+.bubble-speed button.active{
+  background:var(--yellow);
+  color:#171319;
+  box-shadow:2px 2px 0 var(--line);
+}
+.bubble-speed small{
+  margin-left:auto;
+  color:var(--muted);
+  font-size:.72rem;
+}
+.bubble-controls [data-bubble-random]{
+  border-color:var(--blue);
+}
+
+/* Make compare/swap states read instantly like an animation short */
+.bubble-item.comparing{
+  z-index:3;
+}
+.bubble-item.comparing>span{
+  transform:translateY(-4px);
+  box-shadow:3px 4px 0 var(--line);
+}
+.bubble-item.comparing>i{
+  box-shadow:4px 5px 0 var(--line);
+}
+.bubble-item.sorted{
+  opacity:.9;
+}
+.bubble-item.sorted>span:after{
+  content:"✓";
+  position:absolute;
+  right:-5px;
+  top:-7px;
+  display:grid;
+  place-items:center;
+  width:17px;
+  height:17px;
+  border:1.5px solid var(--line);
+  border-radius:50%;
+  background:var(--yellow);
+  color:#171319;
+  font-size:.6rem;
+}
+.bubble-item>span{
+  position:relative;
+  transition:transform .2s ease,background .2s ease,box-shadow .2s ease;
+}
+.bubble-item>i{
+  transition:background .2s ease,box-shadow .2s ease;
+}
+
+@media(max-width:600px){
+  .bubble-speed{
+    display:grid;
+    grid-template-columns:auto repeat(3,1fr);
+  }
+  .bubble-speed small{
+    grid-column:1/-1;
+    margin-left:0;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .bubble-item>span,
+  .bubble-item>i{
+    transition:none!important;
+  }
+}
