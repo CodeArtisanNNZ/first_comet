@@ -16,7 +16,7 @@
     progress[track.id] = Number.isInteger(value) ? Math.max(0, Math.min(value, track.milestones.length)) : 0;
   }
   progress.algorithms = Number.isInteger(saved.progress?.algorithms) ? Math.max(0, Math.min(saved.progress.algorithms, data.algorithms.steps.length)) : 0;
-  const state = { language: data.languages.some((l) => l.id === saved.language) ? saved.language : 'html', tab: 'dictionary', query: '', scope: 'track', group: 'Values', milestone: 0, algorithmStep: 0, codeLanguage: 'javascript', target: 23, traceIndex: 0 };
+  const state = { language: data.languages.some((l) => l.id === saved.language) ? saved.language : 'html', tab: 'dictionary', query: '', scope: 'track', group: 'Values', milestone: 0, algorithmStep: 0, codeLanguage: 'javascript', target: 23, traceIndex: 0, bubbleStep: 0, bubblePlaying: false };
   let storageAvailable = true;
   const current = () => data.languages.find((track) => track.id === state.language);
   const persist = () => {
@@ -167,6 +167,119 @@
     panel.querySelector('#compareGroup').addEventListener('change', (event) => { state.group = event.target.value; renderContent(); });
   }
 
+  const bubbleSeed = [6, 3, 8, 2, 5, 1];
+  let bubbleTimer = null;
+
+  function getBubbleTrace() {
+    const values = [...bubbleSeed];
+    const steps = [{
+      values: [...values],
+      compare: [],
+      sortedFrom: values.length,
+      action: 'start',
+      text: 'Start with an unsorted list. Bubble Sort compares two neighbours at a time.'
+    }];
+    for (let pass = 0; pass < values.length - 1; pass++) {
+      let swapped = false;
+      for (let index = 0; index < values.length - 1 - pass; index++) {
+        const left = values[index];
+        const right = values[index + 1];
+        steps.push({
+          values: [...values],
+          compare: [index, index + 1],
+          sortedFrom: values.length - pass,
+          action: 'compare',
+          text: left > right
+            ? `Compare ${left} and ${right}. ${left} is larger, so they are in the wrong order.`
+            : `Compare ${left} and ${right}. They are already in the correct order, so keep them where they are.`
+        });
+        if (left > right) {
+          values[index] = right;
+          values[index + 1] = left;
+          swapped = true;
+          steps.push({
+            values: [...values],
+            compare: [index, index + 1],
+            sortedFrom: values.length - pass,
+            action: 'swap',
+            text: `Swap them: ${right} moves left and ${left} moves right.`
+          });
+        }
+      }
+      steps.push({
+        values: [...values],
+        compare: [],
+        sortedFrom: values.length - 1 - pass,
+        action: 'pass',
+        text: `Pass ${pass + 1} complete. The largest remaining value has bubbled to its final position.`
+      });
+      if (!swapped) break;
+    }
+    steps.push({
+      values: [...values],
+      compare: [],
+      sortedFrom: 0,
+      action: 'done',
+      text: 'Sorted. Every value is now in ascending order.'
+    });
+    return steps;
+  }
+
+  function stopBubble() {
+    state.bubblePlaying = false;
+    if (bubbleTimer) {
+      clearInterval(bubbleTimer);
+      bubbleTimer = null;
+    }
+  }
+
+  function playBubble() {
+    const trace = getBubbleTrace();
+    if (state.bubbleStep >= trace.length - 1) state.bubbleStep = 0;
+    state.bubblePlaying = true;
+    renderBubbleSort();
+    if (bubbleTimer) clearInterval(bubbleTimer);
+    bubbleTimer = setInterval(() => {
+      if (state.tab !== 'algorithms' || state.bubbleStep >= trace.length - 1) {
+        stopBubble();
+        renderBubbleSort();
+        return;
+      }
+      state.bubbleStep++;
+      renderBubbleSort();
+    }, 900);
+  }
+
+  function renderBubbleSort() {
+    const stage = root.querySelector('#bubbleSortDemo');
+    if (!stage) {
+      stopBubble();
+      return;
+    }
+    const trace = getBubbleTrace();
+    state.bubbleStep = Math.max(0, Math.min(state.bubbleStep, trace.length - 1));
+    const step = trace[state.bubbleStep];
+    const max = Math.max(...bubbleSeed);
+    const bars = step.values.map((value, index) => {
+      const compared = step.compare.includes(index);
+      const comparePosition = step.compare.indexOf(index);
+      const swapClass = step.action === 'swap' && compared ? (comparePosition === 0 ? ' swap-from-right' : ' swap-from-left') : '';
+      const sorted = index >= step.sortedFrom || step.action === 'done';
+      return `<div class="bubble-item${compared ? ' comparing' : ''}${sorted ? ' sorted' : ''}${swapClass}" style="--bubble-height:${Math.round(44 + (value / max) * 92)}px"><span>${value}</span><i aria-hidden="true"></i><small>${sorted ? 'sorted' : compared ? 'compare' : ''}</small></div>`;
+    }).join('');
+    stage.innerHTML = `
+      <div class="bubble-visual" aria-label="Bubble Sort values: ${step.values.join(', ')}">${bars}</div>
+      <div class="bubble-status" role="status" aria-live="polite">
+        <span class="eyebrow">${step.action === 'done' ? 'SORT COMPLETE' : 'BUBBLE SORT · STEP ' + (state.bubbleStep + 1) + ' / ' + trace.length}</span>
+        <p>${escape(step.text)}</p>
+      </div>
+      <div class="bubble-controls">
+        <button type="button" class="primary" data-bubble-play>${state.bubblePlaying ? 'Pause' : state.bubbleStep >= trace.length - 1 ? 'Play again →' : 'Play animation →'}</button>
+        <button type="button" class="secondary" data-bubble-next ${state.bubblePlaying || state.bubbleStep >= trace.length - 1 ? 'disabled' : ''}>Next comparison</button>
+        <button type="button" class="secondary" data-bubble-reset>Reset</button>
+      </div>`;
+  }
+
   function getTrace(target) {
     const numbers = data.algorithms.numbers;
     const trace = [];
@@ -191,11 +304,24 @@
     state.algorithmStep = Math.min(state.algorithmStep, Math.min(progress.algorithms, algorithms.steps.length - 1));
     const item = algorithms.steps[state.algorithmStep];
     const complete = state.algorithmStep < progress.algorithms;
-    panel.innerHTML = `<div class="course-panel-head"><div><span class="eyebrow">04 · UNDERSTAND THE STEPS</span><h2>Binary search, without the mystery.</h2><p>${escape(algorithms.prerequisite)}</p></div></div><div class="course-algorithm-definition"><h3>What does it actually mean?</h3><p>${escape(algorithms.definition)}</p><p><b>Real-world idea:</b> To find a page in an ordered book, open near the middle and decide which side can still contain your page. You keep narrowing the search.</p><p><b>Rule:</b> The numeric examples use ascending, sorted whole numbers. Searching an unsorted sequence this way can incorrectly report that a target is absent. Sorting first has a separate cost.</p></div>
+    panel.innerHTML = `<div class="course-panel-head"><div><span class="eyebrow">04 · UNDERSTAND THE STEPS</span><h2>Algorithms you can watch.</h2><p>${escape(algorithms.prerequisite)}</p></div></div>
+      <section class="course-bubble-sort" aria-labelledby="bubbleSortTitle">
+        <div class="bubble-intro">
+          <div><span class="eyebrow">VISUAL ALGORITHM · BUBBLE SORT</span><h3 id="bubbleSortTitle">Watch the bigger number bubble to the right.</h3><p>Bubble Sort compares neighbouring values. If the left value is bigger, the two swap. After each pass, the largest unsorted value reaches its final place.</p></div>
+          <div class="bubble-rule"><b>Simple rule</b><span>Compare → swap if needed → move one step → repeat.</span></div>
+        </div>
+        <div id="bubbleSortDemo"></div>
+        <details class="bubble-explain">
+          <summary>Why is it called Bubble Sort? <span>+</span></summary>
+          <p>Large values repeatedly move toward the end of the list, a little like bubbles rising through water. It is useful for learning comparisons, loops and swaps, but it is inefficient for large lists: its usual and worst-case time complexity is O(n²).</p>
+        </details>
+      </section>
+      <div class="course-algorithm-definition"><h3>Binary search: what does it actually mean?</h3><h3>What does it actually mean?</h3><p>${escape(algorithms.definition)}</p><p><b>Real-world idea:</b> To find a page in an ordered book, open near the middle and decide which side can still contain your page. You keep narrowing the search.</p><p><b>Rule:</b> The numeric examples use ascending, sorted whole numbers. Searching an unsorted sequence this way can incorrectly report that a target is absent. Sorting first has a separate cost.</p></div>
       <dl class="course-algorithm-words">${algorithms.words.map(([word, meaning]) => `<div><dt>${escape(word)}</dt><dd>${escape(meaning)}</dd></div>`).join('')}</dl>
       <section class="course-trace" aria-labelledby="traceTitle"><div class="course-trace-heading"><div><span class="eyebrow">FOLLOW ONE COMPARISON AT A TIME</span><h3 id="traceTitle">A tiny worked example</h3></div><div><label for="traceTarget">Find a number</label><select id="traceTarget"><option value="23" ${state.target === 23 ? 'selected' : ''}>23 · middle of right half</option><option value="3" ${state.target === 3 ? 'selected' : ''}>3 · first item</option><option value="27" ${state.target === 27 ? 'selected' : ''}>27 · last item</option><option value="17" ${state.target === 17 ? 'selected' : ''}>17 · missing</option></select></div></div><div id="traceBody"></div></section>
       <div class="course-algorithm-milestones"><nav aria-label="Algorithm milestone sequence">${algorithms.steps.map((entry, index) => `<button type="button" data-algorithm-step="${index}" ${index > progress.algorithms ? 'disabled' : ''} aria-pressed="${index === state.algorithmStep}" class="${index === state.algorithmStep ? 'active' : ''}"><span>${index < progress.algorithms ? '✓' : index + 1}</span>${escape(entry.title)}</button>`).join('')}</nav><article><span class="eyebrow">ALGORITHM MILESTONE ${state.algorithmStep + 1} / 3</span><h3>${escape(item.title)}</h3><p>${escape(item.description)}</p><aside class="course-practice"><h4>Your turn</h4><p>${state.algorithmStep === 0 ? 'Write out a linear search for 23 in the sample list. Name each value you check.' : state.algorithmStep === 1 ? 'Use the worked example to find 3 and 27. Record low, high, and mid at each check.' : 'Search for 17 and record when the bounds cross. Then run your chosen language’s code for both present and missing values.'}</p></aside>${checkForm(item, complete, 'algorithm')}${complete ? `<button type="button" class="course-next" data-next-milestone>${state.algorithmStep < 2 ? 'Open the next algorithm milestone →' : 'Algorithm complete · compare languages →'}</button>` : ''}</article></div>
       <section class="course-algorithm-code"><h3>The same algorithm in four languages</h3><p>All four implementations return an index, or -1 if absent. With the sample target 23, the output is 5.</p><nav aria-label="Binary search code language">${['javascript', 'java', 'python', 'php'].map((id) => `<button type="button" data-algorithm-code="${id}" aria-pressed="${state.codeLanguage === id}" class="${state.codeLanguage === id ? 'active' : ''}">${data.languages.find((language) => language.id === id).label}</button>`).join('')}</nav><div id="algorithmCode"></div><div class="course-lines"><h4>Read the algorithm in six pieces</h4><ol><li>Start low at 0 and high at the last index.</li><li>Continue while at least one candidate remains: low ≤ high.</li><li>Calculate the middle index, rounded down.</li><li>If the middle value equals the target, return its index.</li><li>If it is smaller, move low to mid + 1. Otherwise move high to mid − 1.</li><li>If the bounds cross, return -1 because no matching item was found.</li></ol></div><aside class="course-practice"><h4>Test the boundaries</h4><p>${escape(algorithms.practice)}</p></aside></section>${sourceLinks(algorithms.sources)}`;
+    renderBubbleSort();
     panel.querySelector('#traceTarget').addEventListener('change', (event) => { state.target = +event.target.value; state.traceIndex = 0; renderTrace(); });
     panel.querySelector('form').addEventListener('submit', (event) => submitCheck(event, item, 'algorithms', state.algorithmStep));
     renderTrace();
@@ -239,6 +365,7 @@
       state.language = button.dataset.courseLanguage; state.tab = 'dictionary'; state.query = ''; state.scope = 'track';
       state.milestone = Math.min(progress[state.language], 7); persist(); render(); route();
     } else if (button.dataset.courseTab) {
+      stopBubble();
       state.tab = button.dataset.courseTab; render(); route();
     } else if (button.hasAttribute('data-start-track')) {
       state.tab = 'milestones'; state.milestone = Math.min(progress[state.language], 7); render(); route();
@@ -270,6 +397,16 @@
     } else if (button.dataset.algorithmStep !== undefined) {
       const index = +button.dataset.algorithmStep;
       if (index <= progress.algorithms) { state.algorithmStep = index; renderContent(); }
+    } else if (button.hasAttribute('data-bubble-play')) {
+      if (state.bubblePlaying) { stopBubble(); renderBubbleSort(); }
+      else playBubble();
+    } else if (button.hasAttribute('data-bubble-next')) {
+      stopBubble();
+      const trace = getBubbleTrace();
+      state.bubbleStep = Math.min(state.bubbleStep + 1, trace.length - 1);
+      renderBubbleSort();
+    } else if (button.hasAttribute('data-bubble-reset')) {
+      stopBubble(); state.bubbleStep = 0; renderBubbleSort();
     } else if (button.hasAttribute('data-trace-next')) {
       state.traceIndex++; renderTrace();
     } else if (button.hasAttribute('data-trace-reset')) {
