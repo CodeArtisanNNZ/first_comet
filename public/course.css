@@ -676,3 +676,151 @@
     transition:none!important;
   }
 }
+
+
+/* Learn page responsive-fit pass
+   The workspace rail + main padding reduce usable width long before the
+   viewport itself reaches the old 1050px breakpoint. */
+#view-learn,
+#view-learn .learn-section,
+#view-learn #courseApp,
+#view-learn #courseTabContent{
+  min-width:0;
+  max-width:100%;
+}
+#view-learn .course-milestone-layout,
+#view-learn .course-milestone-body,
+#view-learn .course-track-brief,
+#view-learn .course-start-note,
+#view-learn .course-algorithm-milestones,
+#view-learn .course-bubble-sort,
+#view-learn .course-trace,
+#view-learn .course-algorithm-definition{
+  min-width:0;
+  max-width:100%;
+}
+#view-learn .course-code,
+#view-learn .course-table-scroll{
+  max-width:100%;
+}
+#view-learn .course-code pre{
+  max-width:100%;
+  overflow-x:auto;
+}
+
+/* A normal 1280–1440px laptop has only about 950–1100px left for the
+   course after the rail and page gutters. Reflow before it clips. */
+@media (max-width: 1450px){
+  body:has(#view-learn.active) main{
+    padding-left:28px;
+    padding-right:28px;
+  }
+  #view-learn .course-milestone-layout,
+  #view-learn .course-algorithm-milestones{
+    grid-template-columns:1fr;
+  }
+  #view-learn .course-milestone-nav{
+    grid-template-columns:repeat(4,minmax(0,1fr));
+  }
+  #view-learn .course-algorithm-milestones nav{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  #view-learn .course-milestone-nav button{
+    min-width:0;
+  }
+  #view-learn .course-milestone-nav b,
+  #view-learn .course-milestone-nav small{
+    overflow-wrap:anywhere;
+  }
+}
+
+/* Medium desktop / high browser zoom */
+@media (max-width: 1250px){
+  body:has(#view-learn.active) main{
+    padding-left:22px;
+    padding-right:22px;
+  }
+  #view-learn .course-languages{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  #view-learn .course-track-brief{
+    grid-template-columns:minmax(0,1fr) 220px;
+    gap:18px;
+    padding:20px;
+  }
+  #view-learn .course-milestone-nav{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  #view-learn .course-milestone-body,
+  #view-learn .course-algorithm-milestones article{
+    padding:22px;
+  }
+}
+
+/* Narrow desktop/tablet: everything becomes a single readable flow. */
+@media (max-width: 1080px){
+  #view-learn .course-track-brief,
+  #view-learn .course-dictionary-tools{
+    grid-template-columns:1fr;
+  }
+  #view-learn .course-track-progress{
+    max-width:none;
+  }
+  #view-learn .course-algorithm-words{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  #view-learn .course-panel-head{
+    display:block;
+  }
+}
+
+/* Tables may scroll inside their own frame, but the whole page must not. */
+#view-learn .course-table-scroll{
+  overflow-x:auto;
+  overscroll-behavior-inline:contain;
+}
+#view-learn .course-compare-table{
+  width:max-content;
+  max-width:none;
+}
+#view-learn .course-role-table table{
+  max-width:none;
+}
+
+/* Never let long code/URLs force the workspace wider. */
+#view-learn p,
+#view-learn li,
+#view-learn dd,
+#view-learn small,
+#view-learn a,
+#view-learn code{
+  overflow-wrap:anywhere;
+}
+
+/* At laptop heights, avoid wasting a large amount of vertical space above
+   the current lesson. */
+@media (min-width: 761px) and (max-height: 850px){
+  #view-learn .course-page-heading{
+    margin-bottom:8px;
+  }
+  #view-learn .course-page-heading h1{
+    margin-top:5px;
+    margin-bottom:7px;
+  }
+  #view-learn .learn-sections{
+    margin:14px 0;
+  }
+  #view-learn .course-start-note{
+    padding:14px 16px;
+    margin-bottom:14px;
+  }
+  #view-learn .course-languages{
+    margin:14px 0;
+  }
+  #view-learn .course-track-brief{
+    margin:16px 0;
+  }
+  #view-learn .course-panel-head{
+    margin:20px 0 14px;
+  }
+}
