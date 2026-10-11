@@ -20,7 +20,7 @@
         note: 'Structured Bangla HTML playlist. Continue with the linked CSS course from the same learning path.'
       },
       en: {
-        title: 'HTML & CSS Full Course — Beginner to Pro',
+        title: 'HTML & CSS Full Course: Beginner to Pro',
         provider: 'SuperSimpleDev',
         href: 'https://www.youtube.com/watch?v=G3e-cpL7ofc',
         embed: 'https://www.youtube-nocookie.com/embed/G3e-cpL7ofc',
@@ -62,7 +62,7 @@
         note: 'A long beginner playlist that starts from setup and basic syntax and progresses topic by topic.'
       },
       en: {
-        title: 'Learn Python — Full Course for Beginners',
+        title: 'Learn Python: Full Course for Beginners',
         provider: 'freeCodeCamp.org',
         href: 'https://www.youtube.com/watch?v=rfscVS0vtbw',
         embed: 'https://www.youtube-nocookie.com/embed/rfscVS0vtbw',
@@ -76,7 +76,7 @@
       summary: 'Focus on types, methods, classes and object-oriented thinking before frameworks.',
       practice: 'Create a Student class with name and score fields, then print a formatted result.',
       bn: {
-        title: 'Java Bangla Tutorials — Core Java',
+        title: 'Java Bangla Tutorials: Core Java',
         provider: 'Anisul Islam',
         href: 'https://www.youtube.com/playlist?list=PLgH5QX0i9K3oAZUB2QXR-dZac0c9HNyRa',
         embed: 'https://www.youtube-nocookie.com/embed/videoseries?list=PLgH5QX0i9K3oAZUB2QXR-dZac0c9HNyRa',
@@ -104,7 +104,7 @@
         note: 'Bangla PHP 8 beginner series covering core PHP, OOP, MySQL and project work. Start here, then continue through the creator’s series.'
       },
       en: {
-        title: 'PHP Programming Language Tutorial — Full Course',
+        title: 'PHP Programming Language Tutorial: Full Course',
         provider: 'freeCodeCamp.org',
         href: 'https://www.youtube.com/watch?v=OK_JCtrrv-c',
         embed: 'https://www.youtube-nocookie.com/embed/OK_JCtrrv-c',
@@ -118,14 +118,14 @@
       summary: 'Know where files, search, terminal, extensions, errors and source control live so the editor stops feeling mysterious.',
       practice: 'Open one folder, create index.html, save it, use Search once, and find the Problems and Source Control panels.',
       bn: {
-        title: 'VS Code বাংলা — Beginner to Advanced Series',
+        title: 'VS Code বাংলা: Beginner to Advanced Series',
         provider: 'Stack Learner',
         href: 'https://www.youtube.com/watch?v=KLcDpBRku-0',
         embed: 'https://www.youtube-nocookie.com/embed/KLcDpBRku-0',
         note: 'Bangla VS Code series covering installation, interface, useful features, extensions, snippets and developer workflow.'
       },
       en: {
-        title: 'Visual Studio Code Full Course — VS Code for Beginners',
+        title: 'Visual Studio Code Full Course: VS Code for Beginners',
         provider: 'freeCodeCamp.org',
         href: 'https://www.youtube.com/watch?v=UTQp6mvhb0Y',
         embed: 'https://www.youtube-nocookie.com/embed/UTQp6mvhb0Y',
@@ -139,7 +139,7 @@
       summary: 'Publishing is the step that moves a working local project to a public URL. Start with static hosting before learning complicated cloud setups.',
       practice: 'Publish one small static project, open the public URL in a private window, then update one line and redeploy it.',
       bn: {
-        title: 'Hosting Projects with GitHub Pages — Bangla',
+        title: 'Hosting Projects with GitHub Pages: Bangla',
         provider: 'STUDY MART',
         href: 'https://www.youtube.com/watch?v=6UaZaUCFwJY',
         embed: 'https://www.youtube-nocookie.com/embed/6UaZaUCFwJY',
@@ -160,14 +160,14 @@
       summary: 'Learn what commit, branch, push and pull mean before memorising commands.',
       practice: 'Create a repository, make two meaningful commits, push to GitHub, then explain what changed between them.',
       bn: {
-        title: 'সহজ বাংলায় Git & GitHub — Crash Course',
+        title: 'সহজ বাংলায় Git & GitHub: Crash Course',
         provider: 'Learn with Sumit',
         href: 'https://www.youtube.com/watch?v=oe21Nlq8GS4',
         embed: 'https://www.youtube-nocookie.com/embed/oe21Nlq8GS4',
         note: 'Bangla crash course covering Git architecture, commits, branches, merging, push, pull and fetch.'
       },
       en: {
-        title: 'Git and GitHub for Beginners — Crash Course',
+        title: 'Git and GitHub for Beginners: Crash Course',
         provider: 'freeCodeCamp.org',
         href: 'https://www.youtube.com/watch?v=RGOj5yH7evk',
         embed: 'https://www.youtube-nocookie.com/embed/RGOj5yH7evk',
@@ -181,14 +181,14 @@
       summary: 'Understand tables, rows, keys, CRUD and relationships before connecting a database service.',
       practice: 'Design three tables for a tiny student project and explain which fields are primary/foreign keys.',
       bn: {
-        title: 'SQL Bangla Tutorials — Basic to Advanced',
+        title: 'SQL Bangla Tutorials: Basic to Advanced',
         provider: 'STUDY MART',
         href: 'https://www.youtube.com/watch?v=dFFirEkiAeU',
         embed: 'https://www.youtube-nocookie.com/embed/dFFirEkiAeU',
         note: 'Bangla SQL/RDBMS course that starts from fundamentals and points learners to the complete SQL learning series and practice resources.'
       },
       en: {
-        title: 'SQL Tutorial — Full Database Course for Beginners',
+        title: 'SQL Tutorial: Full Database Course for Beginners',
         provider: 'freeCodeCamp.org',
         href: 'https://www.youtube.com/watch?v=HXV3zeQKqGY',
         embed: 'https://www.youtube-nocookie.com/embed/HXV3zeQKqGY',
@@ -209,7 +209,7 @@
         note: 'Bangla Node.js path for learning backend concepts after JavaScript fundamentals.'
       },
       en: {
-        title: 'Node.js and Express.js — Full Course',
+        title: 'Node.js and Express.js: Full Course',
         provider: 'freeCodeCamp.org',
         href: 'https://www.freecodecamp.org/news/free-8-hour-node-express-course/',
         embed: '',
