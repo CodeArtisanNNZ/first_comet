@@ -1,4 +1,4 @@
-# First Comet — Build a Project
+# First Comet: Build a Project
 
 From an empty folder to a live project.
 
@@ -10,16 +10,16 @@ Lessons are text for practice in your own editor and accounts. The website recor
 
 ## The project-building order
 
-1. Create a project — Choose one useful result
-2. Use VS Code — Edit, run, and understand your files
-3. Learn the code — HTML → CSS → JavaScript
-4. Learn Git — Record changes without losing your place
-5. Use GitHub — Push, review, and organize repositories
-6. Student benefits — Apply, claim offers, and understand the terms (optional)
-7. Free databases — Learn data, tables, SQL, and free-plan limits (optional)
-8. Connect a database — Read saved data from a real project (optional)
-9. Publish the project — Connect the repository to a host
-10. Domains and DNS — Give the live project a readable address (optional)
+1. Create a project: Choose one useful result
+2. Use VS Code: Edit, run, and understand your files
+3. Learn the code: HTML → CSS → JavaScript
+4. Learn Git: Record changes without losing your place
+5. Use GitHub: Push, review, and organize repositories
+6. Student benefits: Apply, claim offers, and understand the terms (optional)
+7. Free databases: Learn data, tables, SQL, and free-plan limits (optional)
+8. Connect a database: Read saved data from a real project (optional)
+9. Publish the project: Connect the repository to a host
+10. Domains and DNS: Give the live project a readable address (optional)
 
 ## How the pieces connect
 
