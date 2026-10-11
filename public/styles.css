@@ -1668,3 +1668,14 @@ select:focus{
     transform:none;
   }
 }
+
+
+/* BRACU level buttons act as category tabs */
+.bracu-level-nav button.active{
+  transform:translate(-2px,-2px);
+  box-shadow:4px 4px 0 var(--line);
+}
+.bracu-level-nav button[data-bracu-level-jump="100"].active{background:var(--yellow-soft)}
+.bracu-level-nav button[data-bracu-level-jump="200"].active{background:var(--blue-soft)}
+.bracu-level-nav button[data-bracu-level-jump="300"].active{background:var(--red-soft)}
+.bracu-level-nav button[data-bracu-level-jump="400"].active{background:var(--green-soft)}
