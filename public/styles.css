@@ -1565,3 +1565,106 @@ select:focus{
     align-items:start;
   }
 }
+
+
+/* BRACU level palette — keep the First Comet theme alive */
+.bracu-level-group[data-bracu-level-group="100"]{
+  --level-accent:var(--yellow);
+  --level-soft:var(--yellow-soft);
+  --level-ink:#171319;
+}
+.bracu-level-group[data-bracu-level-group="200"]{
+  --level-accent:var(--blue);
+  --level-soft:var(--blue-soft);
+  --level-ink:#fff;
+}
+.bracu-level-group[data-bracu-level-group="300"]{
+  --level-accent:var(--coral);
+  --level-soft:var(--red-soft);
+  --level-ink:#fff;
+}
+.bracu-level-group[data-bracu-level-group="400"]{
+  --level-accent:var(--green);
+  --level-soft:var(--green-soft);
+  --level-ink:#fff;
+}
+
+/* Strong level identity without recolouring the whole page */
+.bracu-level-group .bracu-level-heading{
+  border-left:6px solid var(--level-accent);
+  padding-left:12px;
+}
+.bracu-level-group .bracu-level-heading>span{
+  padding:6px 10px;
+  border:1.5px solid var(--line);
+  border-radius:999px;
+  background:var(--level-soft);
+  color:var(--ink);
+}
+
+/* Course cards keep paper surfaces, with level colour as the signal */
+.bracu-level-group .bracu-catalog-card{
+  border-top:5px solid var(--level-accent);
+  background:var(--panel);
+  transition:transform .15s ease,box-shadow .15s ease;
+}
+.bracu-level-group .bracu-catalog-card:hover{
+  transform:translate(-1px,-1px);
+  box-shadow:4px 4px 0 var(--line);
+}
+.bracu-level-group .bracu-catalog-code{
+  background:var(--level-accent);
+  color:var(--level-ink);
+}
+.bracu-level-group .bracu-catalog-card details[open] summary{
+  background:var(--level-soft);
+}
+
+/* Top level-jump buttons mirror the same four colours */
+.bracu-level-nav button[data-bracu-level-jump="100"] b{
+  background:var(--yellow);
+  color:#171319;
+}
+.bracu-level-nav button[data-bracu-level-jump="200"] b{
+  background:var(--blue);
+  color:#fff;
+}
+.bracu-level-nav button[data-bracu-level-jump="300"] b{
+  background:var(--coral);
+  color:#fff;
+}
+.bracu-level-nav button[data-bracu-level-jump="400"] b{
+  background:var(--green);
+  color:#fff;
+}
+.bracu-level-nav button[data-bracu-level-jump="100"]:hover{background:var(--yellow-soft)}
+.bracu-level-nav button[data-bracu-level-jump="200"]:hover{background:var(--blue-soft)}
+.bracu-level-nav button[data-bracu-level-jump="300"]:hover{background:var(--red-soft)}
+.bracu-level-nav button[data-bracu-level-jump="400"]:hover{background:var(--green-soft)}
+
+/* Dark mode keeps the same identity while preserving contrast */
+.dark .bracu-level-group[data-bracu-level-group="100"]{
+  --level-soft:var(--yellow-soft);
+  --level-ink:#171319;
+}
+.dark .bracu-level-group[data-bracu-level-group="200"]{
+  --level-soft:var(--blue-soft);
+  --level-ink:#f8f2e8;
+}
+.dark .bracu-level-group[data-bracu-level-group="300"]{
+  --level-soft:var(--red-soft);
+  --level-ink:#fff;
+}
+.dark .bracu-level-group[data-bracu-level-group="400"]{
+  --level-soft:var(--green-soft);
+  --level-ink:#fff;
+}
+
+@media(prefers-reduced-motion:reduce){
+  .bracu-level-group .bracu-catalog-card{
+    transition:none;
+  }
+  .bracu-level-group .bracu-catalog-card:hover{
+    transform:none;
+  }
+}
