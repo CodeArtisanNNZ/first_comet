@@ -417,7 +417,7 @@ select:focus{
 }
 
 
-/* Navigation typography — clearer at desktop scale */
+/* Navigation typography: clearer at desktop scale */
 .rail .nav-label{
   font-size:.72rem;
   letter-spacing:.12em;
@@ -1599,7 +1599,7 @@ select:focus{
 }
 
 
-/* BRACU level palette — keep the First Comet theme alive */
+/* BRACU level palette: keep the First Comet theme alive */
 .bracu-level-group[data-bracu-level-group="100"]{
   --level-accent:var(--yellow);
   --level-soft:var(--yellow-soft);
