@@ -400,3 +400,12 @@
     animation:none!important;
   }
 }
+
+
+/* Remove Learn header blob/orbit decoration */
+#view-learn .course-page-heading{
+  background:linear-gradient(125deg,var(--panel),var(--paper))!important;
+}
+#view-learn .course-page-heading::before{
+  content:none!important;
+}
