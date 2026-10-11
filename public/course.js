@@ -37,7 +37,7 @@
     const title = document.querySelector('#learnFocusTitle');
     const text = document.querySelector('#learnFocusText');
     const action = document.querySelector('#learnFocusAction');
-    const steps = all('.learn-path-preview > span');
+    const steps = all('.learn-path-preview [data-learn-step]');
     const optionCourse = document.querySelector('.learn-option-course');
     const optionReference = document.querySelector('.learn-option-reference');
 
