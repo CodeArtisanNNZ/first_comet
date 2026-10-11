@@ -530,7 +530,10 @@
 
   function renderNotes(notes) {
     if (!notes?.length) return '';
-    return '<section class="cse110-write-down"><div><span>WRITE THIS DOWN</span><b>Keep this in your programming notebook.</b></div><ol>' +
+    const learnerName = window.FirstCometPersonalization?.getName?.() || '';
+    const label = learnerName ? 'WRITE THIS DOWN, ' + learnerName.toUpperCase() : 'WRITE THIS DOWN';
+    const reminder = learnerName ? learnerName + ', keep this in your programming notebook.' : 'Keep this in your programming notebook.';
+    return '<section class="cse110-write-down"><div><span>' + esc(label) + '</span><b>' + esc(reminder) + '</b></div><ol>' +
       notes.map((note) => '<li>' + esc(note) + '</li>').join('') +
       '</ol></section>';
   }
@@ -634,6 +637,8 @@
       setTimeout(() => { copy.textContent = 'Copy'; }, 1200);
     }
   });
+
+  window.addEventListener('fc-profile-name', () => render());
 
   document.addEventListener('keydown', (event) => {
     const view = document.querySelector('#view-cse110notes');
