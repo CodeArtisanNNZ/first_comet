@@ -331,41 +331,49 @@
         </section>
 
         <section class="native-vscode-layout">
-          <aside class="vscode-teacher-companion">
+          <aside class="vscode-teacher-companion landscape">
             <div class="teacher-panel-head"><span class="eyebrow">FIRST COMET TEACHER</span><span class="teacher-online">● BESIDE YOU</span></div>
 
-            <div class="teacher-step beginner-only">
-              <span>BEGINNER · DO THIS NOW</span>
-              <h3>Open a folder before writing code.</h3>
-              <ol>
-                <li>Open VS Code Web.</li>
-                <li>Choose <b>Open Folder</b>.</li>
-                <li>Select the folder for your first website.</li>
-                <li>Create <code>index.html</code>.</li>
-              </ol>
-              <p>Do not worry about extensions, Git, terminal commands or databases yet.</p>
+            <div class="teacher-landscape-main">
+              <div class="teacher-copy-column">
+                <div class="teacher-step beginner-only">
+                  <span>BEGINNER · DO THIS NOW</span>
+                  <h3>Open a folder before writing code.</h3>
+                  <ol>
+                    <li>Open VS Code Web.</li>
+                    <li>Choose <b>Open Folder</b>.</li>
+                    <li>Select the folder for your first website.</li>
+                    <li>Create <code>index.html</code>.</li>
+                  </ol>
+                  <p>Do not worry about extensions, Git, terminal commands or databases yet.</p>
+                </div>
+
+                <div class="teacher-step practice-only">
+                  <span>PRACTISING · NEXT TARGET</span>
+                  <h3>Work in the real project structure.</h3>
+                  <p>Open your existing folder, keep HTML/CSS/JS separated, and use Explorer, Search and Source Control instead of copying whole projects into one file.</p>
+                </div>
+
+                <div class="teacher-step pro-only">
+                  <span>PRO · FAST MODE</span>
+                  <h3>Skip the walkthrough.</h3>
+                  <p>Open the workspace and jump directly to Explorer, Source Control, extensions, repository work and deployment checks.</p>
+                </div>
+              </div>
+
+              <div class="teacher-actions-column">
+                <span class="eyebrow teacher-tools-label">QUICK VS CODE HELP</span>
+                <div class="vscode-help-grid">
+                  <button type="button" data-vscode-help="explorer"><b>Where are my files?</b><small>Explorer</small></button>
+                  <button type="button" data-vscode-help="newfile"><b>How do I make a file?</b><small>New File</small></button>
+                  <button type="button" data-vscode-help="save"><b>How do I save?</b><small>Ctrl + S</small></button>
+                  <button type="button" data-vscode-help="errors"><b>Where are errors?</b><small>Problems</small></button>
+                  <button type="button" data-vscode-help="source"><b>Where is Git?</b><small>Source Control</small></button>
+                  <button type="button" data-vscode-help="search"><b>How do I find code?</b><small>Search</small></button>
+                </div>
+              </div>
             </div>
 
-            <div class="teacher-step practice-only">
-              <span>PRACTISING · NEXT TARGET</span>
-              <h3>Work in the real project structure.</h3>
-              <p>Open your existing folder, keep HTML/CSS/JS separated, and use Explorer, Search and Source Control instead of copying whole projects into one file.</p>
-            </div>
-
-            <div class="teacher-step pro-only">
-              <span>PRO · FAST MODE</span>
-              <h3>Skip the walkthrough.</h3>
-              <p>Open the workspace and jump directly to Explorer, Source Control, extensions, repository work and deployment checks.</p>
-            </div>
-
-            <div class="vscode-help-grid">
-              <button type="button" data-vscode-help="explorer"><b>Where are my files?</b><small>Explorer</small></button>
-              <button type="button" data-vscode-help="newfile"><b>How do I make a file?</b><small>New File</small></button>
-              <button type="button" data-vscode-help="save"><b>How do I save?</b><small>Ctrl + S</small></button>
-              <button type="button" data-vscode-help="errors"><b>Where are errors?</b><small>Problems</small></button>
-              <button type="button" data-vscode-help="source"><b>Where is Git?</b><small>Source Control</small></button>
-              <button type="button" data-vscode-help="search"><b>How do I find code?</b><small>Search</small></button>
-            </div>
             <div class="vscode-help-answer" id="vscodeHelpAnswer">Choose a question. First Comet will tell you exactly where to look in VS Code.</div>
           </aside>
         </section>
