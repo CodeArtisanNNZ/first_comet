@@ -422,6 +422,71 @@
           takeaway: 'The goal is not to memorise Java syntax. It is to learn how to think through a program.'
         }
       ]
+    },
+    {
+      title: 'Write This Down',
+      short: 'Keep these for your coding life',
+      lifeNotes: true,
+      slides: [
+        {
+          kicker: 'WRITE THIS DOWN · THINK FIRST',
+          title: 'Do not start with code. Start with the problem.',
+          body: 'These habits will matter in every language you learn after CSE110. Put them in your notebook and keep them.',
+          notes: [
+            'Understand the problem before choosing syntax.',
+            'Write a few example inputs and expected outputs first.',
+            'Break a large problem into smaller jobs.',
+            'Get the smallest correct version working before adding extras.',
+            'Use names that explain what a value or method means.'
+          ],
+          takeaway: 'Good programmers spend a surprising amount of time thinking before they type.'
+        },
+        {
+          kicker: 'WRITE THIS DOWN · PROTECT YOUR LOGIC',
+          title: 'Most bugs live at assumptions and boundaries.',
+          body: 'Whenever your code depends on a condition, a range, an index or a type, slow down and check the edges.',
+          notes: [
+            'Types matter. Know what kind of value you are working with.',
+            'Remember that integer division can silently remove decimals.',
+            'Every loop needs a clear stopping condition.',
+            'For arrays and Strings, the last valid index is length minus 1.',
+            'Use equals for String content in Java, not ==.',
+            'Check boundary values such as 0, 1, the minimum and the maximum.'
+          ],
+          takeaway: 'If something can fail at an edge, test the edge on purpose.'
+        },
+        {
+          kicker: 'WRITE THIS DOWN · STRUCTURE YOUR CODE',
+          title: 'Write code that another human can understand.',
+          body: 'Code is read much more often than it is written. Future you is also one of the people who will have to read it.',
+          notes: [
+            'A method should have one clear responsibility.',
+            'Avoid repeating the same logic in many places.',
+            'Keep variables in the smallest useful scope.',
+            'Use comments to explain why, not to repeat what the code already says.',
+            'Recursion always needs a base case and progress toward it.',
+            'Choose a data structure because it fits the problem, not because it is familiar.'
+          ],
+          takeaway: 'Readable code is not decoration. It makes software easier to fix, extend and trust.'
+        },
+        {
+          kicker: 'WRITE THIS DOWN · WORK LIKE A PROGRAMMER',
+          title: 'When something breaks, investigate instead of guessing.',
+          body: 'This is the part of programming that stays with you from your first lab to professional software work.',
+          notes: [
+            'Read the error message before changing the code.',
+            'Reproduce the bug so you know exactly when it happens.',
+            'Inspect the values near the point where the result becomes wrong.',
+            'Change one thing at a time, then test again.',
+            'Test normal cases, edge cases and invalid cases.',
+            'Do not copy code you cannot explain.',
+            'Use version control so working code is never one mistake away from disappearing.',
+            'Documentation is part of programming. Learn to read it.'
+          ],
+          check: ['What is the most important rule on this page?', 'Understand what your code is doing. Everything else becomes easier when you do.'],
+          takeaway: 'Syntax changes. Tools change. Careful thinking, debugging and clear code stay useful for your entire programming life.'
+        }
+      ]
     }
   ];
 
@@ -461,6 +526,13 @@
   function renderCheck(check) {
     if (!check) return '';
     return '<details class="cse110-check"><summary>Quick check · ' + esc(check[0]) + '</summary><p>' + esc(check[1]) + '</p></details>';
+  }
+
+  function renderNotes(notes) {
+    if (!notes?.length) return '';
+    return '<section class="cse110-write-down"><div><span>WRITE THIS DOWN</span><b>Keep this in your programming notebook.</b></div><ol>' +
+      notes.map((note) => '<li>' + esc(note) + '</li>').join('') +
+      '</ol></section>';
   }
 
   function renderShell() {
@@ -506,13 +578,14 @@
     root.querySelector('#cse110SceneCount').textContent = 'Scene ' + (current + 1) + ' / ' + slides.length;
     root.querySelector('#cse110ProgressBar').style.width = (((current + 1) / slides.length) * 100) + '%';
 
-    card.dataset.sceneType = slide.code ? 'code' : slide.check ? 'check' : 'story';
+    card.dataset.sceneType = topic.lifeNotes ? 'life' : slide.code ? 'code' : slide.check ? 'check' : 'story';
     card.innerHTML =
       '<div class="cse110-scene-meta"><span>' + esc(slide.kicker) + '</span><b>Topic ' + String(slide.topicIndex + 1).padStart(2, '0') + ' · ' + esc(topic.title) + '</b></div>' +
       '<h2>' + esc(slide.title) + '</h2>' +
       '<p class="cse110-scene-body">' + esc(slide.body) + '</p>' +
       renderVisual(slide.visual) +
       renderCode(slide.code) +
+      renderNotes(slide.notes) +
       renderCheck(slide.check) +
       '<aside class="cse110-takeaway"><span>REMEMBER THIS</span><p>' + esc(slide.takeaway) + '</p></aside>';
 
