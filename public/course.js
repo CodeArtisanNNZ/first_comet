@@ -30,32 +30,92 @@
     history.replaceState(null, '', `#learn/${state.language}/${state.tab}${state.tab === 'milestones' ? `/${state.milestone + 1}` : ''}`);
   }
 
+  function updateLearnHome() {
+    const experience = document.body.dataset.level || 'Beginner';
+    const firstChallengeDone = Boolean(localStorage.getItem('fc-first-challenge-v1'));
+    const title = document.querySelector('#learnFocusTitle');
+    const text = document.querySelector('#learnFocusText');
+    const action = document.querySelector('#learnFocusAction');
+    const steps = all('.learn-path-preview > span');
+    const optionCourse = document.querySelector('.learn-option-course');
+    const optionReference = document.querySelector('.learn-option-reference');
+
+    let recommendation = {
+      title:'Try one tiny coding challenge.',
+      text:'Change a few lines, run the result, and see what your code actually does.',
+      label:'Start Code Lab →',
+      section:'lab',
+      stage:0
+    };
+
+    if (experience === 'Beginner' && firstChallengeDone) {
+      recommendation = {
+        title:'You made code work. Now give it direction.',
+        text:'Follow the learning path so each new skill connects to something you can build.',
+        label:'Continue with the learning path →',
+        section:'project',
+        stage:1
+      };
+    } else if (experience === 'Practising') {
+      recommendation = {
+        title:'Keep building, then practise what the project needs.',
+        text:'Use the learning path as your main route. Open language practice only when a project exposes a weak spot.',
+        label:'Continue the learning path →',
+        section:'project',
+        stage:1
+      };
+    } else if (experience === 'Pro') {
+      recommendation = {
+        title:'Jump to what you need, then get back to building.',
+        text:'Use the quick reference as a lookup tool instead of walking through beginner explanations.',
+        label:'Open quick reference →',
+        section:'reference',
+        stage:2
+      };
+    }
+
+    if (title) title.textContent = recommendation.title;
+    if (text) text.textContent = recommendation.text;
+    if (action) {
+      action.textContent = recommendation.label;
+      action.dataset.learnSection = recommendation.section;
+    }
+    steps.forEach((step,index)=>step.classList.toggle('active',index===recommendation.stage));
+    if (optionCourse) optionCourse.hidden = experience === 'Beginner';
+    if (optionReference) optionReference.hidden = experience === 'Beginner';
+  }
+
   function openSection(section, updateUrl = true) {
-    if (!['project', 'course', 'localhost', 'videos', 'lab', 'reference'].includes(section)) return;
+    if (!['start', 'project', 'course', 'localhost', 'videos', 'lab', 'reference'].includes(section)) return;
     const experience = document.body.dataset.level || 'Beginner';
     if (experience === 'Beginner' && section === 'reference') section = 'localhost';
     if (experience === 'Pro' && section === 'localhost') section = 'reference';
+
     all('.learn-section').forEach((panel) => { panel.hidden = panel.id !== `learn-${section}`; });
-    const startCard = document.querySelector('.beginner-start-card');
-    if (startCard) startCard.hidden = section !== 'localhost';
     all('[data-learn-section]').forEach((button) => {
       const active = button.dataset.learnSection === section;
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     });
-    const sectionSelect = document.querySelector('#learnSectionSelect');
-    if (sectionSelect) {
-      const courseOption = sectionSelect.querySelector('option[value="course"]');
-      const referenceOption = sectionSelect.querySelector('option[value="reference"]');
-      const localhostOption = sectionSelect.querySelector('option[value="localhost"]');
-      if (courseOption) courseOption.hidden = experience === 'Beginner';
-      if (referenceOption) referenceOption.hidden = experience === 'Beginner';
-      if (localhostOption) localhostOption.hidden = experience === 'Pro';
-      sectionSelect.value = section;
-    }
-    document.querySelector('#pageLabel').textContent = ({ project: 'Build with me', course: 'Practice code', localhost: 'Start here', videos: 'Videos', lab: 'Code Lab', reference: 'Quick reference' })[section] || 'Learn';
+
+    const backHome = document.querySelector('#learnBackHome');
+    if (backHome) backHome.hidden = section === 'start';
+    updateLearnHome();
+
+    document.querySelector('#pageLabel').textContent = ({
+      start:'Learn',
+      project:'Build with me',
+      course:'Practice code',
+      localhost:'Computer setup',
+      videos:'Videos',
+      lab:'Code Lab',
+      reference:'Quick reference'
+    })[section] || 'Learn';
+
     if (updateUrl) {
-      if (section === 'project') {
+      if (section === 'start') {
+        history.replaceState(null, '', '#learn');
+      } else if (section === 'project') {
         if (window.FirstCometProjectCourse) window.FirstCometProjectCourse.open();
         else history.replaceState(null, '', '#learn/project');
       } else if (section === 'course') route();
@@ -365,7 +425,8 @@
     const parts = location.hash.replace(/^#/, '').split('/');
     if (parts[0] !== 'learn') return;
     document.querySelector('.nav-item[data-view="learn"]')?.click();
-    if (!parts[1] || parts[1] === 'project') { openSection('project', false); return; }
+    if (!parts[1] || parts[1] === 'start') { openSection('start', false); return; }
+    if (parts[1] === 'project') { openSection('project', false); return; }
     if (['localhost', 'videos', 'lab', 'reference'].includes(parts[1])) { openSection(parts[1], false); return; }
     if (data.languages.some((l) => l.id === parts[1])) state.language = parts[1];
     state.tab = tabs[parts[2]] ? parts[2] : 'dictionary';
@@ -450,9 +511,6 @@
       const active = document.querySelector('#view-learn .learn-section:not([hidden])');
       if (active) openSection(active.id.replace('learn-', ''), false);
     } else if (viewButton && location.hash.startsWith('#learn')) history.replaceState(null, '', location.pathname + location.search);
-  });
-  document.addEventListener('change', (event) => {
-    if (event.target.id === 'learnSectionSelect') openSection(event.target.value);
   });
   window.addEventListener('hashchange', readRoute);
   window.FirstCometCourse = { openSection };
