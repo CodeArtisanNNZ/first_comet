@@ -281,6 +281,10 @@
     return String(value).replace(/[&<>"']/g, (char) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
   }
 
+  function learnerName() {
+    return window.FirstCometPersonalization?.getName?.() || '';
+  }
+
   function saveCompleted() {
     localStorage.setItem('fc-video-complete', JSON.stringify(Array.from(completedVideos)));
   }
@@ -411,7 +415,7 @@
       editorBlock('JavaScript · interaction', 'labJs', webFiles.js) +
       '<div class="lab-actions"><button class="primary" data-check-web>Run & check my changes →</button><button class="secondary" data-run-preview>Preview</button><button class="secondary" data-download-web>Save HTML file ↓</button><button class="secondary" data-reset-lab>Reset files</button></div>' +
       '<div class="fc-web-feedback" id="webLabFeedback" role="status" aria-live="polite">' +
-        (alreadyDone ? '<p>✓ First challenge completed on this device.</p>' : '<p>Change the code, then tap Run & check. Your edits save as you type.</p>') +
+        (alreadyDone ? '<p>✓ ' + esc(learnerName() ? 'Nice work, ' + learnerName() + '. First challenge completed on this device.' : 'First challenge completed on this device.') + '</p>' : '<p>Change the code, then tap Run & check. Your edits save as you type.</p>') +
       '</div>' +
       '<button type="button" class="secondary fc-web-next" data-lab-next ' + (alreadyDone ? '' : 'hidden ') + '>Next: create your own project →</button>' +
       '</div><div class="preview-panel"><div><b>YOUR WEBSITE</b><span>Browser preview · sandboxed</span></div>' +
@@ -470,7 +474,7 @@
     box.innerHTML = '<strong>' + completed + ' / 3 changes checked</strong><ul>' +
       outcomes.map(entry => '<li>' + (entry[1] ? '✓' : '○') + ' ' + entry[0] + '</li>').join('') + '</ul>' +
       '<p>' + (completed === 3
-        ? 'Your edits are saved. Check the live preview and click its button to see your own message.'
+        ? (learnerName() ? 'Nice work, ' + learnerName() + '. Your edits are saved. Check the live preview and click its button to see your own message.' : 'Your edits are saved. Check the live preview and click its button to see your own message.')
         : 'Try each unchecked change, then run the check again.') + '</p>';
     if (completed === 3) {
       try {localStorage.setItem(WEB_DONE_KEY, new Date().toISOString());} catch (_) {}
@@ -488,7 +492,7 @@
     const feedback = labRoot.querySelector('#labFeedback');
     if (count === passed.length) {
       feedback.dataset.result = 'correct';
-      feedback.textContent = 'Structure looks right. Now run it locally and compare the real output with the expected result.';
+      feedback.textContent = (learnerName() ? 'Nice work, ' + learnerName() + '. ' : '') + 'Structure looks right. Now run it locally and compare the real output with the expected result.';
     } else {
       feedback.dataset.result = 'retry';
       feedback.textContent = 'You have ' + count + ' of ' + passed.length + ' key pieces. Use the hint and add the missing idea before checking again.';
