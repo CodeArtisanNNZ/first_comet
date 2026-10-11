@@ -912,7 +912,7 @@
 }
 
 
-/* Vintage flat-card treatment — returning dashboard */
+/* Vintage flat-card treatment: returning dashboard */
 .fc-progress-home.compact .fc-progress-welcome{
   background:var(--blue);
   color:#fff;
