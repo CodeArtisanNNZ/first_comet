@@ -482,11 +482,13 @@
         </section>`).join('')}
     </div>
 
-    <section class="bracu-source-note">
-      <span class="eyebrow">SOURCE NOTE</span>
-      <p>Course codes, titles, prerequisite labels and outline topics are structured from BRAC University CSE's current official course pages/program listing. First Comet rewrites and groups those topics for easier studying; this is not a semester-specific faculty handout.</p>
-      <a href="https://cse.bracu.ac.bd/undergraduate/program" target="_blank" rel="noopener">Open BRACU undergraduate CSE program ↗</a>
-    </section>
+    <details class="bracu-source-note">
+      <summary>Source</summary>
+      <div>
+        <p>Course codes, titles, prerequisite labels and outline topics are structured from BRAC University CSE's current official course pages/program listing. First Comet rewrites and groups those topics for easier studying; this is not a semester-specific faculty handout.</p>
+        <a href="https://cse.bracu.ac.bd/undergraduate/program" target="_blank" rel="noopener">Official BRACU CSE program ↗</a>
+      </div>
+    </details>
   `;
 
   const search = root.querySelector('#bracuCourseSearch');
