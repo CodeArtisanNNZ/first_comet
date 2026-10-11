@@ -287,7 +287,7 @@
           <span><b>${t.checkpoints}</b> checkpoints</span>
           <span><b>${t.projects}</b> projects</span>
           <span><b>${t.titles}</b> titles</span>
-          <span><b>${cv.started ? cv.count + '/8' : '—'}</b> CV</span>
+          <span><b>${cv.started ? cv.count + '/8' : '0/8'}</b> CV</span>
         </div>
 
         <details class="fc-progress-details">
