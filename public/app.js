@@ -175,7 +175,10 @@ function runGlobalSearch(item){
   if(kind==='bracu'){
     setView('bracu');
     setTimeout(()=>{
-      const card=document.querySelector('.bracu-catalog-card[data-bracu-course="'+parts[0]+'"]');
+      const courseCode=parts[0]||'';
+      const match=courseCode.match(/^CSE([1-4])/);
+      if(match) window.FirstCometBracuCourses?.openLevel(match[1]+'00');
+      const card=document.querySelector('.bracu-catalog-card[data-bracu-course="'+courseCode+'"]');
       const details=card?.querySelector('details');
       if(details)details.open=true;
       flashSearchArrival(card);
