@@ -33,6 +33,7 @@
   function updateLearnHome() {
     const experience = document.body.dataset.level || 'Beginner';
     const firstChallengeDone = Boolean(localStorage.getItem('fc-first-challenge-v1'));
+    const learnerName = window.FirstCometPersonalization?.getName?.() || '';
     const title = document.querySelector('#learnFocusTitle');
     const text = document.querySelector('#learnFocusText');
     const action = document.querySelector('#learnFocusAction');
@@ -41,7 +42,7 @@
     const optionReference = document.querySelector('.learn-option-reference');
 
     let recommendation = {
-      title:'Try one tiny coding challenge.',
+      title: learnerName ? learnerName + ', start with one tiny coding challenge.' : 'Try one tiny coding challenge.',
       text:'Change a few lines, run the result, and see what your code actually does.',
       label:'Start Code Lab →',
       section:'lab',
@@ -50,7 +51,7 @@
 
     if (experience === 'Beginner' && firstChallengeDone) {
       recommendation = {
-        title:'You made code work. Now give it direction.',
+        title: learnerName ? learnerName + ', you made code work. Now give it direction.' : 'You made code work. Now give it direction.',
         text:'Follow the learning path so each new skill connects to something you can build.',
         label:'Continue with the learning path →',
         section:'project',
@@ -513,6 +514,7 @@
     } else if (viewButton && location.hash.startsWith('#learn')) history.replaceState(null, '', location.pathname + location.search);
   });
   window.addEventListener('hashchange', readRoute);
+  window.addEventListener('fc-profile-name', updateLearnHome);
   window.FirstCometCourse = { openSection };
   state.milestone = Math.min(progress[state.language], 7);
   render();
