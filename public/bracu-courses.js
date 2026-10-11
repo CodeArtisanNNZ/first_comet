@@ -434,6 +434,12 @@
   }
 
   const areas = ['All', ...new Set(courses.map((course) => course.area))];
+  const levels = [
+    { id:'100', label:'100 Level', courses:courses.filter((course) => /^CSE1/.test(course.code)) },
+    { id:'200', label:'200 Level', courses:courses.filter((course) => /^CSE2/.test(course.code)) },
+    { id:'300', label:'300 Level', courses:courses.filter((course) => /^CSE3/.test(course.code)) },
+    { id:'400', label:'400 Level', courses:courses.filter((course) => /^CSE4/.test(course.code)) }
+  ];
 
   root.innerHTML = `
     <section class="bracu-hero">
@@ -458,10 +464,23 @@
       </div>
     </section>
 
+    <nav class="bracu-level-nav" aria-label="Jump to BRACU CSE course level">
+      ${levels.map((level) => `<button type="button" data-bracu-level-jump="${level.id}"><b>${level.id}</b><span>${level.courses.length} courses</span></button>`).join('')}
+    </nav>
+
     <div class="bracu-catalog-count" id="bracuCatalogCount" role="status"></div>
-    <section class="bracu-catalog-grid" aria-label="BRACU undergraduate CSE course sections">
-      ${courses.map(card).join('')}
-    </section>
+    <div class="bracu-level-groups">
+      ${levels.map((level) => `
+        <section class="bracu-level-group" data-bracu-level-group="${level.id}" aria-labelledby="bracuLevel${level.id}">
+          <div class="bracu-level-heading">
+            <div><span class="eyebrow">COURSE LEVEL</span><h2 id="bracuLevel${level.id}">${level.label} Courses</h2></div>
+            <span>${level.courses.length} courses</span>
+          </div>
+          <div class="bracu-catalog-grid">
+            ${level.courses.map(card).join('')}
+          </div>
+        </section>`).join('')}
+    </div>
 
     <section class="bracu-source-note">
       <span class="eyebrow">SOURCE NOTE</span>
@@ -473,6 +492,8 @@
   const search = root.querySelector('#bracuCourseSearch');
   const cards = [...root.querySelectorAll('.bracu-catalog-card')];
   const filters = [...root.querySelectorAll('[data-bracu-area]')];
+  const groups = [...root.querySelectorAll('[data-bracu-level-group]')];
+  const jumpButtons = [...root.querySelectorAll('[data-bracu-level-jump]')];
   const count = root.querySelector('#bracuCatalogCount');
   let activeArea = 'All';
 
@@ -485,6 +506,14 @@
       card.hidden = !(areaOk && textOk);
       if (!card.hidden) visible++;
     });
+    groups.forEach((group) => {
+      const visibleCards = [...group.querySelectorAll('.bracu-catalog-card')].some((card) => !card.hidden);
+      group.hidden = !visibleCards;
+    });
+    jumpButtons.forEach((button) => {
+      const group = root.querySelector('[data-bracu-level-group="' + button.dataset.bracuLevelJump + '"]');
+      button.disabled = !group || group.hidden;
+    });
     count.textContent = visible + (visible === 1 ? ' course' : ' courses') + ' shown';
   }
 
@@ -493,6 +522,10 @@
     activeArea = button.dataset.bracuArea;
     filters.forEach((item) => item.classList.toggle('active', item === button));
     applyFilters();
+  }));
+  jumpButtons.forEach((button) => button.addEventListener('click', () => {
+    const group = root.querySelector('[data-bracu-level-group="' + button.dataset.bracuLevelJump + '"]');
+    group?.scrollIntoView({ behavior:'smooth', block:'start' });
   }));
 
   applyFilters();
