@@ -884,3 +884,278 @@ select:focus{
     max-height:none;
   }
 }
+
+
+/* BRACU Courses workspace */
+.nav-item[data-view="bracu"] span{background:var(--yellow-soft)}
+.nav-item[data-view="bracu"].active{box-shadow:inset 4px 0 0 var(--yellow)}
+
+.bracu-hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 320px;
+  gap:24px;
+  align-items:end;
+  padding:20px 0 28px;
+  border-top:5px solid var(--yellow);
+  border-bottom:2px solid var(--line);
+}
+.bracu-hero h1{
+  margin:8px 0 10px;
+  font-size:clamp(2.4rem,5vw,4.8rem);
+  line-height:.95;
+  letter-spacing:-.055em;
+}
+.bracu-hero p{
+  margin:0;
+  max-width:760px;
+  color:var(--muted);
+  font-size:1.05rem;
+  line-height:1.55;
+}
+.bracu-hero aside{
+  display:grid;
+  gap:8px;
+  padding:18px;
+  border:2px solid var(--line);
+  border-radius:14px;
+  background:var(--yellow);
+  color:#171319;
+  box-shadow:5px 5px 0 var(--line);
+}
+.bracu-hero aside b{
+  line-height:1.45;
+}
+
+.bracu-course-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.7fr) minmax(280px,.7fr);
+  gap:18px;
+  margin-top:24px;
+  align-items:start;
+}
+.bracu-course-card,
+.bracu-add-course{
+  border:2px solid var(--line);
+  border-radius:16px;
+  background:var(--panel);
+  box-shadow:5px 5px 0 var(--line);
+}
+.bracu-course-card{
+  padding:22px;
+}
+.bracu-course-head{
+  display:grid;
+  grid-template-columns:92px minmax(0,1fr);
+  gap:18px;
+  align-items:start;
+}
+.bracu-course-code{
+  display:grid;
+  place-items:center;
+  min-height:92px;
+  border:2px solid var(--line);
+  border-radius:14px;
+  background:var(--yellow);
+  color:#171319;
+  font:800 1.05rem "DM Mono",monospace;
+}
+.bracu-course-head h2{
+  margin:6px 0 7px;
+  font-size:1.55rem;
+  line-height:1.15;
+}
+.bracu-course-head p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+}
+
+.bracu-course-meta{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:8px;
+  margin:18px 0;
+}
+.bracu-course-meta span{
+  display:grid;
+  gap:3px;
+  padding:10px 12px;
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  background:var(--paper);
+  color:var(--muted);
+  font-size:.82rem;
+}
+.bracu-course-meta b{
+  color:var(--ink);
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+
+.bracu-course-outline{
+  border-top:2px solid var(--line);
+  border-bottom:2px solid var(--line);
+}
+.bracu-course-outline summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 2px;
+  cursor:pointer;
+  list-style:none;
+  font-weight:800;
+}
+.bracu-course-outline summary::-webkit-details-marker{display:none}
+.bracu-course-outline summary b{
+  color:var(--muted);
+  font-size:.76rem;
+  font-weight:700;
+}
+.bracu-course-outline ol{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:9px;
+  margin:0 0 16px;
+  padding:0;
+  list-style:none;
+  counter-reset:bracu-topic;
+}
+.bracu-course-outline li{
+  counter-increment:bracu-topic;
+  position:relative;
+  min-width:0;
+  padding:12px 12px 12px 44px;
+  border:1.5px solid var(--line);
+  border-radius:10px;
+  background:var(--paper);
+}
+.bracu-course-outline li:before{
+  content:counter(bracu-topic,decimal-leading-zero);
+  position:absolute;
+  left:11px;
+  top:12px;
+  font:700 .68rem "DM Mono",monospace;
+  color:var(--coral);
+}
+.bracu-course-outline li b,
+.bracu-course-outline li span{
+  display:block;
+}
+.bracu-course-outline li b{
+  margin-bottom:4px;
+  font-size:.9rem;
+}
+.bracu-course-outline li span{
+  color:var(--muted);
+  font-size:.78rem;
+  line-height:1.45;
+}
+
+.bracu-study-order{
+  margin-top:18px;
+  padding:14px;
+  border:2px solid var(--line);
+  border-radius:11px;
+  background:var(--blue-soft);
+}
+.bracu-study-order>div{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  align-items:center;
+  margin-top:9px;
+}
+.bracu-study-order>div span{
+  padding:7px 9px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--panel);
+  font-size:.76rem;
+  font-weight:700;
+}
+.bracu-study-order i{
+  font-style:normal;
+  color:var(--coral);
+  font-weight:800;
+}
+
+.bracu-course-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:16px;
+}
+.bracu-course-actions a{
+  display:inline-flex;
+  align-items:center;
+  text-decoration:none;
+}
+
+.bracu-add-course{
+  padding:20px;
+  border-top:5px solid var(--blue);
+}
+.bracu-add-course h2{
+  margin:7px 0 8px;
+  font-size:1.35rem;
+}
+.bracu-add-course p{
+  margin:0;
+  color:var(--muted);
+  line-height:1.55;
+  font-size:.88rem;
+}
+.bracu-next-codes{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:16px;
+}
+.bracu-next-codes span{
+  padding:7px 9px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--cream);
+  font:700 .72rem "DM Mono",monospace;
+}
+
+.dark .bracu-hero aside,
+.dark .bracu-course-code{
+  color:#171319;
+}
+.dark .bracu-course-meta span,
+.dark .bracu-course-outline li{
+  background:var(--paper);
+}
+
+@media(max-width:1100px){
+  .bracu-course-grid{
+    grid-template-columns:1fr;
+  }
+  .bracu-add-course{
+    box-shadow:none;
+  }
+}
+@media(max-width:760px){
+  .bracu-hero{
+    grid-template-columns:1fr;
+  }
+  .bracu-course-head{
+    grid-template-columns:1fr;
+  }
+  .bracu-course-code{
+    min-height:56px;
+    width:110px;
+  }
+  .bracu-course-meta,
+  .bracu-course-outline ol{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:700px){
+  .nav-item[data-view="bracu"].active{
+    box-shadow:inset 0 3px 0 var(--yellow);
+  }
+}
