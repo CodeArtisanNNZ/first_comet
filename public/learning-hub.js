@@ -390,8 +390,11 @@
       '<section class="lab-intro compact-learning-intro">' +
         '<div><span class="eyebrow">CODE LAB</span><h2>Change it. Run it. See what happens.</h2></div>' +
       '</section>' +
-      '<div class="lab-track-picker">' +
-        Object.entries(labTracks).map(([id, item]) => '<button data-lab-track="' + id + '" class="' + (id === currentTrack ? 'active' : '') + '">' + esc(item.label) + '</button>').join('') +
+      '<div class="lab-track-select-wrap">' +
+        '<label for="labTrackSelect">Code Lab type</label>' +
+        '<select id="labTrackSelect">' +
+          Object.entries(labTracks).map(([id, item]) => '<option value="' + id + '"' + (id === currentTrack ? ' selected' : '') + '>' + esc(item.label) + '</option>').join('') +
+        '</select>' +
       '</div>' +
       '<section class="lab-task-card"><div><span class="eyebrow">DO THIS</span><h3>' + esc(track.goal) + '</h3></div><details class="lab-run-help"><summary>How do I run this?</summary><p>' + esc(track.run || 'The preview runs inside this page.') + '</p></details><button class="course-text-link" data-lab-hint>' + (hintOpen ? 'Hide hint' : 'Need a hint?') + '</button>' + (hintOpen ? '<p class="lab-hint">' + esc(track.hint) + '</p>' : '') + '</section>' +
       (isWeb ? renderWebLab(track) : renderLocalLab(track));
@@ -498,15 +501,16 @@
     if (webKey) {webFiles[webKey] = event.target.value;saveWebFiles();}
   });
 
-  labRoot.addEventListener('click', (event) => {
-    const trackButton = event.target.closest('[data-lab-track]');
-    if (trackButton) {
-      currentTrack = trackButton.dataset.labTrack;
+  labRoot.addEventListener('change', (event) => {
+    if (event.target.id === 'labTrackSelect') {
+      currentTrack = event.target.value;
       localStorage.setItem('fc-lab-track', currentTrack);
       hintOpen = false;
       renderLab();
-      return;
     }
+  });
+
+  labRoot.addEventListener('click', (event) => {
     if (event.target.closest('[data-lab-hint]')) {
       hintOpen = !hintOpen;
       renderLab();
