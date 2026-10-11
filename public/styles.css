@@ -1393,27 +1393,53 @@ select:focus{
 }
 
 .bracu-source-note{
-  width:min(100%,620px);
-  margin-top:14px;
-  padding:10px 12px;
-  border:1.5px solid var(--line);
-  border-left:4px solid var(--blue);
-  border-radius:9px;
-  background:var(--panel);
+  width:max-content;
+  max-width:min(100%,520px);
+  margin:12px 0 0 auto;
+  position:relative;
 }
-.bracu-source-note .eyebrow{
-  font-size:.62rem;
-  letter-spacing:.1em;
+.bracu-source-note>summary{
+  list-style:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:28px;
+  padding:5px 9px;
+  border:1.5px solid var(--line);
+  border-radius:7px;
+  background:var(--panel);
+  color:var(--muted);
+  box-shadow:2px 2px 0 var(--line);
+  cursor:pointer;
+  font-size:.66rem;
+  font-weight:800;
+}
+.bracu-source-note>summary::-webkit-details-marker{display:none}
+.bracu-source-note>summary:after{
+  content:' ↗';
+  color:var(--blue-deep);
+}
+.bracu-source-note[open]>summary{
+  background:var(--blue-soft);
+  color:var(--ink);
+}
+.bracu-source-note>div{
+  margin-top:7px;
+  padding:9px 10px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--panel);
+  box-shadow:3px 3px 0 var(--line);
 }
 .bracu-source-note p{
-  margin:4px 0 6px;
+  margin:0 0 5px;
   color:var(--muted);
-  font-size:.72rem;
-  line-height:1.45;
+  font-size:.68rem;
+  line-height:1.4;
 }
 .bracu-source-note a{
   color:var(--ink);
-  font-size:.72rem;
+  font-size:.68rem;
   font-weight:700;
 }
 
