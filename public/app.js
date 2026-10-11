@@ -376,8 +376,15 @@ function applyExperienceLevel(level,notify=false){
 }
 function openPreferredLearnSection(){
   const section=preferredLearnSection();
-  const btn=$(`[data-learn-section="${section}"]`);
-  if(btn && getComputedStyle(btn).display!=='none') btn.click();
+  if(window.FirstCometCourse?.openSection){
+    window.FirstCometCourse.openSection(section);
+    return;
+  }
+  const select=$('#learnSectionSelect');
+  if(select){
+    select.value=section;
+    select.dispatchEvent(new Event('change',{bubbles:true}));
+  }
 }
 function setView(v){
   document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
