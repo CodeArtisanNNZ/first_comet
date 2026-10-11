@@ -824,3 +824,60 @@
     margin:20px 0 14px;
   }
 }
+
+
+/* Compact Learn section selector */
+.learn-section-picker{
+  position:relative;
+  width:min(100%,300px);
+  margin:24px 0;
+  display:grid;
+  gap:6px;
+}
+.learn-section-picker label{
+  color:var(--muted);
+  font:800 .68rem "DM Mono",monospace;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.learn-section-picker:after{
+  content:'▾';
+  position:absolute;
+  right:7px;
+  bottom:7px;
+  display:grid;
+  place-items:center;
+  width:28px;
+  height:28px;
+  border:1.5px solid var(--line);
+  border-radius:7px;
+  background:var(--yellow);
+  color:#171319;
+  box-shadow:1px 1px 0 var(--line);
+  pointer-events:none;
+  font-weight:900;
+}
+#learnSectionSelect{
+  appearance:none;
+  -webkit-appearance:none;
+  width:100%;
+  min-height:44px;
+  padding:10px 44px 10px 12px;
+  border:2px solid var(--line);
+  border-radius:10px;
+  background:var(--panel);
+  color:var(--ink);
+  box-shadow:3px 3px 0 var(--line);
+  cursor:pointer;
+  font-weight:800;
+}
+#learnSectionSelect:hover,
+#learnSectionSelect:focus{
+  outline:0;
+  background:var(--yellow-soft);
+  box-shadow:4px 4px 0 var(--line);
+}
+#learnSectionSelect option{
+  background:var(--panel);
+  color:var(--ink);
+}
