@@ -336,9 +336,7 @@ function finishIntro(){
 }
 function animateView(v){const el=$('#view-'+v);if(!el)return;animeRun({targets:el.querySelectorAll('h1,.eyebrow,.home-action-card,.home-projects,.home-process,.launch-card,.project-list,.mission,.lesson-panel,.topic-card,.setting,.studio'),translateY:[18,0],opacity:[0,1],delay:hasAnime()?anime.stagger(45):0,duration:500,easing:'easeOutQuad'})}
 function preferredLearnSection(){
-  if(state.level==='Beginner') return 'lab';
-  if(state.level==='Pro') return 'reference';
-  return 'project';
+  return 'start';
 }
 function applyExperienceLevel(level,notify=false){
   state.level=level||'Beginner';
@@ -376,15 +374,7 @@ function applyExperienceLevel(level,notify=false){
 }
 function openPreferredLearnSection(){
   const section=preferredLearnSection();
-  if(window.FirstCometCourse?.openSection){
-    window.FirstCometCourse.openSection(section);
-    return;
-  }
-  const select=$('#learnSectionSelect');
-  if(select){
-    select.value=section;
-    select.dispatchEvent(new Event('change',{bubbles:true}));
-  }
+  if(window.FirstCometCourse?.openSection) window.FirstCometCourse.openSection(section);
 }
 function setView(v){
   document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));
