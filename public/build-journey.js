@@ -214,10 +214,11 @@
     const active = stages[currentStageIndex()];
     const activeNeed = firstOpen(active);
     const coreComplete = stages.every(stageComplete);
+    const learnerName = window.FirstCometPersonalization?.getName?.() || '';
 
     target.innerHTML =
       '<section class="journey-hero">' +
-        '<div><span class="eyebrow">BUILD JOURNEY</span><h2>Build. Unlock. Move on.</h2><p>One stage at a time.</p></div>' +
+        '<div><span class="eyebrow">BUILD JOURNEY</span><h2>' + esc(learnerName ? learnerName + ', build one stage at a time.' : 'Build. Unlock. Move on.') + '</h2><p>One stage at a time.</p></div>' +
         '<aside><span>CURRENT TITLE</span><b>' + esc(currentTitle()) + '</b><small>' + earned.length + ' / ' + stages.length + ' unlocked</small><progress max="' + stages.length + '" value="' + earned.length + '"></progress></aside>' +
       '</section>' +
       (coreComplete
@@ -245,6 +246,7 @@
 
   window.addEventListener('hashchange', sync);
   window.addEventListener('storage', sync);
+  window.addEventListener('fc-profile-name', sync);
   document.addEventListener('click', (event) => {
     if (event.target.closest('[data-project-home]')) {
       setTimeout(sync, 0);
