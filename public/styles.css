@@ -1711,3 +1711,45 @@ select:focus{
 .bracu-level-nav button[data-bracu-level-jump="200"].active{background:var(--blue-soft)}
 .bracu-level-nav button[data-bracu-level-jump="300"].active{background:var(--red-soft)}
 .bracu-level-nav button[data-bracu-level-jump="400"].active{background:var(--green-soft)}
+
+
+/* Compact BRACU area dropdown */
+.bracu-area-select-wrap{
+  display:grid;
+  gap:6px;
+  justify-self:end;
+  width:min(100%,280px);
+}
+.bracu-area-select-wrap label{
+  color:var(--muted);
+  font-size:.72rem;
+  font-weight:800;
+}
+.bracu-area-select{
+  width:100%;
+  min-height:40px;
+  padding:9px 36px 9px 11px;
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  background:var(--cream);
+  color:var(--ink);
+  box-shadow:2px 2px 0 var(--line);
+  cursor:pointer;
+  font-size:.78rem;
+  font-weight:700;
+}
+.bracu-area-select:focus{
+  outline:0;
+  border-color:var(--blue);
+  box-shadow:3px 3px 0 var(--line);
+}
+.dark .bracu-area-select{
+  background:var(--panel);
+  color:var(--ink);
+}
+@media(max-width:900px){
+  .bracu-area-select-wrap{
+    justify-self:start;
+    width:min(100%,320px);
+  }
+}
