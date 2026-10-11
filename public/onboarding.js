@@ -12,11 +12,12 @@
   }
   function refreshHome() {
     if (!status) return;
+    const name = window.FirstCometPersonalization?.getName?.() || '';
     if (isComplete()) {
-      status.textContent = '✓ You completed the first challenge. Your edits are saved in this browser.';
+      status.textContent = '✓ ' + (name ? name + ', you completed the first challenge. ' : 'You completed the first challenge. ') + 'Your edits are saved in this browser.';
       if (startButton) startButton.textContent = 'Continue coding →';
     } else {
-      status.textContent = 'Works on your phone, too. Your edits save in this browser.';
+      status.textContent = (name ? 'Ready, ' + name + '? ' : '') + 'Works on your phone, too. Your edits save in this browser.';
     }
   }
 
@@ -32,6 +33,7 @@
   startButton?.addEventListener('click', () => goTo('lab'));
   computerButton?.addEventListener('click', () => goTo('localhost'));
   window.addEventListener('fc-first-challenge-complete', refreshHome);
+  window.addEventListener('fc-profile-name', refreshHome);
   window.addEventListener('storage', refreshHome);
   document.querySelector('.nav-item[data-view="home"]')?.addEventListener('click', refreshHome);
   refreshHome();
