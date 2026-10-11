@@ -349,14 +349,17 @@
 
       <section class="view" id="view-learn">
         <div class="page-heading course-page-heading"><span class="eyebrow">FIRST COMET · START SMALL</span><h1>Learn by building.</h1><p>One small step at a time.</p></div>
-        <nav class="learn-sections" aria-label="Learning areas">
-          <button data-learn-section="lab" aria-pressed="false">Try code</button>
-          <button class="active" data-learn-section="project" aria-pressed="true">Learning path</button>
-          <button data-learn-section="localhost" aria-pressed="false">Computer setup</button>
-          <button data-learn-section="videos" aria-pressed="false">Videos</button>
-          <button data-learn-section="course" aria-pressed="false">Practice</button>
-          <button data-learn-section="reference" aria-pressed="false">Reference</button>
-        </nav>
+        <div class="learn-section-picker">
+          <label for="learnSectionSelect">Learn section</label>
+          <select id="learnSectionSelect" aria-label="Choose a learning area">
+            <option value="lab">Try code</option>
+            <option value="project" selected>Learning path</option>
+            <option value="localhost">Computer setup</option>
+            <option value="videos">Videos</option>
+            <option value="course">Practice</option>
+            <option value="reference">Reference</option>
+          </select>
+        </div>
 
         <section class="beginner-start-card" aria-label="Beginner start">
           <div><span class="eyebrow">NEW HERE?</span><h2>Start with one tiny win.</h2></div>
