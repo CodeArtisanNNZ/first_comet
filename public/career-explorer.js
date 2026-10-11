@@ -434,9 +434,12 @@
 
     <section class="career-lost">
       <div><span class="eyebrow">NOT SURE?</span><h2>Start with what you enjoy.</h2></div>
-      <div class="career-interest-row">
-        ${interestMap.map(([id,label]) => `<button type="button" data-interest="${id}">${label}</button>`).join('')}
-        <button type="button" data-interest="all">Show everything</button>
+      <div class="career-interest-select-wrap">
+        <label for="careerInterestSelect">What do you enjoy?</label>
+        <select id="careerInterestSelect" class="career-interest-select">
+          <option value="all">Show everything</option>
+          ${interestMap.map(([id,label]) => `<option value="${id}">${label}</option>`).join('')}
+        </select>
       </div>
     </section>
 
@@ -473,24 +476,26 @@
 
   const cards = [...root.querySelectorAll('.career-card')];
   const filterButtons = [...root.querySelectorAll('[data-career-filter]')];
-  const interestButtons = [...root.querySelectorAll('[data-interest]')];
+  const interestSelect = root.querySelector('#careerInterestSelect');
 
   function showByFamily(family) {
     cards.forEach((card) => {
       card.hidden = family !== 'all' && card.dataset.family !== family;
     });
     filterButtons.forEach((button) => button.classList.toggle('active', button.dataset.careerFilter === family));
-    interestButtons.forEach((button) => button.classList.remove('active'));
+    if (interestSelect) interestSelect.value = 'all';
   }
 
   function showByInterest(interest) {
     cards.forEach((card) => {
       card.hidden = interest !== 'all' && !card.dataset.fit.split(' ').includes(interest);
     });
-    interestButtons.forEach((button) => button.classList.toggle('active', button.dataset.interest === interest));
     filterButtons.forEach((button) => button.classList.remove('active'));
+    if (interest === 'all') {
+      filterButtons.find((button) => button.dataset.careerFilter === 'all')?.classList.add('active');
+    }
   }
 
   filterButtons.forEach((button) => button.addEventListener('click', () => showByFamily(button.dataset.careerFilter)));
-  interestButtons.forEach((button) => button.addEventListener('click', () => showByInterest(button.dataset.interest)));
+  interestSelect?.addEventListener('change', () => showByInterest(interestSelect.value));
 })();
