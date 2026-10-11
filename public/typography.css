@@ -409,3 +409,18 @@
 #view-learn .course-page-heading::before{
   content:none!important;
 }
+
+
+/* Smaller CV Studio hero title */
+.cv-hero #cvHeroTitle{
+  font-size:clamp(1.75rem,2.55vw,2.6rem)!important;
+  line-height:1.08!important;
+  max-width:760px!important;
+}
+@media(max-width:700px){
+  .cv-hero #cvHeroTitle{
+    font-size:1.65rem!important;
+    line-height:1.12!important;
+    max-width:92%!important;
+  }
+}
