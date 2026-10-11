@@ -229,6 +229,7 @@
     const next = nextNeed();
     const cv = cvReadiness();
     const latest = latestMeaningful(state);
+    const learnerName = window.FirstCometPersonalization?.getName?.() || '';
     const weekAgo = Date.now() - 7 * 86400000;
     const weekly = state.events.filter(event => Number(event.at) >= weekAgo && ['skill', 'step', 'title', 'project'].includes(event.kind));
     const passport = stages.map((stage, index) => {
@@ -260,7 +261,7 @@
       <section class="fc-progress-home compact">
         <div class="fc-progress-welcome">
           <span class="eyebrow">WELCOME BACK</span>
-          <h1>You are not where you started.</h1>
+          <h1>${esc(learnerName ? learnerName + ', you are not where you started.' : 'You are not where you started.')}</h1>
           <p>${latest
             ? 'Last win: <b>' + esc(latest.title) + '</b> · ' + relativeDate(latest.at)
             : 'Your completed work is saved on this device.'}</p>
@@ -343,6 +344,7 @@
   }
 
   function celebrate(event) {
+    const learnerName = window.FirstCometPersonalization?.getName?.() || '';
     let layer = document.querySelector('#fcAchievementToast');
     if (!layer) {
       layer = document.createElement('div');
@@ -363,7 +365,7 @@
         <span>${event.kind === 'title' ? 'TITLE UNLOCKED' : event.kind === 'project' ? 'PROJECT STARTED' : 'PROGRESS PROVEN'}</span>
         <b>${esc(event.title)}</b>
         <small>${esc(event.detail || 'You completed something real.')}</small>
-        <em>${event.kind === 'title' ? 'A new stage is yours.' : 'You built that progress yourself.'}</em>
+        <em>${esc(learnerName ? (event.kind === 'title' ? 'Nice work, ' + learnerName + '. A new stage is yours.' : 'Nice work, ' + learnerName + '. You built that progress yourself.') : (event.kind === 'title' ? 'A new stage is yours.' : 'You built that progress yourself.'))}</em>
       </div>`;
     layer.classList.remove('show');
     void layer.offsetWidth;
@@ -413,5 +415,6 @@
   window.FirstCometAchievements = { record, refresh: render };
   window.addEventListener('storage', render);
   window.addEventListener('fc:progress-changed', render);
+  window.addEventListener('fc-profile-name', render);
   render();
 })();
