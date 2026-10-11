@@ -1393,21 +1393,27 @@ select:focus{
 }
 
 .bracu-source-note{
-  margin-top:18px;
-  padding:16px;
-  border:2px solid var(--line);
-  border-left:6px solid var(--blue);
-  border-radius:12px;
+  width:min(100%,620px);
+  margin-top:14px;
+  padding:10px 12px;
+  border:1.5px solid var(--line);
+  border-left:4px solid var(--blue);
+  border-radius:9px;
   background:var(--panel);
 }
+.bracu-source-note .eyebrow{
+  font-size:.62rem;
+  letter-spacing:.1em;
+}
 .bracu-source-note p{
-  margin:6px 0 8px;
+  margin:4px 0 6px;
   color:var(--muted);
-  font-size:.82rem;
-  line-height:1.55;
+  font-size:.72rem;
+  line-height:1.45;
 }
 .bracu-source-note a{
   color:var(--ink);
+  font-size:.72rem;
   font-weight:700;
 }
 
