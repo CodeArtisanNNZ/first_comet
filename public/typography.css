@@ -182,3 +182,221 @@
     line-height:1.2!important;
   }
 }
+
+
+/* ===== Subtle identity for the rest of First Comet's main headers ===== */
+#view-learn .course-page-heading,
+#view-settings .page-heading,
+.career-hero,
+.cv-hero,
+.bracu-hero,
+.journey-hero,
+.cse110-notes-head{
+  --hero-accent:var(--coral);
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  border:2px solid var(--line)!important;
+  border-top:4px solid var(--hero-accent)!important;
+  border-radius:18px;
+  padding:22px 24px!important;
+  background:
+    radial-gradient(circle at 91% 18%,color-mix(in srgb,var(--hero-accent) 17%,transparent),transparent 23%),
+    linear-gradient(125deg,var(--panel),var(--paper));
+  box-shadow:4px 4px 0 color-mix(in srgb,var(--line) 80%,transparent);
+}
+
+#view-learn .course-page-heading{--hero-accent:var(--coral)}
+#view-settings .page-heading{--hero-accent:var(--yellow)}
+.career-hero{--hero-accent:var(--pink)}
+.cv-hero{--hero-accent:var(--green)}
+.bracu-hero{--hero-accent:var(--yellow)}
+.journey-hero{--hero-accent:var(--blue)}
+.cse110-notes-head{--hero-accent:var(--blue)}
+
+#view-learn .course-page-heading::after,
+#view-settings .page-heading::after,
+.career-hero::after,
+.cv-hero::after,
+.bracu-hero::after,
+.journey-hero::after,
+.cse110-notes-head::after{
+  content:"☄";
+  position:absolute;
+  right:22px;
+  top:14px;
+  z-index:-1;
+  font-size:1.45rem;
+  opacity:.22;
+  color:var(--hero-accent);
+  transform:rotate(-14deg);
+  animation:fcSoftHeroComet 4.8s ease-in-out infinite;
+}
+
+#view-learn .course-page-heading::before,
+#view-settings .page-heading::before,
+.career-hero::before,
+.cv-hero::before,
+.bracu-hero::before,
+.journey-hero::before,
+.cse110-notes-head::before{
+  content:"";
+  position:absolute;
+  right:-42px;
+  bottom:-72px;
+  width:180px;
+  height:180px;
+  border:1.5px dashed color-mix(in srgb,var(--hero-accent) 42%,transparent);
+  border-radius:50%;
+  opacity:.55;
+  z-index:-1;
+  animation:fcSoftHeroOrbit 13s linear infinite;
+}
+
+#view-learn .course-page-heading h1,
+#view-settings .page-heading h1,
+.career-hero h1,
+.cv-hero h1,
+.bracu-hero h1,
+.journey-hero h2,
+.cse110-notes-head h1{
+  position:relative;
+  width:fit-content;
+  max-width:min(900px,90%);
+  margin-top:9px!important;
+  margin-bottom:11px!important;
+  line-height:1.02!important;
+  letter-spacing:-.045em!important;
+}
+
+#view-learn .course-page-heading h1::after,
+#view-settings .page-heading h1::after,
+.career-hero h1::after,
+.cv-hero h1::after,
+.bracu-hero h1::after,
+.journey-hero h2::after,
+.cse110-notes-head h1::after{
+  content:"";
+  display:block;
+  width:min(132px,42%);
+  height:5px;
+  margin-top:10px;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--hero-accent),color-mix(in srgb,var(--hero-accent) 20%,transparent));
+  transform-origin:left;
+  animation:fcSoftHeroLine .65s cubic-bezier(.2,.8,.2,1) both;
+}
+
+#view-learn .course-page-heading .eyebrow,
+#view-settings .page-heading .eyebrow,
+.career-hero .eyebrow,
+.cv-hero .eyebrow,
+.bracu-hero .eyebrow,
+.journey-hero .eyebrow,
+.cse110-notes-head .eyebrow{
+  color:color-mix(in srgb,var(--hero-accent) 78%,var(--ink));
+  font-weight:700;
+}
+
+#view-learn .course-page-heading>p,
+#view-settings .page-heading>p,
+.career-hero>div>p,
+.cv-hero>div>p,
+.bracu-hero>div>p,
+.journey-hero>div>p,
+.cse110-notes-head>div>p{
+  max-width:720px;
+  line-height:1.55;
+}
+
+/* Keep side information useful without making every header a full hero. */
+.career-hero aside,
+.cv-hero aside,
+.bracu-hero aside,
+.journey-hero aside{
+  transform:translateY(0);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.career-hero aside:hover,
+.cv-hero aside:hover,
+.bracu-hero aside:hover,
+.journey-hero aside:hover{
+  transform:translateY(-3px);
+  box-shadow:3px 3px 0 var(--line);
+}
+
+.dark #view-learn .course-page-heading,
+.dark #view-settings .page-heading,
+.dark .career-hero,
+.dark .cv-hero,
+.dark .bracu-hero,
+.dark .journey-hero,
+.dark .cse110-notes-head{
+  background:
+    radial-gradient(circle at 91% 18%,color-mix(in srgb,var(--hero-accent) 12%,transparent),transparent 23%),
+    linear-gradient(125deg,var(--panel),var(--paper));
+}
+
+@keyframes fcSoftHeroComet{
+  0%,100%{transform:translate(0,0) rotate(-14deg)}
+  50%{transform:translate(-9px,7px) rotate(-8deg)}
+}
+@keyframes fcSoftHeroOrbit{
+  to{transform:rotate(360deg)}
+}
+@keyframes fcSoftHeroLine{
+  from{transform:scaleX(.15);opacity:.2}
+  to{transform:scaleX(1);opacity:1}
+}
+
+@media(max-width:760px){
+  #view-learn .course-page-heading,
+  #view-settings .page-heading,
+  .career-hero,
+  .cv-hero,
+  .bracu-hero,
+  .journey-hero,
+  .cse110-notes-head{
+    padding:18px!important;
+    border-radius:15px;
+  }
+  #view-learn .course-page-heading::after,
+  #view-settings .page-heading::after,
+  .career-hero::after,
+  .cv-hero::after,
+  .bracu-hero::after,
+  .journey-hero::after,
+  .cse110-notes-head::after{
+    right:14px;
+    top:10px;
+    font-size:1.2rem;
+  }
+  #view-learn .course-page-heading h1,
+  #view-settings .page-heading h1,
+  .career-hero h1,
+  .cv-hero h1,
+  .bracu-hero h1,
+  .journey-hero h2,
+  .cse110-notes-head h1{
+    max-width:88%;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  #view-learn .course-page-heading::after,
+  #view-settings .page-heading::after,
+  .career-hero::after,
+  .cv-hero::after,
+  .bracu-hero::after,
+  .journey-hero::after,
+  .cse110-notes-head::after,
+  #view-learn .course-page-heading::before,
+  #view-settings .page-heading::before,
+  .career-hero::before,
+  .cv-hero::before,
+  .bracu-hero::before,
+  .journey-hero::before,
+  .cse110-notes-head::before{
+    animation:none!important;
+  }
+}
