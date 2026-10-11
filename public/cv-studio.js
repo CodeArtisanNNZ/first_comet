@@ -100,7 +100,7 @@
           ${entryInput('experience', index, 'location', 'Location', item.location, 'Dhaka / Remote')}
           ${entryInput('experience', index, 'start', 'Start', item.start, 'Jun 2026')}
           ${entryInput('experience', index, 'end', 'End', item.end, 'Aug 2026 / Present')}
-          ${entryTextarea('experience', index, 'bullets', 'Achievement bullets — one per line', item.bullets, 'Built … using …\nImproved … by …\nCollaborated with … to …', 5)}
+          ${entryTextarea('experience', index, 'bullets', 'Achievement bullets: one per line', item.bullets, 'Built … using …\nImproved … by …\nCollaborated with … to …', 5)}
         </div>
       </article>`;
   }
@@ -113,7 +113,7 @@
           ${entryInput('projects', index, 'name', 'Project name', item.name, 'Project name')}
           ${entryInput('projects', index, 'tech', 'Tech / Skills', item.tech, 'React, FastAPI, PostgreSQL')}
           ${entryInput('projects', index, 'link', 'Project / GitHub link', item.link, 'github.com/username/project')}
-          ${entryTextarea('projects', index, 'bullets', 'What you built — one bullet per line', item.bullets, 'Built … for …\nImplemented …\nDeployed …', 5)}
+          ${entryTextarea('projects', index, 'bullets', 'What you built: one bullet per line', item.bullets, 'Built … for …\nImplemented …\nDeployed …', 5)}
         </div>
       </article>`;
   }
@@ -134,7 +134,7 @@
     <section class="cv-hero">
       <div>
         <span class="eyebrow">CV STUDIO</span>
-        <h1>Build a CV people — and ATS software — can read.</h1>
+        <h1>Build a CV people, and ATS software: can read.</h1>
         <p>Learn the rules, write your content, check it against a job description, then export a clean application-ready CV.</p>
       </div>
       <aside>
@@ -190,8 +190,8 @@
         <details class="cv-editor-section" open>
           <summary>2. Summary & skills</summary>
           <div class="cv-form-grid">
-            ${textarea('Professional Summary', 'summary', data.basics.summary, '2–3 lines: who you are, your strongest relevant skills, and evidence of what you can build.', 4)}
-            ${textarea('Skills — comma separated', 'skills', data.basics.skills, 'JavaScript, React, Python, PostgreSQL, Git', 3)}
+            ${textarea('Professional Summary', 'summary', data.basics.summary, '2-3 lines: who you are, your strongest relevant skills, and evidence of what you can build.', 4)}
+            ${textarea('Skills: comma separated', 'skills', data.basics.skills, 'JavaScript, React, Python, PostgreSQL, Git', 3)}
           </div>
         </details>
 
@@ -300,8 +300,8 @@
           ${experience.map(item => `
             <div class="resume-entry">
               <div class="resume-entry-head">
-                <div><b>${esc(item.role)}</b>${item.company ? `<span> — ${esc(item.company)}</span>` : ''}</div>
-                <span>${esc([item.start, item.end].filter(nonEmpty).join(' – '))}</span>
+                <div><b>${esc(item.role)}</b>${item.company ? `<span>: ${esc(item.company)}</span>` : ''}</div>
+                <span>${esc([item.start, item.end].filter(nonEmpty).join(' - '))}</span>
               </div>
               ${item.location ? `<p class="resume-meta">${esc(item.location)}</p>` : ''}
               ${lines(item.bullets).length ? `<ul>${lines(item.bullets).map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
@@ -314,7 +314,7 @@
           ${projects.map(item => `
             <div class="resume-entry">
               <div class="resume-entry-head">
-                <div><b>${esc(item.name)}</b>${item.tech ? `<span> — ${esc(item.tech)}</span>` : ''}</div>
+                <div><b>${esc(item.name)}</b>${item.tech ? `<span>: ${esc(item.tech)}</span>` : ''}</div>
                 ${item.link ? `<span>${esc(cleanUrl(item.link))}</span>` : ''}
               </div>
               ${lines(item.bullets).length ? `<ul>${lines(item.bullets).map(x => `<li>${esc(x)}</li>`).join('')}</ul>` : ''}
@@ -327,8 +327,8 @@
           ${education.map(item => `
             <div class="resume-entry">
               <div class="resume-entry-head">
-                <div><b>${esc(item.degree)}</b>${item.school ? `<span> — ${esc(item.school)}</span>` : ''}</div>
-                <span>${esc([item.start, item.end].filter(nonEmpty).join(' – '))}</span>
+                <div><b>${esc(item.degree)}</b>${item.school ? `<span>: ${esc(item.school)}</span>` : ''}</div>
+                <span>${esc([item.start, item.end].filter(nonEmpty).join(' - '))}</span>
               </div>
               ${item.location ? `<p class="resume-meta">${esc(item.location)}</p>` : ''}
               ${item.details ? `<p>${esc(item.details)}</p>` : ''}
@@ -340,7 +340,7 @@
           <h2>Certifications</h2>
           ${certifications.map(item => `
             <div class="resume-entry resume-cert">
-              <div><b>${esc(item.name)}</b>${item.issuer ? `<span> — ${esc(item.issuer)}</span>` : ''}</div>
+              <div><b>${esc(item.name)}</b>${item.issuer ? `<span>: ${esc(item.issuer)}</span>` : ''}</div>
               <span>${esc(item.date)}</span>
             </div>`).join('')}
         </section>` : ''}
@@ -431,7 +431,7 @@
       </div>
       <div class="cv-keyword-columns">
         <div><span>ALREADY PRESENT</span><p>${found.length ? found.map(x => `<em>${esc(x)}</em>`).join('') : '<i>None yet</i>'}</p></div>
-        <div><span>REVIEW — ADD ONLY IF TRUE</span><p>${review.length ? review.map(x => `<em>${esc(x)}</em>`).join('') : '<i>No obvious missing repeated terms</i>'}</p></div>
+        <div><span>REVIEW: ADD ONLY IF TRUE</span><p>${review.length ? review.map(x => `<em>${esc(x)}</em>`).join('') : '<i>No obvious missing repeated terms</i>'}</p></div>
       </div>`;
   }
 
