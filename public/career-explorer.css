@@ -422,3 +422,44 @@
     grid-template-columns:1fr;
   }
 }
+
+
+/* Compact career interest dropdown */
+.career-interest-select-wrap{
+  display:grid;
+  gap:6px;
+  justify-self:start;
+  width:min(100%,320px);
+}
+.career-interest-select-wrap label{
+  color:var(--muted);
+  font-size:.72rem;
+  font-weight:800;
+}
+.career-interest-select{
+  width:100%;
+  min-height:40px;
+  padding:9px 36px 9px 11px;
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  background:var(--cream);
+  color:var(--ink);
+  box-shadow:2px 2px 0 var(--line);
+  cursor:pointer;
+  font-size:.78rem;
+  font-weight:700;
+}
+.career-interest-select:focus{
+  outline:0;
+  border-color:var(--blue);
+  box-shadow:3px 3px 0 var(--line);
+}
+.dark .career-interest-select{
+  background:var(--panel);
+  color:var(--ink);
+}
+@media(max-width:850px){
+  .career-interest-select-wrap{
+    width:min(100%,360px);
+  }
+}
