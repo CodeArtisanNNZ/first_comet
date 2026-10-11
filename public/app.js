@@ -60,6 +60,16 @@ function buildGlobalSearchIndex(){
     keywords:'project local work '+(project.type||''),
     target:'project:'+index
   }));
+  const bracuCourses=window.FC_BRACU_COURSES;
+  if(Array.isArray(bracuCourses)){
+    bracuCourses.forEach((course)=>items.push({
+      title:course.code+' · '+course.title,
+      section:'BRACU Courses',
+      description:course.focus||'BRAC University CSE course',
+      keywords:[course.code,course.title,course.area,course.hp,course.sp,'bracu brac university course'].filter(Boolean).join(' '),
+      target:'bracu:'+course.code
+    }));
+  }
   const course=window.FC_COURSE;
   if(course?.languages){
     const seen=new Set();
@@ -161,6 +171,16 @@ function runGlobalSearch(item){
   const parts=target.split(':');
   const kind=parts.shift();
   if(kind==='view'){setView(parts[0]);return;}
+  if(kind==='bracu'){
+    setView('bracu');
+    setTimeout(()=>{
+      const card=document.querySelector('.bracu-catalog-card[data-bracu-course="'+parts[0]+'"]');
+      const details=card?.querySelector('details');
+      if(details)details.open=true;
+      flashSearchArrival(card);
+    },0);
+    return;
+  }
   if(kind==='learn'){
     setView('learn');
     setTimeout(()=>window.FirstCometCourse?.openSection(parts[0]),0);
