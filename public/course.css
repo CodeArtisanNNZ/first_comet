@@ -317,7 +317,7 @@
 }
 
 
-/* Bubble Sort visualizer — First Comet vintage theme */
+/* Bubble Sort visualizer: First Comet vintage theme */
 .course-bubble-sort{
   margin:0 0 24px;
   padding:22px;
@@ -708,7 +708,7 @@
   overflow-x:auto;
 }
 
-/* A normal 1280–1440px laptop has only about 950–1100px left for the
+/* A normal 1280-1440px laptop has only about 950-1100px left for the
    course after the rail and page gutters. Reflow before it clips. */
 @media (max-width: 1450px){
   body:has(#view-learn.active) main{
