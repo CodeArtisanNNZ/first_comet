@@ -349,23 +349,34 @@
 
       <section class="view" id="view-learn">
         <div class="page-heading course-page-heading"><span class="eyebrow">FIRST COMET · START SMALL</span><h1>Learn by building.</h1><p>One small step at a time.</p></div>
-        <div class="learn-section-picker">
-          <label for="learnSectionSelect">Learn section</label>
-          <select id="learnSectionSelect" aria-label="Choose a learning area">
-            <option value="lab">Try code</option>
-            <option value="project" selected>Learning path</option>
-            <option value="localhost">Computer setup</option>
-            <option value="videos">Videos</option>
-            <option value="course">Practice</option>
-            <option value="reference">Reference</option>
-          </select>
-        </div>
+        <section id="learn-start" class="learn-section learn-start-home" aria-label="Learning home">
+          <div class="learn-focus-card">
+            <div class="learn-focus-copy">
+              <span class="eyebrow">DO THIS NEXT</span>
+              <h2 id="learnFocusTitle">Try one tiny coding challenge.</h2>
+              <p id="learnFocusText">Change a few lines, run the result, and see what your code actually does.</p>
+            </div>
+            <button type="button" class="primary learn-focus-action" id="learnFocusAction" data-learn-section="lab">Start Code Lab →</button>
+          </div>
 
-        <section class="beginner-start-card" aria-label="Beginner start">
-          <div><span class="eyebrow">NEW HERE?</span><h2>Start with one tiny win.</h2></div>
-          <button type="button" class="primary" data-learn-section="lab">Try your first code →</button>
-          <button type="button" class="secondary" data-learn-section="localhost">Set up on a computer</button>
-          <button type="button" class="secondary" data-learn-section="videos">Watch a video instead</button>
+          <div class="learn-path-preview" aria-label="Simple learning path">
+            <span class="active">1 <b>Try</b></span>
+            <i>→</i>
+            <span>2 <b>Learn</b></span>
+            <i>→</i>
+            <span>3 <b>Build</b></span>
+          </div>
+
+          <details class="learn-more-options">
+            <summary>I need something else</summary>
+            <div class="learn-more-grid">
+              <button type="button" data-learn-section="project"><b>Full learning path</b><small>See what to learn and build in order.</small></button>
+              <button type="button" data-learn-section="videos"><b>Watch a lesson</b><small>Use a free Bangla or English video.</small></button>
+              <button type="button" data-learn-section="localhost"><b>Set up my computer</b><small>Get localhost and editor help.</small></button>
+              <button type="button" class="learn-option-course" data-learn-section="course"><b>Practice a language</b><small>Work through coding milestones.</small></button>
+              <button type="button" class="learn-option-reference" data-learn-section="reference"><b>Look something up</b><small>Open the quick reference.</small></button>
+            </div>
+          </details>
         </section>
 
         <section id="learn-videos" class="learn-section" aria-label="Free Bangla and English video learning" hidden>
