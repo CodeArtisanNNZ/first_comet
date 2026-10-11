@@ -1719,33 +1719,67 @@ select:focus{
   gap:6px;
   justify-self:end;
   width:min(100%,280px);
+  position:relative;
 }
 .bracu-area-select-wrap label{
   color:var(--muted);
-  font-size:.72rem;
-  font-weight:800;
+  font:800 .7rem "DM Mono",monospace;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.bracu-area-select-wrap:after{
+  content:'▾';
+  position:absolute;
+  right:7px;
+  bottom:7px;
+  display:grid;
+  place-items:center;
+  width:27px;
+  height:27px;
+  border:1.5px solid var(--line);
+  border-radius:7px;
+  background:var(--yellow);
+  color:#171319;
+  box-shadow:1px 1px 0 var(--line);
+  pointer-events:none;
+  font-size:.78rem;
+  font-weight:900;
 }
 .bracu-area-select{
+  appearance:none;
+  -webkit-appearance:none;
   width:100%;
-  min-height:40px;
-  padding:9px 36px 9px 11px;
-  border:1.5px solid var(--line);
-  border-radius:9px;
-  background:var(--cream);
+  min-height:42px;
+  padding:9px 43px 9px 12px;
+  border:2px solid var(--line);
+  border-radius:10px;
+  background:var(--panel);
   color:var(--ink);
-  box-shadow:2px 2px 0 var(--line);
+  box-shadow:3px 3px 0 var(--line);
   cursor:pointer;
-  font-size:.78rem;
-  font-weight:700;
+  font-size:.8rem;
+  font-weight:800;
+}
+.bracu-area-select:hover{
+  background:var(--yellow-soft);
 }
 .bracu-area-select:focus{
   outline:0;
-  border-color:var(--blue);
-  box-shadow:3px 3px 0 var(--line);
+  border-color:var(--line);
+  background:var(--yellow-soft);
+  box-shadow:4px 4px 0 var(--line);
+}
+.bracu-area-select option{
+  background:var(--panel);
+  color:var(--ink);
 }
 .dark .bracu-area-select{
   background:var(--panel);
   color:var(--ink);
+}
+.dark .bracu-area-select:hover,
+.dark .bracu-area-select:focus{
+  background:var(--yellow-soft);
 }
 @media(max-width:900px){
   .bracu-area-select-wrap{
