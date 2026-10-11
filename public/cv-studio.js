@@ -130,11 +130,13 @@
       </article>`;
   }
 
+  const learnerName = window.FirstCometPersonalization?.getName?.() || '';
+
   root.innerHTML = `
     <section class="cv-hero">
       <div>
         <span class="eyebrow">CV STUDIO</span>
-        <h1>Build a CV people, and ATS software: can read.</h1>
+        <h1 id="cvHeroTitle">${esc(learnerName ? learnerName + ', build a CV people and ATS software can read.' : 'Build a CV people and ATS software can read.')}</h1>
         <p>Learn the rules, write your content, check it against a job description, then export a clean application-ready CV.</p>
       </div>
       <aside>
@@ -549,6 +551,11 @@
   });
 
   window.addEventListener('afterprint', () => document.body.classList.remove('cv-printing'));
+  window.addEventListener('fc-profile-name', () => {
+    const title = root.querySelector('#cvHeroTitle');
+    const name = window.FirstCometPersonalization?.getName?.() || '';
+    if (title) title.textContent = name ? name + ', build a CV people and ATS software can read.' : 'Build a CV people and ATS software can read.';
+  });
 
   bindDynamic();
   renderPreview();
