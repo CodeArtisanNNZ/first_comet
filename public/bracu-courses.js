@@ -485,8 +485,8 @@
     <details class="bracu-source-note">
       <summary>Source</summary>
       <div>
-        <p>Course codes, titles, prerequisite labels and outline topics are structured from BRAC University CSE's current official course pages/program listing. First Comet rewrites and groups those topics for easier studying; this is not a semester-specific faculty handout.</p>
-        <a href="https://cse.bracu.ac.bd/undergraduate/program" target="_blank" rel="noopener">Official BRACU CSE program ↗</a>
+        <p>Based on BRACU's official CSE course pages. First Comet simplifies the topics for study.</p>
+        <a href="https://cse.bracu.ac.bd/undergraduate/program" target="_blank" rel="noopener">Official source ↗</a>
       </div>
     </details>
   `;
