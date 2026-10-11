@@ -53,16 +53,16 @@
       recommendation = {
         title: learnerName ? learnerName + ', you made code work. Now give it direction.' : 'You made code work. Now give it direction.',
         text:'Follow the learning path so each new skill connects to something you can build.',
-        label:'Continue with the learning path →',
-        section:'project',
+        label:'Continue learning →',
+        section:'course',
         stage:1
       };
     } else if (experience === 'Practising') {
       recommendation = {
-        title:'Keep building, then practise what the project needs.',
-        text:'Use the learning path as your main route. Open language practice only when a project exposes a weak spot.',
-        label:'Continue the learning path →',
-        section:'project',
+        title:'Keep learning, then use it in a real build.',
+        text:'Practise the coding concepts you need, then move to Build when you are ready to apply them in a project.',
+        label:'Continue learning →',
+        section:'course',
         stage:1
       };
     } else if (experience === 'Pro') {
