@@ -145,3 +145,40 @@
     line-height:1.4!important;
   }
 }
+
+
+/* Guidance sentences should read as guidance, not oversized hero headlines. */
+#view-vscode .vscode-heading h1,
+#view-careers #careerHeroTitle,
+#view-home #homeStarterTitle,
+#view-learn .course-page-heading h1{
+  font-size:clamp(1.7rem,2.35vw,2.35rem)!important;
+  line-height:1.12!important;
+  letter-spacing:-.035em!important;
+  max-width:900px;
+}
+
+#view-learn #learnFocusTitle,
+#view-learn .compact-intro h2,
+#view-learn #teachingTitle{
+  font-size:clamp(1.35rem,1.8vw,1.8rem)!important;
+  line-height:1.18!important;
+  letter-spacing:-.025em!important;
+}
+
+@media (max-width:700px){
+  #view-vscode .vscode-heading h1,
+  #view-careers #careerHeroTitle,
+  #view-home #homeStarterTitle,
+  #view-learn .course-page-heading h1{
+    font-size:1.65rem!important;
+    line-height:1.16!important;
+  }
+
+  #view-learn #learnFocusTitle,
+  #view-learn .compact-intro h2,
+  #view-learn #teachingTitle{
+    font-size:1.3rem!important;
+    line-height:1.2!important;
+  }
+}
