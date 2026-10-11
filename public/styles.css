@@ -1159,3 +1159,284 @@ select:focus{
     box-shadow:inset 0 3px 0 var(--yellow);
   }
 }
+
+
+/* Full BRACU CSE course catalog */
+.bracu-catalog-tools{
+  display:grid;
+  grid-template-columns:minmax(260px,340px) minmax(0,1fr);
+  gap:16px;
+  align-items:end;
+  margin:22px 0 12px;
+}
+.bracu-catalog-tools label{
+  display:block;
+  margin-bottom:7px;
+  font-size:.82rem;
+  font-weight:800;
+}
+.bracu-catalog-tools input{
+  width:100%;
+  min-width:0;
+  padding:11px 13px;
+  border:2px solid var(--line);
+  border-radius:10px;
+  background:var(--panel);
+  color:var(--ink);
+  font:inherit;
+}
+.bracu-area-filters{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+}
+.bracu-area-filters button{
+  padding:8px 10px;
+  border:1.5px solid var(--line);
+  border-radius:999px;
+  background:var(--cream);
+  color:var(--ink);
+  cursor:pointer;
+  font-size:.76rem;
+  font-weight:700;
+}
+.bracu-area-filters button.active{
+  background:var(--yellow);
+  color:#171319;
+  box-shadow:2px 2px 0 var(--line);
+}
+.bracu-catalog-count{
+  margin:0 0 12px;
+  color:var(--muted);
+  font-size:.78rem;
+}
+
+.bracu-catalog-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  align-items:start;
+}
+.bracu-catalog-card{
+  min-width:0;
+  border:2px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+  overflow:hidden;
+}
+.bracu-catalog-card[hidden]{display:none!important}
+.bracu-catalog-card details{
+  min-width:0;
+}
+.bracu-catalog-card summary{
+  display:grid;
+  grid-template-columns:86px minmax(0,1fr) 28px;
+  gap:12px;
+  align-items:center;
+  padding:14px;
+  list-style:none;
+  cursor:pointer;
+}
+.bracu-catalog-card summary::-webkit-details-marker{display:none}
+.bracu-catalog-card details[open] summary{
+  background:var(--cream);
+  border-bottom:2px solid var(--line);
+}
+.bracu-catalog-code{
+  display:grid;
+  place-items:center;
+  min-height:54px;
+  border:2px solid var(--line);
+  border-radius:10px;
+  background:var(--yellow);
+  color:#171319;
+  font:800 .84rem "DM Mono",monospace;
+}
+.bracu-catalog-title{
+  min-width:0;
+}
+.bracu-catalog-title b,
+.bracu-catalog-title small{
+  display:block;
+}
+.bracu-catalog-title b{
+  font-size:1rem;
+  line-height:1.25;
+}
+.bracu-catalog-title small{
+  margin-top:4px;
+  color:var(--muted);
+  font-size:.76rem;
+  line-height:1.4;
+}
+.bracu-catalog-toggle{
+  display:grid;
+  place-items:center;
+  width:26px;
+  height:26px;
+  border:1.5px solid var(--line);
+  border-radius:50%;
+  background:var(--paper);
+  font-weight:800;
+  transition:transform .15s ease;
+}
+.bracu-catalog-card details[open] .bracu-catalog-toggle{
+  transform:rotate(45deg);
+}
+.bracu-catalog-body{
+  display:grid;
+  gap:13px;
+  padding:15px;
+}
+.bracu-course-facts{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.bracu-course-facts span{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding:7px 9px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--paper);
+  color:var(--muted);
+  font-size:.75rem;
+}
+.bracu-course-facts b{
+  color:var(--ink);
+  font-size:.68rem;
+  text-transform:uppercase;
+  letter-spacing:.04em;
+}
+.bracu-focus{
+  margin:0;
+  color:var(--muted);
+  font-size:.86rem;
+  line-height:1.55;
+}
+.bracu-focus b{color:var(--ink)}
+
+.bracu-course-ready{
+  padding:13px;
+  border:2px solid var(--line);
+  border-radius:11px;
+  background:var(--blue-soft);
+}
+.bracu-ready-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin-top:9px;
+}
+.bracu-ready-grid>div{
+  padding:10px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--panel);
+}
+.bracu-ready-grid b{
+  display:block;
+  font-size:.82rem;
+}
+.bracu-ready-grid p{
+  margin:4px 0 0;
+  color:var(--muted);
+  font-size:.74rem;
+  line-height:1.45;
+}
+
+.bracu-cse110-detail{
+  padding:13px;
+  border:2px solid var(--line);
+  border-radius:11px;
+  background:var(--paper);
+}
+.bracu-topic-map{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:8px;
+  margin:10px 0 0;
+  padding:0;
+  list-style:none;
+  counter-reset:bracu-topic;
+}
+.bracu-topic-map li{
+  counter-increment:bracu-topic;
+  position:relative;
+  padding:10px 10px 10px 38px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--panel);
+}
+.bracu-topic-map li:before{
+  content:counter(bracu-topic,decimal-leading-zero);
+  position:absolute;
+  left:10px;
+  top:10px;
+  color:var(--coral);
+  font:700 .65rem "DM Mono",monospace;
+}
+.bracu-topic-map b,
+.bracu-topic-map span{
+  display:block;
+}
+.bracu-topic-map b{
+  font-size:.8rem;
+}
+.bracu-topic-map span{
+  margin-top:3px;
+  color:var(--muted);
+  font-size:.72rem;
+  line-height:1.4;
+}
+
+.bracu-source-note{
+  margin-top:18px;
+  padding:16px;
+  border:2px solid var(--line);
+  border-left:6px solid var(--blue);
+  border-radius:12px;
+  background:var(--panel);
+}
+.bracu-source-note p{
+  margin:6px 0 8px;
+  color:var(--muted);
+  font-size:.82rem;
+  line-height:1.55;
+}
+.bracu-source-note a{
+  color:var(--ink);
+  font-weight:700;
+}
+
+@media(max-width:1200px){
+  .bracu-catalog-grid{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:900px){
+  .bracu-catalog-tools{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:620px){
+  .bracu-catalog-card summary{
+    grid-template-columns:74px minmax(0,1fr) 26px;
+    gap:9px;
+    padding:11px;
+  }
+  .bracu-ready-grid,
+  .bracu-topic-map{
+    grid-template-columns:1fr;
+  }
+  .bracu-area-filters{
+    overflow-x:auto;
+    flex-wrap:nowrap;
+    padding-bottom:3px;
+  }
+  .bracu-area-filters button{
+    white-space:nowrap;
+  }
+}
