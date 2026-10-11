@@ -131,7 +131,7 @@
       bd: 'Growing in banks, telecom, government, fintech and larger tech organizations; specialist teams are still smaller than general development.',
       outside: 'Strong demand across industries, especially finance, government, cloud and enterprise.',
       future: 'Very strong signal. More digital systems and AI also create more security risk.',
-      signal: 'U.S. BLS projects information security analyst employment growth of about 29% from 2024–34.'
+      signal: 'U.S. BLS projects information security analyst employment growth of about 29% from 2024-34.'
     },
     {
       id: 'analyst',
@@ -179,7 +179,7 @@
       bd: 'Growing, but genuine junior ML roles are still fewer than general software jobs. Skills can also lead to remote/global work.',
       outside: 'Strong growth in AI-focused industries, but hiring standards can be high and graduate study helps for research-heavy roles.',
       future: 'Very strong growth signal, while tools change quickly. Fundamentals matter more than chasing every model.',
-      signal: 'WEF lists AI/ML and big-data roles among the fastest-growing; U.S. BLS projects data scientist growth around 34% from 2024–34.'
+      signal: 'WEF lists AI/ML and big-data roles among the fastest-growing; U.S. BLS projects data scientist growth around 34% from 2024-34.'
     },
     {
       id: 'embedded',
@@ -424,7 +424,7 @@
       <div>
         <span class="eyebrow">CAREER EXPLORER</span>
         <h1>You do not need to know your path yet.</h1>
-        <p>Explore what CSE careers actually feel like — including the good parts and the difficult parts.</p>
+        <p>Explore what CSE careers actually feel like, including the good parts and the difficult parts.</p>
       </div>
       <aside>
         <b>No fake promises.</b>
@@ -453,24 +453,24 @@
 
     <section class="career-market-note">
       <span class="eyebrow">MARKET REALITY · REVIEWED 2026</span>
-      <h2>Bangladesh has opportunity — and real competition.</h2>
+      <h2>Bangladesh has opportunity, and real competition.</h2>
       <p>Bangladesh's ICT sector is growing and IT exports have recently improved, but graduate supply is also high and employers report a skills gap. Globally, software, cybersecurity, data and AI remain important growth areas, while AI is also reducing some routine entry-level work. Build real skills, not only certificates.</p>
       <details>
         <summary>Why First Comet says this</summary>
         <div class="career-source-links">
           <a href="https://bida.gov.bd/information-technology" target="_blank" rel="noopener">Bangladesh Investment Development Authority →</a>
-          <a href="https://documents1.worldbank.org/curated/en/099082525051033525/pdf/P511786-ad6fb108-5072-428b-a766-0d4659d179d5.pdf" target="_blank" rel="noopener">World Bank — Bangladesh jobs & skills →</a>
+          <a href="https://documents1.worldbank.org/curated/en/099082525051033525/pdf/P511786-ad6fb108-5072-428b-a766-0d4659d179d5.pdf" target="_blank" rel="noopener">World Bank: Bangladesh jobs & skills →</a>
           <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/digest/" target="_blank" rel="noopener">WEF Future of Jobs 2025 →</a>
-          <a href="https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" target="_blank" rel="noopener">U.S. BLS — Software developers →</a>
-          <a href="https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm" target="_blank" rel="noopener">U.S. BLS — Cybersecurity →</a>
-          <a href="https://www.bls.gov/ooh/math/data-scientists.htm" target="_blank" rel="noopener">U.S. BLS — Data scientists →</a>
+          <a href="https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" target="_blank" rel="noopener">U.S. BLS: Software developers →</a>
+          <a href="https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm" target="_blank" rel="noopener">U.S. BLS: Cybersecurity →</a>
+          <a href="https://www.bls.gov/ooh/math/data-scientists.htm" target="_blank" rel="noopener">U.S. BLS: Data scientists →</a>
         </div>
       </details>
     </section>
 
     <section class="career-reminder">
       <b>Your first choice is not permanent.</b>
-      <p>Front-end can lead to full-stack. Backend can lead to cloud. Data analysis can lead to data engineering. Software engineering can lead almost anywhere. Pick a direction to explore — not a lifelong prison.</p>
+      <p>Front-end can lead to full-stack. Backend can lead to cloud. Data analysis can lead to data engineering. Software engineering can lead almost anywhere. Pick a direction to explore: not a lifelong prison.</p>
     </section>
   `;
 
