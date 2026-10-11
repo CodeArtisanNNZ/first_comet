@@ -11,7 +11,7 @@
       slides: [
         {
           kicker: '01 · START WITH THE BIG IDEA',
-          title: 'A computer is powerful — and completely literal.',
+          title: 'A computer is powerful, and completely literal.',
           body: 'A computer does not guess what you meant. It follows instructions exactly, in order. Programming is the skill of turning a human goal into instructions precise enough for a machine to follow.',
           visual: ['Human problem', 'Algorithm', 'Java code', 'JVM', 'Result'],
           takeaway: 'Programming is not mainly typing code. It is translating a problem into exact steps.'
@@ -326,7 +326,7 @@
       slides: [
         {
           kicker: '10 · THE STRANGE IDEA',
-          title: 'A recursive method calls itself — but on a smaller problem.',
+          title: 'A recursive method calls itself, but on a smaller problem.',
           body: 'Recursion works when a problem naturally contains a smaller version of itself. The method keeps reducing the problem until it reaches a case simple enough to answer directly.',
           visual: ['Problem n', 'Problem n-1', 'Problem n-2', '...', 'Base case'],
           takeaway: 'Recursion needs both reduction and a stopping point.'
@@ -409,7 +409,7 @@
         {
           kicker: 'TEST CASES',
           title: 'One successful input proves almost nothing.',
-          body: 'Test normal cases, boundary cases and unusual cases. If a condition checks age >= 18, test 17, 18 and 19 — not only 25.',
+          body: 'Test normal cases, boundary cases and unusual cases. If a condition checks age >= 18, test 17, 18 and 19: not only 25.',
           visual: ['Normal case', 'Boundary case', 'Smallest case', 'Largest case', 'Unexpected case'],
           takeaway: 'Choose tests that challenge the assumptions in your code.'
         },
