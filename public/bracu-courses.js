@@ -459,8 +459,11 @@
         <label for="bracuCourseSearch">Find a course</label>
         <input id="bracuCourseSearch" type="search" placeholder="Try CSE423, database, robotics…" autocomplete="off">
       </div>
-      <div class="bracu-area-filters" aria-label="Filter BRACU CSE courses by area">
-        ${areas.map((area, index) => `<button type="button" data-bracu-area="${esc(area)}" class="${index === 0 ? 'active' : ''}">${esc(area)}</button>`).join('')}
+      <div class="bracu-area-select-wrap">
+        <label for="bracuAreaSelect">Area</label>
+        <select id="bracuAreaSelect" class="bracu-area-select" aria-label="Filter BRACU CSE courses by area">
+          ${areas.map((area) => `<option value="${esc(area)}">${esc(area === 'All' ? 'All areas' : area)}</option>`).join('')}
+        </select>
       </div>
     </section>
 
@@ -493,7 +496,7 @@
 
   const search = root.querySelector('#bracuCourseSearch');
   const cards = [...root.querySelectorAll('.bracu-catalog-card')];
-  const filters = [...root.querySelectorAll('[data-bracu-area]')];
+  const areaSelect = root.querySelector('#bracuAreaSelect');
   const groups = [...root.querySelectorAll('[data-bracu-level-group]')];
   const jumpButtons = [...root.querySelectorAll('[data-bracu-level-jump]')];
   const count = root.querySelector('#bracuCatalogCount');
@@ -537,11 +540,10 @@
     applyFilters();
   });
 
-  filters.forEach((button) => button.addEventListener('click', () => {
-    activeArea = button.dataset.bracuArea;
-    filters.forEach((item) => item.classList.toggle('active', item === button));
+  areaSelect?.addEventListener('change', () => {
+    activeArea = areaSelect.value;
     applyFilters();
-  }));
+  });
 
   jumpButtons.forEach((button) => button.addEventListener('click', () => {
     activeLevel = button.dataset.bracuLevelJump;
