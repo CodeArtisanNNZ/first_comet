@@ -430,33 +430,67 @@
   gap:6px;
   justify-self:start;
   width:min(100%,320px);
+  position:relative;
 }
 .career-interest-select-wrap label{
   color:var(--muted);
-  font-size:.72rem;
-  font-weight:800;
+  font:800 .7rem "DM Mono",monospace;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+}
+.career-interest-select-wrap:after{
+  content:'▾';
+  position:absolute;
+  right:7px;
+  bottom:7px;
+  display:grid;
+  place-items:center;
+  width:27px;
+  height:27px;
+  border:1.5px solid var(--line);
+  border-radius:7px;
+  background:var(--pink);
+  color:#171319;
+  box-shadow:1px 1px 0 var(--line);
+  pointer-events:none;
+  font-size:.78rem;
+  font-weight:900;
 }
 .career-interest-select{
+  appearance:none;
+  -webkit-appearance:none;
   width:100%;
-  min-height:40px;
-  padding:9px 36px 9px 11px;
-  border:1.5px solid var(--line);
-  border-radius:9px;
-  background:var(--cream);
+  min-height:42px;
+  padding:9px 43px 9px 12px;
+  border:2px solid var(--line);
+  border-radius:10px;
+  background:var(--panel);
   color:var(--ink);
-  box-shadow:2px 2px 0 var(--line);
+  box-shadow:3px 3px 0 var(--line);
   cursor:pointer;
-  font-size:.78rem;
-  font-weight:700;
+  font-size:.8rem;
+  font-weight:800;
+}
+.career-interest-select:hover{
+  background:var(--pink-soft);
 }
 .career-interest-select:focus{
   outline:0;
-  border-color:var(--blue);
-  box-shadow:3px 3px 0 var(--line);
+  border-color:var(--line);
+  background:var(--pink-soft);
+  box-shadow:4px 4px 0 var(--line);
+}
+.career-interest-select option{
+  background:var(--panel);
+  color:var(--ink);
 }
 .dark .career-interest-select{
   background:var(--panel);
   color:var(--ink);
+}
+.dark .career-interest-select:hover,
+.dark .career-interest-select:focus{
+  background:var(--pink-soft);
 }
 @media(max-width:850px){
   .career-interest-select-wrap{
