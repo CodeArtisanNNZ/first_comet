@@ -1,4 +1,4 @@
-# First Comet — Beginner Code Course
+# First Comet: Beginner Code Course
 
 Understand the words. Then write the code.
 
@@ -6,7 +6,7 @@ For a website, begin with HTML → CSS → JavaScript. Choose one backend langua
 
 Practice on localhost first. Each milestone has an explanation, example, expected result, practice task, and check. Try the work before moving on. The website saves progress in your current browser.
 
-## HTML — Structure & meaning
+## HTML: Structure & meaning
 
 Use HTML to put headings, text, images, links, and forms on a web page.
 
@@ -768,7 +768,7 @@ Official references:
 - [HTML reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference)
 - [Your first website](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website)
 
-## CSS — Appearance & layout
+## CSS: Appearance & layout
 
 Use CSS to choose colors, spacing, readable text, and layouts that work on phones.
 
@@ -1531,13 +1531,13 @@ Official references:
 - [CSS reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference)
 - [CSS basics](https://developer.mozilla.org/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Styling_the_content)
 
-## JavaScript — Interaction & web logic
+## JavaScript: Interaction & web logic
 
 Use JavaScript to respond to clicks, calculate results, and change a web page. It can also run on a server.
 
 ### Where to run the code
 
-For milestones 1–6, open your browser’s developer console and type the JavaScript examples there. For page interaction, save app.js next to index.html and connect it with <script src="app.js" defer></script>. The console is different from the terminal.
+For milestones 1-6, open your browser’s developer console and type the JavaScript examples there. For page interaction, save app.js next to index.html and connect it with <script src="app.js" defer></script>. The console is different from the terminal.
 
 ### Word library
 
@@ -2477,13 +2477,13 @@ Official references:
 - [JavaScript guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide)
 - [Variables and types](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types)
 
-## Java — Typed programming & applications
+## Java: Typed programming & applications
 
 Use Java for programming fundamentals, larger applications, and backend systems. Java and JavaScript are different languages.
 
 ### Where to run the code
 
-Install a JDK from an official distributor. Save the full starter program as Main.java. In that folder’s terminal run javac Main.java, then java Main. In milestones 2–7, put snippets inside the starter’s main method. Milestone 8 shows the full file again.
+Install a JDK from an official distributor. Save the full starter program as Main.java. In that folder’s terminal run javac Main.java, then java Main. In milestones 2-7, put snippets inside the starter’s main method. Milestone 8 shows the full file again.
 
 ### Word library
 
@@ -3465,7 +3465,7 @@ Official references:
 - [Java language basics](https://dev.java/learn/language/constructs/)
 - [Java getting started](https://dev.java/learn/getting-started/)
 
-## Python — Automation, data & backend logic
+## Python: Automation, data & backend logic
 
 Use Python for scripts, automation, data work, and backends. Start with small terminal programs.
 
@@ -4433,13 +4433,13 @@ Official references:
 - [Python tutorial](https://docs.python.org/3/tutorial/)
 - [Control flow and functions](https://docs.python.org/3/tutorial/controlflow.html)
 
-## PHP — Web server logic
+## PHP: Web server logic
 
 Use PHP to create server responses, process form submissions, and work with databases. The browser receives the response, not the PHP source.
 
 ### Where to run the code
 
-Install PHP from an official source or use the PHP included with your local stack. For milestones 1–7, save the snippet after <?php and run php hello.php. For the final form, run php -S localhost:8000 in its folder and open http://localhost:8000/hello.php.
+Install PHP from an official source or use the PHP included with your local stack. For milestones 1-7, save the snippet after <?php and run php hello.php. For the final form, run php -S localhost:8000 in its folder and open http://localhost:8000/hello.php.
 
 ### Word library
 
@@ -5462,7 +5462,7 @@ HTML structures content; CSS controls presentation. They have no direct equivale
 - Visit every score: All these loops visit values in the sample sequence’s order.
 - Add a value to a resizable collection: The Java example creates an initially empty ArrayList because a normal Java array cannot grow. The other snippets extend the collections from earlier rows.
 
-## Algorithms — Binary search
+## Algorithms: Binary search
 
 First understand variables, comparisons, conditions, loops, collections, indexes, and functions. Finish one programming track, then practice these steps.
 
@@ -5495,9 +5495,9 @@ For target 23, start low at 0 and high at 6. mid is 3, whose value is 15. Since 
 
 Check: After checking 15 while searching for 23, which half remains?
 
-1. Indexes 0–2
+1. Indexes 0-2
 2. Only index 3
-3. Indexes 4–6
+3. Indexes 4-6
 
 Answer: 3. 23 is greater than 15, so earlier values and the middle cannot match in this ascending sequence.
 
