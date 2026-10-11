@@ -1877,3 +1877,186 @@ select:focus{
     grid-template-columns:1fr 1fr;
   }
 }
+
+
+/* ===== VS Code hero: real editor + guided path ===== */
+.vscode-hero{
+  position:relative;
+  min-height:430px;
+  display:grid;
+  grid-template-columns:minmax(0,.82fr) minmax(500px,1.18fr);
+  gap:28px;
+  align-items:center;
+  margin:4px 0 30px;
+  padding:34px;
+  overflow:hidden;
+  border:3px solid var(--line);
+  border-radius:24px;
+  background:
+    radial-gradient(circle at 86% 18%,rgba(255,211,61,.26),transparent 24%),
+    radial-gradient(circle at 72% 78%,rgba(65,106,138,.2),transparent 28%),
+    linear-gradient(135deg,var(--panel),var(--paper));
+  box-shadow:var(--shadow);
+}
+.vscode-hero:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.28;
+  background-image:linear-gradient(#17131912 1px,transparent 1px),linear-gradient(90deg,#17131912 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:linear-gradient(90deg,transparent 0,#000 34%,#000 100%);
+}
+.vscode-hero-copy{position:relative;z-index:4;align-self:center}
+.vscode-hero-kicker{display:flex;align-items:center;gap:9px;margin-top:18px;font:700 9px "DM Mono";letter-spacing:.12em}
+.vscode-hero-kicker i{width:36px;height:1px;background:var(--coral)}
+.vscode-hero h1{
+  display:grid;
+  gap:2px;
+  margin:16px 0 18px!important;
+  max-width:670px!important;
+  font-size:clamp(2.25rem,4.15vw,4.7rem)!important;
+  line-height:.92!important;
+  letter-spacing:-.065em!important;
+}
+.vscode-hero h1 span,.vscode-hero h1 strong{display:block}
+.vscode-hero h1 strong{color:#3978ba;font-weight:800}
+.vscode-hero h1 em{font-style:normal;color:var(--coral)}
+.vscode-hero-copy>p{max-width:620px;font-size:1rem;line-height:1.62;color:var(--muted)}
+.vscode-hero-actions{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px}
+.vscode-hero-actions>span{font:700 10px "DM Mono";letter-spacing:.04em;color:var(--muted)}
+.vscode-hero-actions>span b{color:var(--ink)}
+.vscode-hero-actions>span i{font-style:normal;color:var(--coral);margin:0 4px}
+
+.vscode-hero-stage{position:relative;min-height:360px;z-index:2;isolation:isolate}
+.vscode-hero-stage:after{
+  content:"";
+  position:absolute;
+  left:12%;right:0;bottom:6%;
+  height:32%;
+  border-radius:50%;
+  background:rgba(255,211,61,.18);
+  filter:blur(28px);
+  z-index:-2;
+}
+.vscode-orbit{position:absolute;border:2px dashed rgba(23,19,25,.32);border-radius:50%;pointer-events:none}
+.vscode-orbit-a{width:85%;height:58%;left:8%;top:18%;transform:rotate(-12deg)}
+.vscode-orbit-b{width:62%;height:86%;left:21%;top:5%;transform:rotate(18deg);opacity:.5}
+.vscode-orbit-comet{
+  position:absolute;
+  left:8%;top:44%;
+  z-index:8;
+  font-size:1.7rem;
+  filter:drop-shadow(0 3px 0 rgba(23,19,25,.22));
+  animation:vscodeCometRoute 7s cubic-bezier(.45,.05,.55,.95) infinite;
+}
+
+.vscode-mini-window{position:absolute;border:2px solid #16151a;border-radius:16px;overflow:hidden;box-shadow:10px 12px 0 rgba(23,19,25,.16)}
+.vscode-mini-editor{
+  width:63%;
+  left:2%;
+  top:18%;
+  background:#18191f;
+  color:#e9eef5;
+  transform:rotate(-2.2deg);
+  animation:vscodeEditorFloat 5.5s ease-in-out infinite;
+}
+.vscode-mini-bar{height:38px;display:flex;align-items:center;gap:6px;padding:0 12px;background:#25262e;border-bottom:1px solid #3b3c46}
+.vscode-mini-bar i{width:8px;height:8px;border-radius:50%;background:#ff7c61}
+.vscode-mini-bar i:nth-child(2){background:#ffd35e}.vscode-mini-bar i:nth-child(3){background:#6ec79b}
+.vscode-mini-bar span{margin-left:8px;font:700 9px "DM Mono";color:#c6c8d1}
+.vscode-mini-body{display:grid;grid-template-columns:42px 1fr;min-height:210px}
+.vscode-mini-body aside{display:grid;align-content:start;justify-items:center;gap:15px;padding:17px 0;background:#202128;color:#858b9a}
+.vscode-mini-code{display:grid;align-content:center;gap:10px;padding:18px;font:12px/1.45 "DM Mono";color:#82aaf4}
+.vscode-mini-code b{font-weight:500;color:#f6ca68}
+.vscode-mini-editor>small{
+  position:absolute;
+  right:14px;bottom:10px;
+  color:#fff;
+  font:800 8px "DM Mono";
+  letter-spacing:.12em;
+  opacity:.55
+}
+
+.vscode-mini-guide{
+  width:41%;
+  right:1%;
+  top:9%;
+  padding:16px;
+  background:var(--panel);
+  color:var(--ink);
+  transform:rotate(2.8deg);
+  animation:vscodeGuideFloat 5s ease-in-out .4s infinite;
+}
+.vscode-guide-brand{display:flex;align-items:center;gap:7px;margin-bottom:19px}
+.vscode-guide-brand>span{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--coral);color:#fff}
+.vscode-guide-brand>b{font-size:.85rem}
+.vscode-guide-brand>i{margin-left:auto;font:800 8px "DM Mono";font-style:normal;color:var(--green)}
+.vscode-mini-guide>small{font:700 8px "DM Mono";letter-spacing:.1em;color:var(--muted)}
+.vscode-mini-guide h3{font-size:1.05rem;line-height:1.05;margin:8px 0 13px}
+.vscode-mini-guide ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.vscode-mini-guide li{display:flex;align-items:center;gap:8px;padding:8px;border:1px solid var(--line);border-radius:9px;font-size:.72rem;background:var(--paper)}
+.vscode-mini-guide li span{display:grid;place-items:center;width:18px;height:18px;border:1px solid var(--line);border-radius:50%;font:700 8px "DM Mono"}
+.vscode-mini-guide li.done span{background:var(--green);color:#fff}.vscode-mini-guide li.active{background:var(--yellow)}
+.vscode-guide-label{display:block;margin-top:12px;text-align:right;font:800 8px "DM Mono";letter-spacing:.12em;color:var(--coral)}
+
+.vscode-float-note{position:absolute;z-index:7;display:flex;align-items:center;gap:8px;padding:8px 10px;border:2px solid var(--line);border-radius:999px;background:var(--paper);box-shadow:3px 3px 0 var(--line);font-size:.72rem;animation:vscodeNoteBob 4s ease-in-out infinite}
+.vscode-float-note span{font:800 8px "DM Mono";color:var(--coral)}
+.vscode-note-one{left:4%;bottom:3%;animation-delay:.2s}
+.vscode-note-two{left:38%;bottom:0;animation-delay:1s}
+.vscode-note-three{right:0;bottom:9%;animation-delay:1.8s}
+
+.dark .vscode-hero{
+  background:
+    radial-gradient(circle at 86% 18%,rgba(255,211,61,.12),transparent 24%),
+    radial-gradient(circle at 72% 78%,rgba(78,120,171,.2),transparent 28%),
+    linear-gradient(135deg,#171319,#211d22);
+}
+.dark .vscode-hero:before{background-image:linear-gradient(#ffffff0c 1px,transparent 1px),linear-gradient(90deg,#ffffff0c 1px,transparent 1px)}
+.dark .vscode-hero h1 strong{color:#77adf0}
+.dark .vscode-mini-guide,.dark .vscode-float-note{background:#211d22;color:#f8f2e8}
+.dark .vscode-mini-guide li{background:#171319;color:#f8f2e8}
+.dark .vscode-mini-guide li.active{background:#806c18;color:#fff}
+.dark .vscode-hero-actions>span b{color:#f8f2e8}
+.dark .vscode-orbit{border-color:rgba(255,255,255,.2)}
+
+@keyframes vscodeEditorFloat{
+  0%,100%{transform:rotate(-2.2deg) translateY(0)}
+  50%{transform:rotate(-1.1deg) translateY(-9px)}
+}
+@keyframes vscodeGuideFloat{
+  0%,100%{transform:rotate(2.8deg) translateY(0)}
+  50%{transform:rotate(1.7deg) translateY(10px)}
+}
+@keyframes vscodeNoteBob{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
+}
+@keyframes vscodeCometRoute{
+  0%{left:8%;top:44%;transform:rotate(-10deg) scale(.9);opacity:0}
+  8%{opacity:1}
+  35%{left:43%;top:8%;transform:rotate(14deg) scale(1)}
+  68%{left:82%;top:38%;transform:rotate(36deg) scale(1.08)}
+  92%{opacity:1}
+  100%{left:57%;top:86%;transform:rotate(75deg) scale(.88);opacity:0}
+}
+
+@media(max-width:1080px){
+  .vscode-hero{grid-template-columns:1fr;padding:28px}
+  .vscode-hero-stage{min-height:340px}
+  .vscode-hero h1{font-size:clamp(2.35rem,7vw,4.1rem)!important}
+}
+@media(max-width:700px){
+  .vscode-hero{padding:20px;border-radius:18px;gap:12px}
+  .vscode-hero h1{font-size:clamp(2rem,10vw,3rem)!important;line-height:.96!important}
+  .vscode-hero-stage{min-height:330px}
+  .vscode-mini-editor{width:72%;left:0}
+  .vscode-mini-guide{width:47%;right:0;top:13%}
+  .vscode-float-note{font-size:.62rem;padding:7px 8px}
+  .vscode-note-two{left:30%}
+  .vscode-note-three{right:0}
+}
+@media(prefers-reduced-motion:reduce){
+  .vscode-orbit-comet,.vscode-mini-editor,.vscode-mini-guide,.vscode-float-note{animation:none!important}
+}
