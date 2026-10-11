@@ -393,7 +393,7 @@ function setView(v){
   closeAll();
   closeGlobalSearch();
   animateView(v);
-  if(v==='learn')setTimeout(openPreferredLearnSection,0);
+  if(v==='learn' && !location.hash.startsWith('#learn/')) setTimeout(openPreferredLearnSection,0);
   if(v==='home')setTimeout(()=>window.FirstCometAchievements?.refresh(),0);
 }
 function openModal(id){const el=$(id);el.classList.add('open');el.setAttribute('aria-hidden','false');animeRun({targets:el.querySelector('.modal'),scale:[.9,1],translateY:[20,0],opacity:[0,1],duration:350,easing:'easeOutBack'})}
