@@ -4,6 +4,7 @@
   const startButton = document.querySelector('#fcTryNow');
   const computerButton = document.querySelector('#fcSetupLaptop');
   const status = document.querySelector('#fcQuickStatus');
+  const title = document.querySelector('#homeStarterTitle');
   const completedKey = 'fc-first-challenge-v1';
 
   function isComplete() {
@@ -13,6 +14,7 @@
   function refreshHome() {
     if (!status) return;
     const name = window.FirstCometPersonalization?.getName?.() || '';
+    if (title) title.textContent = name ? name + ', start with one small win.' : 'Start with one small win.';
     if (isComplete()) {
       status.textContent = '✓ ' + (name ? name + ', you completed the first challenge. ' : 'You completed the first challenge. ') + 'Your edits are saved in this browser.';
       if (startButton) startButton.textContent = 'Continue coding →';
