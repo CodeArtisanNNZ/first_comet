@@ -496,37 +496,68 @@
   const jumpButtons = [...root.querySelectorAll('[data-bracu-level-jump]')];
   const count = root.querySelector('#bracuCatalogCount');
   let activeArea = 'All';
+  let activeLevel = null;
 
   function applyFilters() {
     const query = search.value.trim().toLowerCase();
     let visible = 0;
+
     cards.forEach((card) => {
+      const group = card.closest('[data-bracu-level-group]');
+      const cardLevel = group?.dataset.bracuLevelGroup || '';
+      const levelOk = query ? true : activeLevel === cardLevel;
       const areaOk = activeArea === 'All' || card.dataset.area === activeArea;
       const textOk = !query || card.textContent.toLowerCase().includes(query);
-      card.hidden = !(areaOk && textOk);
+      card.hidden = !(levelOk && areaOk && textOk);
       if (!card.hidden) visible++;
     });
+
     groups.forEach((group) => {
       const visibleCards = [...group.querySelectorAll('.bracu-catalog-card')].some((card) => !card.hidden);
       group.hidden = !visibleCards;
     });
+
     jumpButtons.forEach((button) => {
-      const group = root.querySelector('[data-bracu-level-group="' + button.dataset.bracuLevelJump + '"]');
-      button.disabled = !group || group.hidden;
+      const selected = !query && button.dataset.bracuLevelJump === activeLevel;
+      button.classList.toggle('active', selected);
+      button.setAttribute('aria-pressed', selected ? 'true' : 'false');
     });
-    count.textContent = visible + (visible === 1 ? ' course' : ' courses') + ' shown';
+
+    if (!query && !activeLevel) {
+      count.textContent = 'Choose 100, 200, 300 or 400 Level to see its courses.';
+    } else {
+      count.textContent = visible + (visible === 1 ? ' course' : ' courses') + ' shown';
+    }
   }
 
-  search.addEventListener('input', applyFilters);
+  search.addEventListener('input', () => {
+    if (search.value.trim()) activeLevel = null;
+    applyFilters();
+  });
+
   filters.forEach((button) => button.addEventListener('click', () => {
     activeArea = button.dataset.bracuArea;
     filters.forEach((item) => item.classList.toggle('active', item === button));
     applyFilters();
   }));
+
   jumpButtons.forEach((button) => button.addEventListener('click', () => {
-    const group = root.querySelector('[data-bracu-level-group="' + button.dataset.bracuLevelJump + '"]');
+    activeLevel = button.dataset.bracuLevelJump;
+    search.value = '';
+    applyFilters();
+    const group = root.querySelector('[data-bracu-level-group="' + activeLevel + '"]');
     group?.scrollIntoView({ behavior:'smooth', block:'start' });
   }));
+
+  window.FirstCometBracuCourses = {
+    openLevel(level) {
+      const normalized = String(level).replace(/[^0-9]/g, '').slice(0, 3);
+      if (!['100','200','300','400'].includes(normalized)) return;
+      activeLevel = normalized;
+      search.value = '';
+      applyFilters();
+    }
+  };
 
   applyFilters();
 })();
