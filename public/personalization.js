@@ -23,6 +23,7 @@
     try { localStorage.setItem(storageKey, name); } catch (_) {}
     window.dispatchEvent(new CustomEvent('fc-profile-name', { detail: { name } }));
     refreshSettings();
+    refreshPersonalizedCopy();
     return name;
   }
 
@@ -30,6 +31,46 @@
     const label = document.querySelector('#personalNameLabel');
     const name = getName();
     if (label) label.textContent = name || 'Not set yet';
+  }
+
+  function setText(selector, value) {
+    const element = document.querySelector(selector);
+    if (element && value) element.textContent = value;
+  }
+
+  function refreshPersonalizedCopy() {
+    const name = getName();
+
+    setText('#homeFocusTitle', name ? `What do you want to work on, ${name}?` : 'What do you want to do?');
+    setText('#commandBar > span:nth-child(2)', name ? `${name}, tell First Comet what you want to do…` : 'Tell First Comet what you want to do…');
+    setText('#projectModal .modal h2', name ? `${name}, what are you building?` : 'What are you building?');
+    setText('#view-settings .page-heading h1', name ? `${name}’s workspace settings` : 'Workspace settings');
+    setText('#learn-localhost .compact-intro h2', name ? `${name}, run one page on your computer.` : 'Run one page on your computer.');
+    setText('#learn-localhost #teachingTitle', name ? `Start locally, ${name}.` : 'Work locally first.');
+
+    const firstMilestone = document.querySelector('#learn-localhost .milestone-current .milestone-purpose');
+    if (firstMilestone) {
+      firstMilestone.textContent = name
+        ? `${name}, get one simple page working. Nothing else yet.`
+        : 'Get one simple page working. Nothing else yet.';
+    }
+
+    const emptyProject = [...document.querySelectorAll('.empty-project')].find((card) =>
+      card.querySelector('span')?.textContent?.trim() === 'No projects yet'
+    );
+    const emptyProjectHint = emptyProject?.querySelector('small');
+    if (emptyProjectHint) {
+      emptyProjectHint.textContent = name ? `${name}, add your first project` : 'Add your first project';
+    }
+
+    const courseTitle = document.querySelector('#courseTrackTitle');
+    if (courseTitle) {
+      const current = courseTitle.textContent.trim();
+      const withoutName = current.replace(/^.+?,\s+(?=[A-Za-z#+]+, in small words\.$)/, '');
+      if (/^[A-Za-z#+]+, in small words\.$/.test(withoutName)) {
+        courseTitle.textContent = name ? `${name}, ${withoutName}` : withoutName;
+      }
+    }
   }
 
   function closePrompt() {
@@ -113,13 +154,22 @@
   }
 
   document.querySelector('#changeNameBtn')?.addEventListener('click', () => openPrompt({ force: true }));
-  window.addEventListener('fc-profile-name', refreshSettings);
+  window.addEventListener('fc-profile-name', () => {
+    refreshSettings();
+    refreshPersonalizedCopy();
+  });
   refreshSettings();
+  refreshPersonalizedCopy();
+
+  const personalizationObserver = new MutationObserver(() => refreshPersonalizedCopy());
+  personalizationObserver.observe(document.body, { childList: true, subtree: true });
+
   scheduleFirstAsk();
 
   window.FirstCometPersonalization = {
     getName,
     setName,
-    askName: openPrompt
+    askName: openPrompt,
+    refresh: refreshPersonalizedCopy
   };
 })();
