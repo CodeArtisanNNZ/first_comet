@@ -97,7 +97,7 @@
 
   function goForward() {
     if (progress.current === total - 1) {
-      toolbar.querySelector('[data-fc-upcoming]').textContent = 'All seven milestones reached — export your project for backup!';
+      toolbar.querySelector('[data-fc-upcoming]').textContent = 'All seven milestones reached. Export your project for backup!';
       const nextButtons = root.querySelectorAll('[data-fc-forward], [data-fc-mobile-next]');
       nextButtons.forEach(button => { button.disabled = true; button.textContent = '✓ Path completed'; });
       try { localStorage.setItem('fc-localhost-path-complete-v1', 'true'); } catch (_) {}
