@@ -43,6 +43,16 @@
       button.classList.toggle('active', active);
       button.setAttribute('aria-pressed', String(active));
     });
+    const sectionSelect = document.querySelector('#learnSectionSelect');
+    if (sectionSelect) {
+      const courseOption = sectionSelect.querySelector('option[value="course"]');
+      const referenceOption = sectionSelect.querySelector('option[value="reference"]');
+      const localhostOption = sectionSelect.querySelector('option[value="localhost"]');
+      if (courseOption) courseOption.hidden = experience === 'Beginner';
+      if (referenceOption) referenceOption.hidden = experience === 'Beginner';
+      if (localhostOption) localhostOption.hidden = experience === 'Pro';
+      sectionSelect.value = section;
+    }
     document.querySelector('#pageLabel').textContent = ({ project: 'Build with me', course: 'Practice code', localhost: 'Start here', videos: 'Videos', lab: 'Code Lab', reference: 'Quick reference' })[section] || 'Learn';
     if (updateUrl) {
       if (section === 'project') {
@@ -440,6 +450,9 @@
       const active = document.querySelector('#view-learn .learn-section:not([hidden])');
       if (active) openSection(active.id.replace('learn-', ''), false);
     } else if (viewButton && location.hash.startsWith('#learn')) history.replaceState(null, '', location.pathname + location.search);
+  });
+  document.addEventListener('change', (event) => {
+    if (event.target.id === 'learnSectionSelect') openSection(event.target.value);
   });
   window.addEventListener('hashchange', readRoute);
   window.FirstCometCourse = { openSection };
