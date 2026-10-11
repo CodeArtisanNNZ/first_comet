@@ -451,27 +451,24 @@
       ${careers.map(card).join('')}
     </div>
 
-    <section class="career-market-note">
-      <span class="eyebrow">MARKET REALITY · REVIEWED 2026</span>
-      <h2>Bangladesh has opportunity, and real competition.</h2>
-      <p>Bangladesh's ICT sector is growing and IT exports have recently improved, but graduate supply is also high and employers report a skills gap. Globally, software, cybersecurity, data and AI remain important growth areas, while AI is also reducing some routine entry-level work. Build real skills, not only certificates.</p>
-      <details>
-        <summary>Why First Comet says this</summary>
+    <details class="career-market-compact">
+      <summary>Market reality & sources</summary>
+      <div class="career-market-compact-body">
+        <span class="eyebrow">REVIEWED 2026</span>
+        <h3>Bangladesh has opportunity, and real competition.</h3>
+        <p>Bangladesh's ICT sector is growing and IT exports have recently improved, but graduate supply is also high and employers report a skills gap. Globally, software, cybersecurity, data and AI remain important growth areas, while AI is also reducing some routine entry-level work. Build real skills, not only certificates.</p>
         <div class="career-source-links">
-          <a href="https://bida.gov.bd/information-technology" target="_blank" rel="noopener">Bangladesh Investment Development Authority →</a>
-          <a href="https://documents1.worldbank.org/curated/en/099082525051033525/pdf/P511786-ad6fb108-5072-428b-a766-0d4659d179d5.pdf" target="_blank" rel="noopener">World Bank: Bangladesh jobs & skills →</a>
-          <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/digest/" target="_blank" rel="noopener">WEF Future of Jobs 2025 →</a>
-          <a href="https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" target="_blank" rel="noopener">U.S. BLS: Software developers →</a>
-          <a href="https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm" target="_blank" rel="noopener">U.S. BLS: Cybersecurity →</a>
-          <a href="https://www.bls.gov/ooh/math/data-scientists.htm" target="_blank" rel="noopener">U.S. BLS: Data scientists →</a>
+          <a href="https://bida.gov.bd/information-technology" target="_blank" rel="noopener">BIDA →</a>
+          <a href="https://documents1.worldbank.org/curated/en/099082525051033525/pdf/P511786-ad6fb108-5072-428b-a766-0d4659d179d5.pdf" target="_blank" rel="noopener">World Bank →</a>
+          <a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/digest/" target="_blank" rel="noopener">WEF 2025 →</a>
+          <a href="https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm" target="_blank" rel="noopener">BLS Software →</a>
+          <a href="https://www.bls.gov/ooh/computer-and-information-technology/information-security-analysts.htm" target="_blank" rel="noopener">BLS Security →</a>
+          <a href="https://www.bls.gov/ooh/math/data-scientists.htm" target="_blank" rel="noopener">BLS Data →</a>
         </div>
-      </details>
-    </section>
+      </div>
+    </details>
 
-    <section class="career-reminder">
-      <b>Your first choice is not permanent.</b>
-      <p>Front-end can lead to full-stack. Backend can lead to cloud. Data analysis can lead to data engineering. Software engineering can lead almost anywhere. Pick a direction to explore: not a lifelong prison.</p>
-    </section>
+    <p class="career-reminder-minimal"><b>Your first choice is not permanent.</b> Pick a direction to explore now. You can change it later.</p>
   `;
 
   const cards = [...root.querySelectorAll('.career-card')];
