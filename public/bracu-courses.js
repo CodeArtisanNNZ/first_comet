@@ -400,11 +400,7 @@
         <ol class="bracu-topic-map">
           ${topics.map(([title,text]) => `<li><b>${esc(title)}</b><span>${esc(text)}</span></li>`).join('')}
         </ol>
-        ${c.code === 'CSE110' ? `
-        <div class="bracu-study-order">
-          <span class="eyebrow">RECOMMENDED STUDY ORDER</span>
-          <div><span>Basics</span><i>→</i><span>Conditions</span><i>→</i><span>Loops</span><i>→</i><span>Strings</span><i>→</i><span>Arrays</span><i>→</i><span>Methods</span><i>→</i><span>Recursion</span><i>→</i><span>Files</span></div>
-        </div>` : ''}
+
       </div>`;
   }
 
