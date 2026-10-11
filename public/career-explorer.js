@@ -419,11 +419,13 @@
       </article>`;
   }
 
+  const learnerName = window.FirstCometPersonalization?.getName?.() || '';
+
   root.innerHTML = `
     <section class="career-hero">
       <div>
         <span class="eyebrow">CAREER EXPLORER</span>
-        <h1>You do not need to know your path yet.</h1>
+        <h1 id="careerHeroTitle">${esc(learnerName ? learnerName + ', you do not need to know your path yet.' : 'You do not need to know your path yet.')}</h1>
         <p>Explore what CSE careers actually feel like, including the good parts and the difficult parts.</p>
       </div>
       <aside>
@@ -495,4 +497,9 @@
 
   filterButtons.forEach((button) => button.addEventListener('click', () => showByFamily(button.dataset.careerFilter)));
   interestSelect?.addEventListener('change', () => showByInterest(interestSelect.value));
+  window.addEventListener('fc-profile-name', () => {
+    const title = root.querySelector('#careerHeroTitle');
+    const name = window.FirstCometPersonalization?.getName?.() || '';
+    if (title) title.textContent = name ? name + ', you do not need to know your path yet.' : 'You do not need to know your path yet.';
+  });
 })();
