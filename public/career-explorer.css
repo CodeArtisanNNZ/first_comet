@@ -497,3 +497,83 @@
     width:min(100%,360px);
   }
 }
+
+
+/* Minimal career market note */
+.career-market-compact{
+  width:max-content;
+  max-width:min(100%,620px);
+  margin:16px 0 0 auto;
+}
+.career-market-compact>summary{
+  list-style:none;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 10px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--panel);
+  color:var(--muted);
+  box-shadow:2px 2px 0 var(--line);
+  cursor:pointer;
+  font-size:.7rem;
+  font-weight:800;
+}
+.career-market-compact>summary::-webkit-details-marker{display:none}
+.career-market-compact>summary:after{
+  content:'▾';
+  color:var(--blue-deep);
+}
+.career-market-compact[open]>summary{
+  background:var(--yellow-soft);
+  color:var(--ink);
+}
+.career-market-compact[open]>summary:after{
+  content:'▴';
+}
+.career-market-compact-body{
+  margin-top:7px;
+  padding:12px;
+  border:1.5px solid var(--line);
+  border-radius:10px;
+  background:var(--panel);
+  box-shadow:3px 3px 0 var(--line);
+}
+.career-market-compact-body h3{
+  margin:4px 0 6px;
+  font-size:1rem;
+}
+.career-market-compact-body>p{
+  margin:0;
+  color:var(--muted);
+  font-size:.74rem;
+  line-height:1.5;
+}
+.career-market-compact .career-source-links{
+  margin-top:9px;
+}
+.career-market-compact .career-source-links a{
+  padding:5px 7px;
+  font-size:.64rem;
+}
+.career-reminder-minimal{
+  margin:12px 0 0;
+  color:var(--muted);
+  font-size:.74rem;
+  line-height:1.45;
+}
+.career-reminder-minimal b{
+  color:var(--ink);
+}
+.dark .career-market-compact>summary,
+.dark .career-market-compact-body{
+  background:var(--panel);
+  color:var(--ink);
+}
+@media(max-width:620px){
+  .career-market-compact{
+    width:100%;
+    margin-left:0;
+  }
+}
