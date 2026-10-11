@@ -35,7 +35,7 @@
 
   function setText(selector, value) {
     const element = document.querySelector(selector);
-    if (element && value) element.textContent = value;
+    if (element && value && element.textContent !== value) element.textContent = value;
   }
 
   function refreshPersonalizedCopy() {
@@ -50,9 +50,10 @@
 
     const firstMilestone = document.querySelector('#learn-localhost .milestone-current .milestone-purpose');
     if (firstMilestone) {
-      firstMilestone.textContent = name
+      const value = name
         ? `${name}, get one simple page working. Nothing else yet.`
         : 'Get one simple page working. Nothing else yet.';
+      if (firstMilestone.textContent !== value) firstMilestone.textContent = value;
     }
 
     const emptyProject = [...document.querySelectorAll('.empty-project')].find((card) =>
@@ -60,7 +61,8 @@
     );
     const emptyProjectHint = emptyProject?.querySelector('small');
     if (emptyProjectHint) {
-      emptyProjectHint.textContent = name ? `${name}, add your first project` : 'Add your first project';
+      const value = name ? `${name}, add your first project` : 'Add your first project';
+      if (emptyProjectHint.textContent !== value) emptyProjectHint.textContent = value;
     }
 
     const courseTitle = document.querySelector('#courseTrackTitle');
@@ -68,7 +70,8 @@
       const current = courseTitle.textContent.trim();
       const withoutName = current.replace(/^.+?,\s+(?=[A-Za-z#+]+, in small words\.$)/, '');
       if (/^[A-Za-z#+]+, in small words\.$/.test(withoutName)) {
-        courseTitle.textContent = name ? `${name}, ${withoutName}` : withoutName;
+        const value = name ? `${name}, ${withoutName}` : withoutName;
+        if (courseTitle.textContent !== value) courseTitle.textContent = value;
       }
     }
   }
