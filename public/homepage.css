@@ -936,7 +936,7 @@
 }
 
 
-/* First Comet Mission Control — bold visual identity without extra content */
+/* First Comet Mission Control: bold visual identity without extra content */
 .home-starter{
   max-width:1100px;
 }
@@ -1544,7 +1544,7 @@ body:has(#view-home.active) main{
 }
 
 
-/* Homepage typography scale — readable on desktop without feeling oversized */
+/* Homepage typography scale: readable on desktop without feeling oversized */
 #view-home .eyebrow,
 .home-mission-tag{
   font-size:.78rem;
@@ -1611,7 +1611,7 @@ body:has(#view-home.active) main{
 }
 
 
-/* Vintage flat-card treatment — no gradients on cards */
+/* Vintage flat-card treatment: no gradients on cards */
 .home-starter-copy{
   background:var(--panel);
 }
