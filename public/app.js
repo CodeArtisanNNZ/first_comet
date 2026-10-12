@@ -395,8 +395,7 @@ function setView(v){
   animateView(v);
   if(v==='learn' && !location.hash.startsWith('#learn/')) setTimeout(openPreferredLearnSection,0);
   if(v==='home')setTimeout(()=>window.FirstCometAchievements?.refresh(),0);
-  if(v!=='cse110notes') document.querySelector('.app')?.classList.remove('cse110-focus-mode');
-  if(v==='cse110notes' && localStorage.getItem('fc-cse110-focus')==='1') document.querySelector('.app')?.classList.add('cse110-focus-mode');
+  document.querySelector('.app')?.classList.toggle('cse110-presentation-mode', v==='cse110notes');
 }
 window.FirstCometNavigate=(view)=>setView(view);
 function openModal(id){const el=$(id);el.classList.add('open');el.setAttribute('aria-hidden','false');animeRun({targets:el.querySelector('.modal'),scale:[.9,1],translateY:[20,0],opacity:[0,1],duration:350,easing:'easeOutBack'})}
