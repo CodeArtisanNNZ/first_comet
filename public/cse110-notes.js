@@ -646,6 +646,15 @@
         '<section class="cse110-recall">' + renderRetrieval(slide) + '</section>' +
       '</div>';
 
+    window.dispatchEvent(new CustomEvent('fc:teacher-context', {
+      detail: {
+        view:'cse110notes',
+        label:topic.title,
+        detail:slide.title,
+        key:'cse110:' + topic.title.toLowerCase().replace(/[^a-z0-9]+/g,'-')
+      }
+    }));
+
     const prev = root.querySelector('[data-cse110-prev]');
     const next = root.querySelector('[data-cse110-next]');
     prev.disabled = current === 0;
