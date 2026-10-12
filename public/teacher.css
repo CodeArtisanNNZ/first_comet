@@ -443,3 +443,16 @@ body[data-age-mode="adult-playful"] .fc-teacher-character-copy::after{
     height:48px;
   }
 }
+
+
+/* Force selected teacher portrait area visible */
+body[data-teacher="male"] .fc-teacher-character-stage,
+body[data-teacher="female"] .fc-teacher-character-stage{
+  display:grid!important;
+}
+body[data-teacher="male"] .fc-teacher-launch-avatar,
+body[data-teacher="male"] .fc-teacher-head-avatar,
+body[data-teacher="female"] .fc-teacher-launch-avatar,
+body[data-teacher="female"] .fc-teacher-head-avatar{
+  display:block!important;
+}
