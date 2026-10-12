@@ -188,3 +188,73 @@
   font-weight:800;
 }
 .fc-teacher-response.answer{border-left-color:var(--green)}
+
+
+/* Teacher character choice onboarding */
+.fc-teacher-choice-card{
+  width:min(620px,100%);
+  border-top-color:var(--coral);
+}
+.fc-teacher-choice-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+.fc-teacher-choice-grid>button{
+  display:grid;
+  grid-template-columns:92px minmax(0,1fr);
+  gap:12px;
+  align-items:center;
+  padding:10px;
+  border:2px solid var(--line);
+  border-radius:13px;
+  background:var(--panel);
+  color:var(--ink);
+  text-align:left;
+  cursor:pointer;
+  transition:transform .14s ease,background .14s ease,box-shadow .14s ease;
+}
+.fc-teacher-choice-grid>button:hover{
+  transform:translateY(-2px);
+  background:var(--yellow-soft);
+}
+.fc-teacher-choice-grid>button.selected{
+  background:var(--yellow-soft);
+  box-shadow:4px 4px 0 var(--line);
+  outline:3px solid color-mix(in srgb,var(--coral) 34%,transparent);
+}
+.fc-teacher-choice-grid img{
+  width:92px;
+  height:92px;
+  object-fit:cover;
+  object-position:center;
+  border:1.5px solid var(--line);
+  border-radius:11px;
+  background:var(--cream);
+}
+.fc-teacher-choice-grid span,
+.fc-teacher-choice-grid b,
+.fc-teacher-choice-grid small{display:block}
+.fc-teacher-choice-grid b{font-size:.9rem}
+.fc-teacher-choice-grid small{margin-top:4px;color:var(--muted);font-size:.68rem;line-height:1.35}
+.fc-teacher-choice-card [data-teacher-choice-save]:disabled{opacity:.42;cursor:not-allowed}
+
+.fc-teacher-launch-avatar{
+  width:28px;height:28px;object-fit:cover;border-radius:50%;
+  border:1.5px solid #171319;background:var(--cream);
+}
+.fc-teacher-identity{
+  display:flex!important;
+  align-items:center;
+  gap:9px;
+}
+.fc-teacher-identity>div{display:grid;gap:3px}
+.fc-teacher-head-avatar{
+  width:42px;height:42px;object-fit:cover;border-radius:10px;
+  border:1.5px solid var(--line);background:var(--cream);
+}
+@media(max-width:560px){
+  .fc-teacher-choice-grid{grid-template-columns:1fr}
+  .fc-teacher-choice-grid>button{grid-template-columns:76px minmax(0,1fr)}
+  .fc-teacher-choice-grid img{width:76px;height:76px}
+}
