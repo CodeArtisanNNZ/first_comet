@@ -584,3 +584,180 @@
     display:none;
   }
 }
+
+
+/* ===== Dedicated CSE110 presentation page ===== */
+/* CSE110 is a page of its own: the note is the primary surface. */
+.app.cse110-presentation-mode{
+  grid-template-columns:1fr;
+  grid-template-rows:1fr;
+}
+.app.cse110-presentation-mode .topbar,
+.app.cse110-presentation-mode .rail{
+  display:none!important;
+}
+.app.cse110-presentation-mode main{
+  grid-column:1;
+  grid-row:1;
+  width:100%;
+  height:100vh;
+  padding:18px 22px 28px;
+  overflow:auto;
+}
+.app.cse110-presentation-mode #view-cse110notes{
+  width:100%;
+  max-width:none;
+  margin:0;
+}
+
+.cse110-notes-head{
+  grid-template-columns:auto minmax(0,1fr) minmax(180px,240px);
+  align-items:center;
+  padding:6px 0 12px;
+  border-bottom:0;
+}
+.cse110-head-actions{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.cse110-topics-toggle{
+  padding:8px 11px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--yellow);
+  color:#171319;
+  cursor:pointer;
+  font-size:.75rem;
+  font-weight:800;
+}
+.cse110-title-block h1{
+  font-size:clamp(1.45rem,2.2vw,2.25rem);
+  line-height:1;
+}
+.cse110-title-block p{
+  font-size:.78rem;
+}
+
+.cse110-note-layout{
+  display:block;
+  position:relative;
+}
+.cse110-story-wrap{
+  width:min(1500px,100%);
+  margin:0 auto;
+}
+.cse110-story-card{
+  min-height:calc(100vh - 165px);
+  padding:clamp(24px,3vw,44px);
+}
+.cse110-landscape-grid{
+  grid-template-columns:minmax(320px,.9fr) minmax(480px,1.1fr);
+  gap:clamp(24px,3vw,48px);
+}
+.cse110-story-card h2,
+.cse110-landscape-copy h2{
+  font-size:clamp(2rem,3.5vw,4rem);
+}
+
+/* Topic list becomes an on-demand drawer, never permanent page chrome. */
+.cse110-topic-drawer{
+  position:fixed;
+  left:0;
+  top:0;
+  bottom:0;
+  z-index:220;
+  width:min(360px,88vw);
+  padding:18px 14px;
+  background:var(--paper);
+  border-right:2px solid var(--line);
+  box-shadow:12px 0 35px #0003;
+  transform:translateX(-105%);
+  transition:transform .22s ease;
+}
+#cse110VisualNotes.topics-open .cse110-topic-drawer{
+  transform:translateX(0);
+}
+.cse110-topic-drawer-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+  padding:0 3px 10px;
+  border-bottom:1.5px solid var(--line);
+}
+.cse110-topic-drawer-head b{
+  font-size:1rem;
+}
+.cse110-topic-drawer-head button{
+  width:34px;
+  height:34px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--panel);
+  color:var(--ink);
+  cursor:pointer;
+  font-size:1.15rem;
+}
+.cse110-topic-drawer .cse110-topic-rail{
+  position:static;
+  display:grid;
+  max-height:calc(100vh - 82px);
+  overflow:auto;
+  padding:0 6px 8px 0;
+}
+.cse110-topic-scrim{
+  position:fixed;
+  inset:0;
+  z-index:210;
+  display:none;
+  border:0;
+  background:#17131966;
+}
+#cse110VisualNotes.topics-open .cse110-topic-scrim{
+  display:block;
+}
+
+@media(max-width:1180px){
+  .cse110-landscape-grid{
+    grid-template-columns:minmax(280px,.85fr) minmax(380px,1.15fr);
+  }
+}
+@media(max-width:900px){
+  .app.cse110-presentation-mode main{
+    padding:12px 14px 22px;
+  }
+  .cse110-notes-head{
+    grid-template-columns:1fr auto;
+  }
+  .cse110-title-block{
+    grid-column:1/-1;
+    grid-row:2;
+  }
+  .cse110-head-progress{
+    grid-column:2;
+    grid-row:1;
+    min-width:140px;
+  }
+  .cse110-landscape-grid{
+    grid-template-columns:1fr;
+  }
+  .cse110-story-card{
+    min-height:0;
+  }
+}
+@media(max-width:600px){
+  .cse110-head-progress{
+    display:none;
+  }
+  .cse110-notes-head{
+    grid-template-columns:1fr;
+  }
+  .cse110-head-actions{
+    justify-content:space-between;
+  }
+  .cse110-title-block{
+    grid-column:1;
+  }
+}
