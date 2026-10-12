@@ -272,6 +272,53 @@
     return 'Try to complete the next step without opening extra guidance. Come back only when you can name exactly what blocked you.';
   }
 
+  function answerQuestion(question, ctx) {
+    const q = String(question || '').trim().toLowerCase();
+    if (!q) return '';
+
+    const supportTopic = Object.keys(cseSupport).find((topic) => q.includes(topic.toLowerCase()));
+    const support = supportTopic ? cseSupport[supportTopic] : (ctx.view === 'cse110notes' ? cseSupport[ctx.label] : null);
+
+    if (/\b(why|explain|mean|understand|different)\b/.test(q)) return support?.different || alternate(ctx);
+    if (/\b(example|show|trace|demo)\b/.test(q)) return support?.example || exampleFor(ctx);
+    if (/\b(lost|stuck|confused|don't get|dont get|hard)\b/.test(q)) return support?.lost || lostFor(ctx);
+    if (/\b(challenge|harder|too easy|easy)\b/.test(q)) return support?.challenge || challengeFor(ctx);
+
+    if (/\b(next|what should i do|what do i do|continue)\b/.test(q)) {
+      if (ctx.view === 'cse110notes') return 'Try “Your turn” without revealing the answer. If you can explain it correctly, use Next step. If not, choose “Explain differently” or “I’m lost”.';
+      if (ctx.view === 'vscode') return 'Make one visible change in the file you are working on, save it with Ctrl + S, then check the result before learning another tool.';
+      if (ctx.view === 'bracu') return 'Open one course, choose one topic, and finish that topic before opening another course.';
+      if (ctx.view === 'cv') return 'Finish one evidence-based section at a time: basics → skills → education → projects/experience → ATS check.';
+      if (ctx.view === 'guide') return 'Find the first unfinished milestone and complete its success condition before moving forward.';
+      return 'Choose the smallest unfinished action on this page and complete it before adding anything new.';
+    }
+
+    if (/\b(progress|done|finished|learned|know|remember about me)\b/.test(q)) {
+      const data = summary(memory);
+      const latest = latestAchievement();
+      const pieces = [];
+      if (data.understood.length) pieces.push('You marked these as clear: ' + data.understood.join(', ') + '.');
+      if (data.struggles.length) pieces.push('These have needed another pass: ' + data.struggles.join(', ') + '.');
+      if (latest) pieces.push('Your latest recorded win is “' + latest.title + '”.');
+      return pieces.join(' ') || 'I do not have enough learning history yet. Use the feedback buttons or complete a real milestone and I’ll start building that picture.';
+    }
+
+    if (ctx.view === 'vscode') {
+      if (/\b(files?|explorer)\b/.test(q)) return 'Open Explorer in the left activity bar. Your project folder and files appear there.';
+      if (/\b(new file|create file)\b/.test(q)) return 'In Explorer, use New File beside the folder name, then give the file its full name such as index.html.';
+      if (/\b(save|ctrl s)\b/.test(q)) return 'Use Ctrl + S. Saving writes the current editor changes to that file.';
+      if (/\b(error|problem)\b/.test(q)) return 'Open Problems to see editor-detected issues. For browser behavior, also check the browser console when needed.';
+      if (/\b(git|source control)\b/.test(q)) return 'Source Control is the branching icon in the activity bar. You do not need it before your first local page works.';
+      if (/\b(search|find code)\b/.test(q)) return 'Use Search in the activity bar to search across project files. Ctrl + F searches only the current file.';
+    }
+
+    if (support) {
+      return support.different + ' If you want, ask “show me an example” or “what should I do next?”.';
+    }
+
+    return 'I do not have enough reliable context to answer that specific question yet, and I do not want to guess. Ask me to explain the current idea, show an example, help when you’re stuck, give a harder challenge, or tell you what to do next.';
+  }
+
   function summary(memory) {
     const understood = Object.entries(memory.understood)
       .sort((a,b) => Number(b[1]) - Number(a[1]))
@@ -302,6 +349,10 @@
       </header>
       <div class="fc-teacher-context"><span>RIGHT NOW</span><b data-teacher-context></b><small data-teacher-detail></small></div>
       <div class="fc-teacher-message" data-teacher-message></div>
+      <form class="fc-teacher-ask" data-teacher-ask>
+        <input type="text" maxlength="180" placeholder="Ask about what you’re looking at…" aria-label="Ask First Comet Teacher">
+        <button type="submit">Ask</button>
+      </form>
       <div class="fc-teacher-actions" aria-label="Tell First Comet what you need">
         <button type="button" data-teacher-action="understood">✓ I get it</button>
         <button type="button" data-teacher-action="different">Explain differently</button>
@@ -391,6 +442,18 @@
     memory.lastSeen = Date.now();
     writeMemory(memory);
   }
+
+  root.querySelector('[data-teacher-ask]')?.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = event.currentTarget.querySelector('input');
+    const question = input?.value?.trim() || '';
+    if (!question) return;
+    const ctx = lastExternalContext || context();
+    rememberReaction('ask', ctx);
+    response(answerQuestion(question, ctx), 'answer');
+    if (input) input.value = '';
+    refreshMemory();
+  });
 
   root.addEventListener('click', (event) => {
     if (event.target.closest('[data-teacher-open]')) { setOpen(!root.classList.contains('open')); return; }
