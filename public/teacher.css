@@ -156,3 +156,35 @@
 @media(prefers-reduced-motion:reduce){
   .fc-teacher-panel{transition:none}
 }
+.fc-teacher-ask{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:7px;
+  margin:2px 0 11px;
+}
+.fc-teacher-ask input{
+  min-width:0;
+  height:38px;
+  padding:0 10px;
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  background:var(--panel);
+  color:var(--ink);
+  outline:none;
+  font-size:.72rem;
+}
+.fc-teacher-ask input:focus{
+  border-color:var(--blue);
+  box-shadow:0 0 0 2px color-mix(in srgb,var(--blue) 18%,transparent);
+}
+.fc-teacher-ask button{
+  padding:0 11px;
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  background:var(--blue);
+  color:#fff;
+  cursor:pointer;
+  font-size:.68rem;
+  font-weight:800;
+}
+.fc-teacher-response.answer{border-left-color:var(--green)}
