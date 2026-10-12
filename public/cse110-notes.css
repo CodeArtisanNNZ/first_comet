@@ -761,3 +761,203 @@
     grid-column:1;
   }
 }
+
+
+/* ===== Student-friendly CSE110 learning redesign ===== */
+.cse110-story-card{
+  min-height:auto;
+  display:block;
+  padding:clamp(22px,3vw,38px);
+  border-radius:18px;
+  background:var(--paper);
+  box-shadow:5px 5px 0 var(--line);
+}
+
+.cse110-learning-top{
+  max-width:980px;
+  margin:0 auto 24px;
+}
+.cse110-scene-meta{
+  margin-bottom:10px;
+}
+.cse110-scene-meta span{
+  font-size:.66rem;
+  letter-spacing:.1em;
+}
+.cse110-scene-meta b{
+  font-size:.7rem;
+}
+.cse110-learning-top h2{
+  max-width:820px;
+  margin:0 0 12px;
+  font-size:clamp(1.9rem,3vw,3.25rem)!important;
+  line-height:1.02;
+  letter-spacing:-.04em;
+}
+.cse110-learning-top .cse110-scene-body{
+  max-width:820px;
+  margin:0;
+  font-size:clamp(.98rem,1.2vw,1.08rem);
+  line-height:1.65;
+  color:var(--muted);
+}
+
+.cse110-learning-grid{
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);
+  gap:16px;
+  align-items:start;
+}
+.cse110-learn-block{
+  min-width:0;
+  padding:16px;
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  background:var(--panel);
+}
+.cse110-block-label{
+  display:block;
+  margin-bottom:10px;
+  font:800 .62rem "DM Mono",monospace;
+  letter-spacing:.1em;
+  color:var(--coral);
+}
+.cse110-example-block{
+  grid-row:span 2;
+}
+.cse110-memory-block{
+  border-left:5px solid var(--yellow);
+  background:var(--yellow-soft);
+}
+.cse110-memory-block p{
+  margin:0;
+  color:var(--ink);
+  font-size:.92rem;
+  line-height:1.55;
+  font-weight:700;
+}
+.cse110-check-block{
+  border-left:5px solid var(--green);
+}
+.cse110-notes-block{
+  grid-column:1/-1;
+}
+.cse110-empty-example{
+  margin:0;
+  color:var(--muted);
+  font-size:.82rem;
+}
+
+.cse110-learning-grid .cse110-visual-strip{
+  margin:0;
+  padding:12px;
+  gap:7px;
+}
+.cse110-learning-grid .cse110-visual-strip>span{
+  min-width:0;
+  flex:1 1 130px;
+  padding:8px;
+}
+.cse110-learning-grid .cse110-visual-strip>i{
+  font-size:.8rem;
+}
+
+.cse110-learning-grid .cse110-code{
+  margin-top:12px;
+  box-shadow:none;
+}
+.cse110-learning-grid .cse110-code pre{
+  max-height:none;
+  padding:14px;
+  font-size:.78rem;
+  line-height:1.65;
+}
+.cse110-learning-grid .cse110-code>div{
+  padding:7px 10px;
+}
+
+.cse110-learning-grid .cse110-check{
+  border:0;
+  background:transparent;
+}
+.cse110-learning-grid .cse110-check summary{
+  padding:0;
+  font-size:.9rem;
+  line-height:1.45;
+}
+.cse110-learning-grid .cse110-check p{
+  margin-top:10px;
+  padding:10px 12px;
+  border-radius:8px;
+  background:var(--green-soft);
+  color:var(--ink);
+}
+
+.cse110-story-controls{
+  position:sticky;
+  bottom:8px;
+  z-index:20;
+  width:min(980px,calc(100% - 12px));
+  margin:14px auto 0;
+  padding:8px;
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  background:color-mix(in srgb,var(--paper) 94%,transparent);
+  backdrop-filter:blur(8px);
+  box-shadow:3px 3px 0 var(--line);
+}
+.cse110-story-controls button{
+  min-height:40px;
+}
+.cse110-story-controls>div{
+  font-size:.66rem;
+}
+
+.cse110-title-block h1{
+  margin:3px 0 2px;
+  font-size:clamp(1.25rem,1.8vw,1.85rem)!important;
+}
+.cse110-title-block p{
+  display:none;
+}
+
+.dark .cse110-memory-block{
+  background:#5f5319;
+}
+.dark .cse110-memory-block,
+.dark .cse110-memory-block p{
+  color:#fff8db!important;
+}
+.dark .cse110-learn-block{
+  background:var(--panel);
+}
+
+@media(max-width:900px){
+  .cse110-learning-grid{
+    grid-template-columns:1fr;
+  }
+  .cse110-example-block{
+    grid-row:auto;
+  }
+  .cse110-notes-block{
+    grid-column:auto;
+  }
+}
+@media(max-width:600px){
+  .cse110-story-card{
+    padding:16px;
+  }
+  .cse110-learning-top{
+    margin-bottom:16px;
+  }
+  .cse110-learning-top h2{
+    font-size:clamp(1.7rem,8vw,2.4rem)!important;
+  }
+  .cse110-story-controls{
+    width:100%;
+    grid-template-columns:1fr 1fr;
+  }
+  .cse110-story-controls>div{
+    grid-column:1/-1;
+  }
+}
