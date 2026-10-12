@@ -434,7 +434,7 @@
             <p class="bracu-focus"><b>First Comet overview:</b> ${esc(c.focus)}</p>
             ${detailedOutline(c)}
             <div class="bracu-course-actions">
-              <a class="secondary" href="https://cse.bracu.ac.bd/course/view/${encodeURIComponent(c.code)}" target="_blank" rel="noopener">Official course page ↗</a>
+              <a class="bracu-official-link" href="https://cse.bracu.ac.bd/course/view/${encodeURIComponent(c.code)}" target="_blank" rel="noopener">official ↗</a>
               ${c.code === 'CSE110' ? '<button type="button" class="secondary" data-view="learn">Practise programming</button>' : ''}
             </div>
           </div>
