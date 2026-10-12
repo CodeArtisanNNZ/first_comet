@@ -435,7 +435,7 @@
             ${detailedOutline(c)}
             <div class="bracu-course-actions">
               <a class="secondary" href="https://cse.bracu.ac.bd/course/view/${encodeURIComponent(c.code)}" target="_blank" rel="noopener">Official course page ↗</a>
-              ${c.code === 'CSE110' ? '<button type="button" class="primary" data-view="cse110notes">Open visual notes →</button><button type="button" class="secondary" data-view="learn">Practise programming</button>' : ''}
+              ${c.code === 'CSE110' ? '<button type="button" class="secondary" data-view="learn">Practise programming</button>' : ''}
             </div>
           </div>
         </details>
