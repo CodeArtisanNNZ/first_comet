@@ -2251,3 +2251,101 @@ select:focus{
     display:none!important;
   }
 }
+
+
+/* ===== BRACU topic buttons instead of topic-card wall ===== */
+.bracu-topic-map{display:none!important}
+
+.bracu-topic-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:12px;
+}
+.bracu-topic-button{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:38px;
+  max-width:100%;
+  padding:7px 10px;
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  background:var(--panel);
+  color:var(--ink);
+  cursor:pointer;
+  text-align:left;
+  box-shadow:2px 2px 0 transparent;
+  transition:transform .15s ease,box-shadow .15s ease,background .15s ease;
+}
+.bracu-topic-button:hover{
+  transform:translateY(-1px);
+  box-shadow:2px 2px 0 var(--line);
+  background:var(--yellow-soft);
+}
+.bracu-topic-button.active{
+  background:var(--yellow);
+  color:#171319;
+  box-shadow:2px 2px 0 var(--line);
+}
+.bracu-topic-button>span{
+  flex:none;
+  color:var(--coral);
+  font:800 .62rem "DM Mono",monospace;
+}
+.bracu-topic-button.active>span{
+  color:#171319;
+}
+.bracu-topic-button>b{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:.75rem;
+  line-height:1.2;
+}
+.bracu-topic-open{
+  margin-top:12px;
+  padding:14px 16px;
+  border:2px solid var(--line);
+  border-left:5px solid var(--yellow);
+  border-radius:10px;
+  background:var(--panel);
+}
+.bracu-topic-open h4{
+  margin:5px 0 6px;
+  font-size:1.05rem;
+  line-height:1.2;
+}
+.bracu-topic-open p{
+  margin:0;
+  max-width:760px;
+  color:var(--muted);
+  font-size:.82rem;
+  line-height:1.5;
+}
+
+.dark .bracu-topic-button.active,
+.dark .bracu-topic-button.active *{
+  color:#171319!important;
+}
+
+@media(max-width:700px){
+  .bracu-topic-buttons{
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+  .bracu-topic-button{
+    width:100%;
+    min-width:0;
+  }
+}
+@media(max-width:430px){
+  .bracu-topic-buttons{
+    grid-template-columns:1fr;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .bracu-topic-button{
+    transition:none;
+  }
+}
