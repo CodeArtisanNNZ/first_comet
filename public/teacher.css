@@ -339,3 +339,50 @@ body[data-age-mode="adult-playful"] .fc-teacher-character-copy span::after{
   }
   .fc-teacher-character-copy b{font-size:.76rem}
 }
+
+
+/* Finished teacher character presentation */
+.fc-teacher-panel{
+  width:min(430px,calc(100vw - 32px));
+}
+.fc-teacher-character-stage{
+  grid-template-columns:120px minmax(0,1fr);
+  min-height:148px;
+  padding:12px 14px 0;
+}
+.fc-teacher-character-stage>img{
+  width:120px;
+  height:148px;
+  object-position:center 16%;
+}
+.fc-teacher-character-copy{
+  gap:7px;
+  padding-bottom:18px;
+}
+.fc-teacher-character-copy b{
+  max-width:240px;
+  font-size:.9rem;
+  line-height:1.45;
+}
+.fc-teacher-character-copy::after{
+  content:"Strict when needed · patient always";
+  color:var(--muted);
+  font-size:.62rem;
+  line-height:1.35;
+}
+body[data-age-mode="adult-playful"] .fc-teacher-character-copy::after{
+  content:"Warm · sharp · a little teasing";
+}
+@media(max-width:560px){
+  .fc-teacher-character-stage{
+    grid-template-columns:92px minmax(0,1fr);
+    min-height:112px;
+  }
+  .fc-teacher-character-stage>img{
+    width:92px;
+    height:112px;
+  }
+  .fc-teacher-character-copy{
+    padding-bottom:10px;
+  }
+}
