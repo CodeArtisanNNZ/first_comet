@@ -2349,3 +2349,26 @@ select:focus{
     transition:none;
   }
 }
+
+
+/* Tiny BRACU official source link */
+.bracu-official-link{
+  display:inline-flex;
+  align-items:center;
+  width:max-content;
+  padding:2px 3px;
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  text-decoration:none;
+  font:600 .58rem "DM Mono",monospace;
+  letter-spacing:.02em;
+  opacity:.48;
+  box-shadow:none;
+}
+.bracu-official-link:hover,
+.bracu-official-link:focus-visible{
+  color:var(--ink);
+  opacity:.9;
+  text-decoration:underline;
+}
