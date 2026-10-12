@@ -258,3 +258,84 @@
   .fc-teacher-choice-grid>button{grid-template-columns:76px minmax(0,1fr)}
   .fc-teacher-choice-grid img{width:76px;height:76px}
 }
+
+
+/* Age onboarding + visible teacher character */
+.fc-age-card{
+  width:min(500px,100%);
+  border-top-color:var(--blue);
+}
+.fc-age-card input[type="number"]{
+  appearance:textfield;
+}
+.fc-age-card input[type="number"]::-webkit-inner-spin-button,
+.fc-age-card input[type="number"]::-webkit-outer-spin-button{
+  appearance:none;
+  margin:0;
+}
+
+.fc-teacher-character-stage{
+  display:grid;
+  grid-template-columns:92px minmax(0,1fr);
+  gap:12px;
+  align-items:end;
+  margin:12px 0 10px;
+  min-height:104px;
+  padding:10px 12px 0;
+  overflow:hidden;
+  border:1.5px solid var(--line);
+  border-radius:12px;
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,211,61,.25),transparent 30%),
+    linear-gradient(135deg,var(--yellow-soft),var(--paper));
+}
+.fc-teacher-character-stage[hidden]{display:none!important}
+.fc-teacher-character-stage>img{
+  width:92px;
+  height:104px;
+  align-self:end;
+  object-fit:cover;
+  object-position:center 18%;
+  border:1.5px solid var(--line);
+  border-bottom:0;
+  border-radius:12px 12px 0 0;
+  background:var(--cream);
+}
+.fc-teacher-character-copy{
+  align-self:center;
+  display:grid;
+  gap:5px;
+  padding-bottom:10px;
+}
+.fc-teacher-character-copy span{
+  width:max-content;
+  padding:3px 6px;
+  border-radius:5px;
+  background:var(--coral);
+  color:#fff;
+  font:800 .52rem "DM Mono",monospace;
+  letter-spacing:.07em;
+}
+.fc-teacher-character-copy b{
+  max-width:220px;
+  font-size:.82rem;
+  line-height:1.4;
+}
+body[data-age-mode="adult-playful"] .fc-teacher-character-stage{
+  background:
+    radial-gradient(circle at 90% 10%,rgba(255,90,54,.18),transparent 32%),
+    linear-gradient(135deg,var(--yellow-soft),var(--paper));
+}
+body[data-age-mode="adult-playful"] .fc-teacher-character-copy span::after{
+  content:" · PLAYFUL";
+}
+@media(max-width:420px){
+  .fc-teacher-character-stage{
+    grid-template-columns:74px minmax(0,1fr);
+  }
+  .fc-teacher-character-stage>img{
+    width:74px;
+    height:90px;
+  }
+  .fc-teacher-character-copy b{font-size:.76rem}
+}
