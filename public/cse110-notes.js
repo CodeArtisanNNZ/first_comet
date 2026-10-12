@@ -528,6 +528,35 @@
     return '<details class="cse110-check"><summary>Quick check · ' + esc(check[0]) + '</summary><p>' + esc(check[1]) + '</p></details>';
   }
 
+  const topicSubgoals = [
+    ['State the goal','Write the steps in order','Translate the steps into Java'],
+    ['Choose the data type','Give the value a useful name','Use the value correctly'],
+    ['Create the input/output tool','Move data into or out of variables','Check that the user sees the right result'],
+    ['Write the true/false question','Follow the matching branch','Handle the remaining case'],
+    ['Set the starting state','Check whether to continue','Change the state each repetition'],
+    ['Know the index or range','Use the matching String operation','Check the resulting text/value'],
+    ['Know the valid indexes','Visit the needed elements','Update the result safely'],
+    ['Compare the correct values','Swap only when the rule says so','Repeat until the order is finished'],
+    ['Define one clear job','Pass the needed inputs','Return or use the result'],
+    ['Write the base case','Make the problem smaller','Use the returned result'],
+    ['Open the resource','Read or write deliberately','Close it and handle failure'],
+    ['Reproduce the problem','Inspect the values where it goes wrong','Change one thing and test again'],
+    ['Pause and explain the rule','Write the habit in your own words','Use it in your next program']
+  ];
+
+  function renderSubgoals(topicIndex) {
+    const goals = topicSubgoals[topicIndex] || topicSubgoals[topicSubgoals.length - 1];
+    return '<ol class="cse110-subgoals">' + goals.map((goal, index) =>
+      '<li><span>' + String(index + 1).padStart(2,'0') + '</span><b>' + esc(goal) + '</b></li>'
+    ).join('') + '</ol>';
+  }
+
+  function renderRetrieval(slide) {
+    const question = slide.check?.[0] || 'Without looking back, what is the one rule you should remember from this step?';
+    const answer = slide.check?.[1] || slide.takeaway;
+    return '<details class="cse110-retrieval"><summary><span>YOUR TURN</span><b>' + esc(question) + '</b><small>Answer in your head or out loud before revealing.</small></summary><div><span>CHECK YOUR ANSWER</span><p>' + esc(answer) + '</p></div></details>';
+  }
+
   function renderNotes(notes) {
     if (!notes?.length) return '';
     const learnerName = window.FirstCometPersonalization?.getName?.() || '';
@@ -543,7 +572,7 @@
       '<section class="cse110-notes-shell">' +
         '<header class="cse110-notes-head">' +
           '<div class="cse110-head-actions"><button type="button" class="cse110-back" data-view="bracu">← BRACU Courses</button><button type="button" class="cse110-topics-toggle" data-cse110-topics>Topics</button></div>' +
-          '<div class="cse110-title-block"><span class="eyebrow">CSE110 · VISUAL NOTES</span><h1>Programming Language I</h1><p>Learn the idea first. Then see the Java.</p></div>' +
+          '<div class="cse110-title-block"><span class="eyebrow">CSE110 · PROGRAMMING LANGUAGE I</span><h1 id="cse110HeaderTopic">Visual Notes</h1><p id="cse110HeaderStep">One idea at a time.</p></div>' +
           '<div class="cse110-head-progress"><b id="cse110SceneCount"></b><span><i id="cse110ProgressBar"></i></span></div>' +
         '</header>' +
         '<div class="cse110-note-layout">' +
@@ -582,27 +611,39 @@
       button.setAttribute('aria-current', active ? 'true' : 'false');
     });
 
-    root.querySelector('#cse110SceneCount').textContent = 'Scene ' + (current + 1) + ' / ' + slides.length;
+    root.querySelector('#cse110SceneCount').textContent = 'Topic ' + (slide.topicIndex + 1) + ' / ' + topics.length + ' · Step ' + (slide.slideIndex + 1) + ' / ' + topic.slides.length;
     root.querySelector('#cse110ProgressBar').style.width = (((current + 1) / slides.length) * 100) + '%';
+    const headerTopic = root.querySelector('#cse110HeaderTopic');
+    const headerStep = root.querySelector('#cse110HeaderStep');
+    if (headerTopic) headerTopic.textContent = topic.title;
+    if (headerStep) headerStep.textContent = 'Step ' + (slide.slideIndex + 1) + ' of ' + topic.slides.length + ' · ' + (topic.short || 'One idea at a time.');
 
     card.dataset.sceneType = topic.lifeNotes ? 'life' : slide.code ? 'code' : slide.check ? 'check' : 'story';
+
+    const hasExample = Boolean(slide.visual?.length || slide.code);
     card.innerHTML =
-      '<div class="cse110-learning-top">' +
-        '<div class="cse110-scene-meta"><span>' + esc(slide.kicker) + '</span><b>Topic ' + String(slide.topicIndex + 1).padStart(2, '0') + ' · ' + esc(topic.title) + '</b></div>' +
-        '<h2>' + esc(slide.title) + '</h2>' +
-        '<p class="cse110-scene-body">' + esc(slide.body) + '</p>' +
+      '<div class="cse110-lesson-map" aria-label="How to use this note">' +
+        '<span class="active">1 · Understand</span><span>2 · Worked example</span><span>3 · How to think</span><span>4 · Your turn</span>' +
       '</div>' +
-      '<div class="cse110-learning-grid">' +
-        '<section class="cse110-learn-block cse110-example-block">' +
-          '<span class="cse110-block-label">SEE IT</span>' +
-          (slide.visual || slide.code ? renderVisual(slide.visual) + renderCode(slide.code) : '<p class="cse110-empty-example">No extra example needed for this step.</p>') +
+      '<div class="cse110-research-layout">' +
+        '<section class="cse110-understand">' +
+          '<span class="cse110-phase-label">UNDERSTAND</span>' +
+          '<div class="cse110-scene-meta"><span>' + esc(slide.kicker) + '</span><b>Step ' + String(slide.slideIndex + 1) + ' of ' + topic.slides.length + '</b></div>' +
+          '<h2>' + esc(slide.title) + '</h2>' +
+          '<p class="cse110-scene-body">' + esc(slide.body) + '</p>' +
         '</section>' +
-        '<section class="cse110-learn-block cse110-memory-block">' +
-          '<span class="cse110-block-label">REMEMBER</span>' +
-          '<p>' + esc(slide.takeaway) + '</p>' +
+        '<section class="cse110-worked">' +
+          '<span class="cse110-phase-label">WORKED EXAMPLE</span>' +
+          (hasExample
+            ? renderVisual(slide.visual) + renderCode(slide.code)
+            : '<div class="cse110-explain-prompt"><b>Explain it before moving on.</b><p>Say the idea in your own words, then compare it with the answer in “Your turn”.</p></div>') +
         '</section>' +
-        (slide.check ? '<section class="cse110-learn-block cse110-check-block"><span class="cse110-block-label">CHECK YOURSELF</span>' + renderCheck(slide.check) + '</section>' : '') +
-        (slide.notes ? '<section class="cse110-learn-block cse110-notes-block">' + renderNotes(slide.notes) + '</section>' : '') +
+        '<section class="cse110-thinking">' +
+          '<div><span class="cse110-phase-label">HOW TO THINK</span><p>Use the same mental steps when the question changes.</p></div>' +
+          renderSubgoals(slide.topicIndex) +
+        '</section>' +
+        (slide.notes ? '<section class="cse110-note-taking">' + renderNotes(slide.notes) + '</section>' : '') +
+        '<section class="cse110-recall">' + renderRetrieval(slide) + '</section>' +
       '</div>';
 
     const prev = root.querySelector('[data-cse110-prev]');
@@ -618,6 +659,8 @@
     }
     current = Math.max(0, Math.min(slides.length - 1, current + delta));
     render();
+    const activeSlide = slides[current];
+    try { history.replaceState(null,'','#cse110/topic/' + (activeSlide.topicIndex + 1)); } catch (_) {}
     root.querySelector('#cse110StoryCard')?.scrollIntoView({ block:'start', behavior:'smooth' });
   }
 
@@ -689,4 +732,17 @@
     topics,
     slides
   };
+
+  function restoreRoute() {
+    const match = location.hash.match(/^#cse110\/topic\/(\d+)/);
+    if (!match) return;
+    const topicIndex = Math.max(0, Math.min(topics.length - 1, Number(match[1]) - 1));
+    const nextIndex = slideIndexForTopic(topicIndex);
+    if (nextIndex >= 0) current = nextIndex;
+    window.FirstCometNavigate?.('cse110notes');
+    render();
+  }
+
+  window.addEventListener('hashchange', restoreRoute);
+  setTimeout(restoreRoute, 0);
 })();
