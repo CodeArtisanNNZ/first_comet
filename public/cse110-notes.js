@@ -542,7 +542,7 @@
     root.innerHTML =
       '<section class="cse110-notes-shell">' +
         '<header class="cse110-notes-head">' +
-          '<button type="button" class="cse110-back" data-view="bracu">← BRACU Courses</button>' +
+          '<div class="cse110-head-actions"><button type="button" class="cse110-back" data-view="bracu">← BRACU Courses</button><button type="button" class="cse110-focus-toggle" data-cse110-focus>Hide sidebar</button></div>' +
           '<div><span class="eyebrow">CSE110 · VISUAL NOTES</span><h1>Programming Language I</h1><p>Learn the idea first. Then see the Java.</p></div>' +
           '<div class="cse110-head-progress"><b id="cse110SceneCount"></b><span><i id="cse110ProgressBar"></i></span></div>' +
         '</header>' +
@@ -584,13 +584,10 @@
     card.dataset.sceneType = topic.lifeNotes ? 'life' : slide.code ? 'code' : slide.check ? 'check' : 'story';
     card.innerHTML =
       '<div class="cse110-scene-meta"><span>' + esc(slide.kicker) + '</span><b>Topic ' + String(slide.topicIndex + 1).padStart(2, '0') + ' · ' + esc(topic.title) + '</b></div>' +
-      '<h2>' + esc(slide.title) + '</h2>' +
-      '<p class="cse110-scene-body">' + esc(slide.body) + '</p>' +
-      renderVisual(slide.visual) +
-      renderCode(slide.code) +
-      renderNotes(slide.notes) +
-      renderCheck(slide.check) +
-      '<aside class="cse110-takeaway"><span>REMEMBER THIS</span><p>' + esc(slide.takeaway) + '</p></aside>';
+      '<div class="cse110-landscape-grid">' +
+        '<section class="cse110-landscape-copy"><h2>' + esc(slide.title) + '</h2><p class="cse110-scene-body">' + esc(slide.body) + '</p>' + renderNotes(slide.notes) + '</section>' +
+        '<section class="cse110-landscape-media">' + renderVisual(slide.visual) + renderCode(slide.code) + renderCheck(slide.check) + '<aside class="cse110-takeaway"><span>REMEMBER THIS</span><p>' + esc(slide.takeaway) + '</p></aside></section>' +
+      '</div>';
 
     const prev = root.querySelector('[data-cse110-prev]');
     const next = root.querySelector('[data-cse110-next]');
@@ -609,6 +606,10 @@
   }
 
   renderShell();
+  const savedFocus = localStorage.getItem('fc-cse110-focus') === '1';
+  document.querySelector('.app')?.classList.toggle('cse110-focus-mode', savedFocus);
+  const focusButton = root.querySelector('[data-cse110-focus]');
+  if (focusButton) focusButton.textContent = savedFocus ? 'Show sidebar' : 'Hide sidebar';
   render();
 
   root.addEventListener('click', (event) => {
@@ -627,6 +628,15 @@
     }
     if (event.target.closest('[data-cse110-next]')) {
       move(1);
+      return;
+    }
+    const focus = event.target.closest('[data-cse110-focus]');
+    if (focus) {
+      const app = document.querySelector('.app');
+      const enabled = !app?.classList.contains('cse110-focus-mode');
+      app?.classList.toggle('cse110-focus-mode', enabled);
+      localStorage.setItem('fc-cse110-focus', enabled ? '1' : '0');
+      focus.textContent = enabled ? 'Show sidebar' : 'Hide sidebar';
       return;
     }
     const copy = event.target.closest('[data-cse110-copy]');
