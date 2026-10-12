@@ -579,6 +579,12 @@
       item.setAttribute('tabindex', active ? '0' : '-1');
     });
 
+    if (code === 'CSE110' && window.FirstCometCSE110Notes?.openTopic) {
+      window.FirstCometCSE110Notes.openTopic(index);
+      window.FirstCometNavigate?.('cse110notes');
+      return;
+    }
+
     const panel = outline.querySelector('[data-bracu-topic-open]');
     if (!panel) return;
 
