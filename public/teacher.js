@@ -53,6 +53,8 @@
     if (playfulAdult()) {
       if (ctx.view === 'cse110notes') return 'Alright, smart one. Show me your reasoning first.';
       if (ctx.view === 'vscode') return 'Go on—make one clean change. Impress me a little.';
+      if (ctx.view === 'project') return 'Good. Show me what you built before you start polishing it.';
+      if (ctx.view === 'cv') return 'Let’s make this CV as sharp as you think it is.';
       return 'There you are. What are we solving today?';
     }
     if (ctx.view === 'cse110notes') return 'One idea at a time. Try it before you peek.';
@@ -432,9 +434,9 @@
         ? 'Okay, that was smooth. I’m impressed. Now explain it once without looking at the page—then you can move on.'
         : 'Good. Before moving on, explain the idea once without looking at the page. If you can do that clearly, continue.', 'positive');
     } else if (kind === 'different') {
-      response(alternate(ctx));
+      response((playfulAdult() ? 'Alright, smart one—different angle. ' : '') + alternate(ctx));
     } else if (kind === 'example') {
-      response(exampleFor(ctx), 'example');
+      response((playfulAdult() ? 'Fine, I’ll give you one. Pay attention. ' : '') + exampleFor(ctx), 'example');
     } else if (kind === 'lost') {
       memory.struggles[ctx.key] = Number(memory.struggles[ctx.key] || 0) + 1;
       writeMemory(memory);
@@ -469,7 +471,10 @@
     const comet = root.querySelector('[data-teacher-comet]');
     if (comet) comet.hidden = Boolean(avatar);
     const persona = root.querySelector('[data-teacher-persona]');
-    if (persona) persona.textContent = choice ? ('● ' + (choice === 'female' ? 'FEMALE TEACHER' : 'MALE TEACHER')) : '● BESIDE YOU';
+    if (persona) {
+      const role = choice ? (choice === 'female' ? 'FEMALE TEACHER' : 'MALE TEACHER') : 'BESIDE YOU';
+      persona.textContent = '● ' + role + (playfulAdult() ? ' · PLAYFUL' : '');
+    }
     const stage = root.querySelector('[data-teacher-character-stage]');
     const characterImage = root.querySelector('[data-teacher-character-image]');
     if (stage) stage.hidden = !avatar;
@@ -501,7 +506,12 @@
     if (!question) return;
     const ctx = lastExternalContext || context();
     rememberReaction('ask', ctx);
-    response(answerQuestion(question, ctx), 'answer');
+    const baseAnswer = answerQuestion(question, ctx);
+    const isStruggleQuestion = /\b(lost|stuck|confused|don't get|dont get|hard|help)\b/i.test(question);
+    const prefix = playfulAdult() && !isStruggleQuestion && /\b(next|example|show|challenge|why|explain)\b/i.test(question)
+      ? 'You’re keeping me busy. I like it. '
+      : '';
+    response(prefix + baseAnswer, 'answer');
     if (input) input.value = '';
     refreshMemory();
   });
