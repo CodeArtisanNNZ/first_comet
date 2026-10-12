@@ -487,3 +487,100 @@
     font-size:.82rem;
   }
 }
+
+
+/* ===== CSE110 focus + landscape notes ===== */
+.cse110-head-actions{
+  display:grid;
+  gap:8px;
+  align-self:start;
+}
+.cse110-focus-toggle{
+  padding:7px 9px;
+  border:1.5px solid var(--line);
+  border-radius:8px;
+  background:var(--panel);
+  color:var(--muted);
+  cursor:pointer;
+  font-size:.72rem;
+  font-weight:800;
+}
+.cse110-focus-toggle:hover{
+  background:var(--yellow-soft);
+  color:var(--ink);
+}
+
+.cse110-landscape-grid{
+  display:grid;
+  grid-template-columns:minmax(300px,.82fr) minmax(420px,1.18fr);
+  gap:24px;
+  align-items:start;
+  min-width:0;
+}
+.cse110-landscape-copy,
+.cse110-landscape-media{
+  min-width:0;
+}
+.cse110-landscape-copy{
+  display:grid;
+  align-content:start;
+  gap:16px;
+}
+.cse110-landscape-media{
+  display:grid;
+  align-content:start;
+  gap:16px;
+}
+.cse110-landscape-copy h2{
+  font-size:clamp(1.8rem,3vw,3.25rem);
+}
+.cse110-landscape-media .cse110-code pre{
+  max-height:360px;
+}
+.cse110-landscape-media .cse110-takeaway{
+  margin-top:0;
+}
+
+/* Focus mode hides the global left rail and gives notes the full viewport width. */
+.app.cse110-focus-mode{
+  grid-template-columns:0 minmax(0,1fr);
+}
+.app.cse110-focus-mode .rail{
+  display:none!important;
+}
+.app.cse110-focus-mode main{
+  grid-column:1/-1;
+}
+.app.cse110-focus-mode #view-cse110notes{
+  max-width:none;
+}
+.app.cse110-focus-mode #view-cse110notes .cse110-note-layout{
+  grid-template-columns:220px minmax(0,1fr);
+}
+.app.cse110-focus-mode #view-cse110notes .cse110-story-card{
+  min-height:calc(100vh - 250px);
+}
+
+@media(max-width:1180px){
+  .cse110-landscape-grid{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:1100px){
+  .app.cse110-focus-mode #view-cse110notes .cse110-note-layout{
+    grid-template-columns:1fr;
+  }
+}
+@media(max-width:700px){
+  .cse110-head-actions{
+    display:flex;
+    flex-wrap:wrap;
+  }
+  .cse110-landscape-grid{
+    grid-template-columns:1fr;
+    gap:16px;
+  }
+  .cse110-focus-toggle{
+    display:none;
+  }
+}
