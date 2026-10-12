@@ -562,15 +562,12 @@
     group?.scrollIntoView({ behavior:'smooth', block:'start' });
   }));
 
-  root.addEventListener('click', (event) => {
-    const button = event.target.closest('[data-bracu-topic]');
-    if (!button) return;
-
+  function openBracuTopic(button) {
     const outline = button.closest('[data-bracu-outline]');
     if (!outline) return;
 
-    const course = courses.find((item) => item.code === outline.dataset.bracuOutline);
-    const topics = courseOutlines[course?.code] || [];
+    const code = outline.dataset.bracuOutline;
+    const topics = courseOutlines[code] || [];
     const index = Number(button.dataset.bracuTopic);
     const topic = topics[index];
     if (!topic) return;
@@ -579,15 +576,30 @@
       const active = item === button;
       item.classList.toggle('active', active);
       item.setAttribute('aria-selected', active ? 'true' : 'false');
+      item.setAttribute('tabindex', active ? '0' : '-1');
     });
 
     const panel = outline.querySelector('[data-bracu-topic-open]');
     if (!panel) return;
+
     panel.innerHTML = `
       <span class="eyebrow">TOPIC ${String(index + 1).padStart(2,'0')}</span>
       <h4>${esc(topic[0])}</h4>
       <p>${esc(topic[1])}</p>
     `;
+
+    panel.animate?.(
+      [{opacity:.35,transform:'translateY(5px)'},{opacity:1,transform:'translateY(0)'}],
+      {duration:180,easing:'ease-out'}
+    );
+  }
+
+  root.querySelectorAll('[data-bracu-topic]').forEach((button) => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      openBracuTopic(button);
+    });
   });
 
   window.FirstCometBracuCourses = {
