@@ -559,9 +559,9 @@
           '<main class="cse110-story-wrap">' +
             '<article class="cse110-story-card" id="cse110StoryCard" aria-live="polite"></article>' +
             '<footer class="cse110-story-controls">' +
-              '<button type="button" class="secondary" data-cse110-prev>← Previous</button>' +
+              '<button type="button" class="secondary" data-cse110-prev>← Previous step</button>' +
               '<div><span>Use</span><kbd>←</kbd><kbd>→</kbd><span>to move</span></div>' +
-              '<button type="button" class="primary" data-cse110-next>Next →</button>' +
+              '<button type="button" class="primary" data-cse110-next>Next step →</button>' +
             '</footer>' +
           '</main>' +
         '</div>' +
@@ -587,16 +587,28 @@
 
     card.dataset.sceneType = topic.lifeNotes ? 'life' : slide.code ? 'code' : slide.check ? 'check' : 'story';
     card.innerHTML =
-      '<div class="cse110-scene-meta"><span>' + esc(slide.kicker) + '</span><b>Topic ' + String(slide.topicIndex + 1).padStart(2, '0') + ' · ' + esc(topic.title) + '</b></div>' +
-      '<div class="cse110-landscape-grid">' +
-        '<section class="cse110-landscape-copy"><h2>' + esc(slide.title) + '</h2><p class="cse110-scene-body">' + esc(slide.body) + '</p>' + renderNotes(slide.notes) + '</section>' +
-        '<section class="cse110-landscape-media">' + renderVisual(slide.visual) + renderCode(slide.code) + renderCheck(slide.check) + '<aside class="cse110-takeaway"><span>REMEMBER THIS</span><p>' + esc(slide.takeaway) + '</p></aside></section>' +
+      '<div class="cse110-learning-top">' +
+        '<div class="cse110-scene-meta"><span>' + esc(slide.kicker) + '</span><b>Topic ' + String(slide.topicIndex + 1).padStart(2, '0') + ' · ' + esc(topic.title) + '</b></div>' +
+        '<h2>' + esc(slide.title) + '</h2>' +
+        '<p class="cse110-scene-body">' + esc(slide.body) + '</p>' +
+      '</div>' +
+      '<div class="cse110-learning-grid">' +
+        '<section class="cse110-learn-block cse110-example-block">' +
+          '<span class="cse110-block-label">SEE IT</span>' +
+          (slide.visual || slide.code ? renderVisual(slide.visual) + renderCode(slide.code) : '<p class="cse110-empty-example">No extra example needed for this step.</p>') +
+        '</section>' +
+        '<section class="cse110-learn-block cse110-memory-block">' +
+          '<span class="cse110-block-label">REMEMBER</span>' +
+          '<p>' + esc(slide.takeaway) + '</p>' +
+        '</section>' +
+        (slide.check ? '<section class="cse110-learn-block cse110-check-block"><span class="cse110-block-label">CHECK YOURSELF</span>' + renderCheck(slide.check) + '</section>' : '') +
+        (slide.notes ? '<section class="cse110-learn-block cse110-notes-block">' + renderNotes(slide.notes) + '</section>' : '') +
       '</div>';
 
     const prev = root.querySelector('[data-cse110-prev]');
     const next = root.querySelector('[data-cse110-next]');
     prev.disabled = current === 0;
-    next.textContent = current === slides.length - 1 ? 'Back to BRACU Courses →' : 'Next →';
+    next.textContent = current === slides.length - 1 ? 'Back to BRACU Courses →' : 'Next step →';
   }
 
   function move(delta) {
