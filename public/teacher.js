@@ -37,6 +37,28 @@
   };
 
   const name = () => window.FirstCometPersonalization?.getName?.() || '';
+  const learnerAge = () => Number(window.FirstCometPersonalization?.getAge?.() || 0);
+  const playfulAdult = () => learnerAge() > 20;
+
+  function playfulAside(ctx) {
+    if (!playfulAdult()) return '';
+    if (ctx.view === 'cse110notes') return ' And yes, I’ll notice if you peek at the answer before trying.';
+    if (ctx.view === 'vscode') return ' Try not to make fixing it on the first try look too effortless.';
+    if (ctx.view === 'project') return ' You’ve got good instincts—use them before adding another feature.';
+    if (ctx.view === 'home') return ' You’re doing better than you think, by the way.';
+    return '';
+  }
+
+  function characterLine(ctx) {
+    if (playfulAdult()) {
+      if (ctx.view === 'cse110notes') return 'Alright, smart one. Show me your reasoning first.';
+      if (ctx.view === 'vscode') return 'Go on—make one clean change. Impress me a little.';
+      return 'There you are. What are we solving today?';
+    }
+    if (ctx.view === 'cse110notes') return 'One idea at a time. Try it before you peek.';
+    if (ctx.view === 'vscode') return 'Make one small change, save it, then check.';
+    return 'One step at a time. I’m right here.';
+  }
 
   const topicAliases = {
     'Programming Foundations':'programming foundations',
@@ -223,19 +245,19 @@
       const base = support
         ? 'This step is about ' + (topicAliases[ctx.label] || ctx.label.toLowerCase()) + '. Read the idea, trace the worked example, then try “Your turn” without peeking.'
         : 'Use this note actively: explain the idea in your own words before revealing the answer.';
-      return hello + previous + callback + base;
+      return hello + previous + callback + base + playfulAside(ctx);
     }
 
-    if (ctx.view === 'vscode') return hello + previous + 'Work in the real editor; use me for the next small action. If something on screen is unfamiliar, ask where it is before learning extra tools.';
+    if (ctx.view === 'vscode') return hello + previous + 'Work in the real editor; use me for the next small action. If something on screen is unfamiliar, ask where it is before learning extra tools.' + playfulAside(ctx);
     if (ctx.view === 'guide') return hello + previous + 'Keep the project small enough to finish. I’ll help you decide what must happen now and what can wait.';
     if (ctx.view === 'learn') return hello + previous + 'Don’t try to memorize the whole page. Pick one concept, try it, then tell me whether it made sense.';
     if (ctx.view === 'bracu') return hello + previous + 'Use the official outline as the boundary. Pick one topic and study it deeply instead of collecting more resources.';
     if (ctx.view === 'cv') return hello + previous + 'I’ll prioritize evidence, clarity and ATS readability over decorative CV language.';
     if (ctx.view === 'careers') return hello + previous + 'Treat a career choice as a direction to test, not a permanent identity. Compare the work itself, not only job titles.';
-    if (ctx.view === 'project') return hello + previous + 'You’re in a real project now. Make one useful thing work before polishing everything around it.';
+    if (ctx.view === 'project') return hello + previous + 'You’re in a real project now. Make one useful thing work before polishing everything around it.' + playfulAside(ctx);
     if (ctx.view === 'settings') return hello + 'These choices change how much guidance I give you. Your teacher memory stays on this device.';
     if (latest) return hello + 'Your latest recorded progress was “' + latest.title + '”. Choose the next small action that builds on it.';
-    return hello + 'Tell me what you are trying to do. I’ll keep the next step small and concrete.';
+    return hello + 'Tell me what you are trying to do. I’ll keep the next step small and concrete.' + playfulAside(ctx);
   }
 
   function alternate(ctx) {
@@ -347,6 +369,10 @@
         <div class="fc-teacher-identity"><img class="fc-teacher-head-avatar" data-teacher-avatar alt="" hidden><div><span class="eyebrow">FIRST COMET TEACHER</span><b data-teacher-persona>● BESIDE YOU</b></div></div>
         <button type="button" data-teacher-close aria-label="Close First Comet Teacher">×</button>
       </header>
+      <div class="fc-teacher-character-stage" data-teacher-character-stage hidden>
+        <img data-teacher-character-image alt="">
+        <div class="fc-teacher-character-copy"><span data-teacher-character-tag>YOUR TEACHER</span><b data-teacher-character-line>One step at a time.</b></div>
+      </div>
       <div class="fc-teacher-context"><span>RIGHT NOW</span><b data-teacher-context></b><small data-teacher-detail></small></div>
       <div class="fc-teacher-message" data-teacher-message></div>
       <form class="fc-teacher-ask" data-teacher-ask>
@@ -402,7 +428,9 @@
       memory.understood[ctx.key] = Date.now();
       if (memory.struggles[ctx.key]) memory.struggles[ctx.key] = Math.max(0, memory.struggles[ctx.key] - 1);
       writeMemory(memory);
-      response('Good. Before moving on, explain the idea once without looking at the page. If you can do that clearly, continue.', 'positive');
+      response(playfulAdult()
+        ? 'Okay, that was smooth. I’m impressed. Now explain it once without looking at the page—then you can move on.'
+        : 'Good. Before moving on, explain the idea once without looking at the page. If you can do that clearly, continue.', 'positive');
     } else if (kind === 'different') {
       response(alternate(ctx));
     } else if (kind === 'example') {
@@ -412,7 +440,7 @@
       writeMemory(memory);
       response(lostFor(ctx), 'support');
     } else if (kind === 'easy') {
-      response(challengeFor(ctx), 'challenge');
+      response((playfulAdult() ? 'Confident today, huh? Fine—show me. ' : '') + challengeFor(ctx), 'challenge');
     }
 
     refreshMemory();
@@ -442,6 +470,14 @@
     if (comet) comet.hidden = Boolean(avatar);
     const persona = root.querySelector('[data-teacher-persona]');
     if (persona) persona.textContent = choice ? ('● ' + (choice === 'female' ? 'FEMALE TEACHER' : 'MALE TEACHER')) : '● BESIDE YOU';
+    const stage = root.querySelector('[data-teacher-character-stage]');
+    const characterImage = root.querySelector('[data-teacher-character-image]');
+    if (stage) stage.hidden = !avatar;
+    if (characterImage && avatar) {
+      characterImage.src = avatar;
+      characterImage.alt = choice === 'female' ? 'First Comet female teacher character' : 'First Comet male teacher character';
+    }
+    document.body.dataset.ageMode = playfulAdult() ? 'adult-playful' : 'standard';
   }
 
   function refresh(external) {
@@ -452,6 +488,8 @@
     root.querySelector('[data-teacher-context]').textContent = ctx.label;
     root.querySelector('[data-teacher-detail]').textContent = ctx.detail || '';
     root.querySelector('[data-teacher-message]').textContent = messageFor(memory, ctx);
+    const characterCopy = root.querySelector('[data-teacher-character-line]');
+    if (characterCopy) characterCopy.textContent = characterLine(ctx);
     response('');
     refreshMemory();
   }
@@ -490,6 +528,10 @@
     if (root.classList.contains('open')) refresh();
   });
   window.addEventListener('fc-teacher-choice', () => {
+    applyTeacherChoice();
+    if (root.classList.contains('open')) refresh();
+  });
+  window.addEventListener('fc-profile-age', () => {
     applyTeacherChoice();
     if (root.classList.contains('open')) refresh();
   });
