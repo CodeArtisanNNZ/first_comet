@@ -338,9 +338,6 @@
   function rememberReaction(kind, ctx) {
     memory.reactions.unshift({ kind, key:ctx.key, label:ctx.label, at:Date.now() });
     memory.reactions = memory.reactions.slice(0, MAX_REACTIONS);
-    memory.lastContext = { key:ctx.key, label:ctx.label, view:ctx.view };
-    memory.lastSeen = Date.now();
-    writeMemory(memory);
   }
 
   function handle(kind) {
@@ -423,6 +420,22 @@
   window.addEventListener('hashchange', () => {
     window.setTimeout(() => { if (root.classList.contains('open')) refresh(); }, 30);
   });
+
+  document.addEventListener('click', (event) => {
+    if (!event.target.closest('[data-view],[data-learn-section],[data-course-tab],[data-course-language],[data-bracu-topic],[data-bracu-level-jump],[data-cse110-topic]')) return;
+    window.setTimeout(() => {
+      if (currentView() !== 'cse110notes') lastExternalContext = null;
+      if (root.classList.contains('open')) refresh();
+    }, 60);
+  });
+
+  const saveCurrentContext = () => {
+    const ctx = lastExternalContext || context();
+    memory.lastContext = { key:ctx.key, label:ctx.label, view:ctx.view };
+    memory.lastSeen = Date.now();
+    writeMemory(memory);
+  };
+  window.addEventListener('pagehide', saveCurrentContext);
 
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && root.classList.contains('open')) setOpen(false);
