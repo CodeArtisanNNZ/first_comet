@@ -391,16 +391,29 @@
 
   function detailedOutline(c) {
     const topics = courseOutlines[c.code] || [];
+    if (!topics.length) return '';
+    const first = topics[0];
     return `
-      <div class="bracu-cse110-detail bracu-official-outline">
+      <div class="bracu-cse110-detail bracu-official-outline" data-bracu-outline="${esc(c.code)}">
         <div class="bracu-outline-head">
-          <div><span class="eyebrow">COURSE OUTLINE</span><h3>${topics.length} topic areas</h3></div>
-          <small>Structured from BRACU's current official course description / lecture listing.</small>
+          <div><span class="eyebrow">COURSE OUTLINE</span><h3>${topics.length} topics</h3></div>
+          <small>Choose a topic to open it.</small>
         </div>
-        <ol class="bracu-topic-map">
-          ${topics.map(([title,text]) => `<li><b>${esc(title)}</b><span>${esc(text)}</span></li>`).join('')}
-        </ol>
-
+        <div class="bracu-topic-buttons" role="tablist" aria-label="${esc(c.code)} topics">
+          ${topics.map(([title], index) => `
+            <button type="button"
+              class="bracu-topic-button${index === 0 ? ' active' : ''}"
+              data-bracu-topic="${index}"
+              aria-selected="${index === 0 ? 'true' : 'false'}">
+              <span>${String(index + 1).padStart(2,'0')}</span>
+              <b>${esc(title)}</b>
+            </button>`).join('')}
+        </div>
+        <article class="bracu-topic-open" data-bracu-topic-open>
+          <span class="eyebrow">TOPIC 01</span>
+          <h4>${esc(first[0])}</h4>
+          <p>${esc(first[1])}</p>
+        </article>
       </div>`;
   }
 
@@ -548,6 +561,34 @@
     const group = root.querySelector('[data-bracu-level-group="' + activeLevel + '"]');
     group?.scrollIntoView({ behavior:'smooth', block:'start' });
   }));
+
+  root.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-bracu-topic]');
+    if (!button) return;
+
+    const outline = button.closest('[data-bracu-outline]');
+    if (!outline) return;
+
+    const course = courses.find((item) => item.code === outline.dataset.bracuOutline);
+    const topics = courseOutlines[course?.code] || [];
+    const index = Number(button.dataset.bracuTopic);
+    const topic = topics[index];
+    if (!topic) return;
+
+    outline.querySelectorAll('[data-bracu-topic]').forEach((item) => {
+      const active = item === button;
+      item.classList.toggle('active', active);
+      item.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+
+    const panel = outline.querySelector('[data-bracu-topic-open]');
+    if (!panel) return;
+    panel.innerHTML = `
+      <span class="eyebrow">TOPIC ${String(index + 1).padStart(2,'0')}</span>
+      <h4>${esc(topic[0])}</h4>
+      <p>${esc(topic[1])}</p>
+    `;
+  });
 
   window.FirstCometBracuCourses = {
     openLevel(level) {
