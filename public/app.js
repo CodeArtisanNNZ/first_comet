@@ -396,6 +396,7 @@ function setView(v){
   if(v==='learn' && !location.hash.startsWith('#learn/')) setTimeout(openPreferredLearnSection,0);
   if(v==='home')setTimeout(()=>window.FirstCometAchievements?.refresh(),0);
 }
+window.FirstCometNavigate=(view)=>setView(view);
 function openModal(id){const el=$(id);el.classList.add('open');el.setAttribute('aria-hidden','false');animeRun({targets:el.querySelector('.modal'),scale:[.9,1],translateY:[20,0],opacity:[0,1],duration:350,easing:'easeOutBack'})}
 function closeAll(){ $$('.modal-backdrop,.palette').forEach(x=>{x.classList.remove('open');x.setAttribute('aria-hidden','true')}) }
 function toast(msg){const el=$('#toast');el.textContent=msg;if(hasAnime()){anime.remove(el);anime.timeline().add({targets:el,translateY:[120,0],opacity:[0,1],duration:300}).add({targets:el,translateY:[0,20],opacity:[1,0],delay:1800,duration:300})}else{el.style.transform='none';el.style.opacity=1;setTimeout(()=>el.style.opacity=0,2000)}}
