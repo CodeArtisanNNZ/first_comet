@@ -542,16 +542,20 @@
     root.innerHTML =
       '<section class="cse110-notes-shell">' +
         '<header class="cse110-notes-head">' +
-          '<div class="cse110-head-actions"><button type="button" class="cse110-back" data-view="bracu">← BRACU Courses</button><button type="button" class="cse110-focus-toggle" data-cse110-focus>Hide sidebar</button></div>' +
-          '<div><span class="eyebrow">CSE110 · VISUAL NOTES</span><h1>Programming Language I</h1><p>Learn the idea first. Then see the Java.</p></div>' +
+          '<div class="cse110-head-actions"><button type="button" class="cse110-back" data-view="bracu">← BRACU Courses</button><button type="button" class="cse110-topics-toggle" data-cse110-topics>Topics</button></div>' +
+          '<div class="cse110-title-block"><span class="eyebrow">CSE110 · VISUAL NOTES</span><h1>Programming Language I</h1><p>Learn the idea first. Then see the Java.</p></div>' +
           '<div class="cse110-head-progress"><b id="cse110SceneCount"></b><span><i id="cse110ProgressBar"></i></span></div>' +
         '</header>' +
         '<div class="cse110-note-layout">' +
-          '<nav class="cse110-topic-rail" aria-label="CSE110 note topics">' +
-            topics.map((topic, index) =>
-              '<button type="button" data-cse110-topic="' + index + '"><span>' + String(index + 1).padStart(2, '0') + '</span><div><b>' + esc(topic.title) + '</b><small>' + esc(topic.short) + '</small></div></button>'
-            ).join('') +
-          '</nav>' +
+          '<aside class="cse110-topic-drawer" aria-hidden="true">' +
+            '<div class="cse110-topic-drawer-head"><b>Choose a topic</b><button type="button" data-cse110-topics-close aria-label="Close topics">×</button></div>' +
+            '<nav class="cse110-topic-rail" aria-label="CSE110 note topics">' +
+              topics.map((topic, index) =>
+                '<button type="button" data-cse110-topic="' + index + '"><span>' + String(index + 1).padStart(2, '0') + '</span><div><b>' + esc(topic.title) + '</b><small>' + esc(topic.short) + '</small></div></button>'
+              ).join('') +
+            '</nav>' +
+          '</aside>' +
+          '<button type="button" class="cse110-topic-scrim" data-cse110-topics-close aria-label="Close topics"></button>' +
           '<main class="cse110-story-wrap">' +
             '<article class="cse110-story-card" id="cse110StoryCard" aria-live="polite"></article>' +
             '<footer class="cse110-story-controls">' +
@@ -606,10 +610,6 @@
   }
 
   renderShell();
-  const savedFocus = localStorage.getItem('fc-cse110-focus') === '1';
-  document.querySelector('.app')?.classList.toggle('cse110-focus-mode', savedFocus);
-  const focusButton = root.querySelector('[data-cse110-focus]');
-  if (focusButton) focusButton.textContent = savedFocus ? 'Show sidebar' : 'Hide sidebar';
   render();
 
   root.addEventListener('click', (event) => {
@@ -619,6 +619,8 @@
       if (nextIndex >= 0) {
         current = nextIndex;
         render();
+        root.classList.remove('topics-open');
+        root.querySelector('.cse110-topic-drawer')?.setAttribute('aria-hidden','true');
       }
       return;
     }
@@ -630,13 +632,14 @@
       move(1);
       return;
     }
-    const focus = event.target.closest('[data-cse110-focus]');
-    if (focus) {
-      const app = document.querySelector('.app');
-      const enabled = !app?.classList.contains('cse110-focus-mode');
-      app?.classList.toggle('cse110-focus-mode', enabled);
-      localStorage.setItem('fc-cse110-focus', enabled ? '1' : '0');
-      focus.textContent = enabled ? 'Show sidebar' : 'Hide sidebar';
+    if (event.target.closest('[data-cse110-topics]')) {
+      root.classList.add('topics-open');
+      root.querySelector('.cse110-topic-drawer')?.setAttribute('aria-hidden','false');
+      return;
+    }
+    if (event.target.closest('[data-cse110-topics-close]')) {
+      root.classList.remove('topics-open');
+      root.querySelector('.cse110-topic-drawer')?.setAttribute('aria-hidden','true');
       return;
     }
     const copy = event.target.closest('[data-cse110-copy]');
@@ -665,9 +668,11 @@
 
   window.FirstCometCSE110Notes = {
     openTopic(index = 0) {
-      const nextIndex = slideIndexForTopic(Math.max(0, Math.min(topics.length - 1, Number(index) || 0)));
+      const safeTopic = Math.max(0, Math.min(topics.length - 1, Number(index) || 0));
+      const nextIndex = slideIndexForTopic(safeTopic);
       current = nextIndex < 0 ? 0 : nextIndex;
       render();
+      try { history.replaceState(null,'','#cse110/topic/' + (safeTopic + 1)); } catch (_) {}
     },
     topics,
     slides
