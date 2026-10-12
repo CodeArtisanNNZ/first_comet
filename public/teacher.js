@@ -389,6 +389,9 @@
   function rememberReaction(kind, ctx) {
     memory.reactions.unshift({ kind, key:ctx.key, label:ctx.label, at:Date.now() });
     memory.reactions = memory.reactions.slice(0, MAX_REACTIONS);
+    memory.lastContext = { key:ctx.key, label:ctx.label, view:ctx.view };
+    memory.lastSeen = Date.now();
+    writeMemory(memory);
   }
 
   function handle(kind) {
@@ -451,10 +454,6 @@
     root.querySelector('[data-teacher-message]').textContent = messageFor(memory, ctx);
     response('');
     refreshMemory();
-
-    memory.lastContext = { key:ctx.key, label:ctx.label, view:ctx.view };
-    memory.lastSeen = Date.now();
-    writeMemory(memory);
   }
 
   root.querySelector('[data-teacher-ask]')?.addEventListener('submit', (event) => {
