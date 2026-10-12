@@ -79,7 +79,9 @@
     const age = getAge();
     if (label) label.textContent = name || 'Not set yet';
     if (teacherLabel) teacherLabel.textContent = teacher ? (teacher === 'female' ? 'Female teacher' : 'Male teacher') : 'Not chosen yet';
-    if (ageLabel) ageLabel.textContent = age ? String(age) : 'Not set yet';
+    if (ageLabel) ageLabel.textContent = age
+      ? age + (age > 20 ? ' · light playful teacher tone' : ' · supportive teacher tone')
+      : 'Not set yet · supportive tone';
     document.body.dataset.teacher = teacher || '';
     document.body.dataset.ageMode = age > 20 ? 'adult-playful' : 'standard';
   }
@@ -162,7 +164,7 @@
         <div class="fc-name-card fc-age-card" role="dialog" aria-modal="true" aria-labelledby="fcAgeTitle">
           <span class="eyebrow">ONE LAST THING</span>
           <h2 id="fcAgeTitle">How old are you?</h2>
-          <p>I use this only to keep your teacher's tone age-appropriate. For learners 20 or younger, the teacher stays strictly supportive. For 21+, the teacher can be a little more playful while staying respectful.</p>
+          <p>I use this only to keep your teacher's tone age-appropriate. At 20 or younger—or if you prefer not to say—the teacher stays fully supportive and neutral. At 21+, you can get occasional light, respectful teasing and compliments.</p>
           <label for="fcAgeInput">Your age</label>
           <input id="fcAgeInput" type="number" inputmode="numeric" min="8" max="100" step="1" placeholder="e.g. 22">
           <div class="fc-name-actions">
