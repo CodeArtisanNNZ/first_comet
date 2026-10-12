@@ -340,11 +340,11 @@
   root.className = 'fc-teacher';
   root.innerHTML = `
     <button type="button" class="fc-teacher-launch" data-teacher-open aria-expanded="false">
-      <span>☄</span><b>Teacher</b><i></i>
+      <img class="fc-teacher-launch-avatar" data-teacher-avatar alt="" hidden><span data-teacher-comet>☄</span><b>Teacher</b><i></i>
     </button>
     <aside class="fc-teacher-panel" aria-hidden="true">
       <header>
-        <div><span class="eyebrow">FIRST COMET TEACHER</span><b>● BESIDE YOU</b></div>
+        <div class="fc-teacher-identity"><img class="fc-teacher-head-avatar" data-teacher-avatar alt="" hidden><div><span class="eyebrow">FIRST COMET TEACHER</span><b data-teacher-persona>● BESIDE YOU</b></div></div>
         <button type="button" data-teacher-close aria-label="Close First Comet Teacher">×</button>
       </header>
       <div class="fc-teacher-context"><span>RIGHT NOW</span><b data-teacher-context></b><small data-teacher-detail></small></div>
@@ -427,6 +427,20 @@
     box.innerHTML = rows.join('');
   }
 
+  function applyTeacherChoice() {
+    const choice = window.FirstCometPersonalization?.getTeacherChoice?.() || '';
+    const avatar = window.FirstCometPersonalization?.getTeacherAvatar?.(choice) || '';
+    document.body.dataset.teacher = choice;
+    root.querySelectorAll('[data-teacher-avatar]').forEach((img) => {
+      img.hidden = !avatar;
+      if (avatar && img.src !== avatar) img.src = avatar;
+    });
+    const comet = root.querySelector('[data-teacher-comet]');
+    if (comet) comet.hidden = Boolean(avatar);
+    const persona = root.querySelector('[data-teacher-persona]');
+    if (persona) persona.textContent = choice ? ('● ' + (choice === 'female' ? 'FEMALE TEACHER' : 'MALE TEACHER')) : '● BESIDE YOU';
+  }
+
   function refresh(external) {
     if (external?.key) lastExternalContext = external;
     const ctx = lastExternalContext && currentView() === lastExternalContext.view ? lastExternalContext : context();
@@ -476,6 +490,10 @@
   window.addEventListener('fc-profile-name', () => {
     if (root.classList.contains('open')) refresh();
   });
+  window.addEventListener('fc-teacher-choice', () => {
+    applyTeacherChoice();
+    if (root.classList.contains('open')) refresh();
+  });
   window.addEventListener('storage', () => {
     memory = readMemory();
     if (root.classList.contains('open')) refresh();
@@ -514,5 +532,6 @@
     memory: () => ({ ...memory })
   };
 
+  applyTeacherChoice();
   refresh();
 })();
