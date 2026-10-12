@@ -2148,3 +2148,106 @@ select:focus{
     grid-template-columns:1fr;
   }
 }
+
+
+/* ===== Dark yellow contrast + swipeable mobile navigation ===== */
+/* Yellow remains a bright accent in dark mode, so its text must stay dark. */
+.dark .launch-card.yellow,
+.dark .shortcut-board,
+.dark .info-drawer,
+.dark .teaching-intro,
+.dark .teacher-note,
+.dark .success-gate,
+.dark .success-gate.compact,
+.dark .mini-local-badge,
+.dark .native-vscode-path,
+.dark .bracu-hero aside,
+.dark .career-market-note,
+.dark .cv-hero aside,
+.dark .learning-hub-intro aside,
+.dark .lab-intro aside,
+.dark .cse110-write-down,
+.dark .fc-proof-stats>div:nth-child(3),
+.dark .home-action-card:nth-child(3),
+.dark .bracu-level-group[data-bracu-level-group="100"] .bracu-catalog-code,
+.dark .bracu-level-nav button[data-bracu-level-jump="100"].active,
+.dark .bracu-level-nav button[data-bracu-level-jump="100"]:hover{
+  color:#171319!important;
+}
+
+/* Override inherited white/muted text inside yellow surfaces too. */
+.dark .launch-card.yellow :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .shortcut-board :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .info-drawer :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .teaching-intro :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .teacher-note :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .success-gate :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .native-vscode-path :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .bracu-hero aside :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .career-market-note :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .cv-hero aside :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .learning-hub-intro aside :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .lab-intro aside :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .cse110-write-down :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .fc-proof-stats>div:nth-child(3) :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .home-action-card:nth-child(3) :is(h1,h2,h3,h4,b,strong,p,small,span,label,em,i),
+.dark .bracu-level-group[data-bracu-level-group="100"] .bracu-catalog-code *{
+  color:#171319!important;
+}
+
+/* Mobile rail is a swipeable strip, not a clipped fixed grid. */
+@media(max-width:700px){
+  .rail{
+    overflow-x:auto!important;
+    overflow-y:hidden!important;
+    overscroll-behavior-x:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    touch-action:pan-x;
+  }
+  .rail::-webkit-scrollbar{
+    display:none;
+  }
+  .rail nav{
+    display:flex!important;
+    width:max-content;
+    min-width:100%;
+    height:100%;
+    gap:4px!important;
+    padding:0 6px;
+    align-items:stretch;
+  }
+  .rail .nav-label,
+  .rail .rail-create,
+  .rail .rail-note{
+    display:none!important;
+  }
+  .rail .nav-item{
+    flex:0 0 78px;
+    min-width:78px;
+    height:52px;
+    padding:5px 4px!important;
+    display:flex!important;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:2px!important;
+    white-space:nowrap;
+  }
+  .rail .nav-item b{
+    display:block!important;
+    max-width:72px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    font-size:.7rem!important;
+    line-height:1.05;
+  }
+  .rail .nav-item span{
+    width:auto!important;
+    font-size:.95rem!important;
+    flex:none;
+  }
+  .rail .nav-item small{
+    display:none!important;
+  }
+}
