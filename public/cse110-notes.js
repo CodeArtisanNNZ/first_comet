@@ -674,6 +674,38 @@
   }
 
   renderShell();
+
+  // Keep the course header available at the top, but get it out of the
+  // learner's way while they read. The presentation <main> is the scroll
+  // container, not window.
+  const presentationScroller = document.querySelector('.app main');
+  let lastNotesScrollTop = presentationScroller?.scrollTop || 0;
+  let notesScrollTicking = false;
+
+  const updateNotesHeader = () => {
+    notesScrollTicking = false;
+    if (!presentationScroller || !root.classList.contains('active')) return;
+
+    const top = presentationScroller.scrollTop;
+    const moved = top - lastNotesScrollTop;
+
+    if (top <= 36) {
+      root.classList.remove('cse110-header-hidden');
+    } else if (moved > 5) {
+      root.classList.add('cse110-header-hidden');
+    } else if (moved < -5) {
+      root.classList.remove('cse110-header-hidden');
+    }
+
+    lastNotesScrollTop = top;
+  };
+
+  presentationScroller?.addEventListener('scroll', () => {
+    if (notesScrollTicking) return;
+    notesScrollTicking = true;
+    requestAnimationFrame(updateNotesHeader);
+  }, { passive:true });
+
   render();
 
   root.addEventListener('click', (event) => {
