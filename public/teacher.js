@@ -503,15 +503,18 @@
       } catch (_) {}
     }
 
-    const avatar = teacherPortraitUrl(choice);
+    const avatar = choice === 'female'
+      ? '/assets/teacher-female-face.jpg?v=20261013f'
+      : choice === 'male'
+        ? '/assets/teacher-male-face.jpg?v=20261013f'
+        : '';
 
     document.body.dataset.teacher = choice;
 
     root.querySelectorAll('[data-teacher-avatar]').forEach((img) => {
-      img.hidden = !choice || !avatar;
-      if (choice && avatar) {
+      img.hidden = !choice;
+      if (choice) {
         img.alt = choice === 'female' ? 'First Comet female teacher' : 'First Comet male teacher';
-        img.onerror = null;
         img.src = avatar;
       }
     });
@@ -527,12 +530,11 @@
 
     const stage = root.querySelector('[data-teacher-character-stage]');
     const characterImage = root.querySelector('[data-teacher-character-image]');
-    if (stage) stage.hidden = !choice || !avatar;
+    if (stage) stage.hidden = !choice;
     if (characterImage) {
-      characterImage.hidden = !choice || !avatar;
-      if (choice && avatar) {
+      characterImage.hidden = !choice;
+      if (choice) {
         characterImage.alt = choice === 'female' ? 'First Comet female teacher character' : 'First Comet male teacher character';
-        characterImage.onerror = null;
         characterImage.src = avatar;
       }
     }
