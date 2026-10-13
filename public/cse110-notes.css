@@ -1354,3 +1354,31 @@
     grid-template-columns:1fr 1fr;
   }
 }
+
+
+/* Auto-hide CSE110 course header while reading */
+.app.cse110-presentation-mode .cse110-notes-head{
+  position:sticky;
+  top:0;
+  z-index:80;
+  padding:12px 14px 14px;
+  background:color-mix(in srgb,var(--paper) 96%,transparent);
+  backdrop-filter:blur(10px);
+  border:2px solid var(--line);
+  border-radius:16px;
+  box-shadow:4px 4px 0 var(--line);
+  transform:translateY(0);
+  opacity:1;
+  transition:transform .22s ease,opacity .18s ease;
+  will-change:transform;
+}
+.app.cse110-presentation-mode #cse110VisualNotes.cse110-header-hidden .cse110-notes-head{
+  transform:translateY(calc(-100% - 18px));
+  opacity:0;
+  pointer-events:none;
+}
+@media(prefers-reduced-motion:reduce){
+  .app.cse110-presentation-mode .cse110-notes-head{
+    transition:none;
+  }
+}
