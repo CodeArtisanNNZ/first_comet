@@ -301,3 +301,12 @@ Install/run Playwright Chromium and inspect/repair eight desktop/tablet/mobile s
 - Current repository has a file named `apps`, no `apps/web` directory, and no frontend `package.json`. Old npm test/build/lint instructions are inapplicable to this static frontend. Both test scripts now run static course/syntax checks when the legacy React project is absent; they retain the original React checks when it is present. No runtime dependency or build step was added to the public site.
 - Java and PHP example runtimes are unavailable in this execution environment; those examples received syntax/content review, not executed runtime validation. Native Windows PowerShell execution was not tested. Private backend production blockers in `docs/SECURITY.md` remain; only the existing static frontend is published by Cloudflare.
 - Integrated against upstream `109f47f4f02c472125be3ccc8a24000f660ed336`, preserving the new in-page VS Code workspace, Monaco loader, view registration, and styling. Mobile navigation fits all five destinations on one row.
+
+
+### Teacher portrait repair — 2026-10-13
+
+Replaced malformed embedded portrait payloads with validated same-origin JPEG assets in both teacher selection and the persistent teacher panel. Restored the valid female portrait from Git history and repaired the male JPEG quantization-table header. Versioned asset filenames and script URLs avoid stale broken copies. Both images fully decode and were visually inspected. Browser E2E is unavailable in this environment.
+
+Validation: teacher and personalization JavaScript syntax checks and both course test suites pass. Legacy Python/release/lint gates could not run: pytest, Ruff and .venv are absent; this static checkout has no root package.json or apps/web. User explicitly approved publishing this fix to main.
+
+Integrated concurrent upstream portrait repairs: both picker and panel now use the newer validated teacher-*-face.jpg assets. Removed redundant recovered copies and the obsolete blob conversion code.
