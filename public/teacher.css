@@ -326,9 +326,6 @@ body[data-age-mode="adult-playful"] .fc-teacher-character-stage{
     radial-gradient(circle at 90% 10%,rgba(255,90,54,.18),transparent 32%),
     linear-gradient(135deg,var(--yellow-soft),var(--paper));
 }
-body[data-age-mode="adult-playful"] .fc-teacher-character-copy span::after{
-  content:" · PLAYFUL";
-}
 @media(max-width:420px){
   .fc-teacher-character-stage{
     grid-template-columns:74px minmax(0,1fr);
@@ -363,15 +360,6 @@ body[data-age-mode="adult-playful"] .fc-teacher-character-copy span::after{
   max-width:240px;
   font-size:.9rem;
   line-height:1.45;
-}
-.fc-teacher-character-copy::after{
-  content:"Strict when needed · patient always";
-  color:var(--muted);
-  font-size:.62rem;
-  line-height:1.35;
-}
-body[data-age-mode="adult-playful"] .fc-teacher-character-copy::after{
-  content:"Warm · sharp · a little teasing";
 }
 @media(max-width:560px){
   .fc-teacher-character-stage{

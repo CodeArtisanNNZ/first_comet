@@ -493,7 +493,7 @@
     const persona = root.querySelector('[data-teacher-persona]');
     if (persona) {
       const role = choice ? (choice === 'female' ? 'FEMALE TEACHER' : 'MALE TEACHER') : 'BESIDE YOU';
-      persona.textContent = '● ' + role + (playfulAdult() ? ' · PLAYFUL' : '');
+      persona.textContent = '● ' + role;
     }
 
     const stage = root.querySelector('[data-teacher-character-stage]');
