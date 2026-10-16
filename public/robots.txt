@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://first-comet.nusaibanusratzaman.workers.dev/sitemap.xml
-Sitemap: https://first-comet.nusaibanusratzaman.workers.dev/sitemap.txt
+Sitemap: https://firstcomet.awerminds.tech/sitemap.xml
+Sitemap: https://firstcomet.awerminds.tech/sitemap.txt
