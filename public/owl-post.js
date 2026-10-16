@@ -252,7 +252,7 @@
     if (!workspace.verification.rules || state.role === 'coordinator' || state.rulesAccepted[workspace.code]) return '';
     return `
       <section class="owl-rules-gate">
-        <div class="owl-rules-icon">✦</div>
+        
         <span class="eyebrow">${esc(workspace.code)} · BEFORE YOU ENTER</span>
         <h3>Read the course rules.</h3>
         <p>Your coordinator requires students to accept these rules before posting or reading course chat.</p>
