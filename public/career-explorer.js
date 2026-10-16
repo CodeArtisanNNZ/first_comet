@@ -168,7 +168,7 @@
     {
       id: 'ai',
       family: 'data',
-      icon: '✦',
+      icon: '',
       title: 'AI / ML Engineer & Data Scientist',
       short: 'Build models or data-driven intelligent systems.',
       fit: ['math', 'data'],
