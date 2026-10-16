@@ -270,7 +270,7 @@
   function courseRail(courses) {
     return `
       <nav class="owl-course-rail" aria-label="Enrolled courses">
-        <div class="owl-course-rail-brand" title="Owl Post">🦉</div>
+        <div class="owl-course-rail-brand" title="Owl Post"><img src="/assets/owl-post-mark.webp?v=official-20261016" alt=""></div>
         <div class="owl-course-rail-list">
           ${courses.map((item) => `
             <button type="button" class="${item.code === state.activeCourse ? 'active' : ''}" data-owl-switch-course="${esc(item.code)}" title="${esc(item.code + ' · ' + courseLabel(item.code))}">
@@ -511,7 +511,7 @@
     return `
       <section class="owl-post-shell">
         <header class="owl-post-hero">
-          <div class="owl-mark" aria-hidden="true">🦉</div>
+          <div class="owl-mark"><img src="/assets/owl-post-logo.webp?v=official-20261016" alt="Owl Post official logo"></div>
           <div class="owl-post-copy">
             <span class="eyebrow">FIRST COMET · BRACU</span>
             <div class="owl-wordmark"><h2>Owl Post</h2><span>prototype</span></div>
@@ -528,7 +528,7 @@
 
         <div class="owl-workspace" data-owl-workspace ${state.open ? '' : 'hidden'}>
           <div class="owl-workspace-bar">
-            <div><span class="owl-live-dot"></span><b>OWL POST</b><small>course messaging prototype</small></div>
+            <div><img class="owl-workspace-logo" src="/assets/owl-post-mark.webp?v=official-20261016" alt=""><span class="owl-live-dot"></span><b>OWL POST</b><small>course messaging prototype</small></div>
             <div class="owl-workspace-role">
               <span>Preview as</span>
               <button type="button" data-owl-role="student" class="${state.role === 'student' ? 'active' : ''}">Student</button>
