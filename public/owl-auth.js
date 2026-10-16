@@ -108,9 +108,7 @@
     host.innerHTML = `
       <section class="owl-auth-layout">
         <aside class="owl-auth-story">
-          <span class="owl-auth-kicker">COURSE COMMUNICATION, TOGETHER.</span>
           <img class="owl-auth-art" src="assets/owl-post-logo.webp?v=recovered-20261017" width="560" height="490" alt="OwlPost">
-          <h1>Less searching.<br>More belonging.</h1>
           <p>Your course team, section conversations and shared resources. All with a space of their own.</p>
           <div class="owl-auth-channels" aria-hidden="true"><span># announcements</span><span># your-section</span><span># resources</span></div>
           <small>Part of First Comet · Built for BRACU</small>
