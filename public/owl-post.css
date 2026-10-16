@@ -166,3 +166,20 @@
   .owl-enroll-course{grid-template-columns:minmax(0,1fr) 70px}
   .owl-studio-backdrop{padding:8px}.owl-link-add{grid-template-columns:1fr}.owl-studio-two{grid-template-columns:1fr}
 }
+
+/* Owl Post idea credit */
+.owl-credit{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:10px;
+}
+.owl-credit span{
+  color:var(--muted);
+  font:800 .52rem "DM Mono",monospace;
+  letter-spacing:.08em;
+}
+.owl-credit b{
+  font-size:.68rem;
+  font-weight:800;
+}
