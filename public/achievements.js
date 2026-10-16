@@ -356,7 +356,7 @@
     }
     layer.innerHTML = `
       <div class="fc-achievement-visual" aria-hidden="true">
-        <i class="fc-spark fc-spark-a">✦</i>
+        
         <i class="fc-spark fc-spark-b">•</i>
         <span class="fc-achievement-comet">☄</span>
         <span class="fc-comet-streak"></span>
