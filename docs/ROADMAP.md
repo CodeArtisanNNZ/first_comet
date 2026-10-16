@@ -2,6 +2,8 @@
 
 ## Current static website — completed
 
+Owl Post now has a separate Supabase-backed account flow and RLS-protected profiles; see `docs/OWL_POST_AUTH.md` for the shared auth-directory decision, verification evidence, and email callback/delivery checks. Official course memberships, enrollment verification and shared messaging remain future work.
+
 Text-first beginner code course in HTML, CSS, JavaScript, Java, Python, and PHP: 309 glossary entries, 48 language milestones, three algorithm milestones, 17 comparison tasks, binary-search traces and code, browser-local progression, downloadable text, and responsive light/dark layouts. Node checks, 18 backend regressions, Ruff F checks, and Chromium browser QA pass. See `docs/BUILD_STATE.md` for scope and runtime limitations.
 
 ## Next for the course

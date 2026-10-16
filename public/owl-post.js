@@ -4,8 +4,10 @@
   const root = document.querySelector('#owlPostApp');
   if (!root) return;
 
-  const STORAGE_KEY = 'fc-owl-post-v2';
-  const LEGACY_KEY = 'fc-owl-post-v1';
+  const standalone = document.body.hasAttribute('data-owl-standalone');
+  const auth = standalone ? window.OwlPostAuth : null;
+  let identity = auth?.snapshot || {status:'signed-out',user:null,role:null,profile:null};
+  const storageKey = () => identity.user?.id ? 'owl-post-workspace-v1:' + identity.user.id : null;
   const now = () => new Date().toISOString();
 
   const esc = (value='') => String(value).replace(/[&<>"']/g, (ch) => ({
@@ -63,36 +65,26 @@
         ],
         'assignment-help':[],
         ['section-' + section]:[
-          {id:'m4',author:'Course Coordinator',role:'Coordinator',body:'Section ' + section + ' is verified. This channel is visible only to students in this section.',time:now(),pinned:false,reactions:{}}
+          {id:'m4',author:'Course Coordinator',role:'Coordinator',body:'This is the local preview for Section ' + section + '. Official enrollment has not been connected.',time:now(),pinned:false,reactions:{}}
         ]
       }
     };
   }
 
-  function safeLegacy() {
-    try { return JSON.parse(localStorage.getItem(LEGACY_KEY) || '{}') || {}; }
-    catch (_) { return {}; }
-  }
-
   function initialState() {
-    const legacy = safeLegacy();
-    const legacyCourses = Array.isArray(legacy.courses) ? legacy.courses.slice(0,8) : [];
-    const enrollments = legacyCourses.map((code,index) => ({code,section:String((index % 3) + 1).padStart(2,'0')}));
-    const workspaces = {};
-    enrollments.forEach((item) => { workspaces[item.code] = defaultWorkspace(item.code,item.section); });
     return {
-      open:Boolean(legacy.open),
-      role:'student',
-      verified:Boolean(legacy.studentId),
-      studentId:String(legacy.studentId || ''),
-      department:legacy.department || 'CSE',
-      universityEmail:'',
-      enrollments,
-      activeCourse:enrollments[0]?.code || '',
+      open:standalone,
+      role:identity.role || 'student',
+      verified:identity.status === 'signed-in',
+      studentId:identity.profile?.studentId || '',
+      department:'CSE',
+      universityEmail:identity.user?.email || '',
+      enrollments:[],
+      activeCourse:'',
       activeChannel:'general',
       rulesAccepted:{},
-      workspaces,
-      coordinatorCourse:enrollments[0]?.code || 'CSE110',
+      workspaces:{},
+      coordinatorCourse:'CSE110',
       coordinatorStudio:false,
       infoOpen:true,
       replyTo:null
@@ -101,11 +93,17 @@
 
   function readState() {
     try {
-      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+      const key = storageKey();
+      const saved = key ? JSON.parse(sessionStorage.getItem(key) || 'null') : null;
       if (!saved) return initialState();
       return {
         ...initialState(),
         ...saved,
+        // Identity and privileges never come from the editable workspace cache.
+        role:identity.role || 'student',
+        verified:identity.status === 'signed-in',
+        studentId:identity.profile?.studentId || '',
+        universityEmail:identity.user?.email || '',
         enrollments:Array.isArray(saved.enrollments) ? saved.enrollments : [],
         rulesAccepted:saved.rulesAccepted && typeof saved.rulesAccepted === 'object' ? saved.rulesAccepted : {},
         workspaces:saved.workspaces && typeof saved.workspaces === 'object' ? saved.workspaces : {}
@@ -118,7 +116,9 @@
   let state = readState();
 
   function save() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (_) {}
+    const key = storageKey();
+    if (!key || identity.status !== 'signed-in') return;
+    try { sessionStorage.setItem(key, JSON.stringify(state)); } catch (_) {}
   }
 
   function validStudentId(value) {
@@ -193,7 +193,7 @@
   }
 
   function displayName() {
-    return window.FirstCometPersonalization?.getName?.() || (state.role === 'coordinator' ? 'Course Coordinator' : 'Student');
+    return identity.profile?.name || identity.user?.email?.split('@')[0] || (state.role === 'coordinator' ? 'Course Coordinator' : 'Student');
   }
 
   function verificationScreen() {
@@ -220,8 +220,8 @@
     return `
       <section class="owl-enrollment">
         <header>
-          <div><span class="eyebrow">PROTOTYPE ENROLLMENT</span><h3>Which courses are on your semester?</h3><p>Production Owl Post should receive this from verified registration data. Students should not be able to join arbitrary courses.</p></div>
-          <div class="owl-enrollment-id"><span>VERIFIED ID</span><b>${esc(maskId(state.studentId))}</b></div>
+          <div><span class="eyebrow">SEMESTER PREVIEW</span><h3>Which courses are on your semester?</h3><p>Try your course and section layout. Official semester enrollment and shared messaging are not connected yet.</p></div>
+          <div class="owl-enrollment-id"><span>STUDENT ID</span><b>${esc(maskId(state.studentId))}</b></div>
         </header>
         <label class="owl-course-search"><span>Find course</span><input type="search" data-owl-course-search placeholder="CSE330, database, graphics…" autocomplete="off"></label>
         <div class="owl-enrollment-grid">
@@ -258,8 +258,8 @@
         <p>Your coordinator requires students to accept these rules before posting or reading course chat.</p>
         <ol>${workspace.rules.map((rule) => `<li>${esc(rule)}</li>`).join('')}</ol>
         <div class="owl-verification-badges">
-          ${workspace.verification.id ? '<span>✓ Student ID verified</span>' : ''}
-          ${workspace.verification.sectionLocked ? '<span>✓ Section access enforced</span>' : ''}
+          ${workspace.verification.id ? '<span>✓ Student ID recorded</span>' : ''}
+          ${workspace.verification.sectionLocked ? '<span>Section preview</span>' : ''}
           ${workspace.verification.universityEmail ? '<span>✓ University email required</span>' : ''}
         </div>
         <button type="button" class="primary" data-owl-accept-rules="${esc(workspace.code)}">I understand · Enter course →</button>
@@ -299,7 +299,7 @@
         </header>
         <div class="owl-channel-profile">
           <span>${state.role === 'coordinator' ? 'COORDINATOR VIEW' : 'SECTION ' + esc(enrollmentFor(workspace.code)?.section || '—')}</span>
-          <small>${state.role === 'coordinator' ? 'Manage channels and access' : 'Verified enrollment access'}</small>
+          <small>${state.role === 'coordinator' ? 'Manage channels and access' : 'Semester preview · email confirmed'}</small>
         </div>
         <div class="owl-channel-groups">
           ${grouped.map(([label,items]) => `
@@ -507,7 +507,7 @@
   }
 
   function shell() {
-    const enrolledCount = state.enrollments.length;
+    const enrolledCount = identity.user ? state.enrollments.length : 0;
     return `
       <section class="owl-post-shell">
         <header class="owl-post-hero">
@@ -521,28 +521,27 @@
           </div>
           <div class="owl-launch-box">
             <span>ACADEMIC MESSAGING</span>
-            <b>${enrolledCount ? enrolledCount + ' semester courses' : 'Set up your semester'}</b>
-            <button type="button" class="primary" data-owl-open>${state.open ? 'Open workspace →' : 'Launch Owl Post →'}</button>
+            <b>${enrolledCount ? enrolledCount + ' semester courses' : 'Your own Owl Post account'}</b>
+            <a class="primary owl-launch-link" href="owl-post.html">${standalone ? 'Open workspace →' : 'Sign in to Owl Post →'}</a>
           </div>
         </header>
 
-        <div class="owl-workspace" data-owl-workspace ${state.open ? '' : 'hidden'}>
+        ${standalone ? `<div class="owl-workspace" data-owl-workspace>
           <div class="owl-workspace-bar">
             <div><img class="owl-workspace-logo" src="/assets/owl-post-mark.webp?v=official-20261016" alt=""><span class="owl-live-dot"></span><b>OWL POST</b><small>course messaging prototype</small></div>
             <div class="owl-workspace-role">
-              <span>Preview as</span>
-              <button type="button" data-owl-role="student" class="${state.role === 'student' ? 'active' : ''}">Student</button>
-              <button type="button" data-owl-role="coordinator" class="${state.role === 'coordinator' ? 'active' : ''}">Coordinator</button>
-              <button type="button" data-owl-close aria-label="Close Owl Post">×</button>
+              <span class="owl-account-badge">${esc(displayName())} · ${state.role === 'coordinator' ? 'Coordinator' : 'Student'}</span>
+              <button type="button" data-owl-signout>Sign out</button>
             </div>
           </div>
           <div data-owl-body></div>
-        </div>
+        </div>` : ''}
       </section>
     `;
   }
 
   function renderBody(mode='auto') {
+    if (standalone && identity.status !== 'signed-in') return;
     const body = root.querySelector('[data-owl-body]');
     if (!body) return;
 
@@ -570,38 +569,19 @@
   }
 
   function render() {
+    if (standalone && identity.status !== 'signed-in') {
+      if (auth) auth.render(root, {mode:identity.status === 'recovery' ? 'update' : 'signin'});
+      else root.innerHTML = '<p role="alert">Could not load sign-in. Please reload Owl Post.</p>';
+      document.title = 'Owl Post · Sign in';
+      return;
+    }
+    if (standalone && identity.role === 'student' && (!identity.profile?.name || !identity.profile?.studentId)) {
+      auth.render(root, {mode:'profile'});
+      return;
+    }
+    if (standalone) document.title = 'Owl Post · Your workspace';
     root.innerHTML = shell();
-
-    root.querySelector('[data-owl-open]')?.addEventListener('click', () => {
-      state.open = true;
-      save();
-      root.querySelector('[data-owl-workspace]').hidden = false;
-      renderBody();
-      root.querySelector('[data-owl-workspace]')?.scrollIntoView({behavior:'smooth',block:'start'});
-    });
-
-    root.querySelector('[data-owl-close]')?.addEventListener('click', () => {
-      state.open = false;
-      save();
-      render();
-    });
-
-    root.querySelectorAll('[data-owl-role]').forEach((button) => {
-      button.addEventListener('click', () => {
-        state.role = button.dataset.owlRole;
-        state.coordinatorStudio = false;
-        if (state.role === 'coordinator') {
-          state.coordinatorCourse ||= state.activeCourse || state.enrollments[0]?.code || 'CSE110';
-          state.activeCourse = state.coordinatorCourse;
-        } else if (state.enrollments.length) {
-          state.activeCourse = state.enrollments.some((item) => item.code === state.activeCourse) ? state.activeCourse : state.enrollments[0].code;
-        }
-        ensureActiveSelection();
-        save();
-        render();
-        if (state.open) renderBody();
-      });
-    });
+    root.querySelector('[data-owl-signout]')?.addEventListener('click', () => auth?.signOut());
 
     if (state.open) renderBody();
 
@@ -670,7 +650,7 @@
         if (!workspace.channels.some((channel) => channel.scope === 'section' && channel.section === item.section)) {
           const id = 'section-' + item.section;
           workspace.channels.push({id,name:id,kind:'chat',scope:'section',section:item.section,posting:'everyone',topic:'Private space for Section ' + item.section + '.'});
-          workspace.messages[id] = [{id:'m-' + Date.now(),author:'Course Coordinator',role:'Coordinator',body:'Section ' + item.section + ' is verified. This channel is visible only to students in this section.',time:now(),pinned:false,reactions:{}}];
+          workspace.messages[id] = [{id:'m-' + Date.now(),author:'Course Coordinator',role:'Coordinator',body:'This is the local preview for Section ' + item.section + '. Official enrollment has not been connected.',time:now(),pinned:false,reactions:{}}];
         }
         save();
       });
@@ -925,5 +905,11 @@
     });
   }
 
+  auth?.subscribe(next => {
+    identity = next;
+    state = readState();
+    render();
+  });
+  window.addEventListener('pageshow', event => { if (standalone && event.persisted) auth?.refresh(); });
   render();
 })();

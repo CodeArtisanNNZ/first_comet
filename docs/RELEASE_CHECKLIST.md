@@ -1,5 +1,18 @@
 # Release checklist — 0.7.0
 
+## Owl Post authentication — 2026-10-17
+
+- [x] Dedicated login page and independent Owl Post session storage
+- [x] Student registration, coordinator sign-in, reset/update screens and logout
+- [x] Auth server identity checks; privileged role separated from user-editable metadata
+- [x] Dedicated profile table with own-row RLS and anonymous access denied
+- [x] Existing Healthcare Central signup compatibility and Owl Post profile separation verified in a rolled-back database test
+- [x] Real browser SDK/HTTP fixture tests, account switching/isolation, and eight light/dark responsive screenshots
+- [x] Existing Python/static curriculum regressions and JavaScript syntax checks
+- [ ] Confirm project email redirect allowlist, real signup confirmation and recovery delivery with a real account
+
+Authentication shares the user-selected Supabase auth directory. Course enrollment and messaging remain local previews. See `docs/OWL_POST_AUTH.md`.
+
 ## Static beginner course — 2026-10-02
 
 ### Ordered project course extension

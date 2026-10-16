@@ -1,5 +1,14 @@
 # Build state
 
+## Separate Owl Post accounts (2026-10-17)
+
+- Added a dedicated `/owl-post.html` login page with student/coordinator sign-in, registration, confirmation handling, password recovery/update, and logout. The BRACU Courses card now opens that separate page.
+- Connected the user-selected existing Supabase authentication directory using an Owl Post-specific session key and a dedicated RLS-protected profile table. A new dedicated project was blocked by the free-project quota; no paid upgrade was performed.
+- Updated the existing auth signup hook to keep Owl Post profiles separate from patient profiles while preserving Healthcare Central's existing signup path. The real database's signup compatibility and profile isolation checks passed inside a rolled-back transaction.
+- Removed the prototype role switch from the authenticated workspace. Coordinator privileges come from trusted app metadata; saved preferences, user metadata and cached workspace roles cannot grant them. First Comet preferences remain independent.
+- Browser auth checks pass with the pinned Supabase SDK against an HTTP fixture, including account isolation and recovery/update, plus eight responsive screenshots. Existing pytest/course suites, Ruff F and syntax checks pass. Real email delivery/confirmation/recovery and the project's redirect allowlist still require a real-account check; see `docs/OWL_POST_AUTH.md`.
+- Shared messaging and official enrollment verification remain outside this login change; existing local workspace data was preserved rather than assigned to a new identity.
+
 ## Owl Post logo recovery (2026-10-17)
 
 - Reproduced the broken hero logo as a browser `EncodingError`: the WebP file was truncated, and its embedded copy contained the same damaged bytes.

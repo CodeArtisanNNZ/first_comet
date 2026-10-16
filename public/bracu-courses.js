@@ -2,7 +2,6 @@
   'use strict';
 
   const root = document.querySelector('#bracuCoursesApp');
-  if (!root) return;
 
   const courses = [
     {code:'CSE110', title:'Programming Language I', area:'Programming', hp:'N/A', sp:'', focus:'Programming foundations, problem solving and introductory Java.', detailed:true},
@@ -34,6 +33,7 @@
   ];
 
   window.FC_BRACU_COURSES = courses;
+  if (!root) return;
 
   const courseOutlines = {
     CSE110: [
