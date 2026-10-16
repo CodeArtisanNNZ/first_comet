@@ -516,6 +516,7 @@
             <span class="eyebrow">FIRST COMET · BRACU</span>
             <div class="owl-wordmark"><h2>Owl Post</h2><span>prototype</span></div>
             <p>A verified course messaging space for announcements, section channels, resources and real course conversation—without sending students across five different apps.</p>
+            <div class="owl-credit"><span>IDEA BY</span><b>Younus Mohammad Maheer</b></div>
             <div class="owl-benefits"><span>✓ enrollment-gated courses</span><span>✓ section channels</span><span>✓ coordinator controls</span></div>
           </div>
           <div class="owl-launch-box">
