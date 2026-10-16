@@ -434,3 +434,12 @@ const vscodeHelp={
 $$('[data-vscode-help]').forEach(b=>b.onclick=()=>{const box=$('#vscodeHelpAnswer');if(box)box.textContent=vscodeHelp[b.dataset.vscodeHelp]||''});
 document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k'){e.preventDefault();openPalette()}if(e.key==='Escape'){closeAll();toggleInfo(false)}})}
 document.body.classList.toggle('dark',state.theme==='dark');applyExperienceLevel(state.level,false);bind();renderProjects();renderTopics();if(localStorage.getItem('fc-intro-seen'))finishIntro();else runIntro();
+// External Owl Post links should open the actual Owl Post section, not the launchpad.
+function openOwlPostDeepLink(){
+  if (location.hash !== '#owl-post' && location.hash !== '#owlpost') return;
+  finishIntro();
+  setView('bracu');
+  document.querySelector('.app main')?.scrollTo({ top: 0, behavior: 'instant' });
+}
+openOwlPostDeepLink();
+window.addEventListener('hashchange',openOwlPostDeepLink);
