@@ -1,5 +1,13 @@
 # Build state
 
+## Owl Post logo recovery (2026-10-17)
+
+- Reproduced the broken hero logo as a browser `EncodingError`: the WebP file was truncated, and its embedded copy contained the same damaged bytes.
+- Re-encoded the original approved OwlPost artwork as a complete 560 × 490 WebP, replaced the embedded payload with the versioned same-origin asset, and advanced the script/style URLs.
+- Fixed the logo frame's intrinsic grid sizing so the owl and complete wordmark fit without clipping on desktop and mobile.
+- Chromium verified all three Owl Post images at 1440px in light/dark, 390px in light, and 320px in dark, plus a reload. Screenshots were inspected. No new page errors; the pre-existing `$(...).forEach is not a function` error remains outside this logo change.
+- Validation: `bash scripts/test.sh` passes (18 pytest tests and both static course suites); Ruff F, Owl Post JavaScript syntax, and whitespace checks pass. This static checkout has no `apps/web` or frontend package scripts, so npm test/build/lint do not apply.
+
 ## Bubble Sort Visualizer (2026-10-11)
 
 - Added an interactive Bubble Sort lesson inside **Learn → Practice code → Algorithms**.
