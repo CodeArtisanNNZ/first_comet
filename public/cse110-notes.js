@@ -668,8 +668,6 @@
     }
     current = Math.max(0, Math.min(slides.length - 1, current + delta));
     render();
-    const activeSlide = slides[current];
-    try { history.replaceState(null,'','#cse110/topic/' + (activeSlide.topicIndex + 1)); } catch (_) {}
     root.querySelector('#cse110StoryCard')?.scrollIntoView({ block:'start', behavior:'smooth' });
   }
 
@@ -768,22 +766,15 @@
       const nextIndex = slideIndexForTopic(safeTopic);
       current = nextIndex < 0 ? 0 : nextIndex;
       render();
-      try { history.replaceState(null,'','#cse110/topic/' + (safeTopic + 1)); } catch (_) {}
     },
     topics,
     slides
   };
 
-  function restoreRoute() {
-    const match = location.hash.match(/^#cse110\/topic\/(\d+)/);
-    if (!match) return;
-    const topicIndex = Math.max(0, Math.min(topics.length - 1, Number(match[1]) - 1));
-    const nextIndex = slideIndexForTopic(topicIndex);
-    if (nextIndex >= 0) current = nextIndex;
-    window.FirstCometNavigate?.('cse110notes');
-    render();
+  // CSE110 notes are an in-app view, not a persistent startup route.
+  // Clear stale hashes left by older versions so refreshing First Comet
+  // always returns to the normal default page instead of reopening a lesson.
+  if (/^#cse110\/topic\/\d+/.test(location.hash)) {
+    try { history.replaceState(null, '', location.pathname + location.search); } catch (_) {}
   }
-
-  window.addEventListener('hashchange', restoreRoute);
-  setTimeout(restoreRoute, 0);
 })();
