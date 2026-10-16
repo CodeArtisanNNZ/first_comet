@@ -3,5 +3,5 @@
 window.OWL_POST_AUTH_CONFIG = Object.freeze({
   url: 'https://yztcuxbeidncsoafpvvm.supabase.co',
   publishableKey: 'sb_publishable_KtzE7x9Xl0BAi6V3Og0qPw_SvQ-NUPS',
-  redirectUrl: 'https://firstcomet.awerminds.tech/owl-post.html'
+  redirectUrl: 'https://first-comet.nusaibanusratzaman.workers.dev/owl-post.html'
 });

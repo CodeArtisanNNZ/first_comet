@@ -8,6 +8,7 @@
 - Removed the prototype role switch from the authenticated workspace. Coordinator privileges come from trusted app metadata; saved preferences, user metadata and cached workspace roles cannot grant them. First Comet preferences remain independent.
 - Browser auth checks pass with the pinned Supabase SDK against an HTTP fixture, including account isolation and recovery/update, plus eight responsive screenshots. Existing pytest/course suites, Ruff F and syntax checks pass. Real email delivery/confirmation/recovery and the project's redirect allowlist still require a real-account check; see `docs/OWL_POST_AUTH.md`.
 - Shared messaging and official enrollment verification remain outside this login change; existing local workspace data was preserved rather than assigned to a new identity.
+- Live verification follows Cloudflare's `.html` → extensionless route; both auth routes receive no-store/referrer/CSP headers. Email returns remain on the originating recognized domain to preserve PKCE; the canonical custom domain returned 403 to automation, so the workers.dev alias is used for independent live checks.
 
 ## Owl Post logo recovery (2026-10-17)
 

@@ -21,9 +21,11 @@ Supabase email/password signup and email confirmations are enabled in the select
 ```text
 https://firstcomet.awerminds.tech/owl-post.html
 https://firstcomet.awerminds.tech/owl-post.html?flow=recovery
+https://first-comet.nusaibanusratzaman.workers.dev/owl-post.html
+https://first-comet.nusaibanusratzaman.workers.dev/owl-post.html?flow=recovery
 ```
 
-For the workers.dev alias, add its matching `/owl-post.html` and `?flow=recovery` URLs if it is used as an email-return destination. Public configuration deliberately uses the canonical First Comet domain for email returns.
+Email returns stay on the same recognized First Comet origin where the request began, so the PKCE verifier remains available. The fallback uses the workers.dev alias. The canonical custom domain returned HTTP 403 to the automated check; the Workers build succeeded and the workers.dev copy can be verified independently.
 
 This change cannot inspect or edit the project's URL allowlist or SMTP settings through the connected database tools. Actual email delivery, a live signup confirmation link, and a live recovery email remain to be checked with a real account. Supabase's default mail service can restrict delivery and has rate limits; use an appropriately configured mail sender for public registration. Do not disable email confirmations as a workaround.
 

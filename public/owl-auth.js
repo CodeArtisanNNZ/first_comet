@@ -3,6 +3,7 @@
   const listeners = new Set();
   const config = window.OWL_POST_AUTH_CONFIG || {};
   const STORAGE_KEY = 'owl-post-auth-v1';
+  const redirectUrl = () => ['firstcomet.awerminds.tech', 'first-comet.nusaibanusratzaman.workers.dev'].includes(location.hostname) ? location.origin + '/owl-post.html' : (config.redirectUrl || location.origin + '/owl-post.html');
   let client;
   let revision = 0;
   let explicitlySignedOut = false;
@@ -168,7 +169,7 @@
       show('Please wait…', true);
       try {
         if (reset) {
-          const redirect = new URL(config.redirectUrl || location.href);
+          const redirect = new URL(redirectUrl());
           redirect.searchParams.set('flow', 'recovery');
           const { error } = await client.auth.resetPasswordForEmail(email, { redirectTo: redirect.href });
           if (error) throw error;
@@ -189,7 +190,7 @@
           await validateSession(data?.session);
         } else if (signup) {
           explicitlySignedOut = false;
-          const { data, error } = await client.auth.signUp({ email, password: String(values.get('password')), options: { emailRedirectTo: config.redirectUrl || location.origin + '/owl-post.html', data: { signup_app: 'owl-post', owl_post_profile: { name: String(values.get('name')).trim(), student_id: String(values.get('studentId')), department: 'CSE' } } } });
+          const { data, error } = await client.auth.signUp({ email, password: String(values.get('password')), options: { emailRedirectTo: redirectUrl(), data: { signup_app: 'owl-post', owl_post_profile: { name: String(values.get('name')).trim(), student_id: String(values.get('studentId')), department: 'CSE' } } } });
           if (error) throw error;
           if (data.session) await validateSession(data.session);
           else render(host, { notice: 'Check your BRACU inbox for the confirmation link. Once confirmed, return here to sign in.' });

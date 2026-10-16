@@ -12,6 +12,11 @@
   Referrer-Policy: no-referrer
   Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://yztcuxbeidncsoafpvvm.supabase.co; object-src 'none'; base-uri 'none'; frame-ancestors 'self'; form-action 'self'
 
+/owl-post
+  Cache-Control: private, no-store
+  Referrer-Policy: no-referrer
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://yztcuxbeidncsoafpvvm.supabase.co; object-src 'none'; base-uri 'none'; frame-ancestors 'self'; form-action 'self'
+
 /sitemap.xml
   Content-Type: application/xml; charset=UTF-8
   Cache-Control: public, max-age=300
