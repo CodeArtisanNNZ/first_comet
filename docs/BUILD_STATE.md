@@ -1,5 +1,13 @@
 # Build state
 
+## Owl Post teachers and coordinator applications (2026-10-17)
+
+- Added teacher sign-in and registration with confirmed `@bracu.ac.bd` email and no student ID. Student registration, recovery and trusted pre-existing coordinator accounts remain supported.
+- Added persisted, RLS-protected course/semester applications with pending, approved and rejected states, review notes and resubmission after rejection. Teachers cannot edit account type, self-approve, grant administrator access or view another teacher's requests.
+- Added a review queue for explicitly provisioned Owl Post administrators. No reviewer was auto-assigned; the project owner must select an existing confirmed BRACU account before applications can be reviewed. See `docs/OWL_POST_AUTH.md`.
+- Approved applications limit the local coordinator preview to assigned courses and semesters. Shared messaging, official enrollment/appointment verification and server-backed coordinator workspace changes remain future work.
+- Real database permission/compatibility checks pass with all fixtures rolled back. Browser checks cover teacher registration, status persistence, duplicates, approval/rejection, resubmission and course/semester scope; desktop/mobile screenshots were inspected. Real email delivery and confirmation/recovery callbacks still need an account-level check.
+
 ## Separate Owl Post accounts (2026-10-17)
 
 - Added a dedicated `/owl-post.html` login page with student/coordinator sign-in, registration, confirmation handling, password recovery/update, and logout. The BRACU Courses card now opens that separate page.

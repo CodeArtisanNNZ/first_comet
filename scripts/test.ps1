@@ -12,7 +12,7 @@ if (Test-Path apps/web/package.json) {
 } else {
   node tests/test_course.cjs; if ($LASTEXITCODE -ne 0) { throw 'Course checks failed.' }
   node tests/test_project_course.cjs; if ($LASTEXITCODE -ne 0) { throw 'Project course checks failed.' }
-  foreach ($file in @('public/app.js', 'public/navigation.js', 'public/course-data.js', 'public/course.js', 'public/project-course-data.js', 'public/project-course.js')) {
+  foreach ($file in @('public/app.js', 'public/navigation.js', 'public/course-data.js', 'public/course.js', 'public/project-course-data.js', 'public/project-course.js', 'public/owl-auth.js', 'public/owl-teacher.js', 'public/owl-post.js', 'public/bracu-courses.js')) {
     node --check $file; if ($LASTEXITCODE -ne 0) { throw "JavaScript syntax failed: $file" }
   }
 }

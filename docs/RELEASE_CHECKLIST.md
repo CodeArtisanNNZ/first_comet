@@ -1,5 +1,15 @@
 # Release checklist — 0.7.0
 
+## Owl Post teacher accounts and coordinator applications
+
+- [x] Teacher registration/sign-in using staff-domain email without a student ID
+- [x] Persistent course/semester applications, duplicate prevention and rejected-request resubmission
+- [x] Administrator review with decision notes and applicant status history
+- [x] Real database isolation, confirmed-email gates, immutable account type and denied self-promotion; test data rolled back
+- [x] Browser registration/application/review flows and course/semester scope; responsive screenshots inspected
+- [ ] Select and provision the first Owl Post application reviewer (no account was auto-promoted)
+- [ ] Verify real confirmation/recovery email delivery with a user account
+
 ## Owl Post authentication — 2026-10-17
 
 - [x] Dedicated login page and independent Owl Post session storage

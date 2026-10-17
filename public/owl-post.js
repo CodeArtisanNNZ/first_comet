@@ -85,7 +85,9 @@
       rulesAccepted:{},
       workspaces:{},
       coordinatorCourse:'CSE110',
+      coordinatorSemester:'',
       coordinatorStudio:false,
+      teacherHome:identity.role === 'teacher',
       infoOpen:true,
       replyTo:null
     };
@@ -137,8 +139,9 @@
   function ensureWorkspace(code) {
     if (!code) return null;
     const section = enrollmentFor(code)?.section || '01';
-    if (!state.workspaces[code]) state.workspaces[code] = defaultWorkspace(code,section);
-    const workspace = state.workspaces[code];
+    const key=state.role==='coordinator' && !identity.legacyCoordinator ? state.coordinatorSemester+':'+code : code;
+    if (!state.workspaces[key]) state.workspaces[key] = defaultWorkspace(code,section);
+    const workspace = state.workspaces[key];
     workspace.channels ||= [];
     workspace.messages ||= {};
     workspace.rules ||= [];
@@ -148,8 +151,23 @@
     return workspace;
   }
 
+  function coordinatorTerms() {
+    const terms=[...new Set((identity.applications || []).filter(item=>item.status==='approved').map(item=>item.semester))];
+    if(!terms.includes(state.coordinatorSemester)) {
+      const date=new Date();
+      const current=(date.getMonth()<4?'Spring':date.getMonth()<8?'Summer':'Fall')+' '+date.getFullYear();
+      state.coordinatorSemester=terms.includes(current)?current:(terms[0] || '');
+    }
+    return terms;
+  }
+
   function allowedCourses() {
     if (state.role === 'coordinator') {
+      if (!identity.legacyCoordinator) {
+        coordinatorTerms();
+        const codes=[...new Set((identity.applications || []).filter(item=>item.status==='approved' && item.semester===state.coordinatorSemester).map(item=>item.course_code))];
+        return codes.filter(code=>courseMap().has(code)).map(code=>({code,section:'ALL'}));
+      }
       const code = state.coordinatorCourse || state.activeCourse || state.enrollments[0]?.code || 'CSE110';
       ensureWorkspace(code);
       return [{code,section:'ALL'}];
@@ -508,6 +526,7 @@
 
   function shell() {
     const enrolledCount = identity.user ? state.enrollments.length : 0;
+    const terms=identity.role==='coordinator' && !identity.legacyCoordinator ? coordinatorTerms() : [];
     return `
       <section class="owl-post-shell">
         <header class="owl-post-hero">
@@ -530,10 +549,12 @@
           <div class="owl-workspace-bar">
             <div><img class="owl-workspace-logo" src="/assets/owl-post-mark.webp?v=official-20261016" alt=""><span class="owl-live-dot"></span><b>OWL POST</b><small>course messaging prototype</small></div>
             <div class="owl-workspace-role">
-              <span class="owl-account-badge">${esc(displayName())} · ${state.role === 'coordinator' ? 'Coordinator' : 'Student'}</span>
+              <span class="owl-account-badge">${esc(displayName())} · ${state.role === 'coordinator' ? 'Coordinator' : state.role === 'teacher' ? 'Teacher' : 'Student'}</span>
+              ${(identity.profile?.accountType === 'teacher' && state.role === 'coordinator') || identity.isAdmin ? '<button type="button" data-owl-teacher-home>'+(state.teacherHome && state.role==='coordinator'?'Course workspace':'Applications')+'</button>' : ''}
               <button type="button" data-owl-signout>Sign out</button>
             </div>
           </div>
+          ${terms.length && !state.teacherHome ? '<label class="owl-coordinator-term">Approved semester<select data-owl-coordinator-semester>'+terms.map(term=>'<option'+(term===state.coordinatorSemester?' selected':'')+'>'+esc(term)+'</option>').join('')+'</select></label>' : ''}
           <div data-owl-body></div>
         </div>` : ''}
       </section>
@@ -544,6 +565,11 @@
     if (standalone && identity.status !== 'signed-in') return;
     const body = root.querySelector('[data-owl-body]');
     if (!body) return;
+    if (identity.role === 'teacher' || state.teacherHome && (identity.profile?.accountType === 'teacher' || identity.isAdmin)) {
+      if (window.OwlPostTeachers) window.OwlPostTeachers.render(body);
+      else body.innerHTML='<p role="alert">Could not load teacher applications. Please reload Owl Post.</p>';
+      return;
+    }
 
     if (mode === 'verify' || (!state.verified && state.role === 'student')) {
       body.innerHTML = verificationScreen();
@@ -575,13 +601,23 @@
       document.title = 'Owl Post · Sign in';
       return;
     }
-    if (standalone && identity.role === 'student' && (!identity.profile?.name || !identity.profile?.studentId)) {
+    if (standalone && (identity.profile?.missing || !identity.profile?.name || identity.profile?.accountType !== 'teacher' && !identity.profile?.studentId)) {
       auth.render(root, {mode:'profile'});
       return;
     }
     if (standalone) document.title = 'Owl Post · Your workspace';
     root.innerHTML = shell();
     root.querySelector('[data-owl-signout]')?.addEventListener('click', () => auth?.signOut());
+    root.querySelector('[data-owl-teacher-home]')?.addEventListener('click',()=>{
+      state.teacherHome=state.role==='coordinator'?!state.teacherHome:true;
+      save();render();
+    });
+    root.querySelector('[data-owl-coordinator-semester]')?.addEventListener('change',event=>{
+      const term=event.currentTarget.value;
+      if(!coordinatorTerms().includes(term))return;
+      state.coordinatorSemester=term;state.activeCourse='';state.coordinatorStudio=false;
+      save();render();
+    });
 
     if (state.open) renderBody();
 

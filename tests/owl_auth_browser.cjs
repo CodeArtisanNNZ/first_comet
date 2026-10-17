@@ -17,6 +17,7 @@ const authOrigin = 'https://owl-post-test.supabase.co';
 const password = 'test-only-password-932!';
 const accounts = new Map();
 const requests = [];
+const applications = [];
 const user = (id, email, role = 'student', confirmed = true) => ({
   id,email,aud:'authenticated',role:'authenticated',created_at:'2026-10-17T00:00:00Z',email_confirmed_at:confirmed ? '2026-10-17T00:00:00Z' : null,
   app_metadata:{provider:'email',providers:['email'],...(role === 'coordinator' ? {owl_post_role:role} : {})},
@@ -26,6 +27,13 @@ accounts.set('student@g.bracu.ac.bd', user('student-one','student@g.bracu.ac.bd'
 accounts.set('second@g.bracu.ac.bd', user('student-two','second@g.bracu.ac.bd'));
 accounts.set('coordinator@bracu.ac.bd', user('coordinator-one','coordinator@bracu.ac.bd','coordinator'));
 accounts.set('unconfirmed@g.bracu.ac.bd', user('unconfirmed','unconfirmed@g.bracu.ac.bd','student',false));
+const teacher = user('teacher-one','teacher@bracu.ac.bd');
+teacher.owlProfile={display_name:'Owl Teacher',student_id:null,department:'CSE',account_type:'teacher'};
+teacher.user_metadata.owl_post_admin=true;
+accounts.set(teacher.email,teacher);
+const administrator = user('owl-admin','reviewer@g.bracu.ac.bd');
+administrator.app_metadata.owl_post_admin=true;
+accounts.set(administrator.email,administrator);
 const existing = user('existing-healthcare','existing@g.bracu.ac.bd');
 existing.user_metadata = {full_name:'Existing healthcare name'};
 accounts.set(existing.email,existing);
@@ -50,6 +58,31 @@ async function installFixture(context, configured = true) {
     if(request.method() === 'OPTIONS') return respond({});
     const data = request.postDataJSON() || {};
     requests.push({path:url.pathname,method:request.method(),body:data});
+    if(url.pathname === '/rest/v1/owl_post_coordinator_applications' || url.pathname === '/rest/v1/rpc/owl_post_review_application') {
+      const token=(request.headers().authorization || '').replace(/^Bearer /,'');
+      const account=accounts.get(tokens.get(token));
+      if(!account)return respond({code:'42501',message:'Unauthorized'},401);
+      const isAdmin=account.app_metadata.owl_post_admin===true;
+      if(url.pathname.endsWith('/rpc/owl_post_review_application')) {
+        if(!isAdmin)return respond({code:'42501',message:'Administrator required'},403);
+        const application=applications.find(item=>item.id===data.application_id && item.status==='pending' && item.teacher_id!==account.id);
+        if(!application)return respond({code:'P0002',message:'Application not pending'},400);
+        Object.assign(application,{status:data.decision,review_note:data.review_note,reviewed_at:new Date().toISOString()});
+        return respond(null);
+      }
+      if(request.method()==='POST') {
+        if(account.owlProfile?.account_type!=='teacher' || data.teacher_id!==account.id || Object.keys(data).some(key=>!['teacher_id','course_code','semester','reason'].includes(key)))return respond({code:'42501',message:'Teacher required'},403);
+        if(applications.some(item=>item.teacher_id===account.id && item.course_code===data.course_code && item.semester===data.semester && item.status!=='rejected'))return respond({code:'23505',message:'Duplicate application'},409);
+        applications.push({...data,id:crypto.randomUUID(),applicant_email:account.email,status:'pending',review_note:'',created_at:new Date().toISOString(),reviewed_at:null});
+        return respond(null,201);
+      }
+      let visible=applications.filter(item=>isAdmin || item.teacher_id===account.id);
+      const filterId=url.searchParams.get('teacher_id');
+      const filterStatus=url.searchParams.get('status');
+      if(filterId)visible=visible.filter(item=>'eq.'+item.teacher_id===filterId);
+      if(filterStatus)visible=visible.filter(item=>'eq.'+item.status===filterStatus);
+      return respond(visible.map(item=>({...item,profile:{display_name:accounts.get(item.applicant_email)?.owlProfile?.display_name || 'Teacher'}})));
+    }
     if (url.pathname === '/rest/v1/owl_post_profiles') {
       const token = (request.headers().authorization || '').replace(/^Bearer /,'');
       const account = accounts.get(tokens.get(token));
@@ -234,6 +267,89 @@ async function signIn(page, email, value = password) {
     await page.reload();
     await page.waitForFunction(()=>window.OwlPostAuth?.snapshot.status==='signed-out');
     assert.equal(await page.locator('[data-owl-workspace]').count(),0,'a forged saved auth object must fail the server check');
+    await page.locator('[data-owl-audience="teacher"]').click();
+    await page.locator('[data-owl-auth-mode="signup"]').click();
+    assert.equal(await page.locator('#owl-student-id').count(),0,'teachers must not need a student ID');
+    await page.locator('#owl-name').fill('New Teacher');
+    await page.locator('#owl-email').fill('teacher@g.bracu.ac.bd');
+    await page.locator('#owl-password').fill(password);
+    await page.locator('#owl-confirmPassword').fill(password);
+    await page.locator('[data-owl-auth-form] button[type="submit"]').click();
+    await page.getByText('Teacher accounts use an @bracu.ac.bd email address. Students should choose Student.').waitFor();
+    await page.locator('#owl-email').fill('new-teacher@bracu.ac.bd');
+    await page.locator('[data-owl-auth-form] button[type="submit"]').click();
+    await page.getByText(/Check your BRACU inbox/).waitFor();
+    const teacherSignup=requests.filter(item=>item.path.endsWith('/signup')).at(-1);
+    assert.equal(teacherSignup.body.data.owl_post_profile.account_type,'teacher');
+    assert.equal(teacherSignup.body.data.owl_post_profile.student_id,null);
+    await signIn(page,teacher.email);
+    await page.getByText('Apply to be a course coordinator',{exact:true}).waitFor();
+    assert.equal(await page.evaluate(()=>window.OwlPostAuth.snapshot.role),'teacher');
+    assert.equal(await page.getByRole('button',{name:'Review applications',exact:true}).count(),0,'editable metadata must not grant administration');
+    for(const width of [1440,390,320]) {
+      await page.setViewportSize({width,height:1000});
+      assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'teacher overflow at '+width);
+      await page.screenshot({path:path.join(output,'teacher-'+width+'.png')});
+    }
+    await page.setViewportSize({width:1440,height:1000});
+    async function applyFor(code) {
+      await page.locator('#owl-application-course').selectOption(code);
+      await page.locator('#owl-application-semester').selectOption('Fall 2026');
+      await page.locator('#owl-application-reason').fill('I teach this course and request coordinator access for the semester.');
+      await page.locator('[data-owl-application-form] [type="submit"]').click();
+    }
+    await applyFor('CSE470');
+    await page.getByText('Application submitted. Coordinator access to this course requires approval.').waitFor();
+    assert.equal(await page.evaluate(()=>window.OwlPostAuth.snapshot.role),'teacher');
+    assert.equal(await page.locator('[data-owl-studio]').count(),0);
+    await page.reload();
+    await page.getByText('Pending review',{exact:true}).waitFor();
+    await applyFor('CSE470');
+    await page.getByText('An application for this course and semester is already pending or approved.').waitFor();
+    await page.locator('[data-owl-signout]').click();
+    await page.locator('[data-owl-audience="student"]').click();
+    await signIn(page,administrator.email);
+    await page.locator('[data-owl-teacher-home]').click();
+    await page.locator('[data-owl-review-form]').waitFor();
+    await page.screenshot({path:path.join(output,'teacher-admin-review.png')});
+    await page.locator('[data-owl-review-form] textarea').fill('Confirmed for this course and semester.');
+    await page.getByRole('button',{name:'Approve',exact:true}).click();
+    await page.getByText('Application approved.',{exact:true}).waitFor();
+    await page.getByText('No applications are waiting for review.').waitFor();
+    applications.push({...applications[0],id:crypto.randomUUID(),course_code:'CSE110',semester:'Spring 2027',review_note:'A separate future-semester assignment.'});
+    await page.locator('[data-owl-signout]').click();
+    await page.locator('[data-owl-audience="teacher"]').click();
+    await signIn(page,teacher.email);
+    await page.locator('[data-owl-studio]').first().waitFor();
+    assert.equal(await page.locator('[data-owl-switch-course="CSE470"]').count(),1);
+    assert.equal(await page.locator('[data-owl-switch-course="CSE110"]').count(),0,'approval must not grant every course');
+    await page.locator('[data-owl-coordinator-semester]').selectOption('Spring 2027');
+    await page.locator('[data-owl-switch-course="CSE110"]').waitFor();
+    assert.equal(await page.locator('[data-owl-switch-course="CSE470"]').count(),0,'assignments must be separated by semester');
+    await page.locator('[data-owl-coordinator-semester]').selectOption('Fall 2026');
+    await page.locator('[data-owl-switch-course="CSE470"]').waitFor();
+    await page.locator('[data-owl-teacher-home]').click();
+    await page.getByText('Approved',{exact:true}).first().waitFor();
+    assert.equal(await page.getByText('Approved',{exact:true}).count(),2);
+    await applyFor('CSE110');
+    await page.getByText('Application submitted. Coordinator access to this course requires approval.').waitFor();
+    await page.locator('[data-owl-signout]').click();
+    await page.locator('[data-owl-audience="student"]').click();
+    await signIn(page,administrator.email);
+    await page.locator('[data-owl-teacher-home]').click();
+    await page.locator('[data-owl-review-form]').waitFor();
+    await page.locator('[data-owl-review-form] textarea').fill('Please provide confirmation of this assignment.');
+    await page.getByRole('button',{name:'Reject',exact:true}).click();
+    await page.getByText('Application rejected.',{exact:true}).waitFor();
+    await page.locator('[data-owl-signout]').click();
+    await page.locator('[data-owl-audience="teacher"]').click();
+    await signIn(page,teacher.email);
+    await page.locator('[data-owl-teacher-home]').click();
+    await page.getByText('Rejected',{exact:true}).waitFor();
+    await page.getByText('Please provide confirmation of this assignment.',{exact:false}).waitFor();
+    await applyFor('CSE110');
+    await page.getByText('Application submitted. Coordinator access to this course requires approval.').waitFor();
+    await page.locator('[data-owl-signout]').click();
     assert.deepEqual(errors,[]);
     await installFixture(context,false);
     const pendingPage=await context.newPage();
@@ -242,6 +358,6 @@ async function signIn(page, email, value = password) {
     await pendingPage.getByText('Account sign-in is being connected. Please check back soon.').waitFor();
     assert.equal(await pendingPage.locator('[type="submit"]').isDisabled(),true);
     assert.equal(await pendingPage.locator('[data-owl-workspace]').count(),0);
-    console.log('PASS: separate entry; signup validation and confirmation gate; wrong password; unconfirmed email; password recovery request and update; server-verified sessions; refresh; logout; user isolation; forged roles rejected; coordinator assignment; no password persistence; 8 responsive screenshots; unavailable backend stays closed.');
+    console.log('PASS: student and teacher registration; staff-email validation; confirmation and recovery; session isolation; forged privileges rejected; teacher applications persist; duplicates blocked; administrator approval/rejection; resubmission; approved courses only; responsive screenshots; unavailable backend stays closed.');
   } finally { await browser?.close(); server.kill(); }
 })().catch(error=>{console.error(error);process.exitCode=1;});

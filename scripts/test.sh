@@ -7,7 +7,7 @@ if [ -f apps/web/package.json ]; then
 else
   node tests/test_course.cjs
   node tests/test_project_course.cjs
-  for file in public/app.js public/navigation.js public/course-data.js public/course.js public/project-course-data.js public/project-course.js public/owl-auth.js public/owl-post.js public/bracu-courses.js; do
+  for file in public/app.js public/navigation.js public/course-data.js public/course.js public/project-course-data.js public/project-course.js public/owl-auth.js public/owl-teacher.js public/owl-post.js public/bracu-courses.js; do
     node --check "$file"
   done
 fi
